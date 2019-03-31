@@ -51,7 +51,7 @@ import { AddresumeComponent } from './addresume/addresume.component';
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
-    NgbModule.forRoot()
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

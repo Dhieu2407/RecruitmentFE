@@ -13,8 +13,8 @@ body {
   font-weight: 400;
   font-size: 13px;
   line-height: 24px;
-  overflow-x: hidden;
-  /* fixing the overflow duting animation */
+  /* overflow-x: hidden;
+  fixing the overflow duting animation */
   color: #444;
 }
 h1,
@@ -1289,7 +1289,7 @@ label {
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.18), 0 2px 5px 0 rgba(0, 0, 0, 0.15);
 }
 /* ==========================================================================
-   purchase 
+   purchase
    ========================================================================== */
 .purchase {
   background-image: url("../img/parallax/bg-02.jpg");
@@ -1310,7 +1310,7 @@ label {
   margin-bottom: 40px;
 }
 /* ==========================================================================
-   Blog 
+   Blog
    ========================================================================== */
 #blog .blog-item-wrapper {
   background: #fff;
