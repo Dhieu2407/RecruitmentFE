@@ -19,6 +19,7 @@ import {BrowsejobsComponent} from './browsejobs/browsejobs.component';
 //phucnh
 import {ListacadidateComponent} from './listacadidate/listacadidate.component';
 import {DetailCandidateComponent} from './detail-candidate/detail-candidate.component';
+import {PopupviewcontactComponent} from './popupviewcontact/popupviewcontact.component';
 
 //phucnh
 
@@ -43,6 +44,7 @@ const routes: Routes = [
   //phucnh
   { path: 'listcadidate', component: ListacadidateComponent },
   { path: 'detailcandidate', component: DetailCandidateComponent },
+  { path: 'popupcandidate', component: PopupviewcontactComponent },
   //phucnh
 
   { path: 'test', component: TestComponent },
