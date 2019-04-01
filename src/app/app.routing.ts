@@ -16,6 +16,12 @@ import {ChangepasswordComponent} from './changepassword/changepassword.component
 import {BrowseresumesComponent} from './browseresumes/browseresumes.component';
 import {BrowsejobsComponent} from './browsejobs/browsejobs.component';
 
+//phucnh
+import {ListacadidateComponent} from './listacadidate/listacadidate.component';
+import {DetailCandidateComponent} from './detail-candidate/detail-candidate.component';
+
+//phucnh
+
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
@@ -33,6 +39,11 @@ const routes: Routes = [
   { path: 'changepassword', component: ChangepasswordComponent },
   { path: 'browseresumes', component: BrowseresumesComponent },
   { path: 'browsejobs', component: BrowsejobsComponent },
+
+  //phucnh
+  { path: 'listcadidate', component: ListacadidateComponent },
+  { path: 'detailcandidate', component: DetailCandidateComponent },
+  //phucnh
 
   { path: 'test', component: TestComponent },
   { path: '**', redirectTo: '/home', pathMatch: 'full' },
