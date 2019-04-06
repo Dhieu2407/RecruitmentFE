@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { Resume } from '../model/resume.model';
-import {User} from "../../../../fashion-project/src/app/model/user.model";
 
 @Component({
   selector: 'app-addresume',
