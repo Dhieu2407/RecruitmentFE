@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { HttpClient, HttpHandler } from '@angular/common/http';
-import { CandidateServiceService } from '../candidate-service.service';
+import { CandidateService } from '../service/candidate.service';
 
 export interface Candidate{
   username : string,
@@ -17,7 +17,7 @@ export interface Candidate{
 export class LoginComponent implements OnInit {
   newCandidate : Candidate;
   rfContact: FormGroup;
-  constructor(private candidateService: CandidateServiceService) {
+  constructor(private candidateService: CandidateService) {
     
   }
 
