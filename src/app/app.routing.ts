@@ -14,7 +14,6 @@ import {ManageapplicationsComponent} from './manageapplications/manageapplicatio
 import {ManageresumesComponent} from './manageresumes/manageresumes.component';
 import {ChangepasswordComponent} from './changepassword/changepassword.component';
 import {BrowseresumesComponent} from './browseresumes/browseresumes.component';
-import {BrowsejobsComponent} from './browsejobs/browsejobs.component';
 
 //phucnh
 import {ListacadidateComponent} from './listacadidate/listacadidate.component';
@@ -39,7 +38,6 @@ const routes: Routes = [
   { path: 'manageresumes', component: ManageresumesComponent },
   { path: 'changepassword', component: ChangepasswordComponent },
   { path: 'browseresumes', component: BrowseresumesComponent },
-  { path: 'browsejobs', component: BrowsejobsComponent },
 
   //phucnh
   { path: 'listcadidate', component: ListacadidateComponent },
