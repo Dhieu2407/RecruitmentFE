@@ -26,30 +26,32 @@
             <div class="post-header">
               <p>Bạn đã có tài khoản? <a href="my-account.html">Click here để tạo tài khoản</a></p>
             </div>
+
             <form class="form-ad">
+              <form [formGroup]="addResumeForm" (ngSubmit)="onSubmit(buttonType)" ngNativeValidate>
               <div class="divider"><h3>Thông tin cơ bản</h3></div>
               <div class="form-group">
                 <label class="control-label" for="textarea">Tên</label>
-                <input type="text" class="form-control" placeholder="Tên của bạn">
+                <input type="text" class="form-control" placeholder="Tên của bạn" formControlName="name" id="name" required>
               </div>
               <div class="form-group">
                 <label class="control-label" for="textarea"></label>
                 <label class="control-label" for="textarea">Email</label>
-                <input type="text" class="form-control" placeholder="Your@domain.com" >
+                <input type="email" class="form-control" placeholder="Your@domain.com" formControlName="email" id="email" required>
               </div>
 
               <div class="form-group">
                 <label class="control-label" for="textarea">Số Điện Thoại</label>
-                <input type="text" class="form-control"  placeholder="Số điện thoai">
+                <input type="text" class="form-control"  placeholder="Số điện thoai" formControlName="phone" id="phone" required>
               </div>
 
               <div class="form-group">
                 <label class="control-label" for="textarea">Chuyên ngành</label>
-                <input type="text" class="form-control"  placeholder="Tiêu đề (e.g. Lập trình viên)">
+                <input type="text" class="form-control"  placeholder="Tiêu đề (e.g. Lập trình viên)" formControlName="career" id="career" required>
               </div>
               <div class="form-group">
                 <label class="control-label" for="textarea">Vị trí(Mong muốn)</label>
-                <input type="text" class="form-control"  placeholder="Vị trí, e.g">
+                <input type="text" class="form-control"  placeholder="Vị trí, e.g" formControlName="wantedPosition" id="wantedPosition" required>
               </div>
               <!--<div class="form-group">-->
                 <!--<label class="control-label" for="textarea">Web</label>-->
@@ -61,22 +63,22 @@
               <!--</div>-->
               <div class="form-group">
                 <label class="control-label" for="textarea">Tuổi</label>
-                <input type="text" class="form-control"  placeholder="Tuổi của bạn">
+                <input type="text" class="form-control"  placeholder="Tuổi của bạn" formControlName="age" id="age" required>
               </div>
 
               <div class="form-group">
                 <label class="control-label" for="textarea">Lương mong muốn</label>
-                <input type="number" class="form-control"  placeholder="$$$">
+                <input type="number" class="form-control"  placeholder="$$$" formControlName="wantedSalary" id="wantedSalary" required>
               </div>
 
               <div class="form-group">
                 <label class="control-label" for="textarea">Số năm kinh nghiệm</label>
-                <input type="number" class="form-control"  placeholder="Nhập số năm kinh nghiệm">
+                <input type="number" class="form-control"  placeholder="Nhập số năm kinh nghiệm" formControlName="yearsOfExperience" id="yearsOfExperience" required>
               </div>
 
               <div class="form-group">
-                <label class="control-label" for="textarea">Thời gian làm việc</label>
-                <select class="form-control">
+                <label class="control-label" for="textarea">Hình thức làm việc</label>
+                <select class="form-control" formControlName="workForm" id="workForm" required>
                   <option value="0">Part Time</option>
                   <option value="1">Full Time</option>
 
@@ -84,12 +86,12 @@
               </div>
               <div class="form-group">
                 <label class="control-label" for="textarea">Kiến thức chuyên môn</label>
-                <textarea class="form-control" rows="5"></textarea>
+                <textarea class="form-control" rows="5" formControlName="expertise" id="expertise" required></textarea>
               </div>
 
               <div class="form-group">
                 <label class="control-label" for="textarea">Mục tiêu nghề nghiệp</label>
-                <textarea class="form-control" rows="5"></textarea>
+                <textarea class="form-control" rows="5" formControlName="careerGoals" id="careerGoals" required></textarea>
               </div>
 
 
@@ -97,7 +99,7 @@
                 <div class="button-group">
                   <div class="action-buttons">
                     <div class="upload-button">
-                      <button class="btn btn-common">Chọn ảnh</button>
+                      <a class="btn btn-common" (click)="onSubmit('Browse')">Chọn ảnh</a>
                       <input id="cover_img_file" type="file">
                     </div>
                   </div>
@@ -106,31 +108,31 @@
               <div class="divider"><h3>Education</h3></div>
               <div class="form-group">
                 <label class="control-label" for="textarea">Bằng cấp</label>
-                <input type="text" class="form-control"  placeholder="Bằng, e.g. cử nhân">
+                <input type="text" class="form-control"  placeholder="Bằng, e.g. cử nhân" formControlName="certificate" id="certificate" required>
               </div>
               <div class="form-group">
                 <label class="control-label" for="textarea">Ngành học</label>
-                <input type="text" class="form-control"  placeholder="Ngành, e.g Kế toán">
+                <input type="text" class="form-control"  placeholder="Ngành, e.g Kế toán" formControlName="major" id="major" required>
               </div>
               <div class="form-group">
                 <label class="control-label" for="textarea">Trường</label>
-                <input type="text" class="form-control" placeholder="Tên trường, e.g. Đh Bách Khoa Hà Nội">
+                <input type="text" class="form-control" placeholder="Tên trường, e.g. Đh Bách Khoa Hà Nội" formControlName="school" id="school" required>
               </div>
               <div class="form-group">
                 <div class="row">
                   <div class="col-md-6">
                     <label class="control-label" for="textarea">From</label>
-                    <input type="date" data-date=""  placeholder="dd/MM/YYYY" class="form-control">
+                    <input type="date" data-date=""  placeholder="dd/MM/YYYY" class="form-control" formControlName="fromDate" id="fromDate" required>
                   </div>
                   <div class="col-md-6">
                     <label class="control-label" for="textarea">To</label>
-                    <input type="date" data-date=""  placeholder="dd/MM/YYYY" class="form-control">
+                    <input type="date" data-date=""  placeholder="dd/MM/YYYY" class="form-control" formControlName="toDate" id="toDate" required>
                   </div>
                 </div>
               </div>
               <div class="form-group">
                 <label class="control-label" for="textarea">Description</label>
-                <textarea class="form-control" rows="7"></textarea>
+                <textarea class="form-control" rows="7" formControlName="description" id="description" required></textarea>
               </div>
 
               <div class="add-post-btn">
@@ -144,27 +146,27 @@
               <div class="divider"><h3>Kinh nghiệm làm việc</h3></div>
               <div class="form-group">
                 <label class="control-label" for="textarea">Tên công ty</label>
-                <input type="text" class="form-control"  placeholder="Tên công ty">
+                <input type="text" class="form-control"  placeholder="Tên công ty" formControlName="companyName" id="companyName" required>
               </div>
               <div class="form-group">
                 <label class="control-label" for="textarea">Vị trí làm việc</label>
-                <input type="text" class="form-control"  placeholder="e.g Lập trình viên BackEnd">
+                <input type="text" class="form-control"  placeholder="e.g Lập trình viên BackEnd" formControlName="workPosition" id="workPosition" required>
               </div>
               <div class="form-group">
                 <div class="row">
                   <div class="col-md-6">
                     <label class="control-label" for="textarea">Thời gian bắt đầu</label>
-                    <input type="date" data-date=""  placeholder="dd/MM/YYYY" class="form-control">
+                    <input type="date" data-date=""  placeholder="dd/MM/YYYY" class="form-control" formControlName="startDate" id="startDate" required>
                   </div>
                   <div class="col-md-6">
                     <label class="control-label" for="textarea">Thời gian kết thúc</label>
-                    <input type="date" data-date=""  placeholder="dd/MM/YYYY" class="form-control">
+                    <input type="date" data-date=""  placeholder="dd/MM/YYYY" class="form-control" formControlName="endDate" id="endDate" required>
                   </div>
                 </div>
               </div>
               <div class="form-group">
                 <label class="control-label" for="textarea">Mô tả công việc</label>
-                <textarea class="form-control" rows="7"></textarea>
+                <textarea class="form-control" rows="7" formControlName="workDescription" id="workDescription" required></textarea>
               </div>
               <!--<section id="editor" style="margin-bottom: 30px;">-->
                 <!--<div id="summernote"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem quia aut modi fugit, ratione saepe perferendis odio optio repellat dolorum voluptas excepturi possimus similique veritatis nobis. Provident cupiditate delectus, optio?</p></div>-->
@@ -192,11 +194,11 @@
                 <div class="row">
                   <div class="col-md-6">
                     <label class="control-label" for="textarea">Tên kĩ năng</label>
-                    <input class="form-control" placeholder="Tên kĩ năng, e.g. code BackEnd" type="text">
+                    <input class="form-control" placeholder="Tên kĩ năng, e.g. code BackEnd" type="text" formControlName="skillName" id="skillName" required>
                   </div>
                   <div class="col-md-6">
                     <label class="control-label" for="textarea">% (1-100)</label>
-                    <input class="form-control" placeholder="Skill proficiency, e.g. 90" type="text">
+                    <input class="form-control" placeholder="Skill proficiency, e.g. 90" type="text" formControlName="competentlyPercent" id="competentlyPercent" required>
                   </div>
                 </div>
               </div>
@@ -208,8 +210,10 @@
                   <a href="#" class="btn-delete"><i class="ti-trash"></i> Delete This</a>
                 </div>
               </div>
+
+                <button class="btn btn-common" (click)="onSubmit('Submit')">Lưu lại</button>
+              </form>
             </form>
-            <a href="resume.html" class="btn btn-common">Lưu lại</a>
           </div>
         </div>
       </div>
