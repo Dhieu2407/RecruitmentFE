@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { HttpClient, HttpHandler } from '@angular/common/http';
 import { CandidateServiceService } from '../candidate-service.service';
 
@@ -24,9 +24,10 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.newCandidate = {username: "", email : "", password : ""};
     this.rfContact = new FormGroup({
-      Username: new FormControl(),
-      Email: new FormControl(),
-      Password: new FormControl()
+      Username: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(30)]),
+      Email: new FormControl('', [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$'),  Validators.minLength(3), Validators.maxLength(30)]),
+      Password: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(30)]),
+      RepeatPassword: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(30)])
     });
 
   }
@@ -37,6 +38,6 @@ export class LoginComponent implements OnInit {
     this.newCandidate.password = this.rfContact.get('Password').value;
     console.log(this.newCandidate);
     this.candidateService.addNewCandidate(this.newCandidate).subscribe(x => console.log(x));
-  }
+  } 
 
 }

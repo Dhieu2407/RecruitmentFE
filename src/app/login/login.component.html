@@ -79,8 +79,23 @@
                 <div class="form-group">
                   <div class="input-icon">
                     <i class="ti-lock"></i>
-                    <input type="password" class="form-control" placeholder="Repeat Password">
+                    <input type="password" class="form-control" placeholder="Repeat Password" formControlName="RepeatPassword">
                   </div>
+                </div>
+                <div class="col alert alert-danger" role="alert"
+                  *ngIf="(rfContact.controls.Username?.errors?.required && rfContact.controls.Username?.touched)
+                          || (rfContact.controls.Email?.errors?.required && rfContact.controls.Email?.touched)
+                          || (rfContact.controls.Password?.errors?.required && rfContact.controls.Password?.touched)">
+                  Required information is missing!
+                </div>
+                <div class="col alert alert-danger" role="alert"
+                  *ngIf="(rfContact.controls.Password != rfContact.controls.RepeatPassword 
+                            && rfContact.controls.Password?.touched && rfContact.controls.RepeatPassword?.touched)">
+                  Repeat password is different from password !
+                </div>
+                <div class="col alert alert-danger" role="alert"
+                  *ngIf="(rfContact.controls.Email?.errors?.pattern && rfContact.controls.Email?.touched)">
+                  Wrong email format !
                 </div>
                 <button class="btn btn-common log-btn">Register</button>
               </form>
