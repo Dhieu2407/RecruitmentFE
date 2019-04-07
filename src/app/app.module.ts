@@ -21,7 +21,6 @@ import { ManageapplicationsComponent } from './manageapplications/manageapplicat
 import { JobalertsComponent } from './jobalerts/jobalerts.component';
 import { ChangepasswordComponent } from './changepassword/changepassword.component';
 import { BrowseresumesComponent } from './browseresumes/browseresumes.component';
-import { BrowsejobsComponent } from './browsejobs/browsejobs.component';
 import { ManageresumesComponent } from './manageresumes/manageresumes.component';
 import { AddresumeComponent } from './addresume/addresume.component';
 import { ListacadidateComponent } from './listacadidate/listacadidate.component';
@@ -44,7 +43,6 @@ import { PopupviewcontactComponent } from './popupviewcontact/popupviewcontact.c
     JobalertsComponent,
     ChangepasswordComponent,
     BrowseresumesComponent,
-    BrowsejobsComponent,
     ManageresumesComponent,
     AddresumeComponent,
     ListacadidateComponent,

@@ -1,13 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { HttpClient, HttpHandler } from '@angular/common/http';
-import { CandidateServiceService } from '../candidate-service.service';
-
-export interface Candidate{
-  username : string,
-  email : string,
-  password : string
-};
+import { CandidateService } from '../service/candidate.service';
+import { Candidate} from '../model/candidate.model';
 
 @Component({
   selector: 'app-login',
@@ -15,14 +10,13 @@ export interface Candidate{
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  newCandidate : Candidate;
+  candidate = new Candidate();
   rfContact: FormGroup;
-  constructor(private candidateService: CandidateServiceService) {
+  constructor(private candidateService: CandidateService) {
     
   }
 
   ngOnInit() {
-    this.newCandidate = {username: "", email : "", password : ""};
     this.rfContact = new FormGroup({
       Username: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(30)]),
       Email: new FormControl('', [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$'),  Validators.minLength(3), Validators.maxLength(30)]),
@@ -33,11 +27,10 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    this.newCandidate.username = this.rfContact.get('Username').value;
-    this.newCandidate.email = this.rfContact.get('Email').value;
-    this.newCandidate.password = this.rfContact.get('Password').value;
-    console.log(this.newCandidate);
-    this.candidateService.addNewCandidate(this.newCandidate).subscribe(x => console.log(x));
-  } 
-
+    this.candidate.username = this.rfContact.get('Username').value;
+    this.candidate.email = this.rfContact.get('Email').value;
+    this.candidate.password = this.rfContact.get('Password').value;
+    console.log(this.candidate);
+    this.candidateService.addNewCandidate(this.candidate).subscribe(x => console.log(x));
+  }
 }
