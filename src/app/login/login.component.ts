@@ -27,6 +27,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
+
     this.candidate.username = this.rfContact.get('Username').value;
     this.candidate.email = this.rfContact.get('Email').value;
     this.candidate.password = this.rfContact.get('Password').value;
