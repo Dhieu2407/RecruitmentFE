@@ -12,6 +12,10 @@ export class CandidateService {
   constructor(private http: HttpClient) {}
 
   addNewCandidate(candidate: Candidate) {
-    return this.http.post<Candidate>(`${this.baseUrl}/candidateRegister`, candidate);
+    return this.http.post<Candidate>(this.baseUrl + '/candidateRegister', candidate);
+  }
+
+  getAllCandidates(){
+    return this.http.get(this.baseUrl + '/getAllCandidates');
   }
 }

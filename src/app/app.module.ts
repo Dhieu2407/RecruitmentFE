@@ -23,7 +23,6 @@ import { ChangepasswordComponent } from './changepassword/changepassword.compone
 import { BrowseresumesComponent } from './browseresumes/browseresumes.component';
 import { ManageresumesComponent } from './manageresumes/manageresumes.component';
 import { AddresumeComponent } from './addresume/addresume.component';
-import { ListacadidateComponent } from './listacadidate/listacadidate.component';
 import { DetailCandidateComponent } from './detail-candidate/detail-candidate.component';
 import { PopupviewcontactComponent } from './popupviewcontact/popupviewcontact.component';
 
@@ -45,7 +44,6 @@ import { PopupviewcontactComponent } from './popupviewcontact/popupviewcontact.c
     BrowseresumesComponent,
     ManageresumesComponent,
     AddresumeComponent,
-    ListacadidateComponent,
     DetailCandidateComponent,
     PopupviewcontactComponent
   ],

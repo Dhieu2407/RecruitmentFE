@@ -16,7 +16,6 @@ import {ChangepasswordComponent} from './changepassword/changepassword.component
 import {BrowseresumesComponent} from './browseresumes/browseresumes.component';
 
 //phucnh
-import {ListacadidateComponent} from './listacadidate/listacadidate.component';
 import {DetailCandidateComponent} from './detail-candidate/detail-candidate.component';
 import {PopupviewcontactComponent} from './popupviewcontact/popupviewcontact.component';
 
@@ -40,7 +39,6 @@ const routes: Routes = [
   { path: 'browseresumes', component: BrowseresumesComponent },
 
   //phucnh
-  { path: 'listcadidate', component: ListacadidateComponent },
   { path: 'detailcandidate', component: DetailCandidateComponent },
   { path: 'popupcandidate', component: PopupviewcontactComponent },
   //phucnh
