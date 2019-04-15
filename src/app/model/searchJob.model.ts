@@ -1,7 +1,7 @@
 export class SearchJob {
   id: number;
-
-  keyword: string;
-  location: string;
-  career: string;
+  tenJob: string;
+  diaChi: string;
+  tenNgannh: string;
+  tenCongty: string;
 }
