@@ -4,4 +4,10 @@ export class SearchJob {
   diaChi: string;
   tenNgannh: string;
   tenCongty: string;
+
+  // fix
+  keyword: string;
+  location: string;
+  career: string;
+
 }

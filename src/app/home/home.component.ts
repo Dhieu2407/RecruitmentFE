@@ -17,11 +17,11 @@ export class HomeComponent implements OnInit {
 
   searchJob = new SearchJob();
 
-  onSubmit(buttonType): void{
-    if(buttonType==="Search") {
-      if(this.searchJobForm.get('keyword').value === '' &&
+  onSubmit(buttonType): void {
+    if (buttonType === 'Search') {
+      if (this.searchJobForm.get('keyword').value === '' &&
         this.searchJobForm.get('location').value === '' &&
-        this.searchJobForm.get('career').value === ''){
+        this.searchJobForm.get('career').value === '') {
         return;
       }
       this.searchJob.keyword = this.searchJobForm.get('keyword').value;
