@@ -43,14 +43,14 @@
     <div class="container">
       <div class="row">
 
-        <div *ngFor="let resume of listCandidate | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
+        <div *ngFor="let resume of listCandidate | slice: (page-1) * pageSize: (page-1) * pageSize + pageSize">
           <div class="col-md-6 col-sm-6 col-xs-12">
             <div class="manager-resumes-item">
               <div class="manager-content">
-                <a href="resume.html"><img class="resume-thumb" src="assets/img/jobs/avatar-1.jpg" alt=""></a>
+                <a href="/resume/{{resume.ungVienId}}"><img class="resume-thumb" src="assets/img/jobs/avatar-1.jpg" alt=""></a>
                 <div class="manager-info">
                   <div class="manager-name">
-                    <h4><a href="#">{{resume.tenUngVien}}</a></h4>
+                    <h4><a href="/resume/{{resume.ungVienId}}">{{resume.tenUngVien}}</a></h4>
                     <h5>{{resume.nganh.tenNganh}}</h5>
                   </div>
                   <div class="manager-meta">

@@ -19,6 +19,10 @@ export class CandidateService {
     return this.http.get(this.baseUrl + '/getAllCandidates');
   }
 
+  getCandidate(id: number) {
+    return this.http.get(this.baseUrl + '/getCandidate/' + id);
+  }
+
   searchCandidate(candidate: Candidate){
     return this.http.post(this.baseUrl + '/searchCandidates', candidate);
   }

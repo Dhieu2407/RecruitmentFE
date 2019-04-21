@@ -30,7 +30,7 @@ const routes: Routes = [
   { path: 'addjob', component: AddjobComponent },
   { path: 'addresume', component: AddresumeComponent },
   { path: 'jobalerts', component: JobalertsComponent },
-  { path: 'resume', component: ResumeComponent },
+  { path: 'resume/:id', component: ResumeComponent },
   { path: 'bookmarkedjob', component: BookmarkedjobComponent },
   { path: 'nortifications', component: NortificationsComponent },
   { path: 'manageapplications', component: ManageapplicationsComponent },
