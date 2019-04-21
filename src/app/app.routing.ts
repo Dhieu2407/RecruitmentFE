@@ -26,7 +26,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'job', component: JobComponent },
-  { path: 'jobdetail', component: JobdetailComponent },
+  { path: 'jobdetail/:id/:idMajor', component: JobdetailComponent },
   { path: 'addjob', component: AddjobComponent },
   { path: 'addresume', component: AddresumeComponent },
   { path: 'jobalerts', component: JobalertsComponent },
@@ -38,7 +38,7 @@ const routes: Routes = [
   { path: 'changepassword', component: ChangepasswordComponent },
   { path: 'browseresumes', component: BrowseresumesComponent },
 
-  //phucnh
+  //phucnh { path: 'product-details/:id', component: ProductDetails }
   { path: 'detailcandidate', component: DetailCandidateComponent },
   { path: 'popupcandidate', component: PopupviewcontactComponent },
   //phucnh

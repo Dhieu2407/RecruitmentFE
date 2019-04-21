@@ -62,6 +62,10 @@ export class JobComponent implements OnInit {
     }
   }
 
+  goToProductDetails(id) {
+    this.router.navigate(['/jobdetail/:id', id]);
+  }
+
   ngOnInit() {
     this.searchJobForm = this.formBuilder.group({
       keyword: ['', Validators.required],
