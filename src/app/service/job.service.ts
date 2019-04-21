@@ -16,4 +16,10 @@ export class JobService {
   searchJobs(body: string) {
     return this.http.post(this.baseUrl + '/searchJobs', body );
   }
+  getJobById(body: string) {
+    return this.http.post(this.baseUrl + '/getJobById', body );
+  }
+  getListJobRelate(body: string) {
+    return this.http.post(this.baseUrl + '/getListJobRelate', body);
+  }
 }
