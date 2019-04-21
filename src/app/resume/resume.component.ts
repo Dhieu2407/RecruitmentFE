@@ -20,6 +20,7 @@ export class ResumeComponent implements OnInit {
 
   candidate = new Candidate();
   id: number;
+  nganh: string;
 
   ngOnInit() {
     this.id = +this.route.snapshot.paramMap.get('id');
@@ -28,6 +29,7 @@ export class ResumeComponent implements OnInit {
       .subscribe(
         (data: Candidate) => {
           this.candidate = data;
+          this.nganh = this.candidate.nganh.tenNganh;
           console.log(this.candidate);
         },
         error => {

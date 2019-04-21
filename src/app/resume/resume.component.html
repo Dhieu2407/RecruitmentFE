@@ -31,9 +31,9 @@
                 <img src="assets/img/resume/img-1.jpg" alt="">
               </div>
               <div class="author-info">
-                <h3><label>Mark Anderson</label></h3>
+                <h3><label>{{candidate.tenUngVien}}</label></h3>
                 <p class="sub-title"><label>Java Deverloper</label></p>
-                <p><span class="address"><i class="ti-location-pin"></i><label>Hà Nội, Việt Nam</label></span> <span><i class="ti-phone"></i><label class="ti-mobile">(+84)09232322</label></span></p>
+                <p><span class="address"><i class="ti-location-pin"></i><label>{{candidate.diaChi}}</label></span><br><span><i class="ti-phone"></i><label class="ti-mobile">{{candidate.sdt}}</label></span></p>
 
 
                 <div class="social-link">
@@ -53,7 +53,7 @@
               <h3>Thông Tin Hồ Sơ</h3>
               <div class="row">
                 <div class="col-md-6">
-                  <p>Ngành nghề: <span><label>IT</label></span> </p>
+                  <p>Ngành nghề: <span><label>{{nganh}}</label></span> </p>
                 </div>
                 <div class="col-md-6">
                   <p>Trình độ học vấn: <label>Đại Học</label></p>
@@ -65,35 +65,34 @@
                   <p>Vị trí mong muốn: <label>DEV</label></p>
                 </div>
                 <div class="col-md-6">
-                  <p>Mức lương mong muốn: <label>500$</label></p>
+                  <p>Mức lương mong muốn: <label>{{candidate.luongMongMuon}}$</label></p>
                 </div>
               </div>
 
-              <div class="row">
+              <!-- <div class="row">
                 <div class="col-md-6">
                   <p>Số năm kinh nghiệm: <label>5 năm</label></p>
                 </div>
                 <div class="col-md-6">
                   <p>Thời gian làm việc: <label>Full time</label></p>
                 </div>
-              </div>
+              </div> -->
 
 
             </div>
 
             <div class="about-me item">
               <h3>Kiến Thức Chuyên Môn</h3>
-              <p>Lập trình Web sử dụng ngôn ngữ Java <br>
-                Lập trình thành thạo với các ngôn ngũ HTML, JAVA</p>
+              <div *ngFor="let skill of candidate.kiNang">
+                <p><span>Tên kĩ năng : </span><span>{{skill.kiNang.tenKiNang}}</span></p>
+                <p><span>Số năm kinh nghiệm : </span><span>{{skill.soNamKinhNghiem}}</span></p>
+                <br/>
+              </div>
             </div>
 
             <div class="about-me item">
               <h3>Mục Tiêu Nghề Nghiệp</h3>
-              <p>
-                Mong muốn tìm được chỗ làm ổn định lâu dài <br>
-                Mong muốn tìm được chỗ làm có cơ hội thăng tiến tốt <br>
-                Mong muốn tìm được nơi có cơ hội cống hiến bản thân tốt...
-              </p>
+              <span style="white-space: pre">{{candidate.mucTieuNgheNghiep}}</span>
             </div>
 
             <div class="about-me item">
