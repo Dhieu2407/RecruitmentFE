@@ -22,7 +22,7 @@ export class JobdetailComponent implements OnInit {
   ) { }
   idJob: number;
   idMajor: number;
-  job: Job;
+  job = new Job();
   listJobRelate: Job[];
   major = new Major();
   searchJob = new SearchJob();
@@ -36,12 +36,15 @@ export class JobdetailComponent implements OnInit {
       .subscribe(
         (data: Job) => {
           this.job = data;
+          console.log(this.job.congTy.tenCongTy);
           console.log(this.job);
         },
         error => {
           console.log('Faild');
         }
       );
+
+   // str.replace(/\n/g,'\\n')
     // get list job Related
     // @ts-ignore
     this.idMajor = this.routerSnapshot.snapshot.paramMap.get('idMajor');

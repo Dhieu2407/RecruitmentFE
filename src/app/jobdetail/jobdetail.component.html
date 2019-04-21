@@ -24,56 +24,73 @@
       <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="header-detail">
           <div class="header-content pull-left">
-            <h3><a href="#">Front-end developer</a></h3>
-            <p><span>Date Posted: Feb 20, 2018</span></p>
-            <p>Monthly Salary: <strong class="price">$7000 - $7500</strong></p>
+            <h3><a href="#">{{job.tenJob}}</a></h3>
+            <p><span>Date Posted: {{job.ngayDang}}</span></p>
+            <p>Monthly Salary: <strong class="price">{{job.luongToiThieu}}.00 VNĐ - {{job.luongToiDa}}.00 VNĐ</strong></p>
           </div>
           <div class="detail-company pull-right text-right">
             <div class="img-thum">
               <img class="img-responsive" src="assets/img/jobs/recent-job-detail.jpg" alt="" width="80" height="46">
             </div>
             <div class="name">
-              <h4>LemonKids LLC</h4>
-              <h5>New York, NY </h5>
+              <h4>{{job.congTy.tenCongTy}}</h4>
+              <h5><span><i class="ti-location-pin"></i>{{job.diaChi}}</span> </h5>
               <p>8 Current jobs openings</p>
             </div>
           </div>
-          <div class="clearfix">
-            <div class="meta">
-              <span><a class="btn btn-border btn-sm" href="#"><i class="ti-email"></i> Email</a></span>
-              <span><a class="btn btn-border btn-sm" href="#"><i class="ti-info-alt"></i> Job Aleart</a></span>
-              <span><a class="btn btn-border btn-sm" href="#"><i class="ti-save"></i> Save This job</a></span>
-              <span><a class="btn btn-border btn-sm" href="#"><i class="ti-alert"></i> Report Abuse</a></span>
-            </div>
-          </div>
+          <!--<div class="clearfix">-->
+            <!--<div class="meta">-->
+              <!--<span><a class="btn btn-border btn-sm" href="#"><i class="ti-email"></i> Email</a></span>-->
+              <!--<span><a class="btn btn-border btn-sm" href="#"><i class="ti-info-alt"></i> Job Aleart</a></span>-->
+              <!--<span><a class="btn btn-border btn-sm" href="#"><i class="ti-save"></i> Save This job</a></span>-->
+              <!--<span><a class="btn btn-border btn-sm" href="#"><i class="ti-alert"></i> Report Abuse</a></span>-->
+            <!--</div>-->
+          <!--</div>-->
         </div>
       </div>
       <div class="col-md-8 col-sm-12 col-xs-12">
+        <div>
         <div class="content-area">
           <div class="clearfix">
             <div class="box">
-              <h4>Job Description</h4>
-              <p>LemonKids LLC. In marketing communications, we dream it and create it. All of the company’s promotional and communication needs are completed in-house by these “creatives” in an advertising agency-based set-up. This includes everything from advertising, promotions and print production to media relations, exhibition coordination and website maintenance. Everyone from artists, writers, designers, media buyers, event coordinators, video producers/editors and public relations specialists work together to bring campaigns and product-centric promotions to life.</p>
-              <p>If you’re a dreamer, gather up your portfolio and show us your vision. Garmin is adding one more enthusiastic individual to our in-house Communications expert team.</p>
-              <h4>Qualification</h4>
-              <p>Minimum of 5 years creative experience in a graphic design studio or advertising ad agency environment is required. Qualified candidates for this role will possess the following education, experience and skills:</p>
-              <ul>
-                <li><i class="ti-check-box"></i>Demonstrated strong and effective verbal, written, and interpersonal communication skills</li>
-                <li><i class="ti-check-box"></i>Must be team-oriented, possess a positive attitude and work well with others</li>
-                <li><i class="ti-check-box"></i>Ability to prioritize and multi-task in a flexible, fast paced and challenging environment</li>
-              </ul>
-              <h4>Key responsibilities also include</h4>
-              <ul>
-                <li><i class="ti-check-box"></i>Provide technical health advice to Head of Country Programmes and field advisors at all key stages of the project management cycle including needs assessment.</li>
-                <li><i class="ti-check-box"></i>Technical strategy and design, implementation as well as sector specific monitoring and evaluation.</li>
-                <li><i class="ti-check-box"></i>This includes travel to field programmes as well as review of proposals, key reports and surveys prior to external submission.</li>
-              </ul>
-              <h4>Requirements</h4>
-              <ul>
-                <li><i class="ti-check-box"></i>Must have minimum of 3 years experience running, maneuvering, driving, and navigating equipment such as bulldozer, excavators, rollers, and front-end loaders.</li>
-                <li><i class="ti-check-box"></i>Must have minimum of 3 years experience running, maneuvering, driving, and navigating equipment such as bulldozer, excavators, rollers, and front-end loaders.
-                  Strongly prefer candidates with High School Diploma</li>
-              </ul>
+              <h4><b>Thông Tin Tuyển Dụng Nhanh</b></h4>
+              <div class="col-md-12">
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                  <p><b>Kinh Nghiệm:</b> {{job.knToiThieu}}</p>
+                </div>
+
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                  <p><b>Hình Thức Làm Việc: <span class="full-time">{{job.tgLamViec == 1 ? 'Full-Time' : (job.tgLamViec == 0 ? 'Part-Time' : '')}}</span></b></p>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                  <p><b>Chức Vụ: </b>{{job.chucVu1}} </p>
+                </div>
+
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                  <p><b>Yêu Cầu Giới Tính: </b>{{job.gioiTinh == 0 ? 'Không yêu cầu' : (job.gioiTinh == 1 ? 'Nhân viên nam' : (job.gioiTinh ==2 ? 'Nhân viên nữ' : ''))}}</p>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                  <p><b>Yêu Cầu Bằng Cấp: </b></p>
+                </div>
+
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                  <p><b>Số Lượng Cần Tuyển: </b>{{job.soLuong}}</p>
+                </div>
+              </div>
+              <h4><b>Mô Tả Công Việc.</b></h4>
+
+              <!--<p>{{job.chiTiet}}</p>-->
+              <span style="white-space: pre">{{job.chiTiet}}</span>
+              <h4><b>Quyền Lợi Được Hưởng</b></h4>
+              <span style="white-space: pre">{{job.quyenLoi}}</span>
+              <h4><b>Yêu Cầu Công Việc</b></h4>
+              <span style="white-space: pre">{{job.yeuCauCongViec}}</span>
+              <h4><b>Yêu Cầu Hồ Sơ</b></h4>
+              <span style="white-space: pre">{{job.yeuCauHoSo}}</span>
               <h4>Benefits</h4>
               <ul>
                 <li><i class="ti-check-box"></i>Must have minimum of 3 years experience running, maneuvering, driving, and navigating equipment such as bulldozer, excavators, rollers, and front-end loaders.</li>
@@ -82,6 +99,7 @@
               <a href="#" class="btn btn-common">Apply for this Job Now</a>
             </div>
           </div>
+        </div>
         </div>
 
         <h2 class="medium-title">Related Jobs</h2>

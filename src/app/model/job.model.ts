@@ -1,3 +1,5 @@
+import {Company} from './company.model';
+
 export class Job {
   id: number;
   email: string;
@@ -9,5 +11,9 @@ export class Job {
   salary: number;
   description: string; // mô tả công việc
   duedate: string; // hạn apply
+  chiTiet: string;
+  congTy: Company;
+  diaChi: string;
+  chucVu1: string;
 
 }
