@@ -18,4 +18,8 @@ export class CandidateService {
   getAllCandidates(){
     return this.http.get(this.baseUrl + '/getAllCandidates');
   }
+
+  searchCandidate(candidate: Candidate){
+    return this.http.post(this.baseUrl + '/searchCandidates', candidate);
+  }
 }

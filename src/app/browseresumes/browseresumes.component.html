@@ -7,10 +7,14 @@
             <label>Tìm Kiếm Ứng Viên</label>
             <div class="row">
               <div class="col-md-4 col-sm-4 col-xs-12">
-                <input type="text" class="form-control" id="title" formControlName="title" name="title" placeholder="Search by title, Skill">
+                <input type="text" class="form-control" id="title" formControlName="title" name="title" placeholder="Search by username, email">
               </div>
               <div class="col-md-4 col-sm-4 col-xs-12">
-                <input type="text" class="form-control" id="major" formControlName="major" name="major" placeholder="Chuyên ngành">
+                  <select class="form-control" id="major" formControlName="major" name="major">
+                    <option *ngFor="let major of allMajors" [value]="major.tenNganh"> {{major.tenNganh}}</option>  
+                  </select>
+
+                <!-- <input type="text" class="form-control" id="major" formControlName="major" name="major" placeholder="Chuyên ngành"> -->
               </div>
               <div class="col-md-4 col-sm-4 col-xs-12">
                 <select class="form-control" id="experimentYear" formControlName="experimentYear" name="experimentYear">

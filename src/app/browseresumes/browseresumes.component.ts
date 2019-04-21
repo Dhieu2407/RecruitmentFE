@@ -4,6 +4,9 @@ import { CandidateService } from '../service/candidate.service';
 import {Router} from '@angular/router';
 import { first } from 'rxjs/operators';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { SearchCandidate } from '../model/searchcandidate.model';
+import { Major } from '../model/Major.model';
+import { MajorService } from '../service/major.service';
 
 @Component({
   selector: 'app-browseresumes',
@@ -16,13 +19,29 @@ export class BrowseresumesComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private candidateService: CandidateService,
+    private majorService: MajorService,
   ) { }
 
   formSearchCandidate: FormGroup;
   listCandidate: Candidate[];
+  allMajors: Major[];
+  searchCondidition = new Candidate();
 
   onSearch(){
-
+    this.searchCondidition.email = this.formSearchCandidate.get('title').value;
+    this.searchCondidition.username = this.formSearchCandidate.get('title').value;
+    this.searchCondidition.major = this.formSearchCandidate.get('major').value;
+    this.candidateService.searchCandidate(this.searchCondidition)
+      .pipe(first())
+      .subscribe(
+        (data: Candidate[]) => {
+          this.listCandidate = data;
+          console.log(this.listCandidate);
+        },
+        error => {
+          console.log('Failed');
+        }
+      );
   }
 
   ngOnInit() {
@@ -42,6 +61,17 @@ export class BrowseresumesComponent implements OnInit {
         error => {
           console.log('Failed');
         });
+
+    this.majorService.getAllMajors()
+        .pipe(first())
+        .subscribe(
+          (data: Major[]) => {
+            this.allMajors = data;
+            console.log(this.allMajors);
+          },
+          error => {
+            console.log('Failed');
+          });
 
 
   }

@@ -3,4 +3,5 @@ export class Candidate {
   username : string;
   email : string;
   password : string;
+  major : string;
 }
