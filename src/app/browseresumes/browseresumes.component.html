@@ -43,7 +43,7 @@
     <div class="container">
       <div class="row">
 
-        <div *ngFor="let resume of listCandidate">
+        <div *ngFor="let resume of listCandidate | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
           <div class="col-md-6 col-sm-6 col-xs-12">
             <div class="manager-resumes-item">
               <div class="manager-content">
@@ -66,6 +66,8 @@
           </div>
         </div>
       </div>
+      <ngb-pagination [(page)]="page" [pageSize]="pageSize" [collectionSize]="listCandidate.length"></ngb-pagination>
+
     </div>
   </div>
 <!-- End Content -->

@@ -14,7 +14,7 @@ import { MajorService } from '../service/major.service';
   styleUrls: ['./browseresumes.component.css']
 })
 export class BrowseresumesComponent implements OnInit {
-
+  
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
@@ -26,6 +26,9 @@ export class BrowseresumesComponent implements OnInit {
   listCandidate: Candidate[];
   allMajors: Major[];
   searchCondidition = new Candidate();
+  page: number;
+  pageSize : number;
+  
 
   onSearch(){
     this.searchCondidition.email = this.formSearchCandidate.get('title').value;
@@ -45,6 +48,8 @@ export class BrowseresumesComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.page = 1;
+    this.pageSize = 2;
     this.formSearchCandidate = this.formBuilder.group({
       title: ['', Validators.required],
       major: ['', Validators.required],
