@@ -22,4 +22,7 @@ export class JobService {
   getListJobRelate(body: string) {
     return this.http.post(this.baseUrl + '/getListJobRelate', body);
   }
+  postJob(body: string) {
+    return this.http.post(this.baseUrl + '/addJob', body);
+  }
 }

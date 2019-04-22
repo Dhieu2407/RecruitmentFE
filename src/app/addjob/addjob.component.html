@@ -1,148 +1,188 @@
 <body>
-  <!-- Page Header Start -->
-  <div class="page-header" style="background: url(assets/img/banner1.jpg);">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="breadcrumb-wrapper">
-            <h2 class="product-title">Post A Job</h2>
-            <ol class="breadcrumb">
-              <li><a href="#"><i class="ti-home"></i> Home</a></li>
-              <li class="current">Post A Job</li>
-            </ol>
-          </div>
+<!-- Page Header Start -->
+<div class="page-header" style="background: url(assets/img/banner1.jpg);">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="breadcrumb-wrapper">
+          <h2 class="product-title">Post A Job</h2>
+          <ol class="breadcrumb">
+            <li><a href="#"><i class="ti-home"></i> Home</a></li>
+            <li class="current">Post A Job</li>
+          </ol>
         </div>
       </div>
     </div>
   </div>
-  <!-- Page Header End -->
+</div>
+<!-- Page Header End -->
 
-  <!-- Content section Start -->
-  <section id="content">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-12 col-md-9 col-md-offset-2">
-          <fieldset>
-            <label>Bạn đã có tài khoản?</label>
-            <div class="field account-sign-in">
-              <p>
-                <a class="btn btn-common btn-sm" href="my-account.html"><i class="ti-key"></i> Sign in</a>
-              </p>
-              <div class="alert alert-info alert-dismissable">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true"><i class="fa fa-times"></i></button>
-                Nếu bạn chưa có tài khoản nhà tuyển dụng hãy tạo tài khoản.
+<!-- Content section Start -->
+<section id="content">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-md-9 col-md-offset-2">
+        <fieldset>
+          <label>Bạn đã có tài khoản?</label>
+          <div class="field account-sign-in">
+            <p>
+              <a class="btn btn-common btn-sm" href="my-account.html"><i class="ti-key"></i> Sign in</a>
+            </p>
+            <div class="alert alert-info alert-dismissable">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true"><i class="fa fa-times"></i></button>
+              Nếu bạn chưa có tài khoản nhà tuyển dụng hãy tạo tài khoản.
+            </div>
+          </div>
+        </fieldset>
+        <div class="page-ads box">
+          <form class="form-ad" [formGroup]="formAddJob" ngNativeValidate >
+            <!--<div class="form-group">-->
+            <!--<label class="control-label">Email của bạn</label>-->
+            <!--<input type="text" id="email" formControlName="email" name="email" class="form-control" placeholder="mail@example.com" required>-->
+            <!--</div>-->
+            <div class="form-group">
+              <label class="control-label">Tiều đề công việc</label>
+              <input type="text" id="titleJob" formControlName="titleJob" name="titleJob" class="form-control" placeholder="Nhập tiêu để công việc" required>
+            </div>
+
+            <div class="form-group">
+              <label class="control-label">Chức Vụ</label>
+              <input type="text" id="chucVu" formControlName="chucVu" name="chucVu" class="form-control" placeholder="Vị trí làm việc" required>
+            </div>
+
+            <div class="form-group">
+              <label class="control-label">Địa điểm <span>(optional)</span></label>
+              <input type="text" id="location1" formControlName="location1" name="location1" class="form-control" placeholder="e.g. Hà Nội" required>
+            </div>
+            <div class="form-group">
+              <label class="control-label">Chuyên ngành</label>
+              <div class="search-category-container">
+                <label class="styled-select">
+                  <select class="dropdown-product selectpicker" id="majorJob" formControlName="majorJob" name="majorJob" required>
+                    <option>All Categories</option>
+                    <option>Finance</option>
+                    <option>IT & Engineering</option>
+                    <option>Education/Training</option>
+                    <option>Art/Design</option>
+                    <option>Sale/Markting</option>
+                    <option>Healthcare</option>
+                    <option>Science</option>
+                    <option>Food Services</option>
+                  </select>
+                </label>
               </div>
             </div>
-          </fieldset>
-          <div class="page-ads box">
-            <form class="form-ad" [formGroup]="formAddJob" ngNativeValidate >
-              <div class="form-group">
-                <label class="control-label">Email của bạn</label>
-                <input type="text" id="email" formControlName="email" name="email" class="form-control" placeholder="mail@example.com" required>
-              </div>
-              <div class="form-group">
-                <label class="control-label">Tiều đề công việc</label>
-                <input type="text" id="titleJob" formControlName="titleJob" name="titleJob" class="form-control" placeholder="Nhập tiêu để công việc" required>
-              </div>
-              <div class="form-group">
-                <label class="control-label">Địa điểm <span>(optional)</span></label>
-                <input type="text" id="location1" formControlName="location1" name="location1" class="form-control" placeholder="e.g. Hà Nội" required>
-              </div>
-              <div class="form-group">
-                <label class="control-label">Chuyên ngành</label>
-                <div class="search-category-container">
-                  <label class="styled-select">
-                    <select class="dropdown-product selectpicker" id="majorJob" formControlName="majorJob" name="majorJob" required>
-                      <option>All Categories</option>
-                      <option>Finance</option>
-                      <option>IT & Engineering</option>
-                      <option>Education/Training</option>
-                      <option>Art/Design</option>
-                      <option>Sale/Markting</option>
-                      <option>Healthcare</option>
-                      <option>Science</option>
-                      <option>Food Services</option>
-                    </select>
-                  </label>
-                </div>
-              </div>
-              <!--<div class="form-group">-->
-                <!--<label class="control-label" for="textarea">Job Tags <span>(optional)</span></label>-->
-                <!--<input type="text" class="form-control" placeholder="e.g.PHP,Social Media,Management">-->
-                <!--<p class="note">Comma separate tags, such as required skills or technologies, for this job.</p>-->
-              <!--</div>-->
-              <div class="form-group">
-                <label class="control-label">Yêu cầu ứng viên</label>
-                <textarea class="form-control" id="requireCandiate" formControlName="requireCandiate" name="requireCandiate" rows="5" placeholder="Mô tả yêu cầu của ứng viên cần có được..." required></textarea>
-              </div>
 
-              <div class="form-group">
-                <label class="control-label">Số năm kinh nghiệm</label>
-                <select class="form-control" id="requireYear" formControlName="requireYear" name="requireYear" required>
-                  <option value="0"> Chưa có kinh nghiệm</option>
-                  <option value="1">1 Năm kinh nghiêm</option>
-                  <option value="2">2 Năm kinh nghiệm</option>
-                  <option value="3">3 Năm kinh nghiệm</option>
-                  <option value="4">4 Năm kinh nghiệm</option>
-                  <option value="5">Hơn 5 Năm kinh nghiệm</option>
+            <div class="form-group">
+              <label class="control-label">Mô tả công việc</label>
+              <textarea class="form-control" id="descriptionJob" formControlName="descriptionJob" name="descriptionJob" rows="7" placeholder="Mô tả yêu cầu công việc..." required></textarea>
+            </div>
 
-                </select>
+            <div class="form-group">
+              <label class="control-label">Yêu cầu ứng viên</label>
+              <textarea class="form-control" id="yeuCauUngVien" formControlName="yeuCauUngVien" name="yeuCauUngVien" rows="5" placeholder="Mô tả yêu cầu của ứng viên cần có được..." required></textarea>
+            </div>
+            <div class="form-group">
+              <label class="control-label">Quyền Lợi</label>
+              <textarea class="form-control" id="quyenLoi" formControlName="quyenLoi" name="quyenLoi" rows="5" placeholder="Mô tả yêu quyền lợi của nhân viên..." required></textarea>
+            </div>
+
+            <div class="form-group">
+              <label class="control-label">Yêu Cầu Hồ Sơ</label>
+              <textarea class="form-control" id="yeuCauHoSo" formControlName="yeuCauHoSo" name="yeuCauHoSo" rows="5" placeholder="Mô tả yêu cầu ứng tuyển" required></textarea>
+            </div>
+
+            <div class="form-group">
+              <label class="control-label">Số năm kinh nghiệm</label>
+              <input type="number" id="soNamKinhNghiem" formControlName="soNamKinhNghiem" name="soNamKinhNghiem" class="form-control" placeholder="Nhập số năm kinh nghiệm" required>
+            </div>
+
+            <div class="form-group">
+              <label class="control-label">Yêu Cầu Giới Tính</label>
+              <div class="search-category-container">
+                <label class="styled-select">
+                  <select class="dropdown-product selectpicker" id="yeuCauGioiTinh" formControlName="yeuCauGioiTinh" name="yeuCauGioiTinh" required>
+                    <option>Lựa Chọn</option>
+                    <option value="0">Không yêu cầu</option>
+                    <option value="1">Chỉ tuyển nam</option>
+                    <option value="2">Chỉ tuyển nữ</option>
+                  </select>
+                </label>
               </div>
+            </div>
 
-              <div class="form-group">
-                <label class="control-label">Mức lương</label>
-                <input type="number" id="salary" formControlName="salary" name="salary" class="form-control" placeholder="Nhập mức lương tối thiểu" required>
+            <div class="form-group">
+              <label class="control-label">Số Lượng</label>
+              <input type="number" id="soLuong" formControlName="soLuong" name="soLuong" class="form-control" placeholder="Nhập sô lượng cần tuyển" required>
+            </div>
+
+            <div class="form-group">
+              <label class="control-label">Mức Lương Tối Thiểu</label>
+              <input type="number" id="salaryMin" formControlName="salaryMin" name="salaryMin" class="form-control" placeholder="Nhập mức lương tối thiểu" required>
+            </div>
+
+            <div class="form-group">
+              <label class="control-label">Mức Lương Tối Đa</label>
+              <input type="number" id="salaryMax" formControlName="salaryMax" name="salaryMax" class="form-control" placeholder="Nhập mức lương tối đa" required>
+            </div>
+
+            <div class="form-group">
+              <label class="control-label">Thời Gian Làm Việc</label>
+              <div class="search-category-container">
+                <label class="styled-select">
+                  <select class="dropdown-product selectpicker" id="tgLamViec" formControlName="tgLamViec" name="tgLamViec" required>
+                    <option>Lựa Chọn</option>
+                    <option value="0">Full-Time</option>
+                    <option value="1">Part-Time</option>
+                  </select>
+                </label>
               </div>
+            </div>
 
-              <div class="form-group">
-                <label class="control-label">Mô tả công việc</label>
-                <textarea class="form-control" id="descriptionJob" formControlName="descriptionJob" name="descriptionJob" rows="7" placeholder="Mô tả yêu cầu công việc..." required></textarea>
-              </div>
+            <div class="form-group">
+              <label class="control-label">Ngày hết hạn <span>(optional)</span></label>
+              <input type="date" data-date="" id="deadline" formControlName="deadline" name="deadline" placeholder="DD/MM/YYYY" class="form-control" required>
 
-              <div class="form-group">
-                <label class="control-label">Ngày hết hạn <span>(optional)</span></label>
-                <input type="date" data-date="" id="deadline" formControlName="deadline" name="deadline" placeholder="DD/MM/YYYY" class="form-control" required>
+              <p class="note">Hạn nộp hồ sơ.</p>
+            </div>
 
-                <p class="note">Hạn nộp hồ sơ.</p>
-              </div>
-
-              <!--<a href="#" class="btn btn-common">Submit your job</a>-->
-              <button  class="create-button" (click)="onSubmit()">Submit your job</button>
-            </form>
-          </div>
+            <!--<a href="#" class="btn btn-common">Submit your job</a>-->
+            <button  class="create-button" (click)="onSubmit()">Submit your job</button>
+          </form>
         </div>
       </div>
     </div>
-  </section>
-  <!-- Content section End -->
+  </div>
+</section>
+<!-- Content section End -->
 
-  <!-- Go To Top Link -->
-  <a href="#" class="back-to-top">
-    <i class="ti-arrow-up"></i>
-  </a>
+<!-- Go To Top Link -->
+<a href="#" class="back-to-top">
+  <i class="ti-arrow-up"></i>
+</a>
 
-  <div id="loading">
-    <div id="loading-center">
-      <div id="loading-center-absolute">
-        <div class="object" id="object_one"></div>
-        <div class="object" id="object_two"></div>
-        <div class="object" id="object_three"></div>
-        <div class="object" id="object_four"></div>
-        <div class="object" id="object_five"></div>
-        <div class="object" id="object_six"></div>
-        <div class="object" id="object_seven"></div>
-        <div class="object" id="object_eight"></div>
-      </div>
+<div id="loading">
+  <div id="loading-center">
+    <div id="loading-center-absolute">
+      <div class="object" id="object_one"></div>
+      <div class="object" id="object_two"></div>
+      <div class="object" id="object_three"></div>
+      <div class="object" id="object_four"></div>
+      <div class="object" id="object_five"></div>
+      <div class="object" id="object_six"></div>
+      <div class="object" id="object_seven"></div>
+      <div class="object" id="object_eight"></div>
     </div>
   </div>
-  <script>
-    $(document).ready(function() {
-      $('#summernote').summernote({
-        height: 250,                 // set editor height
-        minHeight: null,             // set minimum height of editor
-        maxHeight: null,             // set maximum height of editor
-        focus: true                  // set focus to editable area after initializing summernote
-      });
+</div>
+<script>
+  $(document).ready(function() {
+    $('#summernote').summernote({
+      height: 250,                 // set editor height
+      minHeight: null,             // set minimum height of editor
+      maxHeight: null,             // set maximum height of editor
+      focus: true                  // set focus to editable area after initializing summernote
     });
-  </script>
+  });
+</script>
 </body>

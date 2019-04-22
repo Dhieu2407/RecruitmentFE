@@ -36,7 +36,7 @@ export class JobdetailComponent implements OnInit {
       .subscribe(
         (data: Job) => {
           this.job = data;
-          console.log(this.job.congTy.tenCongTy);
+          // console.log(this.job.congTy.tenCongTy);
           console.log(this.job);
         },
         error => {
