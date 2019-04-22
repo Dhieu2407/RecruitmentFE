@@ -1,37 +1,88 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { HttpClient, HttpHandler } from '@angular/common/http';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CandidateService } from '../service/candidate.service';
-import { Candidate} from '../model/candidate.model';
+import {AuthenticationService} from "../service/auth.service";
+import { first } from 'rxjs/operators';
+import {Router} from '@angular/router';
+import { Account } from '../model/account.model';
+import { AccountService } from '../service/account.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
+  providers: [AuthenticationService]
 })
 export class LoginComponent implements OnInit {
-  candidate = new Candidate();
-  rfContact: FormGroup;
-  constructor(private candidateService: CandidateService) {
-    
-  }
+  constructor(
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private candidateService: CandidateService,
+    private authService: AuthenticationService,
+    private accountService: AccountService
+) {}
+
+  account = new Account();
+  registerForm: FormGroup;
+  loginForm: FormGroup;
+  usernameLogin = '';
+  passwordLogin = '';
+  role = '';
 
   ngOnInit() {
-    this.rfContact = new FormGroup({
-      Username: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(30)]),
-      Email: new FormControl('', [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$'),  Validators.minLength(3), Validators.maxLength(30)]),
-      Password: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(30)]),
-      RepeatPassword: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(30)])
+    this.registerForm = this.formBuilder.group({
+      Username: ['', Validators.required],
+      Email: ['', Validators.required],
+      Password: ['', Validators.required],
+      RepeatPassword: ['', Validators.required],
+      role: ['', Validators.required],
+    });
+
+    this.loginForm = this.formBuilder.group({
+      usernameLogin: ['', Validators.required],
+      passwordLogin: ['', Validators.required],
     });
 
   }
 
-  onSubmit() {
+  onRegister() {
+    if (this.registerForm.invalid) {
+      return;
+    }
 
-    this.candidate.username = this.rfContact.get('Username').value;
-    this.candidate.email = this.rfContact.get('Email').value;
-    this.candidate.password = this.rfContact.get('Password').value;
-    console.log(this.candidate);
-    this.candidateService.addNewCandidate(this.candidate).subscribe(x => console.log(x));
+    this.role = this.registerForm.get('role').value;
+    this.account.login = this.registerForm.get('Username').value;
+    this.account.email = this.registerForm.get('Email').value;
+    this.account.password = this.registerForm.get('Password').value;
+    this.account.authorities = [
+      this.registerForm.get('role').value
+    ];
+    console.log(this.account);
+    this.accountService.createUser(this.account)
+      .pipe(first())
+      .subscribe(
+        data => {
+          // this.alertService.success('Registration successful', true);
+          alert('Registration succesful');
+          this.router.navigate(['/home']);
+        },
+        error => {
+          alert('Registration failed');
+        });
+  }
+
+  onLogin(){
+    if (this.loginForm.invalid) {
+      return;
+    }
+    // call login here
+    this.usernameLogin = this.loginForm.get('usernameLogin').value;
+    this.passwordLogin = this.loginForm.get('passwordLogin').value;
+    this.authService.login(this.usernameLogin, this.passwordLogin)
+      .pipe(first())
+      .subscribe(
+        token => {
+          console.log(token);
+        });
   }
 }

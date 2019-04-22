@@ -1,45 +1,27 @@
 <body>
-<!-- Page Header Start -->
-<div class="page-header" style="background: url(assets/img/banner1.jpg);">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="breadcrumb-wrapper">
-          <h2 class="product-title">My Account</h2>
-          <ol class="breadcrumb">
-            <li><a href="#"><i class="ti-home"></i> Home</a></li>
-            <li class="current">My Account</li>
-          </ol>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- Page Header End -->
-
 <div id="content" class="my-account">
   <div class="container">
     <div class="row">
       <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-6 cd-user-modal">
         <div class="my-account-form">
           <ul class="cd-switcher">
-            <li><a class="selected" href="#0">LOGIN</a></li>
-            <li><a href="#0">REGITER</a></li>
+            <li><a class="selected" href="#0">Đăng nhập</a></li>
+            <li><a href="#0">Đăng ký</a></li>
           </ul>
           <!-- Login -->
           <div id="cd-login" class="is-selected">
             <div class="page-login-form">
-              <form role="form" class="login-form">
+              <form role="form" class="login-form" (ngSubmit)="onLogin()" [formGroup]="loginForm" ngNativeValidate>
                 <div class="form-group">
                   <div class="input-icon">
                     <i class="ti-user"></i>
-                    <input type="text" id="sender-email" class="form-control" name="email" placeholder="Username">
+                    <input type="text" class="form-control" placeholder="Username hoặc email" formControlName="usernameLogin" required>
                   </div>
                 </div>
                 <div class="form-group">
                   <div class="input-icon">
                     <i class="ti-lock"></i>
-                    <input type="password" class="form-control" placeholder="Password">
+                    <input type="password" class="form-control" placeholder="Mật khẩu" formControlName="passwordLogin" required>
                   </div>
                 </div>
                 <button class="btn btn-common log-btn">Login</button>
@@ -48,7 +30,7 @@
                     <label for="rememberme" class="rememberme">
                       <input name="rememberme" id="rememberme" value="forever" type="checkbox"> Remember Me</label>
                   </div>
-                  <p class="cd-form-bottom-message"><a href="#0">Lost your password?</a></p>
+                  <p class="cd-form-bottom-message"><a href="#0">Quên mật khẩu?</a></p>
                 </div>
               </form>
             </div>
@@ -57,7 +39,7 @@
           <!-- Register -->
           <div id="cd-signup">
             <div class="page-login-form register">
-              <form role="form" class="login-form" (ngSubmit)="onSubmit()" [formGroup]="rfContact" ngNativeValidate>
+              <form role="form" class="login-form" (ngSubmit)="onRegister()" [formGroup]="registerForm" ngNativeValidate>
                 <div class="form-group">
                   <div class="input-icon">
                     <i class="ti-user"></i>
@@ -82,6 +64,18 @@
                     <input type="password" class="form-control" placeholder="Repeat Password" formControlName="RepeatPassword" required>
                   </div>
                 </div>
+
+                <div class="form-group">
+                  <div class="checkbox-item">
+                    <div class="checkbox">
+                      <label>
+                        <input type="radio" name="role" value="ROLE_CANDIDATE" formControlName="role" required> Ứng viên</label>
+                      <label>
+                        <input type="radio" name="role" value="ROLE_EMPLOYER" formControlName="role"> Nhà tuyển dụng</label>
+                    </div>
+                  </div>
+                </div>
+
 
                 <button class="btn btn-common log-btn">Register</button>
               </form>
