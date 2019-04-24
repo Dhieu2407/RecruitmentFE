@@ -21,6 +21,8 @@ export class ResumeComponent implements OnInit {
   candidate = new Candidate();
   id: number;
   nganh: string;
+  hocVan: string;
+  viecLam: string;  
 
   ngOnInit() {
     this.id = +this.route.snapshot.paramMap.get('id');
@@ -30,6 +32,11 @@ export class ResumeComponent implements OnInit {
         (data: Candidate) => {
           this.candidate = data;
           this.nganh = this.candidate.nganh.tenNganh;
+          this.hocVan = JSON.parse(this.candidate.trinhDoDaiHoc);
+          this.viecLam = JSON.parse(this.candidate.lichSuLamViec);
+          
+          console.log(this.viecLam);
+          console.log(this.hocVan);
           console.log(this.candidate);
         },
         error => {

@@ -15,4 +15,5 @@ export class Candidate {
   moTa : string;
   kiNang: skill;
   nganh: Major;
+  lichSuLamViec: string;
 }

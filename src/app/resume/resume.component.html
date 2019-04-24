@@ -97,35 +97,40 @@
 
             <div class="about-me item">
               <h3>Học Vấn - Bằng Cấp</h3>
-              <p>Thời gian làm việc: <label>Full time</label></p>
-              <p>Ngành Học: <label>Khoa học máy tính</label></p>
-              <p>Trường: <label>Đại học Bách Khoa Hà Nội</label></p>
-              <div class="form-group">
-                <div class="row">
-                  <div class="col-md-6">
-                    <p>Thời gian bắt đầu: <label>9/2015</label></p>
+              <div *ngFor="let lichSuHocTap of hocVan">
+                  <p><span>Trường : </span><span>{{lichSuHocTap.daihoc}}</span></p>
+                  <p><span>Ngành học : </span><span>{{lichSuHocTap.chuyennganh}}</span></p>
+                  <p><span>GPA : </span><span>{{lichSuHocTap.GPA}}</span></p>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <p>Thời gian bắt đầu: <label>{{lichSuHocTap.batdau}}</label></p>
+                    </div>
+                    <div class="col-md-6">
+                      <p>Thời gian tốt nghiệp: <label>{{lichSuHocTap.ketthuc}}</label></p>
+                    </div>
                   </div>
-                  <div class="col-md-6">
-                    <p>Thời gian tốt nghiệp: <label>9/2019</label></p>
-                  </div>
-                </div>
+                  <br/>
               </div>
             </div>
 
             <div class="about-me item">
               <h3>Kinh Nghiệm Làm Việc</h3>
-              <p>Tên công ty: <label>VNPT</label></p>
-              <p>Vị trí làm việc: <label>DEV</label></p>
-              <div class="form-group">
-                <div class="row">
-                  <div class="col-md-6">
-                    <p>Thời gian bắt đầu: <label>9/2018</label></p>
+              
+              <div *ngFor="let lichSuLamViec of viecLam">
+                  <p><span>Công ty : </span><span>{{lichSuLamViec.congTy}}</span></p>
+                  <p><span>Vị trí : </span><span>{{lichSuLamViec.vitri}}</span></p>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <p>Thời gian bắt đầu: <label>{{lichSuLamViec.batdau}}</label></p>
+                    </div>
+                    <div class="col-md-6">
+                      <p>Thời gian kết thúc: <label>{{lichSuLamViec.ketthuc}}</label></p>
+                    </div>
                   </div>
-                  <div class="col-md-6">
-                    <p>Thời gian kết thúc: <label>2/2019</label></p>
-                  </div>
-                </div>
+                  <br/>
               </div>
+
+
               <div class="form-group">
                 <label class="control-label" for="textarea">Mô tả công việc</label>
                 <textarea class="form-control" rows="7" disabled> Lập trình Web full stack, sử dụng các FrameWork Hibernate...</textarea>
