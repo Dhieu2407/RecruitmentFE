@@ -109,90 +109,153 @@
                   </div>
                 </div>
               </div>
-              <div class="divider"><h3>Education</h3></div>
-              <div class="form-group">
-                <label class="control-label" for="textarea">Bằng cấp</label>
-                <input type="text" class="form-control"  placeholder="Bằng, e.g. cử nhân" formControlName="certificate" id="certificate" required>
-              </div>
-              <div class="form-group">
-                <label class="control-label" for="textarea">Ngành học</label>
-                <input type="text" class="form-control"  placeholder="Ngành, e.g Kế toán" formControlName="major" id="major" required>
-              </div>
-              <div class="form-group">
-                <label class="control-label" for="textarea">Trường</label>
-                <input type="text" class="form-control" placeholder="Tên trường, e.g. Đh Bách Khoa Hà Nội" formControlName="school" id="school" required>
-              </div>
-              <div class="form-group">
-                <div class="row">
-                  <div class="col-md-6">
-                    <label class="control-label" for="textarea">From</label>
-                    <input type="date" data-date=""  placeholder="dd/MM/YYYY" class="form-control" formControlName="fromDate" id="fromDate" required>
-                  </div>
-                  <div class="col-md-6">
-                    <label class="control-label" for="textarea">To</label>
-                    <input type="date" data-date=""  placeholder="dd/MM/YYYY" class="form-control" formControlName="toDate" id="toDate" required>
-                  </div>
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="control-label" for="textarea">Description</label>
-                <textarea class="form-control" rows="7" formControlName="description" id="description" required></textarea>
-              </div>
 
-              <div class="add-post-btn">
-                <div class="pull-left">
-                  <a href="#" class="btn-added"><i class="ti-plus"></i> Add New Education</a>
+
+
+              <div class="divider"><h3>Bằng cấp</h3></div>
+              <div formArrayName="school" *ngFor="let s of modifyResumeForm.get('school').controls; let i = index">
+                <div [formGroupName]="i">
+                    <div class="form-group">
+                        <label class="control-label" for="textarea">Trường</label>
+                        <input type="text" class="form-control" placeholder="Tên trường, e.g. Đh Bách Khoa Hà Nội" formControlName="daihoc" id="daihoc" required>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label" for="textarea">Ngành học</label>
+                        <input type="text" class="form-control"  placeholder="Ngành, e.g Kế toán" formControlName="chuyennganh" id="chuyennganh" required>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label" for="textarea">GPA</label>
+                        <input type="text" class="form-control"  placeholder="Điểm, e.g 3.0" formControlName="GPA" id="GPA" required>
+                      </div>
+                      <div class="form-group">
+                        <div class="row">
+                          <div class="col-md-6">
+                            <label class="control-label" for="textarea">From</label>
+                            <!-- <input type="date" data-date=""  placeholder="dd/MM/YYYY" class="form-control" formControlName="startAt" id="startAt" required> -->
+                            <input type="text" data-date=""  placeholder="dd/MM/YYYY" class="form-control" formControlName="batdau" id="batdau" required>
+                          </div>
+                          <div class="col-md-6">
+                            <label class="control-label" for="textarea">To</label>
+                            <!-- <input type="date" data-date=""  placeholder="dd/MM/YYYY" class="form-control" formControlName="endAt" id="endAt" required> -->
+                            <input type="text" data-date=""  placeholder="dd/MM/YYYY" class="form-control" formControlName="ketthuc" id="ketthuc" required>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label" for="textarea">Description</label>
+                        <textarea class="form-control" rows="7" formControlName="mota" id="mota"></textarea>
+                      </div>
+                      <div class="add-post-btn">
+                        <div class="pull-left">
+                          <button (click)="createInputSchool()" class="btn-added"><i class="ti-plus"></i> Add New Education</button>
+                        </div>
+                        <div class="pull-right">
+                          <button (click)="removeSchool(i)" class="btn-delete"><i class="ti-trash"></i> Delete This</button>
+                        </div>
+                      </div>
                 </div>
-                <div class="pull-right">
-                  <a href="#" class="btn-delete"><i class="ti-trash"></i> Delete This</a>
-                </div>
-              </div>
+            </div>
+
+
+
+
+
+              <!-- <div class="divider"><h3>Kỹ Năng</h3></div>
+                <div formArrayName="skill" *ngFor="let s of modifyResumeForm.get('skill').controls; let i = index">
+                    <div [formGroupName]="i">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label class="control-label" for="textarea">Tên kĩ năng</label>
+                                    <input class="form-control" placeholder="Tên kĩ năng, e.g. code BackEnd" type="text" formControlName="skillName" id="skillName" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="control-label" for="textarea">Số năm kinh nghiệm</label>
+                                    <input class="form-control" placeholder="Years of experience" type="text" formControlName="expYear" id="competentlyPercent" required>
+                                </div>
+                            </div>
+                    </div>
+                </div> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
               <div class="divider"><h3>Kinh nghiệm làm việc</h3></div>
-              <div class="form-group">
-                <label class="control-label" for="textarea">Tên công ty</label>
-                <input type="text" class="form-control"  placeholder="Tên công ty" formControlName="companyName" id="companyName" required>
-              </div>
-              <div class="form-group">
-                <label class="control-label" for="textarea">Vị trí làm việc</label>
-                <input type="text" class="form-control"  placeholder="e.g Lập trình viên BackEnd" formControlName="workPosition" id="workPosition" required>
-              </div>
-              <div class="form-group">
-                <div class="row">
-                  <div class="col-md-6">
-                    <label class="control-label" for="textarea">Thời gian bắt đầu</label>
-                    <input type="date" data-date=""  placeholder="dd/MM/YYYY" class="form-control" formControlName="startDate" id="startDate" required>
-                  </div>
-                  <div class="col-md-6">
-                    <label class="control-label" for="textarea">Thời gian kết thúc</label>
-                    <input type="date" data-date=""  placeholder="dd/MM/YYYY" class="form-control" formControlName="endDate" id="endDate" required>
-                  </div>
+              <div formArrayName="workDescription" *ngFor="let s of modifyResumeForm.get('workDescription').controls; let i = index">
+                <div [formGroupName]="i">
+                    <div class="form-group">
+                        <label class="control-label" for="textarea">Tên công ty</label>
+                        <input type="text" class="form-control"  placeholder="Tên công ty" formControlName="congTy" id="congTy" required>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label" for="textarea">Vị trí làm việc</label>
+                        <input type="text" class="form-control"  placeholder="e.g Lập trình viên BackEnd" formControlName="vitri" id="vitri" required>
+                      </div>
+                      <div class="form-group">
+                        <div class="row">
+                          <div class="col-md-6">
+                            <label class="control-label" for="textarea">Thời gian bắt đầu</label>
+                            <input type="text" data-date=""  placeholder="dd/MM/YYYY" class="form-control" formControlName="batdau" id="batdau" required>
+                          </div>
+                          <div class="col-md-6">
+                            <label class="control-label" for="textarea">Thời gian kết thúc</label>
+                            <input type="text" data-date=""  placeholder="dd/MM/YYYY" class="form-control" formControlName="ketthuc" id="ketthuc" required>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label" for="textarea">Mô tả công việc</label>
+                        <textarea class="form-control" rows="7" formControlName="mota" id="mota"></textarea>
+                      </div>
+                      <div class="add-post-btn">
+                        <div class="pull-left">
+                          <button (click)="createInputWork()" class="btn-added"><i class="ti-plus"></i> Add New Experience</button>
+                        </div>
+                        <div class="pull-right">
+                          <button (click)="removeWork(i)" class="btn-delete"><i class="ti-trash"></i> Delete This</button>
+                        </div>
+                      </div>
                 </div>
-              </div>
-              <div class="form-group">
-                <label class="control-label" for="textarea">Mô tả công việc</label>
-                <textarea class="form-control" rows="7" formControlName="workDescription" id="workDescription" required></textarea>
-              </div>
-              <!--<section id="editor" style="margin-bottom: 30px;">-->
-                <!--<div id="summernote"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem quia aut modi fugit, ratione saepe perferendis odio optio repellat dolorum voluptas excepturi possimus similique veritatis nobis. Provident cupiditate delectus, optio?</p></div>-->
-              <!--</section>-->
-              <!--<div class="form-group">-->
-                <!--<div class="button-group">-->
-                  <!--<div class="action-buttons">-->
-                    <!--<div class="upload-button">-->
-                      <!--<button class="btn btn-common">Choose a cover Logo</button>-->
-                      <!--<input id="cover_img_file" type="file">-->
-                    <!--</div>-->
-                  <!--</div>-->
-                <!--</div>-->
-              <!--</div>-->
-              <div class="add-post-btn">
-                <div class="pull-left">
-                  <a href="#" class="btn-added"><i class="ti-plus"></i> Add New Experience</a>
+            </div>
+
+
+
+
+
+
+              <!-- <div formArrayName="skill" *ngFor="let s of modifyResumeForm.get('skill').controls; let i = index">
+                <div [formGroupName]="i">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="control-label" for="textarea">Tên kĩ năng</label>
+                            <input class="form-control" placeholder="Tên kĩ năng, e.g. code BackEnd" type="text" formControlName="skillName" id="skillName" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="control-label" for="textarea">Số năm kinh nghiệm</label>
+                            <input class="form-control" placeholder="Years of experience" type="text" formControlName="expYear" id="competentlyPercent" required>
+                        </div>
+                    </div>
+                    <div class="add-post-btn">
+                        <div class="pull-left">
+                          <button (click)="createInputSkill()" class="btn-added"><i class="ti-plus"></i> Add New Skills</button>
+                        </div>
+                        <div class="pull-right">
+                          <a href="#" class="btn-delete"><i class="ti-trash"></i> Delete This</a>
+                        </div>
+                      </div>
                 </div>
-                <div class="pull-right">
-                  <a href="#" class="btn-delete"><i class="ti-trash"></i> Delete This</a>
-                </div>
-              </div>
+            </div> -->
 
 
 
@@ -214,16 +277,24 @@
                 <div class="divider"><h3>Kỹ Năng</h3></div>
                 <div formArrayName="skill" *ngFor="let s of modifyResumeForm.get('skill').controls; let i = index">
                     <div [formGroupName]="i">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label class="control-label" for="textarea">Tên kĩ năng</label>
-                                    <input class="form-control" placeholder="Tên kĩ năng, e.g. code BackEnd" type="text" formControlName="skillName" id="skillName" required>
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="control-label" for="textarea">Số năm kinh nghiệm</label>
-                                    <input class="form-control" placeholder="Years of experience" type="text" formControlName="expYear" id="competentlyPercent" required>
-                                </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label class="control-label" for="textarea">Tên kĩ năng</label>
+                                <input class="form-control" placeholder="Tên kĩ năng, e.g. code BackEnd" type="text" formControlName="skillName" id="skillName" required>
                             </div>
+                            <div class="col-md-6">
+                                <label class="control-label" for="textarea">Số năm kinh nghiệm</label>
+                                <input class="form-control" placeholder="Years of experience" type="text" formControlName="expYear" id="competentlyPercent" required>
+                            </div>
+                        </div>
+                        <div class="add-post-btn">
+                            <div class="pull-left">
+                              <button (click)="createInputSkill()" class="btn-added"><i class="ti-plus"></i> Add New Skills</button>
+                            </div>
+                            <div class="pull-right">
+                              <button (click)="removeSkill(i)" class="btn-delete"><i class="ti-trash"></i> Delete This</button>
+                            </div>
+                          </div>
                     </div>
                 </div>
 
@@ -232,14 +303,7 @@
 
 
 
-              <div class="add-post-btn">
-                <div class="pull-left">
-                  <button (click)="createInputSkill()" class="btn-added"><i class="ti-plus"></i> Add New Skills</button>
-                </div>
-                <div class="pull-right">
-                  <a href="#" class="btn-delete"><i class="ti-trash"></i> Delete This</a>
-                </div>
-              </div>
+
 
                 <button class="btn btn-common" (click)="onSubmit('Submit')">Lưu lại</button>
               </form>

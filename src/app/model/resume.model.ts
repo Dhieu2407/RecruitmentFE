@@ -30,6 +30,6 @@ export class Resume {
   workDescription: string;
 
   // skill
-  skillName: string;
+  skill: string;
   competentlyPercent: number;
 }

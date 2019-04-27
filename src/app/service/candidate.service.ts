@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment.prod';
 import { Candidate } from '../model/candidate.model';
+import { Resume } from '../model/resume.model';
 
 @Injectable({
   providedIn: 'root'
@@ -25,5 +26,9 @@ export class CandidateService {
 
   searchCandidate(candidate: Candidate){
     return this.http.post(this.baseUrl + '/searchCandidates', candidate);
+  }
+
+  modifyResume(resume: Resume){
+    return this.http.post(this.baseUrl + '/updateProfileCandidates', resume);
   }
 }

@@ -43,7 +43,7 @@ export class AddresumeComponent implements OnInit {
       this.resume.startDate = this.addResumeForm.get('startDate').value;
       this.resume.endDate = this.addResumeForm.get('endDate').value;
       this.resume.workDescription = this.addResumeForm.get('workDescription').value;
-      this.resume.skillName = this.addResumeForm.get('skillName').value;
+      this.resume.skill = this.addResumeForm.get('skillName').value;
       this.resume.competentlyPercent = this.addResumeForm.get('competentlyPercent').value;
 
       console.log(this.resume);
