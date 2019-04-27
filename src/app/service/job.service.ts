@@ -25,4 +25,7 @@ export class JobService {
   postJob(body: string) {
     return this.http.post(this.baseUrl + '/addJob', body);
   }
+  getAllMajor() {
+    return this.http.get(this.baseUrl + '/getAllMajor1');
+  }
 }

@@ -4,6 +4,7 @@ import {Job} from '../model/job.model';
 import {JobService} from '../service/job.service';
 import {first} from 'rxjs/operators';
 import {SearchJob} from '../model/searchJob.model';
+import {Major} from "../model/major.model";
 
 @Component({
   selector: 'app-addjob',
@@ -32,6 +33,10 @@ export class AddjobComponent implements OnInit {
   jobResult = new Job();
   searchJob = new SearchJob();
   idJob: number;
+  // try
+  major = new Major();
+  listMajor: Major[];
+  public flag: boolean;
 
   formAddJob: FormGroup;
   constructor(
@@ -58,9 +63,19 @@ export class AddjobComponent implements OnInit {
       salaryMin: ['', Validators.required],
       salaryMax: ['', Validators.required],
       tgLamViec: ['', Validators.required],
-
-
     });
+    // try
+    this.flag = true;
+    this.jobService.getAllMajor()
+      .pipe(first())
+      .subscribe(
+        (data: Major[]) => {
+          this.listMajor = data;
+        },
+        error => {
+          console.log('Faild');
+        }
+      );
   }
 
   onSubmit() {
@@ -95,20 +110,15 @@ export class AddjobComponent implements OnInit {
           console.log('Faild');
         }
       );
-    // this.idJob = 1;
-    // this.searchJob.id = this.idJob;
-    // this.jobService.getJobById(JSON.stringify(this.searchJob))
-    //   .pipe(first())
-    //   .subscribe(
-    //     (data: Job) => {
-    //       this.jobResult = data;
-    //       // console.log(this.job.congTy.tenCongTy);
-    //       console.log(this.job);
-    //     },
-    //     error => {
-    //       console.log('Faild');
-    //     }
-    //   );
 
+  }
+
+  onselectClient(major1: Major) {
+    if (major1.nganhId !== 0) {
+      this.major = major1;
+      this.flag = false;
+    }     else {
+      return false;
+    }
   }
 }
