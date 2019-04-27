@@ -25,6 +25,7 @@ import { ManageresumesComponent } from './manageresumes/manageresumes.component'
 import { AddresumeComponent } from './addresume/addresume.component';
 import { DetailCandidateComponent } from './detail-candidate/detail-candidate.component';
 import { PopupviewcontactComponent } from './popupviewcontact/popupviewcontact.component';
+import { ModifyresumeComponent } from './modifyresume/modifyresume.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { PopupviewcontactComponent } from './popupviewcontact/popupviewcontact.c
     ManageresumesComponent,
     AddresumeComponent,
     DetailCandidateComponent,
-    PopupviewcontactComponent
+    PopupviewcontactComponent,
+    ModifyresumeComponent
   ],
   imports: [
     BrowserModule,
