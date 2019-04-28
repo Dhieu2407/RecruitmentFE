@@ -19,12 +19,12 @@ export class AccountService {
     return this.http.post(this.baseUrl + '/account', account);
   }
 
-  getUserById(id: number) {
-    return this.http.get<Account>(this.baseUrl + '/' + id);
+  createUser(account: Account) {
+    return this.http.post(this.baseUrl + '/users', account);
   }
 
-  createUser(account: Account) {
-    return this.http.post(this.baseUrl + '/register', account);
+  getUserByLogin(login: string) {
+      return this.http.get<Account>(this.baseUrl + '/users/' + login);
   }
 
   updateUser(account: Account) {

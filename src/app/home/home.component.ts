@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { SearchJob } from '../model/searchJob.model';
+import { Account } from '../model/account.model';
 
 @Component({
   selector: 'app-home',
@@ -14,7 +15,7 @@ export class HomeComponent implements OnInit {
   ) { }
 
   searchJobForm: FormGroup;
-
+  account = new Account();
   searchJob = new SearchJob();
 
   onSubmit(buttonType): void {

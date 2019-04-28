@@ -80,8 +80,10 @@
           </ul>
 
           <ul class="nav navbar-nav navbar-right float-right">
-            <li class="left"><a href="/addjob"><i class="ti-pencil-alt"></i> Đăng tuyển</a></li>
-            <li class="right"><a href="/login"><i class="ti-lock"></i>  Đăng nhập</a></li>
+              <li class="left"><a href="/addjob"><i class="ti-pencil-alt"></i> Đăng tuyển</a></li>
+              <li class="right"><a href="/login" *ngIf = "!this.logged"><i class="ti-lock"></i>  Đăng nhập</a></li>
+              <li class="right" *ngIf = "this.logged"><a>{{this.account.login}}</a></li>
+              <li class="right" (click)="onLogout()" *ngIf = "this.logged"><a href="/home">Đăng xuất</a></li>
           </ul>
 
         </div>

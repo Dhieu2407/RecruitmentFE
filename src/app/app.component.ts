@@ -1,11 +1,39 @@
-import { Component } from '@angular/core';
-
+import { Component, OnInit } from '@angular/core';
+import {Account} from "./model/account.model";
+import { AuthenticationService } from './service/auth.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+    providers: [AuthenticationService]
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
+
   title = 'RecruitmentFE';
+  account = new Account();
+  logged = false;
+
+  asd = new Array();
+  constructor(
+      private authService: AuthenticationService
+  ) { }
+
+  ngOnInit(){
+      this.account = JSON.parse(localStorage.getItem('currentUser'));
+
+      if(this.account === null){
+          this.logged = false;
+      } else {
+          this.logged = true;
+      }
+
+      if(this.logged === true){
+          
+      }
+  }
+
+  onLogout(){
+      this.authService.logout();
+  }
 }
