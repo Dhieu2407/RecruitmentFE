@@ -13,8 +13,9 @@ export class AppComponent implements OnInit{
   title = 'RecruitmentFE';
   account = new Account();
   logged = false;
+  roleCandidate = false;
+  roleEmployer = false;
 
-  asd = new Array();
   constructor(
       private authService: AuthenticationService
   ) { }
@@ -29,7 +30,13 @@ export class AppComponent implements OnInit{
       }
 
       if(this.logged === true){
-          
+          if(this.account.authorities[1] === 'ROLE_CANDIDATE'){
+              this.roleCandidate = true;
+              this.roleEmployer = false;
+          } if(this.account.authorities[1] === 'ROLE_EMPLOYER'){
+              this.roleEmployer = true;
+              this.roleCandidate = false;
+          }
       }
   }
 

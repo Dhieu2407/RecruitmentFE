@@ -35,6 +35,7 @@ export class AuthenticationService {
             .subscribe(
                 (data) => {
                     localStorage.setItem('currentUser', JSON.stringify(data));
+                    window.location.reload();
                   },
                 error => {
                         console.log('Failed');

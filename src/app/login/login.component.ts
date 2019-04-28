@@ -63,7 +63,7 @@ export class LoginComponent implements OnInit {
       .subscribe(
         data => {
           alert('Registration succesful');
-          // this.router.navigate(['/home']);
+          this.router.navigate(['/home']);
         },
         error => {
             console.log(error);
