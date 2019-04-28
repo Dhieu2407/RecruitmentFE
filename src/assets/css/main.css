@@ -1985,6 +1985,9 @@ footer {
 .job-list .job-tag .meta-tag span i {
   margin-right: 5px;
 }
+.job-list{
+    height: 300px;
+}
 .job-list .job-tag .icon {
   float: left;
   border: 1px solid #ddd;

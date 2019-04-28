@@ -28,4 +28,7 @@ export class JobService {
   getAllMajor() {
     return this.http.get(this.baseUrl + '/getAllMajor1');
   }
+  getListJobOfCompany(body: string) {
+      return this.http.post(this.baseUrl + '/getListJobOfCompany', body);
+  }
 }
