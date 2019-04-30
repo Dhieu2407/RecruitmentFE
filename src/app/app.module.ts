@@ -57,7 +57,7 @@ import { ManageapplicationdetailComponent } from './manageapplicationdetail/mana
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
-    NgbModule
+    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

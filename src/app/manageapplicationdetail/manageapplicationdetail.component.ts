@@ -25,8 +25,12 @@ export class ManageapplicationdetailComponent implements OnInit {
     searchJob = new SearchJob();
     jobForm: FormGroup;
     jobUpdate = new Job();
+    idJobdetale: number;
+    show: boolean;
+    btnEdit: boolean;
 
   ngOnInit() {
+      this.btnEdit = true;
       // @ts-ignore
       document.getElementById('titleJob').disabled = true;
       // @ts-ignore
@@ -84,7 +88,12 @@ export class ManageapplicationdetailComponent implements OnInit {
               }
           );
   }
-  enable() {
+    onCancel() {
+      location.reload();
+    }
+  onEdit() {
+      this.btnEdit = false;
+      this.show = true;
     // @ts-ignore
       document.getElementById('titleJob').disabled = false;
       // @ts-ignore
@@ -115,6 +124,7 @@ export class ManageapplicationdetailComponent implements OnInit {
   }
 
   onUpdate() {
+      this.jobUpdate.id = this.idJob;
       // @ts-ignore
       this.jobUpdate.titleJob = $('#titleJob').val();
       // @ts-ignore
@@ -143,6 +153,34 @@ export class ManageapplicationdetailComponent implements OnInit {
       // @ts-ignore
       this.jobUpdate.salaryMax = $('#salaryMax').val();
       console.log(this.jobUpdate);
+      this.jobService.updateJob(JSON.stringify(this.jobUpdate))
+          .pipe(first())
+          .subscribe(
+              (data: Job) => {
+                  this.job = data;
+                  alert('Cập nhật tin tuyển dụng thành công!');
+                  location.reload();
+              },
+              error => {
+                  alert('Fail');
+              }
+          );
+  }
+    onDeleteJob() {
+      this.jobService.deleteJob(JSON.stringify(this.searchJob))
+          .pipe(first())
+          .subscribe(
+              (data: number) => {
+                  this.idJobdetale = data;
+                  console.log(this.idJobdetale);
+                  alert('Đã xóa tin tuyển dụng!');
+                  this.router.navigateByUrl('/manageapplications');
+              },
+              error => {
+                  console.log('Failed');
+              }
+          );
+
   }
 
 }

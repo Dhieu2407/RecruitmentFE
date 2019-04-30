@@ -31,4 +31,10 @@ export class JobService {
   getListJobOfCompany(body: string) {
       return this.http.post(this.baseUrl + '/getListJobOfCompany', body);
   }
+  updateJob(body: string) {
+      return this.http.post( this.baseUrl + '/updateJob', body);
+  }
+  deleteJob(body: string) {
+      return this.http.post( this.baseUrl + '/deleteJobById', body);
+  }
 }
