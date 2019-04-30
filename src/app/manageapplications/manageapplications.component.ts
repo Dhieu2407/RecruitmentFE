@@ -14,10 +14,13 @@ export class ManageapplicationsComponent implements OnInit {
   constructor(
       private jobService: JobService,
   ) {}
-
+    page: number;
+    pageSize: number;
   listJobOfCompany: Job[];
   company = new Company();
   ngOnInit() {
+      this.page = 1;
+      this.pageSize = 5;
       this.company.id = 1;
       this.jobService.getListJobOfCompany(JSON.stringify(this.company))
           .pipe(first())

@@ -21,7 +21,8 @@ export class JobComponent implements OnInit {
 
   searchJobForm: FormGroup;
   listJobs: Job[];
-
+  page: number;
+  pageSize: number;
   searchJob = new SearchJob();
 
   onSubmit(buttonType): void {
@@ -67,12 +68,14 @@ export class JobComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.searchJobForm = this.formBuilder.group({
+      this.page = 1;
+      this.pageSize = 10;
+      this.searchJobForm = this.formBuilder.group({
       keyword: ['', Validators.required],
       location: ['', Validators.required],
       career: ['', Validators.required],
     });
-    this.jobService.getAllJobs()
+      this.jobService.getAllJobs()
       .pipe(first())
       .subscribe(
         (data: Job[]) => {
