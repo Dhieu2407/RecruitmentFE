@@ -55,7 +55,7 @@ export class LoginComponent implements OnInit {
     this.account.email = this.registerForm.get('Email').value;
     this.account.password = this.registerForm.get('Password').value;
     this.account.authorities = [
-      this.registerForm.get('role').value
+        this.registerForm.get('role').value,
     ];
     console.log(this.account);
     this.accountService.createUser(this.account)

@@ -20,7 +20,7 @@ export class AccountService {
   }
 
   createUser(account: Account) {
-    return this.http.post(this.baseUrl + '/users', account);
+    return this.http.post(this.baseUrl + '/register', account);
   }
 
   getUserByLogin(login: string) {
