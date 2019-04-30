@@ -26,6 +26,7 @@ import { AddresumeComponent } from './addresume/addresume.component';
 import { DetailCandidateComponent } from './detail-candidate/detail-candidate.component';
 import { PopupviewcontactComponent } from './popupviewcontact/popupviewcontact.component';
 import { ModifyresumeComponent } from './modifyresume/modifyresume.component';
+import { ManageapplicationdetailComponent } from './manageapplicationdetail/manageapplicationdetail.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { ModifyresumeComponent } from './modifyresume/modifyresume.component';
     AddresumeComponent,
     DetailCandidateComponent,
     PopupviewcontactComponent,
-    ModifyresumeComponent
+    ModifyresumeComponent,
+    ManageapplicationdetailComponent
   ],
   imports: [
     BrowserModule,

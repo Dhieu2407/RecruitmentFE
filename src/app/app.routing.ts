@@ -19,7 +19,7 @@ import {BrowseresumesComponent} from './browseresumes/browseresumes.component';
 import {DetailCandidateComponent} from './detail-candidate/detail-candidate.component';
 import {PopupviewcontactComponent} from './popupviewcontact/popupviewcontact.component';
 import { ModifyresumeComponent } from './modifyresume/modifyresume.component';
-
+import { ManageapplicationdetailComponent } from './manageapplicationdetail/manageapplicationdetail.component';
 //phucnh
 
 const routes: Routes = [
@@ -43,6 +43,7 @@ const routes: Routes = [
   //phucnh { path: 'product-details/:id', component: ProductDetails }
   { path: 'detailcandidate', component: DetailCandidateComponent },
   { path: 'popupcandidate', component: PopupviewcontactComponent },
+  {path: 'manageapplicationdetail/:id', component: ManageapplicationdetailComponent },
   //phucnh
 
   { path: 'test', component: TestComponent },
