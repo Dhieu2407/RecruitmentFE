@@ -101,6 +101,7 @@ export class AddjobComponent implements OnInit {
     this.job.salaryMin = this.formAddJob.get('salaryMin').value;
     this.job.salaryMax = this.formAddJob.get('salaryMax').value;
     this.job.tgLamViec = this.formAddJob.get('tgLamViec').value;
+    this.job.congTy =  JSON.parse(localStorage.getItem("currentUser")).id;
     this.jobResult.id = 1;
     console.log(this.job);
     this.jobService.postJob(JSON.stringify(this.job))
