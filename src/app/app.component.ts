@@ -30,10 +30,10 @@ export class AppComponent implements OnInit{
       }
 
       if(this.logged === true){
-          if(this.account.authorities[1] === 'ROLE_CANDIDATE'){
+          if(this.account.authorities[0] === 'ROLE_CANDIDATE'){
               this.roleCandidate = true;
               this.roleEmployer = false;
-          } if(this.account.authorities[1] === 'ROLE_EMPLOYER'){
+          } if(this.account.authorities[0] === 'ROLE_EMPLOYER'){
               this.roleEmployer = true;
               this.roleCandidate = false;
           }

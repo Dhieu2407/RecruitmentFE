@@ -6,6 +6,7 @@ import { first } from 'rxjs/operators';
 import {Router} from '@angular/router';
 import { Account } from '../model/account.model';
 import { AccountService } from '../service/account.service';
+import { AuthGuardService } from '../service/auth-guard.service';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,8 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private candidateService: CandidateService,
     private authService: AuthenticationService,
-    private accountService: AccountService
+    private accountService: AccountService,
+    private authGuardService: AuthGuardService
 ) {}
 
   account = new Account();
@@ -30,6 +32,7 @@ export class LoginComponent implements OnInit {
   role = '';
 
   ngOnInit() {
+    this.authGuardService.canLogin();
     this.registerForm = this.formBuilder.group({
       Username: ['', Validators.required],
       Email: ['', Validators.required],

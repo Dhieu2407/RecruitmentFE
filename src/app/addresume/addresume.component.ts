@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { Resume } from '../model/resume.model';
+import { AuthGuardService } from '../service/auth-guard.service';
 
 @Component({
   selector: 'app-addresume',
@@ -10,6 +11,7 @@ import { Resume } from '../model/resume.model';
 export class AddresumeComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
+    private authGuardService: AuthGuardService
   ) { }
 
   addResumeForm: FormGroup;
@@ -56,31 +58,32 @@ export class AddresumeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.addResumeForm = this.formBuilder.group({
-      name: ['', Validators.required],
-      email: ['', Validators.required],
-      phone: ['', Validators.required],
-      career: ['', Validators.required],
-      wantedPosition: ['', Validators.required],
-      age: ['', Validators.required],
-      wantedSalary: ['', Validators.required],
-      yearsOfExperience: ['', Validators.required],
-      workForm: ['', Validators.required],
-      expertise: ['', Validators.required],
-      careerGoals: ['', Validators.required],
-      certificate: ['', Validators.required],
-      major: ['', Validators.required],
-      school: ['', Validators.required],
-      fromDate: ['', Validators.required],
-      toDate: ['', Validators.required],
-      description: ['', Validators.required],
-      companyName: ['', Validators.required],
-      workPosition: ['', Validators.required],
-      startDate: ['', Validators.required],
-      endDate: ['', Validators.required],
-      workDescription: ['', Validators.required],
-      skillName: ['', Validators.required],
-      competentlyPercent: ['', Validators.required],
+      this.authGuardService.canAccess('ROLE_CANDIDATE');
+      this.addResumeForm = this.formBuilder.group({
+        name: ['', Validators.required],
+        email: ['', Validators.required],
+        phone: ['', Validators.required],
+        career: ['', Validators.required],
+        wantedPosition: ['', Validators.required],
+        age: ['', Validators.required],
+        wantedSalary: ['', Validators.required],
+        yearsOfExperience: ['', Validators.required],
+        workForm: ['', Validators.required],
+        expertise: ['', Validators.required],
+        careerGoals: ['', Validators.required],
+        certificate: ['', Validators.required],
+        major: ['', Validators.required],
+        school: ['', Validators.required],
+        fromDate: ['', Validators.required],
+        toDate: ['', Validators.required],
+        description: ['', Validators.required],
+        companyName: ['', Validators.required],
+        workPosition: ['', Validators.required],
+        startDate: ['', Validators.required],
+        endDate: ['', Validators.required],
+        workDescription: ['', Validators.required],
+        skillName: ['', Validators.required],
+        competentlyPercent: ['', Validators.required],
     });
   }
 

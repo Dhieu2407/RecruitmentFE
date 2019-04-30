@@ -5,6 +5,7 @@ import {JobService} from '../service/job.service';
 import {first} from 'rxjs/operators';
 import {SearchJob} from '../model/searchJob.model';
 import {Major} from "../model/major.model";
+import { AuthGuardService } from '../service/auth-guard.service';
 
 @Component({
   selector: 'app-addjob',
@@ -12,41 +13,43 @@ import {Major} from "../model/major.model";
   styleUrls: ['./addjob.component.css']
 })
 export class AddjobComponent implements OnInit {
-  titleJob = '';
-  chucVu = '';
-  location1 = '';
-  majorJob = '';
-  descriptionJob = '';
-  yeuCauUngVien = '';
-  quyenLoi = '';
-  yeuCauHoSo = '';
-  soNamKinhNghiem = '';
-  yeuCauGioiTinh = '';
-  soLuong = '';
-  salaryMin = '';
-  salaryMax = '';
-  tgLamViec = '';
-  deadline = '';
 
-
-  job = new Job();
-  jobResult = new Job();
-  searchJob = new SearchJob();
-  idJob: number;
-  // try
-  major = new Major();
-  listMajor: Major[];
-  public flag: boolean;
-
-  formAddJob: FormGroup;
   constructor(
     private formBuilder: FormBuilder,
     private jobService: JobService,
-  ) {
+    private authGuardService: AuthGuardService
+  ) {}
 
-  }
+    public flag: boolean;
+
+    titleJob = '';
+    chucVu = '';
+    location1 = '';
+    majorJob = '';
+    descriptionJob = '';
+    yeuCauUngVien = '';
+    quyenLoi = '';
+    yeuCauHoSo = '';
+    soNamKinhNghiem = '';
+    yeuCauGioiTinh = '';
+    soLuong = '';
+    salaryMin = '';
+    salaryMax = '';
+    tgLamViec = '';
+    deadline = '';
+
+    job = new Job();
+    jobResult = new Job();
+    searchJob = new SearchJob();
+    idJob: number;
+    // try
+    major = new Major();
+    listMajor: Major[];
+    formAddJob: FormGroup;
 
   ngOnInit() {
+      this.authGuardService.canAccess('ROLE_EMPLOYER')
+
     this.formAddJob = this.formBuilder.group({
       titleJob: ['', Validators.required],
       location1: ['', Validators.required],
