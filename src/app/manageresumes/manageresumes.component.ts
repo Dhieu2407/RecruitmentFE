@@ -9,7 +9,13 @@ export class ManageresumesComponent implements OnInit {
 
   constructor() { }
 
+  id : number;
+  urlToModifyResume : string;
+
   ngOnInit() {
+      console.log(JSON.parse(localStorage.getItem("currentUser")));
+      this.id = JSON.parse(localStorage.getItem("currentUser")).id;
+      this.urlToModifyResume = "/modifyresume/" + this.id;
   }
 
 }
