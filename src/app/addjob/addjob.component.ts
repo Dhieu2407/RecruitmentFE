@@ -6,6 +6,7 @@ import {first} from 'rxjs/operators';
 import {SearchJob} from '../model/searchJob.model';
 import {Major} from "../model/major.model";
 import { AuthGuardService } from '../service/auth-guard.service';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-addjob',
@@ -17,7 +18,8 @@ export class AddjobComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private jobService: JobService,
-    private authGuardService: AuthGuardService
+    private authGuardService: AuthGuardService,
+    private router: Router,
   ) {}
 
     public flag: boolean;
@@ -48,9 +50,9 @@ export class AddjobComponent implements OnInit {
     formAddJob: FormGroup;
 
   ngOnInit() {
-      this.authGuardService.canAccess('ROLE_EMPLOYER')
+      this.authGuardService.canAccess('ROLE_EMPLOYER');
 
-    this.formAddJob = this.formBuilder.group({
+      this.formAddJob = this.formBuilder.group({
       titleJob: ['', Validators.required],
       location1: ['', Validators.required],
       majorJob: ['', Validators.required],
@@ -68,12 +70,12 @@ export class AddjobComponent implements OnInit {
       tgLamViec: ['', Validators.required],
     });
     // try
-    this.flag = true;
-    this.jobService.getAllMajor()
+      this.jobService.getAllMajor()
       .pipe(first())
       .subscribe(
         (data: Major[]) => {
           this.listMajor = data;
+          console.log(this.listMajor);
         },
         error => {
           console.log('Faild');
@@ -109,6 +111,8 @@ export class AddjobComponent implements OnInit {
       .subscribe(
         (data: Job) => {
           this.jobResult = data;
+          alert('Bạn đã thêm tin tuyển dụng thành công!');
+          this.router.navigateByUrl('/manageapplications');
         },
         error => {
           console.log('Faild');
