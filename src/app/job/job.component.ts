@@ -5,6 +5,7 @@ import { first } from 'rxjs/operators';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { SearchJob } from '../model/searchJob.model';
 import {Router} from '@angular/router';
+import {Major} from "../model/major.model";
 
 @Component({
   selector: 'app-job',
@@ -21,6 +22,7 @@ export class JobComponent implements OnInit {
 
   searchJobForm: FormGroup;
   listJobs: Job[];
+  listMajor: Major[];
   page: number;
   pageSize: number;
   searchJob = new SearchJob();
@@ -75,6 +77,16 @@ export class JobComponent implements OnInit {
       location: ['', Validators.required],
       career: ['', Validators.required],
     });
+      this.jobService.getAllMajor()
+          .pipe(first())
+          .subscribe(
+              (data: Major[]) => {
+                  this.listMajor = data;
+              },
+              error => {
+                  console.log('Fail');
+              }
+          );
       this.jobService.getAllJobs()
       .pipe(first())
       .subscribe(

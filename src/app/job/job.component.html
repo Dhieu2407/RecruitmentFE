@@ -28,15 +28,12 @@
                             <div class="search-category-container">
                               <label class="styled-select">
                                 <select class="dropdown-product selectpicker" formControlName="career" id="career">
-                                  <option>All Categories</option>
-                                  <option>Finance</option>
-                                  <option>IT & Engineering</option>
-                                  <option>Education/Training</option>
-                                  <option>Art/Design</option>
-                                  <option>Sale/Markting</option>
-                                  <option>Healthcare</option>
-                                  <option>Science</option>
-                                  <option>Food Services</option>
+                                  <option value="0">All Categories</option>
+                                    <option *ngFor="let major of listMajor"
+                                            [value]="major.nganhId"
+                                            [attr.selected]="major.tenNganh">
+                                        {{major.tenNganh}}
+                                    </option>
                                 </select>
                               </label>
                             </div>
@@ -64,7 +61,7 @@
       <h2 class="section-title">Find good a Job</h2>
       <div class="row">
 
-          <div *ngFor="let jobs of jobList | slice: (page-1) * pageSize: (page-1) * pageSize + pageSize">
+          <div *ngFor="let jobs of listJobs | slice: (page-1) * pageSize: (page-1) * pageSize + pageSize">
             <div class="col-md-6 col-sm-6 col-xs-12">
             <div class="job-list">
               <div class="thumb">
