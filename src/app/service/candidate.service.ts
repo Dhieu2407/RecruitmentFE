@@ -4,6 +4,7 @@ import { environment } from '../../environments/environment.prod';
 import { Candidate } from '../model/candidate.model';
 import { Resume } from '../model/resume.model';
 import { Account } from '../model/account.model';
+import { CandidateSaveJobsDTO } from '../model/candidateSaveJobsDTO.model';
 
 @Injectable({
   providedIn: 'root'
@@ -31,5 +32,13 @@ export class CandidateService {
 
   modifyResume(resume: Resume){
     return this.http.post(this.baseUrl + '/updateProfileCandidates', resume);
+  }
+
+  candidateSaveJob(candidateSaveJob: CandidateSaveJobsDTO){
+    return this.http.post(this.baseUrl + '/bookmarkJob', candidateSaveJob);
+  }
+
+  getBookmarkedJob(id : number){
+    return this.http.get(this.baseUrl + '/getBookmarkedJobs/' + id);
   }
 }
