@@ -7,6 +7,7 @@ import {SearchJob} from '../model/searchJob.model';
 import {Major} from "../model/major.model";
 import { AuthGuardService } from '../service/auth-guard.service';
 import {Router} from "@angular/router";
+import {Account} from "../model/account.model";
 
 @Component({
   selector: 'app-addjob',
@@ -44,6 +45,7 @@ export class AddjobComponent implements OnInit {
     jobResult = new Job();
     searchJob = new SearchJob();
     idJob: number;
+    account = new Account();
     // try
     major = new Major();
     listMajor: Major[];
@@ -51,7 +53,7 @@ export class AddjobComponent implements OnInit {
 
   ngOnInit() {
       this.authGuardService.canAccess('ROLE_EMPLOYER');
-
+      this.account = JSON.parse(localStorage.getItem('currentUser'));
       this.formAddJob = this.formBuilder.group({
       titleJob: ['', Validators.required],
       location1: ['', Validators.required],
@@ -103,7 +105,7 @@ export class AddjobComponent implements OnInit {
     this.job.salaryMin = this.formAddJob.get('salaryMin').value;
     this.job.salaryMax = this.formAddJob.get('salaryMax').value;
     this.job.tgLamViec = this.formAddJob.get('tgLamViec').value;
-    this.job.congTy =  JSON.parse(localStorage.getItem("currentUser")).id;
+    this.job.idCongTy =  this.account.id;
     this.jobResult.id = 1;
     console.log(this.job);
     this.jobService.postJob(JSON.stringify(this.job))

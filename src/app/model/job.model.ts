@@ -12,7 +12,7 @@ export class Job {
   description: string; // mô tả công việc
   duedate: string; // hạn apply
   chiTiet: string;
-  congTy: string;
+  idCongTy: number;
   diaChi: string;
   chucVu1: string;
   soLuong: number;
