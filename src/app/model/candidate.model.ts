@@ -16,5 +16,7 @@ export class Candidate {
   kiNang: skill;
   nganh: Major;
   lichSuLamViec: string;
-  mucTieuNgheNghiep: string
+  mucTieuNgheNghiep: string;
+  modifyDate : string;
+  diaChi : string;
 }

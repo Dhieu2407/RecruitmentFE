@@ -6,6 +6,7 @@ export class Resume {
   email: string;
   phone: string;
   career: string; // nganh nghe
+  address : string;
   wantedPosition: string;
   age: number;
   wantedSalary: number;

@@ -80,6 +80,7 @@ export class ModifyresumeComponent implements OnInit {
             name: ["", Validators.required],
             email: ["", Validators.required],
             phone: ["", Validators.required],
+            address: ["", Validators.required],
             career: ["", Validators.required],
             wantedPosition: ["", Validators.required],
             age: ["", Validators.required],
@@ -111,6 +112,7 @@ export class ModifyresumeComponent implements OnInit {
                     this.modifyResumeForm.get("name").setValue(this.candidate.tenUngVien);
                     this.modifyResumeForm.get("email").setValue(this.email);
                     this.modifyResumeForm.get("phone").setValue(this.candidate.sdt);
+                    this.modifyResumeForm.get("address").setValue(this.candidate.diaChi);
                     this.modifyResumeForm.get("career").setValue(this.candidate.nganh.tenNganh);
                     this.modifyResumeForm.get("wantedSalary").setValue(this.candidate.luongMongMuon);
                     this.modifyResumeForm.get("careerGoals").setValue(this.candidate.mucTieuNgheNghiep);
@@ -252,6 +254,7 @@ export class ModifyresumeComponent implements OnInit {
             this.resume.name = this.modifyResumeForm.get("name").value;
             this.resume.email = this.modifyResumeForm.get("email").value;
             this.resume.phone = this.modifyResumeForm.get("phone").value;
+            this.resume.address = this.modifyResumeForm.get("address").value;
             this.resume.wantedSalary = this.modifyResumeForm.get("wantedSalary").value;
             this.resume.careerGoals = this.modifyResumeForm.get("careerGoals").value;
             this.resume.skill = this.modifyResumeForm.get("skill").value;

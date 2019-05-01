@@ -20,5 +20,5 @@ export class Job {
   quyenLoi: string;
   yeuCauHoSo: string;
   yeuCauGioiTinh: number;
-
+  jobId : number;
 }
