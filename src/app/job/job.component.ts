@@ -6,6 +6,8 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { SearchJob } from '../model/searchJob.model';
 import {Router} from '@angular/router';
 import {Major} from "../model/major.model";
+import { CandidateService } from '../service/candidate.service';
+import { CandidateSaveJobsDTO } from '../model/candidateSaveJobsDTO.model';
 
 @Component({
   selector: 'app-job',
@@ -18,6 +20,7 @@ export class JobComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private jobService: JobService,
+    private candidateService : CandidateService
   ) { }
 
   searchJobForm: FormGroup;
@@ -26,6 +29,8 @@ export class JobComponent implements OnInit {
   page: number;
   pageSize: number;
   searchJob = new SearchJob();
+
+  candidateSaveJobDTO : CandidateSaveJobsDTO;
 
   onSubmit(buttonType): void {
     if (buttonType === 'Search') {
@@ -99,5 +104,22 @@ export class JobComponent implements OnInit {
         }
       );
   }
+  onBookmark(jobs: Job) {
+    this.candidateSaveJobDTO = new CandidateSaveJobsDTO();
+    this.candidateSaveJobDTO.candidateId =  JSON.parse(localStorage.getItem("currentUser")).id;
+    console.log(jobs);
+    this.candidateSaveJobDTO.jobId =  jobs.jobId;
+    console.log(this.candidateSaveJobDTO);
+    this.candidateService.candidateSaveJob(this.candidateSaveJobDTO)
+            .pipe(first())
+            .subscribe(
+                (data: any) => {
+                    console.log(data);
+                },
+                error => {
+                    console.log("Faild");
+                }
+            );;
+}
 
 }
