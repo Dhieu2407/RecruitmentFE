@@ -32,12 +32,12 @@
               <div class="divider"><h3>Thông tin cơ bản</h3></div>
               <div class="form-group">
                 <label class="control-label" for="textarea">Tên</label>
-                <input type="text" class="form-control" placeholder="Tên của bạn" formControlName="name" id="name" required>
+                <input type="text" class="form-control" placeholder="Tên của bạn" formControlName="name" id="name" [disabled]="true">
               </div>
               <div class="form-group">
                 <label class="control-label" for="textarea"></label>
                 <label class="control-label" for="textarea">Email</label>
-                <input type="email" class="form-control" placeholder="Your@domain.com" formControlName="email" id="email" required>
+                <input type="email" class="form-control" placeholder="Your@domain.com" formControlName="email" id="email" [disabled]="true">
               </div>
 
               <div class="form-group">
@@ -113,6 +113,11 @@
 
 
               <div class="divider"><h3>Bằng cấp</h3></div>
+              <div class="add-post-btn">
+              <div class="pull-left">
+                <button (click)="createInputSchool()" class="btn-added"><i class="ti-plus"></i> Add New Education</button>
+              </div>
+            </div>
               <div formArrayName="school" *ngFor="let s of modifyResumeForm.get('school').controls; let i = index">
                 <div [formGroupName]="i">
                     <div class="form-group">
@@ -146,9 +151,6 @@
                         <textarea class="form-control" rows="7" formControlName="mota" id="mota"></textarea>
                       </div>
                       <div class="add-post-btn">
-                        <div class="pull-left">
-                          <button (click)="createInputSchool()" class="btn-added"><i class="ti-plus"></i> Add New Education</button>
-                        </div>
                         <div class="pull-right">
                           <button (click)="removeSchool(i)" class="btn-delete"><i class="ti-trash"></i> Delete This</button>
                         </div>
@@ -192,6 +194,11 @@
 
 
               <div class="divider"><h3>Kinh nghiệm làm việc</h3></div>
+              <div class="add-post-btn">
+              <div class="pull-left">
+                <button (click)="createInputWork()" class="btn-added"><i class="ti-plus"></i> Add New Experience</button>
+              </div>
+            </div>
               <div formArrayName="workDescription" *ngFor="let s of modifyResumeForm.get('workDescription').controls; let i = index">
                 <div [formGroupName]="i">
                     <div class="form-group">
@@ -219,9 +226,6 @@
                         <textarea class="form-control" rows="7" formControlName="mota" id="mota"></textarea>
                       </div>
                       <div class="add-post-btn">
-                        <div class="pull-left">
-                          <button (click)="createInputWork()" class="btn-added"><i class="ti-plus"></i> Add New Experience</button>
-                        </div>
                         <div class="pull-right">
                           <button (click)="removeWork(i)" class="btn-delete"><i class="ti-trash"></i> Delete This</button>
                         </div>
@@ -275,12 +279,22 @@
                -->
 
                 <div class="divider"><h3>Kỹ Năng</h3></div>
+                <div class="add-post-btn">
+                    <div class="pull-left">
+                        <button (click)="createInputSkill()" class="btn-added"><i class="ti-plus"></i> Add New Skills</button>
+                    </div>
+                </div>
+
                 <div formArrayName="skill" *ngFor="let s of modifyResumeForm.get('skill').controls; let i = index">
                     <div [formGroupName]="i">
                         <div class="row">
                             <div class="col-md-6">
                                 <label class="control-label" for="textarea">Tên kĩ năng</label>
-                                <input class="form-control" placeholder="Tên kĩ năng, e.g. code BackEnd" type="text" formControlName="skillName" id="skillName" required>
+                                <!-- <input class="form-control" placeholder="Tên kĩ năng, e.g. code BackEnd" type="text" formControlName="skillName" id="skillName" required> -->
+                                <select class="form-control" id="career" formControlName="skillName" name="skillName">
+                                    <option value="" selected>Select Skill</option>
+                                    <option *ngFor="let oneSkill of allSkills" [value]="oneSkill.tenKiNang"> {{oneSkill.tenKiNang}}</option>
+                                  </select>
                             </div>
                             <div class="col-md-6">
                                 <label class="control-label" for="textarea">Số năm kinh nghiệm</label>
@@ -288,9 +302,6 @@
                             </div>
                         </div>
                         <div class="add-post-btn">
-                            <div class="pull-left">
-                              <button (click)="createInputSkill()" class="btn-added"><i class="ti-plus"></i> Add New Skills</button>
-                            </div>
                             <div class="pull-right">
                               <button (click)="removeSkill(i)" class="btn-delete"><i class="ti-trash"></i> Delete This</button>
                             </div>

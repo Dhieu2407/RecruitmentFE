@@ -111,8 +111,10 @@
                         </div>
 
                     </form>
-                    <button class="btn btn-common log-btn" (click)="enable()">Enable</button>
-                    <button class="btn btn-common log-btn" (click)="onUpdate()">Update</button>
+                    <button class="btn btn-common log-btn" *ngIf="btnEdit" (click)="onEdit()">Sửa bài viết</button>
+                    <button class="btn btn-common log-btn" *ngIf="show" (click)="onUpdate()">Cập nhật</button>
+                    <button class="btn btn-common" *ngIf="show" (click)="onCancel()">Hủy</button>
+                    <button class="btn btn-common" (click)="onDeleteJob()">Xóa Bài Viết</button>
                     <!-- Start Pagination -->
                     <br>
                 </div>

@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment.prod';
 import { Candidate } from '../model/candidate.model';
 import { Resume } from '../model/resume.model';
+import { Account } from '../model/account.model';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +13,8 @@ export class CandidateService {
 
   constructor(private http: HttpClient) {}
 
-  addNewCandidate(candidate: Candidate) {
-    return this.http.post<Candidate>(this.baseUrl + '/candidateRegister', candidate);
+  addNewCandidate(account: Account) {
+    return this.http.post<Account>(this.baseUrl + '/candidateRegister', account);
   }
 
   getAllCandidates(){

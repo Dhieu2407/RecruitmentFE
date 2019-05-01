@@ -20,6 +20,7 @@ import {DetailCandidateComponent} from './detail-candidate/detail-candidate.comp
 import {PopupviewcontactComponent} from './popupviewcontact/popupviewcontact.component';
 import { ModifyresumeComponent } from './modifyresume/modifyresume.component';
 import { ManageapplicationdetailComponent } from './manageapplicationdetail/manageapplicationdetail.component';
+import { ModifyCompanyInfoComponent } from './modify-company-info/modify-company-info.component';
 //phucnh
 
 const routes: Routes = [
@@ -39,6 +40,7 @@ const routes: Routes = [
   { path: 'changepassword', component: ChangepasswordComponent },
   { path: 'browseresumes', component: BrowseresumesComponent },
   { path: 'modifyresume/:id', component: ModifyresumeComponent },
+  { path: 'modifycompany/:id', component: ModifyCompanyInfoComponent },
 
   //phucnh { path: 'product-details/:id', component: ProductDetails }
   { path: 'detailcandidate', component: DetailCandidateComponent },

@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { SearchJob } from '../model/searchJob.model';
 import { Account } from '../model/account.model';
+import {Job} from "../model/job.model";
+import {JobService} from "../service/job.service";
+import {first} from "rxjs/operators";
 
 @Component({
   selector: 'app-home',
@@ -12,11 +15,15 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
+    private jobService: JobService,
   ) { }
 
   searchJobForm: FormGroup;
   account = new Account();
   searchJob = new SearchJob();
+  jobList: Job[];
+    page: number;
+    pageSize: number;
 
   onSubmit(buttonType): void {
     if (buttonType === 'Search') {
@@ -33,11 +40,23 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.searchJobForm = this.formBuilder.group({
+      this.page = 1;
+      this.pageSize = 4;
+      this.searchJobForm = this.formBuilder.group({
       keyword: ['', Validators.required],
       location: ['', Validators.required],
       career: ['', Validators.required],
     });
+      this.jobService.getAllJobs()
+        .pipe(first())
+        .subscribe(
+            (data: Job[]) => {
+                this.jobList = data;
+            },
+            error => {
+                console.log('Faild');
+            }
+        );
   }
 
 }

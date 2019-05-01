@@ -27,6 +27,7 @@ import { DetailCandidateComponent } from './detail-candidate/detail-candidate.co
 import { PopupviewcontactComponent } from './popupviewcontact/popupviewcontact.component';
 import { ModifyresumeComponent } from './modifyresume/modifyresume.component';
 import { ManageapplicationdetailComponent } from './manageapplicationdetail/manageapplicationdetail.component';
+import { ModifyCompanyInfoComponent } from './modify-company-info/modify-company-info.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { ManageapplicationdetailComponent } from './manageapplicationdetail/mana
     DetailCandidateComponent,
     PopupviewcontactComponent,
     ModifyresumeComponent,
-    ManageapplicationdetailComponent
+    ManageapplicationdetailComponent,
+    ModifyCompanyInfoComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +59,7 @@ import { ManageapplicationdetailComponent } from './manageapplicationdetail/mana
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
-    NgbModule
+    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
