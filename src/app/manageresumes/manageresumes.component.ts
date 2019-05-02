@@ -15,7 +15,6 @@ export class ManageresumesComponent implements OnInit {
         private candidateService: CandidateService) {}
 
     id: number;
-    urlToModifyResume: string;
     candidate : Candidate;
     jobList : Job[];
     page : number;
@@ -31,7 +30,6 @@ export class ManageresumesComponent implements OnInit {
         this.showCandidate = true;
         // console.log(JSON.parse(localStorage.getItem("currentUser")));
         this.id = JSON.parse(localStorage.getItem("currentUser")).id;
-        this.urlToModifyResume = "/modifyresume/" + this.id;
 
         this.candidateService
             .getCandidate(this.id)

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthGuardService } from '../service/auth-guard.service';
 
 @Component({
   selector: 'app-jobalerts',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class JobalertsComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+      private authGuardService: AuthGuardService,
+  ) { }
 
   ngOnInit() {
+      this.authGuardService.canAccess('ROLE_CANDIDATE');
   }
 
 }

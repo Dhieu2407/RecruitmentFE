@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Account} from "../model/account.model";
+import {AuthGuardService} from "../service/auth-guard.service";
 
 @Component({
   selector: 'app-nortifications',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NortificationsComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+      private authGuardService: AuthGuardService
+  ) { }
+
+  account = new Account();
 
   ngOnInit() {
+      this.authGuardService.canAccess('ROLE_EMPLOYER');
+      this.account = JSON.parse(localStorage.getItem('currentUser'));
   }
 
 }

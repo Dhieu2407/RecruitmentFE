@@ -17,7 +17,7 @@ export class AppComponent implements OnInit {
   roleEmployer = false;
   urlModifyCompany: string;
   constructor(
-      private authService: AuthenticationService
+      private authService: AuthenticationService,
   ) { }
 
   ngOnInit() {
