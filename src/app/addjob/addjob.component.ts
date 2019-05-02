@@ -77,7 +77,6 @@ export class AddjobComponent implements OnInit {
       .subscribe(
         (data: Major[]) => {
           this.listMajor = data;
-          console.log(this.listMajor);
         },
         error => {
           console.log('Faild');
