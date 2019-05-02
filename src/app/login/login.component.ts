@@ -32,7 +32,11 @@ export class LoginComponent implements OnInit {
   role = '';
 
   ngOnInit() {
-    this.authGuardService.canLogin();
+    if(this.authGuardService.canLogin() === true){
+        alert('Bạn đã đăng nhập');
+        this.router.navigate(['/']);
+        return;
+    }
     this.registerForm = this.formBuilder.group({
       Username: ['', Validators.required],
       Email: ['', Validators.required],

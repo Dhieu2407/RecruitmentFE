@@ -51,7 +51,7 @@ import { ModifyCompanyInfoComponent } from './modify-company-info/modify-company
     PopupviewcontactComponent,
     ModifyresumeComponent,
     ManageapplicationdetailComponent,
-    ModifyCompanyInfoComponent
+    ModifyCompanyInfoComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,47 +1,27 @@
 <body>
-  <!-- Page Header Start -->
-  <div class="page-header" style="background: url(assets/img/banner1.jpg);">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="breadcrumb-wrapper">
-            <h2 class="product-title">Job Alerts</h2>
-            <ol class="breadcrumb">
-              <li><a href="#"><i class="ti-home"></i> Home</a></li>
-              <li class="current">Job Alerts</li>
-            </ol>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- Page Header End -->
-
   <!-- Start Content -->
   <div id="content">
     <div class="container">
       <div class="row">
-        <div class="col-md-4 col-sm-4 col-xs-12">
-          <div class="right-sideabr">
-            <div class="inner-box">
-              <h4>Manage Account</h4>
-              <ul class="lest item">
-                <li><a href="/resume">My Resume</a></li>
-                <li><a href="/bookmarked">Bookmarked Jobs</a></li>
-                <li><a href="/nortifications">Notifications <span class="notinumber">2</span></a></li>
-              </ul>
-              <h4>Manage Job</h4>
-              <ul class="lest item">
-                <li><a href="/manageapplications">Manage Applications</a></li>
-                <li><a class="active" href="/jobalerts">Job Alerts</a></li>
-              </ul>
-              <ul class="lest">
-                <li><a href="/changepassword">Change Password</a></li>
-                <li><a href="/home">Sign Out</a></li>
-              </ul>
-            </div>
+          <div class="col-md-4 col-sm-4 col-xs-12">
+              <div class="right-sideabr">
+                  <div class="inner-box">
+                      <h4>Quản lý tài khoản</h4>
+                      <ul class="lest item">
+                          <li><a href="/modifycompany/{{this.account.id}}">Cập nhật thông tin</a></li>
+                          <li><a href="/nortifications">Thông báo <span class="notinumber">2</span></a></li>
+                      </ul>
+                      <h4>Quản lý công việc</h4>
+                      <ul class="lest item">
+                          <li><a href="/manageapplications">Quản lý tin đăng tuyển</a></li>
+                          <li><a href="/manageapplications">Quản lý đơn xin việc</a></li>
+                      </ul>
+                      <ul class="lest">
+                          <li><a href="/changepassword">Đổi mật khẩu</a></li>
+                      </ul>
+                  </div>
+              </div>
           </div>
-        </div>
         <div class="col-md-8 col-sm-8 col-xs-12">
           <div class="job-alerts-item notification">
             <h3 class="alerts-title">Your Notifications</h3>

@@ -10,6 +10,7 @@ import { skill } from "../model/skill.model";
 import { MajorService } from "../service/major.service";
 import { formatDate } from '@angular/common';
 import { SkillService } from '../service/skill.service';
+import {AuthGuardService} from "../service/auth-guard.service";
 
 @Component({
     selector: "app-modifyresume",
@@ -23,7 +24,8 @@ export class ModifyresumeComponent implements OnInit {
         private formBuilder: FormBuilder,
         private candidateService: CandidateService,
         private majorService: MajorService,
-        private skillService: SkillService
+        private skillService: SkillService,
+        private authGuardService: AuthGuardService
     ) {}
 
     modifyResumeForm: FormGroup;
@@ -42,7 +44,7 @@ export class ModifyresumeComponent implements OnInit {
     email : string;
 
     ngOnInit() {
-        console.log(JSON.parse(localStorage.getItem("currentUser")));
+        this.authGuardService.canAccess('ROLE_CANDIDATE');
         // this.username = JSON.parse(localStorage.getItem("currentUser")).login;
         this.email = JSON.parse(localStorage.getItem("currentUser")).email;
         this.candidate.id = JSON.parse(localStorage.getItem("currentUser")).id;

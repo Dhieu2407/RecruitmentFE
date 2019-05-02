@@ -15,7 +15,6 @@ export class AppComponent implements OnInit {
   logged = false;
   roleCandidate = false;
   roleEmployer = false;
-  id: number;
   urlModifyCompany: string;
   constructor(
       private authService: AuthenticationService
@@ -23,8 +22,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
       this.account = JSON.parse(localStorage.getItem('currentUser'));
-      this.id = JSON.parse(localStorage.getItem('currentUser')).id;
-      this.urlModifyCompany = '/modifycompany/' + this.id ;
+      this.urlModifyCompany = '/modifycompany/' + this.account.id ;
       if (this.account === null) {
           this.logged = false;
       } else {

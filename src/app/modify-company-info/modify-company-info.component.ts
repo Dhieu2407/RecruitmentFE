@@ -4,6 +4,7 @@ import { Company } from '../model/company.model';
 import { first } from 'rxjs/operators';
 import { CompanyService } from '../service/company.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import {AuthGuardService} from "../service/auth-guard.service";
 
 @Component({
   selector: 'app-modify-company-info',
@@ -17,6 +18,7 @@ export class ModifyCompanyInfoComponent implements OnInit {
     private companyService: CompanyService,
     private router: Router,
     private route: ActivatedRoute,
+    private authGuardService: AuthGuardService
     ) { }
 
   modifyCompanyForm: FormGroup;
@@ -24,6 +26,7 @@ export class ModifyCompanyInfoComponent implements OnInit {
   id: number;
   email : string;
   ngOnInit() {
+      this.authGuardService.canAccess('ROLE_EMPLOYER');
     this.email = JSON.parse(localStorage.getItem("currentUser")).email;
     this.company.id = JSON.parse(localStorage.getItem("currentUser")).id;
     this.modifyCompanyForm = this.formBuilder.group({

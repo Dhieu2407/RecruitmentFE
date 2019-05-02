@@ -26,8 +26,7 @@ export class AuthGuardService{
     canLogin(){
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
         if(this.currentUser) {
-            alert('Bạn đã đăng nhập');
-            this.router.navigate(['/']);
-        }
+            return true;
+        } else return false;
     }
 }

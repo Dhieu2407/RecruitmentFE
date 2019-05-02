@@ -4,6 +4,7 @@ import { JobService } from '../service/job.service';
 import {Company} from '../model/company.model';
 import {first} from 'rxjs/operators';
 import {Account} from "../model/account.model";
+import { AuthGuardService } from '../service/auth-guard.service';
 
 @Component({
   selector: 'app-manageapplications',
@@ -14,6 +15,7 @@ export class ManageapplicationsComponent implements OnInit {
 
   constructor(
       private jobService: JobService,
+      private authGuardService: AuthGuardService
   ) {}
     page: number;
     pageSize: number;
@@ -21,6 +23,7 @@ export class ManageapplicationsComponent implements OnInit {
   account = new Account();
   company = new Company();
   ngOnInit() {
+      this.authGuardService.canAccess('ROLE_EMPLOYER');
       this.account = JSON.parse(localStorage.getItem('currentUser'));
       this.page = 1;
       this.pageSize = 5;

@@ -35,6 +35,10 @@ export class AccountService {
     return this.http.delete(this.baseUrl + '/' + id);
   }
 
+  changePassword(currentPassword: string, newPassword: string) {
+      return this.http.post<any>(`${this.baseUrl}/account/change-password`, {currentPassword, newPassword})
+  }
+
   requestResetKey(email: String) {
     return this.http.post(this.baseUrl + '/account/reset-password/init', email);
   }

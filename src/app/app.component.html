@@ -43,14 +43,11 @@
                 Ứng viên <span class="caret"></span>
               </button>
               <ul class="dropdown-menu" role="menu">
-                <li><a href="/addresume">Thêm hồ sơ</a>
-                </li>
-                <li>
-                  <a href="/manageresumes">Quản lý hồ sơ</a>
-                </li>
-                <li>
-                  <a href="/jobalerts">Thông báo</a>
-                </li>
+                  <li><a href="/manageresumes">Quản lý hồ sơ</a></li>
+                  <li><a href="/bookmarkedjob">Công việc đã lưu (unfinished)</a></li>
+                  <li><a href="/bookmarkedjob">Quản lý đơn xin việc (unfinished)</a></li>
+                  <li><a href="/jobalerts">Thông báo (unfinished)</a></li>
+                  <li><a href="/changepassword">Đổi mật khẩu</a></li>
               </ul>
             </div>
             <div class="btn-group" *ngIf = "this.roleEmployer">
@@ -58,11 +55,11 @@
                 Nhà tuyển dụng <span class="caret"></span>
               </button>
               <ul class="dropdown-menu" role="menu">
+                  <li>
+                      <a href="/manageapplications">Quản lý tin đăng tuyển</a>
+                  </li>
                 <li>
-                  <a href="/addjob">Đăng tuyển</a>
-                </li>
-                <li>
-                  <a href="/manageapplication">Quản lý đơn xin việc</a>
+                  <a href="/manageapplications">Quản lý đơn xin việc (unfinished)</a>
                 </li>
                 <li>
                   <a href="/browseresumes">Hồ sơ ứng viên</a>
@@ -70,6 +67,10 @@
                 <li>
                   <a href="{{urlModifyCompany}}">Cập nhật thông tin</a>
                 </li>
+                  <li>
+                      <a href="/nortifications">Thông báo (unfinished)</a>
+                  </li>
+                  <li><a href="/changepassword">Đổi mật khẩu</a></li>
               </ul>
             </div>
           </ul>
