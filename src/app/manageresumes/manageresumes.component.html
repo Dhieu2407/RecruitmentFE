@@ -24,13 +24,13 @@
         </div>
         <div class="col-md-8 col-sm-8 col-xs-12" *ngIf="candidate && showCandidate">
           <div class="job-alerts-item candidates">
-            <h3 class="alerts-title">Manage Resumes</h3>
+            <h3 class="alerts-title">Quản lý hồ sơ</h3>
             <div class="manager-resumes-item">
               <div class="manager-content">
-                <a href="resume.html"><img class="resume-thumb" src="assets/img/jobs/avatar.jpg" alt=""></a>
+                <a href="/resume/{{this.id}}"><img class="resume-thumb" src="assets/img/jobs/avatar.jpg" alt=""></a>
                 <div class="manager-info">
                   <div class="manager-name">
-                    <h4><a href="#">{{candidate.tenUngVien}}</a></h4>
+                    <h4><a href="/resume/{{this.id}}">{{candidate.tenUngVien}}</a></h4>
                     <h5>Front-end developer</h5>
                   </div>
                   <div class="manager-meta">
