@@ -25,7 +25,8 @@ export class ResumeComponent implements OnInit {
   viecLam: string;  
 
   ngOnInit() {
-    this.id = +this.route.snapshot.paramMap.get('id');
+    this.id = JSON.parse(localStorage.getItem('currentUser')).id;
+
     this.candidateService.getCandidate(this.id)
       .pipe(first())
       .subscribe(
@@ -34,10 +35,7 @@ export class ResumeComponent implements OnInit {
           this.nganh = this.candidate.nganh.tenNganh;
           this.hocVan = JSON.parse(this.candidate.trinhDoDaiHoc);
           this.viecLam = JSON.parse(this.candidate.lichSuLamViec);
-          
-          console.log(this.viecLam);
-          console.log(this.hocVan);
-          console.log(this.candidate);
+
         },
         error => {
           console.log('Failed');

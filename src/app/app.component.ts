@@ -22,7 +22,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
       this.account = JSON.parse(localStorage.getItem('currentUser'));
-      this.urlModifyCompany = '/modifycompany/' + this.account.id ;
+      this.urlModifyCompany = '/modifycompany/' + this.account.id;
       if (this.account === null) {
           this.logged = false;
       } else {
