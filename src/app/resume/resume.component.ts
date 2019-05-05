@@ -25,7 +25,8 @@ export class ResumeComponent implements OnInit {
   viecLam: string;
 
   ngOnInit() {
-    this.id = JSON.parse(localStorage.getItem('currentUser')).id;
+    // this.id = JSON.parse(localStorage.getItem('currentUser')).id;
+    this.id = +this.route.snapshot.paramMap.get("id");
 
     this.candidateService.getCandidate(this.id)
       .pipe(first())

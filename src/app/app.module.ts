@@ -28,6 +28,7 @@ import { ModifyresumeComponent } from './modifyresume/modifyresume.component';
 import { ManageapplicationdetailComponent } from './manageapplicationdetail/manageapplicationdetail.component';
 import { ModifyCompanyInfoComponent } from './modify-company-info/modify-company-info.component';
 import { AppliedJobComponent } from './applied-job/applied-job.component';
+import { CompanyDetailComponent } from './company-detail/company-detail.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { AppliedJobComponent } from './applied-job/applied-job.component';
     ManageapplicationdetailComponent,
     ModifyCompanyInfoComponent,
     AppliedJobComponent,
+    CompanyDetailComponent,
   ],
   imports: [
     BrowserModule,

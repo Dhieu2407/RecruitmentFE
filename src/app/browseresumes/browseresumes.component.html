@@ -51,7 +51,7 @@
                 <div class="manager-info">
                   <div class="manager-name">
                     <h4><a href="/resume/{{resume.ungVienId}}">{{resume.tenUngVien}}</a></h4>
-                    <h5>{{resume.nganh.tenNganh}}</h5>
+                    <h5 *ngIf="resume.nganh">{{resume.nganh.tenNganh}}</h5>
                   </div>
                   <div class="manager-meta">
                     <span class="location"><i class="ti-location-pin"></i>{{resume.diaDiem}} </span>
@@ -66,7 +66,7 @@
           </div>
         </div>
       </div>
-      <ngb-pagination [(page)]="page" [pageSize]="pageSize" [collectionSize]="listCandidate.length"></ngb-pagination>
+      <ngb-pagination *ngIf="listCandidate" [(page)]="page" [pageSize]="pageSize" [collectionSize]="listCandidate.length"></ngb-pagination>
 
     </div>
   </div>
