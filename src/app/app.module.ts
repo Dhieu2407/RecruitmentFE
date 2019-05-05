@@ -28,6 +28,7 @@ import { PopupviewcontactComponent } from './popupviewcontact/popupviewcontact.c
 import { ModifyresumeComponent } from './modifyresume/modifyresume.component';
 import { ManageapplicationdetailComponent } from './manageapplicationdetail/manageapplicationdetail.component';
 import { ModifyCompanyInfoComponent } from './modify-company-info/modify-company-info.component';
+import { ManageRecruitmentComponent } from './manage-recruitment/manage-recruitment.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { ModifyCompanyInfoComponent } from './modify-company-info/modify-company
     ModifyresumeComponent,
     ManageapplicationdetailComponent,
     ModifyCompanyInfoComponent,
+    ManageRecruitmentComponent,
   ],
   imports: [
     BrowserModule,
