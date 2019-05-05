@@ -25,4 +25,7 @@ export class CompanyService {
   getCompany(id: number){
       return this.http.get(this.baseUrl + '/getCompany/' + id);
   }
+    getCandidateApplyJobOCompany(id: number) {
+        return this.http.get(this.baseUrl + '/getCandidateByCompany/' + id);
+    }
 }

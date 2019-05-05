@@ -6,6 +6,7 @@ import {first} from 'rxjs/operators';
 import {Account} from '../model/account.model';
 import { AuthGuardService } from '../service/auth-guard.service';
 import {ActivatedRoute} from '@angular/router';
+import {CompanyService} from "../service/company.service";
 
 @Component({
   selector: 'app-manageapplications',
@@ -17,7 +18,8 @@ export class ManageapplicationsComponent implements OnInit {
   constructor(
       private jobService: JobService,
       private routerSnapshot: ActivatedRoute,
-      private authGuardService: AuthGuardService
+      private authGuardService: AuthGuardService,
+      private companyService: CompanyService,
   ) {}
     page: number;
     pageSize: number;
@@ -31,7 +33,7 @@ export class ManageapplicationsComponent implements OnInit {
       this.page = 1;
       this.pageSize = 5;
       this.company.id = this.account.id;
-      this.jobService.getCandidateApplyJobOCompany(this.company.id)
+      this.companyService.getCandidateApplyJobOCompany(this.company.id)
           .pipe(first())
           .subscribe(
               (data: Company[]) => {

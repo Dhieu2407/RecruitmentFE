@@ -38,7 +38,4 @@ export class JobService {
       return this.http.post( this.baseUrl + '/deleteJobById', body);
   }
 
-  getCandidateApplyJobOCompany(id: number){
-      return this.http.get(this.baseUrl + '/getCandidateByCompany/' + id);
-  }
 }
