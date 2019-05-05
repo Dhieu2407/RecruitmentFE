@@ -41,4 +41,8 @@ export class CandidateService {
   getBookmarkedJob(id : number){
     return this.http.get(this.baseUrl + '/getBookmarkedJobs/' + id);
   }
+
+  candidateApplyJob(candidateSaveJob: CandidateSaveJobsDTO){
+    return this.http.post(this.baseUrl + '/applyJob', candidateSaveJob);
+  }
 }

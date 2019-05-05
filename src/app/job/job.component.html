@@ -83,7 +83,7 @@
                     <div class="icon">
                       <i class="ti-heart" (click)="onBookmark(jobs)"></i>
                     </div>
-                    <div class="btn btn-common btn-rm">Apply Job</div>
+                    <div class="btn btn-common btn-rm" (click)="onApply(jobs)">Apply Job</div>
                   </div>
                 </div>
               </div>
@@ -91,7 +91,7 @@
           </div>
         </div>
       </div>
-        <ngb-pagination [(page)]="page" [pageSize]="pageSize" [collectionSize]="listJobs.length"></ngb-pagination>
+        <ngb-pagination [(page)]="page" [pageSize]="pageSize" [collectionSize]="listJobs.length" *ngIf="listJobs"></ngb-pagination>
     </div>
   </section>
 
