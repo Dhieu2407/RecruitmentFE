@@ -8,6 +8,7 @@ import {Router} from '@angular/router';
 import {Major} from "../model/major.model";
 import { CandidateService } from '../service/candidate.service';
 import { CandidateSaveJobsDTO } from '../model/candidateSaveJobsDTO.model';
+import { MajorService } from '../service/major.service';
 
 @Component({
   selector: 'app-job',
@@ -20,7 +21,8 @@ export class JobComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private jobService: JobService,
-    private candidateService : CandidateService
+    private candidateService: CandidateService,
+    private majorService: MajorService
   ) { }
 
   searchJobForm: FormGroup;
@@ -82,7 +84,7 @@ export class JobComponent implements OnInit {
       location: ['', Validators.required],
       career: ['', Validators.required],
     });
-      this.jobService.getAllMajor()
+      this.majorService.getAllMajors()
           .pipe(first())
           .subscribe(
               (data: Major[]) => {

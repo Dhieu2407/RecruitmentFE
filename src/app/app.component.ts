@@ -15,6 +15,7 @@ export class AppComponent implements OnInit {
   logged = false;
   roleCandidate = false;
   roleEmployer = false;
+  roleManager = false;
   urlModifyCompany: string;
   constructor(
       private authService: AuthenticationService,
@@ -33,8 +34,14 @@ export class AppComponent implements OnInit {
           if (this.account.authorities[0] === 'ROLE_CANDIDATE') {
               this.roleCandidate = true;
               this.roleEmployer = false;
-          } if(this.account.authorities[0] === 'ROLE_EMPLOYER') {
+              this.roleManager = false;
+          } else if(this.account.authorities[0] === 'ROLE_EMPLOYER') {
               this.roleEmployer = true;
+              this.roleCandidate = false;
+              this.roleManager = false;
+          } else if(this.account.authorities[0] === 'ROLE_MANAGER') {
+              this.roleManager = true;
+              this.roleEmployer = false;
               this.roleCandidate = false;
           }
       }

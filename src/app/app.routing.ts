@@ -13,6 +13,7 @@ import {ManageapplicationsComponent} from './manageapplications/manageapplicatio
 import {ManageresumesComponent} from './manageresumes/manageresumes.component';
 import {ChangepasswordComponent} from './changepassword/changepassword.component';
 import {BrowseresumesComponent} from './browseresumes/browseresumes.component';
+import { ManageRecruitmentComponent} from "./manage-recruitment/manage-recruitment.component";
 
 //phucnh
 import {DetailCandidateComponent} from './detail-candidate/detail-candidate.component';
@@ -43,6 +44,7 @@ const routes: Routes = [
   { path: 'modifycompany/:id', component: ModifyCompanyInfoComponent },
   { path: 'appliedjobs', component: AppliedJobComponent },
   { path: 'companydetail/:id', component: CompanyDetailComponent },
+  { path: 'manage-recruitment', component: ManageRecruitmentComponent },
 
   //phucnh { path: 'product-details/:id', component: ProductDetails }
   { path: 'detailcandidate', component: DetailCandidateComponent },
