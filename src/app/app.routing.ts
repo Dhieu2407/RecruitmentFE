@@ -17,7 +17,6 @@ import { ManageRecruitmentComponent} from './manage-recruitment/manage-recruitme
 import {ManagejobComponent} from './managejob/managejob.component';
 
 //phucnh
-import {DetailCandidateComponent} from './detail-candidate/detail-candidate.component';
 import {PopupviewcontactComponent} from './popupviewcontact/popupviewcontact.component';
 import { ModifyresumeComponent } from './modifyresume/modifyresume.component';
 import { ManageapplicationdetailComponent } from './manageapplicationdetail/manageapplicationdetail.component';
@@ -48,7 +47,6 @@ const routes: Routes = [
   { path: 'manage-recruitment', component: ManageRecruitmentComponent },
 
   //phucnh { path: 'product-details/:id', component: ProductDetails }
-  { path: 'detailcandidate', component: DetailCandidateComponent },
   { path: 'popupcandidate', component: PopupviewcontactComponent },
   {path: 'manageapplicationdetail/:id', component: ManageapplicationdetailComponent },
     {path: 'managejob' , component: ManagejobComponent},

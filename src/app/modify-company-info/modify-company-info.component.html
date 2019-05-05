@@ -26,7 +26,22 @@
 
                 <div class="form-group">
                   <label class="control-label" for="textarea">Địa chỉ</label>
-                  <input type="text" class="form-control"  placeholder="Số điện thoai" formControlName="address" id="address" required>
+                  <input type="text" class="form-control"  placeholder="Địa chỉ" formControlName="address" id="address" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label" for="textarea">Mô tả</label>
+                    <textarea class="form-control" rows="5" placeholder="Mô tả" formControlName="moTa" id="moTa"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label" for="textarea">Phúc lợi</label>
+                    <textarea class="form-control" rows="5" placeholder="Phúc lợi" formControlName="phucLoi" id="phucLoi"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label" for="textarea">Quy mô</label>
+                    <input type="text" class="form-control"  placeholder="Quy mô" formControlName="quyMo" id="quyMo">
                 </div>
 
 
@@ -35,7 +50,7 @@
                     <div class="action-buttons">
                       <div class="upload-button">
                         <a class="btn btn-common" (click)="onSubmit('Browse')">Chọn ảnh</a>
-                        <input id="cover_img_file" type="file">
+                        <input id="cover_img_file" type="file" (change)="onFileChanged($event)">
                       </div>
                     </div>
                   </div>

@@ -45,7 +45,7 @@ export class ResumeComponent implements OnInit {
   }
 
   toModifyResume() {
-      location.href = location.href='/modifyresume/' + this.id;
+      location.href='/modifyresume/' + this.id;
   }
 
 }
