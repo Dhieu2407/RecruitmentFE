@@ -180,7 +180,6 @@ export class ManageapplicationdetailComponent implements OnInit {
                   console.log('Failed');
               }
           );
-
   }
 
 }

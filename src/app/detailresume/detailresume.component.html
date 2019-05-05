@@ -1,3 +1,192 @@
-<p>
-  detailresume works!
-</p>
+<body>
+<!-- Page Header Start -->
+<div class="page-header" style="background: url(assets/img/banner1.jpg);">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="breadcrumb-wrapper">
+                    <h2 class="product-title">Manage Applications</h2>
+                    <ol class="breadcrumb">
+                        <li><a href="#"><i class="ti-home"></i> Home</a></li>
+                        <li class="current">Manage Application Detail</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Page Header End -->
+
+<!-- Start Content -->
+<div id="content">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-sm-4 col-xs-12">
+                <div class="right-sideabr">
+                    <div class="inner-box">
+                        <h4>Manage Account</h4>
+                        <ul class="lest item">
+                            <li><a href="/resume">My Resume</a></li>
+                            <li><a href="/nortifications">Notifications <span class="notinumber">2</span></a></li>
+                        </ul>
+                        <h4>Manage Job</h4>
+                        <ul class="lest item">
+                            <li><a href="/manageapplications">Manage Applications</a></li>
+                        </ul>
+                        <ul class="lest">
+                            <li><a href="/changepassword">Change Password</a></li>
+                            <li><a href="/home">Sign Out</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8 col-sm-8 col-xs-12">
+                <div class="job-alerts-item">
+                    <h3 class="alerts-title">Manage detail applications</h3>
+                    <hr>
+                    <div class="inner-box my-resume">
+                        <div class="author-resume">
+                            <div class="thumb" style="width:100px;height:100px;" >
+                                <img src="{{candidate.imgUrl}}" alt="">
+                            </div>
+                            <div class="author-info">
+                                <h3><label>{{candidate.tenUngVien}}</label></h3>
+                                <p class="sub-title"><label>Java Deverloper</label></p>
+                                <p><span class="address"><i class="ti-location-pin"></i><label>{{candidate.diaChi}}</label></span><br><span><i class="ti-phone"></i><label class="ti-mobile">{{candidate.sdt}}</label></span></p>
+
+                                <form class="subscribe-box">
+                                    <input type="submit" class="btn-system" value="Sửa Hồ Sơ">
+                                </form>
+                            </div>
+                        </div>
+
+                        <div class="about-me item">
+                            <h3>Thông Tin Hồ Sơ</h3>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p>Ngành nghề: <span><label>{{nganh}}</label></span> </p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>Trình độ học vấn: <label>Đại Học</label></p>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p>Vị trí mong muốn: <label>DEV</label></p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>Mức lương mong muốn: <label>{{candidate.luongMongMuon}}$</label></p>
+                                </div>
+                            </div>
+
+                            <!-- <div class="row">
+                              <div class="col-md-6">
+                                <p>Số năm kinh nghiệm: <label>5 năm</label></p>
+                              </div>
+                              <div class="col-md-6">
+                                <p>Thời gian làm việc: <label>Full time</label></p>
+                              </div>
+                            </div> -->
+
+
+                        </div>
+
+                        <div class="about-me item">
+                            <h3>Kiến Thức Chuyên Môn</h3>
+                            <div *ngFor="let skill of candidate.kiNang">
+                                <p><span>Tên kĩ năng : </span><span>{{skill.kiNang.tenKiNang}}</span></p>
+                                <p><span>Số năm kinh nghiệm : </span><span>{{skill.soNamKinhNghiem}}</span></p>
+                                <br/>
+                            </div>
+                        </div>
+
+                        <div class="about-me item">
+                            <h3>Mục Tiêu Nghề Nghiệp</h3>
+                            <span style="white-space: pre">{{candidate.mucTieuNgheNghiep}}</span>
+                        </div>
+
+                        <div class="about-me item">
+                            <h3>Học Vấn - Bằng Cấp</h3>
+                            <div *ngFor="let lichSuHocTap of hocVan">
+                                <p><span>Trường : </span><span>{{lichSuHocTap.daihoc}}</span></p>
+                                <p><span>Ngành học : </span><span>{{lichSuHocTap.chuyennganh}}</span></p>
+                                <p><span>GPA : </span><span>{{lichSuHocTap.GPA}}</span></p>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <p>Thời gian bắt đầu: <label>{{lichSuHocTap.batdau}}</label></p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>Thời gian tốt nghiệp: <label>{{lichSuHocTap.ketthuc}}</label></p>
+                                    </div>
+                                </div>
+                                <br/>
+                            </div>
+                        </div>
+
+                        <div class="about-me item">
+                            <h3>Kinh Nghiệm Làm Việc</h3>
+
+                            <div *ngFor="let lichSuLamViec of viecLam">
+                                <p><span>Công ty : </span><span>{{lichSuLamViec.congTy}}</span></p>
+                                <p><span>Vị trí : </span><span>{{lichSuLamViec.vitri}}</span></p>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <p>Thời gian bắt đầu: <label>{{lichSuLamViec.batdau}}</label></p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>Thời gian kết thúc: <label>{{lichSuLamViec.ketthuc}}</label></p>
+                                    </div>
+                                </div>
+                                <br/>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label class="control-label" for="textarea">Mô tả công việc</label>
+                                <textarea class="form-control" rows="7" disabled> Lập trình Web full stack, sử dụng các FrameWork Hibernate...</textarea>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Content -->
+
+<!-- Copyright Start  -->
+<div id="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <p>All Rights reserved &copy; 2018 - Designed & Developed by <a rel="nofollow" href="#">You</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Copyright End -->
+
+<!-- Go To Top Link -->
+<a href="#" class="back-to-top">
+    <i class="ti-arrow-up"></i>
+</a>
+
+<div id="loading">
+    <div id="loading-center">
+        <div id="loading-center-absolute">
+            <div class="object" id="object_one"></div>
+            <div class="object" id="object_two"></div>
+            <div class="object" id="object_three"></div>
+            <div class="object" id="object_four"></div>
+            <div class="object" id="object_five"></div>
+            <div class="object" id="object_six"></div>
+            <div class="object" id="object_seven"></div>
+            <div class="object" id="object_eight"></div>
+        </div>
+    </div>
+</div>
+</body>

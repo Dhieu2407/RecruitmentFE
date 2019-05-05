@@ -7,6 +7,7 @@ import {Account} from '../model/account.model';
 import { AuthGuardService } from '../service/auth-guard.service';
 import {ActivatedRoute} from '@angular/router';
 import {CompanyService} from "../service/company.service";
+import {Candidate} from "../model/candidate.model";
 
 @Component({
   selector: 'app-manageapplications',
@@ -24,7 +25,7 @@ export class ManageapplicationsComponent implements OnInit {
     page: number;
     pageSize: number;
   listJobOfCompany: Job[];
-  listCandidateApplyOfCompany: Company[];
+  listCandidateApplyOfCompany: Candidate[];
   account = new Account();
   company = new Company();
   ngOnInit() {
@@ -36,7 +37,7 @@ export class ManageapplicationsComponent implements OnInit {
       this.companyService.getCandidateApplyJobOCompany(this.company.id)
           .pipe(first())
           .subscribe(
-              (data: Company[]) => {
+              (data: Candidate[]) => {
                   this.listCandidateApplyOfCompany = data;
                   console.log(this.listCandidateApplyOfCompany);
               },

@@ -8,6 +8,7 @@ import {Major} from "../model/major.model";
 import { AuthGuardService } from '../service/auth-guard.service';
 import {Router} from "@angular/router";
 import {Account} from "../model/account.model";
+import {MajorService} from "../service/major.service";
 
 @Component({
   selector: 'app-addjob',
@@ -21,6 +22,7 @@ export class AddjobComponent implements OnInit {
     private jobService: JobService,
     private authGuardService: AuthGuardService,
     private router: Router,
+    private majorService: MajorService,
   ) {}
 
     public flag: boolean;
@@ -72,7 +74,7 @@ export class AddjobComponent implements OnInit {
       tgLamViec: ['', Validators.required],
     });
     // try
-      this.jobService.getAllMajor()
+      this.majorService.getAllMajors()
       .pipe(first())
       .subscribe(
         (data: Major[]) => {
@@ -113,7 +115,7 @@ export class AddjobComponent implements OnInit {
         (data: Job) => {
           this.jobResult = data;
           alert('Bạn đã thêm tin tuyển dụng thành công!');
-          this.router.navigateByUrl('/manageapplications');
+          this.router.navigateByUrl('/managejob');
         },
         error => {
           console.log('Faild');

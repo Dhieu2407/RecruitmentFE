@@ -1,0 +1,156 @@
+<body>
+<!-- Page Header Start -->
+<div class="page-header" style="background: url(assets/img/banner1.jpg);">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="breadcrumb-wrapper">
+                    <h2 class="product-title">Manage Applications</h2>
+                    <ol class="breadcrumb">
+                        <li><a href="#"><i class="ti-home"></i> Home</a></li>
+                        <li class="current">Manage Application Detail</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Page Header End -->
+
+<!-- Start Content -->
+<div id="content">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-sm-4 col-xs-12">
+                <div class="right-sideabr">
+                    <div class="inner-box">
+                        <h4>Manage Account</h4>
+                        <ul class="lest item">
+                            <li><a href="/resume">My Resume</a></li>
+                            <li><a href="/nortifications">Notifications <span class="notinumber">2</span></a></li>
+                        </ul>
+                        <h4>Manage Job</h4>
+                        <ul class="lest item">
+                            <li><a href="/manageapplications">Manage Applications</a></li>
+                        </ul>
+                        <ul class="lest">
+                            <li><a href="/changepassword">Change Password</a></li>
+                            <li><a href="/home">Sign Out</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8 col-sm-8 col-xs-12">
+                <div class="job-alerts-item">
+                    <h3 class="alerts-title">Manage applications</h3>
+                    <hr>
+                    <form role="form" [formGroup]="jobForm"  ngNativeValidate>
+                        <div class="form-group">
+                            <label class="control-label">Tiều đề công việc</label>
+                            <input type="text" value={{job.tenJob}} id="titleJob" formControlName="titleJob" name="titleJob" class="form-control" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label">Chức Vụ</label>
+                            <input type="text" value={{job.chucVu1}} id="chucVu" formControlName="chucVu" name="chucVu" class="form-control"  required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label">Địa điểm <span>(optional)</span></label>
+                            <input type="text" value={{job.diaChi}} id="location" formControlName="location" name="location" class="form-control" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label">Chuyên Ngành <span>(optional)</span></label>
+                            <input type="text" value={{job.nganh.tenNganh}} id="major" formControlName="major" name="major" class="form-control" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label">Mô tả công việc</label>
+                            <textarea class="form-control" value={{job.chiTiet}}  id="descriptionJob" formControlName="descriptionJob" name="descriptionJob" rows="7" ></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label">Yêu cầu ứng viên</label>
+                            <textarea class="form-control" value={{job.yeuCauCongViec}} id="yeuCauUngVien" formControlName="yeuCauUngVien" name="yeuCauUngVien" rows="7"  required></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label">Quyền Lợi</label>
+                            <textarea class="form-control" value={{job.quyenLoi}} id="quyenLoi" formControlName="quyenLoi" name="quyenLoi" rows="7" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Yêu Cầu Hồ Sơ</label>
+                            <textarea class="form-control" id="yeuCauHoSo" value={{job.yeuCauHoSo}} formControlName="yeuCauHoSo" name="yeuCauHoSo" rows="7" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Số năm kinh nghiệm</label>
+                            <input type="number" id="soNamKinhNghiem" value={{job.knToiThieu}} formControlName="soNamKinhNghiem" name="soNamKinhNghiem" class="form-control" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label">Số Lượng</label>
+                            <input type="number" id="soLuong" value={{job.soLuong}} formControlName="soLuong" name="soLuong" class="form-control" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label">Mức Lương Tối Thiểu</label>
+                            <input type="number" id="salaryMin" value={{job.luongToiThieu}} formControlName="salaryMin" name="salaryMin" class="form-control"  required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label">Mức Lương Tối Đa</label>
+                            <input type="number" id="salaryMax" value={{job.luongToiDa}} formControlName="salaryMax" name="salaryMax" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label">Ngày hết hạn <span>(optional)</span></label>
+                            <input type="date" data-date="" value={{job.hanCuoi}} id="deadline" formControlName="deadline" name="deadline" placeholder="DD/MM/YYYY" class="form-control" required>
+
+                            <p class="note">Hạn nộp hồ sơ.</p>
+                        </div>
+
+                    </form>
+                    <button class="btn btn-common log-btn" (click)="onUpdate()">Cập nhật</button>
+                    <button class="btn btn-common"  (click)="onCancel()">Hủy</button>
+                    <!-- Start Pagination -->
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Content -->
+
+<!-- Copyright Start  -->
+<div id="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <p>All Rights reserved &copy; 2018 - Designed & Developed by <a rel="nofollow" href="#">You</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Copyright End -->
+
+<!-- Go To Top Link -->
+<a href="#" class="back-to-top">
+    <i class="ti-arrow-up"></i>
+</a>
+
+<div id="loading">
+    <div id="loading-center">
+        <div id="loading-center-absolute">
+            <div class="object" id="object_one"></div>
+            <div class="object" id="object_two"></div>
+            <div class="object" id="object_three"></div>
+            <div class="object" id="object_four"></div>
+            <div class="object" id="object_five"></div>
+            <div class="object" id="object_six"></div>
+            <div class="object" id="object_seven"></div>
+            <div class="object" id="object_eight"></div>
+        </div>
+    </div>
+</div>
+</body>

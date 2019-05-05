@@ -24,6 +24,8 @@ import { ModifyCompanyInfoComponent } from './modify-company-info/modify-company
 import { AppliedJobComponent } from './applied-job/applied-job.component';
 import { CompanyDetailComponent } from './company-detail/company-detail.component';
 import { DetailresumeComponent} from './detailresume/detailresume.component';
+import { ManagejobdetailComponent} from './managejobdetail/managejobdetail.component';
+import { ManageEditJobdetailComponent} from './manage-edit-jobdetail/manage-edit-jobdetail.component';
 //phucnh
 
 const routes: Routes = [
@@ -51,7 +53,9 @@ const routes: Routes = [
   { path: 'popupcandidate', component: PopupviewcontactComponent },
   {path: 'manageapplicationdetail/:id', component: ManageapplicationdetailComponent },
     {path: 'managejob' , component: ManagejobComponent},
-    {path: 'detailresume/:id', component: ManagejobComponent},
+    {path: 'detailresume/:id', component: DetailresumeComponent},
+    {path: 'managejobdetail/:id' , component: ManagejobdetailComponent},
+    {path: 'manageeditjobdetail/:id' , component: ManageEditJobdetailComponent },
   //phucnh
 
   { path: 'test', component: TestComponent },
