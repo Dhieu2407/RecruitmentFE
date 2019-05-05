@@ -12,7 +12,7 @@
               <div class="col-md-4 col-sm-4 col-xs-12">
                   <select class="form-control" id="major" formControlName="major" name="major">
                     <option value="" selected>Select Major</option>
-                    <option *ngFor="let major of allMajors" [value]="major.tenNganh"> {{major.tenNganh}}</option>  
+                    <option *ngFor="let major of allMajors" [value]="major.tenNganh"> {{major.tenNganh}}</option>
                   </select>
 
                 <!-- <input type="text" class="form-control" id="major" formControlName="major" name="major" placeholder="Chuyên ngành"> -->
@@ -47,7 +47,7 @@
           <div class="col-md-6 col-sm-6 col-xs-12">
             <div class="manager-resumes-item">
               <div class="manager-content">
-                <a href="/resume/{{resume.ungVienId}}"><img class="resume-thumb" src="assets/img/jobs/avatar-1.jpg" alt=""></a>
+                <a href="/resume/{{resume.ungVienId}}"><img class="resume-thumb" src="{{resume.imgUrl}}" alt=""></a>
                 <div class="manager-info">
                   <div class="manager-name">
                     <h4><a href="/resume/{{resume.ungVienId}}">{{resume.tenUngVien}}</a></h4>

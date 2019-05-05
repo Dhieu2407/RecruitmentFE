@@ -6,23 +6,23 @@ import { CandidateSaveJobsDTO } from '../model/candidateSaveJobsDTO.model';
 import { first } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-bookmarkedjob',
-  templateUrl: './bookmarkedjob.component.html',
-  styleUrls: ['./bookmarkedjob.component.css']
+  selector: 'app-applied-job',
+  templateUrl: './applied-job.component.html',
+  styleUrls: ['./applied-job.component.css']
 })
-export class BookmarkedjobComponent implements OnInit {
+export class AppliedJobComponent implements OnInit {
 
-  constructor(private candidateService: CandidateService) { }
+   constructor(private candidateService: CandidateService) { }
 
 
-  id: number;
-  candidate : Candidate;
-  jobList : Job[];
-  page : number;
-  pageSize : number;
-  showCandidate : boolean;
-  showJob : boolean;
-  candidateSaveJobDTO : CandidateSaveJobsDTO;
+    id: number;
+    candidate : Candidate;
+    jobList : Job[];
+    page : number;
+    pageSize : number;
+    showCandidate : boolean;
+    showJob : boolean;
+    candidateSaveJobDTO : CandidateSaveJobsDTO;
 
   ngOnInit() {
     this.page = 1;
@@ -31,7 +31,7 @@ export class BookmarkedjobComponent implements OnInit {
     this.showCandidate = true;
     // console.log(JSON.parse(localStorage.getItem("currentUser")));
     this.id = JSON.parse(localStorage.getItem("currentUser")).id;
-    this.candidateService.getBookmarkedJob(this.id)
+    this.candidateService.getAppliedJobs(this.id)
         .pipe(first())
         .subscribe(
             (data: any) => {

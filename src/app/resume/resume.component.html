@@ -14,16 +14,8 @@
                 <p class="sub-title"><label>Java Deverloper</label></p>
                 <p><span class="address"><i class="ti-location-pin"></i><label>{{candidate.diaChi}}</label></span><br><span><i class="ti-phone"></i><label class="ti-mobile">{{candidate.sdt}}</label></span></p>
 
-
-                <div class="social-link">
-                  <a class="twitter" target="_blank" data-original-title="twitter" href="#" data-toggle="tooltip" data-placement="top"><i class="fa fa-twitter"></i></a>
-                  <a class="facebook" target="_blank" data-original-title="facebook" href="#" data-toggle="tooltip" data-placement="top"><i class="fa fa-facebook"></i></a>
-                  <a class="google" target="_blank" data-original-title="google-plus" href="#" data-toggle="tooltip" data-placement="top"><i class="fa fa-google"></i></a>
-                  <a class="linkedin" target="_blank" data-original-title="linkedin" href="#" data-toggle="tooltip" data-placement="top"><i class="fa fa-linkedin"></i></a>
-                </div>
-
                 <form class="subscribe-box">
-                  <input type="submit" class="btn-system" value="Sửa Hồ Sơ" onclick="location.href='/modifyresume/' + this.id;">
+                  <input type="submit" class="btn-system" value="Sửa Hồ Sơ" (click)="toModifyResume()">
                 </form>
               </div>
             </div>
@@ -114,14 +106,6 @@
                 <label class="control-label" for="textarea">Mô tả công việc</label>
                 <textarea class="form-control" rows="7" disabled> Lập trình Web full stack, sử dụng các FrameWork Hibernate...</textarea>
               </div>
-            </div>
-
-            <div>
-              <form class="subscribe-box">
-                <input type="submit" class="btn-system" value="Sửa Hồ Sơ">
-                <input type="submit" class="btn" value="Lưu Hồ Sơ" disabled>
-                <input type="submit" class="btn" value="Hủy" disabled>
-              </form>
             </div>
 
           </div>

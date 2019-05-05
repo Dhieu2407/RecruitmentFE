@@ -22,7 +22,7 @@ export class ResumeComponent implements OnInit {
   id: number;
   nganh: string;
   hocVan: string;
-  viecLam: string;  
+  viecLam: string;
 
   ngOnInit() {
     this.id = JSON.parse(localStorage.getItem('currentUser')).id;
@@ -41,6 +41,10 @@ export class ResumeComponent implements OnInit {
           console.log('Failed');
         });
 
+  }
+
+  toModifyResume() {
+      location.href = location.href='/modifyresume/' + this.id;
   }
 
 }

@@ -45,4 +45,8 @@ export class CandidateService {
   candidateApplyJob(candidateSaveJob: CandidateSaveJobsDTO){
     return this.http.post(this.baseUrl + '/applyJob', candidateSaveJob);
   }
+
+  getAppliedJobs(id : number){
+    return this.http.get(this.baseUrl + '/getAppliedJobs/' + id);
+  }
 }
