@@ -13,7 +13,8 @@ import {ManageapplicationsComponent} from './manageapplications/manageapplicatio
 import {ManageresumesComponent} from './manageresumes/manageresumes.component';
 import {ChangepasswordComponent} from './changepassword/changepassword.component';
 import {BrowseresumesComponent} from './browseresumes/browseresumes.component';
-import { ManageRecruitmentComponent} from "./manage-recruitment/manage-recruitment.component";
+import { ManageRecruitmentComponent} from './manage-recruitment/manage-recruitment.component';
+import {ManagejobComponent} from './managejob/managejob.component';
 
 //phucnh
 import {DetailCandidateComponent} from './detail-candidate/detail-candidate.component';
@@ -50,6 +51,7 @@ const routes: Routes = [
   { path: 'detailcandidate', component: DetailCandidateComponent },
   { path: 'popupcandidate', component: PopupviewcontactComponent },
   {path: 'manageapplicationdetail/:id', component: ManageapplicationdetailComponent },
+    {path: 'managejob' , component: ManagejobComponent},
   //phucnh
 
   { path: 'test', component: TestComponent },
