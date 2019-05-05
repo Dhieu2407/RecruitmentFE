@@ -30,6 +30,7 @@ import { ModifyCompanyInfoComponent } from './modify-company-info/modify-company
 import { AppliedJobComponent } from './applied-job/applied-job.component';
 import { CompanyDetailComponent } from './company-detail/company-detail.component';
 import { DetailresumeComponent } from './detailresume/detailresume.component';
+import { ManageRecruitmentComponent} from "./manage-recruitment/manage-recruitment.component";
 
 @NgModule({
   declarations: [
@@ -55,7 +56,6 @@ import { DetailresumeComponent } from './detailresume/detailresume.component';
     ModifyCompanyInfoComponent,
     AppliedJobComponent,
     CompanyDetailComponent,
-    DetailresumeComponent,
   ],
   imports: [
     BrowserModule,

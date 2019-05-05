@@ -10,7 +10,7 @@ import { Company } from '../model/company.model';
   providedIn: 'root'
 })
 export class CompanyService {
-  baseUrl  =  environment.baseUrl;
+  baseUrl  =  environment.baseUrl + '/company';
 
   constructor(private http: HttpClient) {}
 

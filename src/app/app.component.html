@@ -73,6 +73,14 @@
                   <li><a href="/changepassword">Đổi mật khẩu</a></li>
               </ul>
             </div>
+              <div class="btn-group" *ngIf = "this.roleManager">
+                  <button type="button" class="btn">
+                      Người quản lý <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu" role="menu">
+                      <li><a href="/manage-recruitment">Quản lý tin tuyển dụng</a></li>
+                  </ul>
+              </div>
           </ul>
 
           <ul class="nav navbar-nav navbar-right float-right">

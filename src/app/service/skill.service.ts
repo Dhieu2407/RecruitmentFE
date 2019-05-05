@@ -8,7 +8,7 @@ import { Resume } from '../model/resume.model';
   providedIn: 'root'
 })
 export class SkillService {
-  baseUrl  =  environment.baseUrl;
+  baseUrl  =  environment.baseUrl + '/skill';
 
   constructor(private http: HttpClient) {}
 

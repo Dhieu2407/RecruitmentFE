@@ -10,7 +10,7 @@ import { CandidateSaveJobsDTO } from '../model/candidateSaveJobsDTO.model';
   providedIn: 'root'
 })
 export class CandidateService {
-  baseUrl  =  environment.baseUrl;
+  baseUrl  =  environment.baseUrl + '/candidate';
 
   constructor(private http: HttpClient) {}
 

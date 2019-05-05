@@ -7,7 +7,7 @@ import { Job } from '../model/job.model';
   providedIn: 'root'
 })
 export class JobService {
-  baseUrl  =  environment.baseUrl;
+  baseUrl  =  environment.baseUrl + '/job';
 
   constructor(private http: HttpClient) {}
   getAllJobs() {
@@ -26,7 +26,7 @@ export class JobService {
     return this.http.post(this.baseUrl + '/addJob', body);
   }
   getAllMajor() {
-    return this.http.get(this.baseUrl + '/getAllMajor1');
+    return this.http.get(this.baseUrl + '/getAllMajor');
   }
   getListJobOfCompany(body: string) {
       return this.http.post(this.baseUrl + '/getListJobOfCompany', body);

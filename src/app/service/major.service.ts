@@ -7,7 +7,7 @@ import { Major } from '../model/Major.model';
   providedIn: 'root'
 })
 export class MajorService {
-  baseUrl  =  environment.baseUrl;
+  baseUrl  =  environment.baseUrl + '/major';
 
   constructor(private http: HttpClient) {}
 
