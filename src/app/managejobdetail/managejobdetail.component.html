@@ -107,6 +107,40 @@
                             </div>
                         </div>
                     </div>
+                    <div class="content-area">
+                        <div class="clearfix">
+                            <div class="box">
+                        <h3 class="alerts-title">Ứng viên ứng tuyển</h3>
+                                <hr>
+                                <div *ngFor="let apply of listApply | slice: (page-1) * pageSize: (page-1) * pageSize + pageSize">
+                                    <div class="row">
+                                        <!--<div class="col-md-6 col-sm-6 col-xs-12">-->
+                                        <div class="manager-resumes-item">
+                                            <div class="manager-content">
+                                                <a href="/detailresume/{{apply.ungVien.ungVienId}}"><img class="resume-thumb" src="{{apply.ungVien.imgUrl}}" alt=""></a>
+                                                <div class="manager-info">
+                                                    <div class="manager-name">
+                                                        <h4><a href="/detailresume/{{apply.ungVien.ungVienId}}">{{apply.ungVien.tenUngVien}}</a></h4>
+                                                        <h5 *ngIf="apply.ungVien.nganh">{{apply.ungVien.nganh.tenNganh}}</h5>
+                                                    </div>
+                                                    <div class="manager-meta">
+                                                        <span class="location"><i class="ti-location-pin"></i>{{apply.ungVien.diaDiem}} </span>
+                                                        <span class="rate"><i class="ti-money"></i>{{apply.ungVien.luongMongMuon}}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="item-body">
+                                                <p>{{apply.ungVien.moTa}}</p>
+                                            </div>
+                                        </div>
+                                        <!--</div>-->
+                                    </div>
+                                </div>
+                                <ngb-pagination *ngIf="listApply" [(page)]="page" [pageSize]="pageSize" [collectionSize]="listApply.length"></ngb-pagination>
+
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

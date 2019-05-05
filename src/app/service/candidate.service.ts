@@ -49,4 +49,7 @@ export class CandidateService {
   getAppliedJobs(id : number){
     return this.http.get(this.baseUrl + '/getAppliedJobs/' + id);
   }
+  getListCandidateOfApply(body: string) {
+      return this.http.post(this.baseUrl + '/getListUngTuyen', body);
+  }
 }

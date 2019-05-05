@@ -26,33 +26,6 @@
           <div class="job-alerts-item">
             <h3 class="alerts-title">Quản lý đơn xin việc</h3>
            <hr>
-
-            <!--<div *ngFor="let jobs of listJobOfCompany | slice: (page-1) * pageSize: (page-1) * pageSize + pageSize">-->
-                <!--<div class="applications-content">-->
-                    <!--<div class="row">-->
-                        <!--<div class="col-md-5">-->
-                            <!--<div class="thums">-->
-                                <!--<img src="assets/img/jobs/img-1.jpg" alt="">-->
-                            <!--</div>-->
-                            <!--<h3><a href="/manageapplicationdetail/{{jobs.jobId}}">{{jobs.tenJob}}</a></h3>-->
-                            <!--<span>Ngày kết thúc: {{jobs.hanCuoi}}</span>-->
-                        <!--</div>-->
-                        <!--<div class="col-md-3">-->
-                            <!--<p><span class="full-time">{{jobs.tgLamViec == 1 ? 'Full-Time' : (jobs.tgLamViec == 0 ? 'Part-Time' : '')}}</span></p>-->
-                        <!--</div>-->
-                        <!--<div class="col-md-2">-->
-                            <!--<p>{{jobs.ngayDang}}</p>-->
-                        <!--</div>-->
-                        <!--<div class="col-md-2">-->
-                            <!--<p><span>{{jobs.trangThai == 0 ? 'Đang chờ duyệt' : (jobs.trangThai == 1 ? 'Đã được đăng' : (jobs.trangThai ==2 ? 'Bị từ chối' : ''))}}</span></p>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-              <!--<ngb-pagination [(page)]="page" [pageSize]="pageSize" [collectionSize]="listJobOfCompany.length"></ngb-pagination>-->
-            <!-- Start Pagination -->
-
-
               <div *ngFor="let resume of listCandidateApplyOfCompany | slice: (page-1) * pageSize: (page-1) * pageSize + pageSize">
               <div class="row">
               <!--<div class="col-md-6 col-sm-6 col-xs-12">-->
