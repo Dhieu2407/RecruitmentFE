@@ -6,30 +6,32 @@
           <div class="col-md-8 col-sm-8 col-xs-12">
             <div class="inner-box my-resume">
               <div class="author-resume">
-                <div class="thumb" style="width:100px;height:100px;" >
-                  <!-- <img src="{{candidate.imgUrl}}" alt=""> -->
+                <div class="thumb">
+                  <img src="{{company.imgUrl}}" style="width:100px;height:100px;"  alt="">
                 </div>
                 <div class="author-info">
-                  <h3><label>{{company.tenUngVien}}</label></h3>
-                  <p class="sub-title"><label>Java Deverloper</label></p>
+                  <h3><label>{{company.tenCongTy}}</label></h3>
+                  <!-- <p class="sub-title"><label>Java Deverloper</label></p> -->
                   <p><span class="address"><i class="ti-location-pin"></i><label>{{company.diaChi}}</label></span><br><span><i class="ti-phone"></i><label class="ti-mobile">{{company.sdt}}</label></span></p>
 
                   <form class="subscribe-box">
-                    <input type="submit" class="btn-system" value="Sửa Hồ Sơ" (click)="toModifyResume()">
+                    <input type="submit" class="btn-system" value="Sửa Hồ Sơ" (click)="toModifyCompany()">
                   </form>
                 </div>
               </div>
 
               <div class="about-me item">
-                <h3>Mục Tiêu Nghề Nghiệp</h3>
-                <span style="white-space: pre">{{candidate.mucTieuNgheNghiep}}</span>
+                <h3>Mô tả</h3>
+                <p style="white-space: pre-wrap">{{company.moTa}}</p>
               </div>
-
-
-                <div class="form-group">
-                  <label class="control-label" for="textarea">Mô tả công việc</label>
-                  <textarea class="form-control" rows="7" disabled> </textarea>
-                </div>
+              <div class="about-me item">
+                <h3>Phúc lợi</h3>
+                <p style="white-space: pre-wrap">{{company.phucLoi}}</p>
+              </div>
+              <div class="about-me item">
+                <h3>Quy mô</h3>
+                <p style="white-space: pre-wrap">{{company.quyMo}} nhân viên</p>
+              </div>
               </div>
 
             </div>
