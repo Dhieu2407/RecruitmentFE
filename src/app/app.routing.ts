@@ -4,7 +4,6 @@ import {HomeComponent} from './home/home.component';
 import {JobComponent} from './job/job.component';
 import {JobdetailComponent} from './jobdetail/jobdetail.component';
 import {AddjobComponent} from './addjob/addjob.component';
-import {AddresumeComponent} from './addresume/addresume.component';
 import {LoginComponent} from './login/login.component';
 import {ResumeComponent} from './resume/resume.component';
 import {JobalertsComponent} from './jobalerts/jobalerts.component';
@@ -30,7 +29,6 @@ const routes: Routes = [
   { path: 'job', component: JobComponent },
   { path: 'jobdetail/:id/:idMajor', component: JobdetailComponent },
   { path: 'addjob', component: AddjobComponent },
-  { path: 'addresume', component: AddresumeComponent },
   { path: 'jobalerts', component: JobalertsComponent },
   { path: 'resume/:id', component: ResumeComponent },
   { path: 'bookmarkedjob', component: BookmarkedjobComponent },

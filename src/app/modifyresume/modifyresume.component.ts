@@ -11,6 +11,7 @@ import { MajorService } from "../service/major.service";
 import { formatDate } from '@angular/common';
 import { SkillService } from '../service/skill.service';
 import {AuthGuardService} from "../service/auth-guard.service";
+import { UploadService } from '../service/upload.service';
 
 @Component({
     selector: "app-modifyresume",
@@ -25,7 +26,8 @@ export class ModifyresumeComponent implements OnInit {
         private candidateService: CandidateService,
         private majorService: MajorService,
         private skillService: SkillService,
-        private authGuardService: AuthGuardService
+        private authGuardService: AuthGuardService,
+        private uploadService: UploadService
     ) {}
 
     modifyResumeForm: FormGroup;
@@ -42,11 +44,13 @@ export class ModifyresumeComponent implements OnInit {
     allSkillsBasedOnMajor: skill[];
     username : string;
     email : string;
+    imageFile : File;
 
     ngOnInit() {
         this.authGuardService.canAccess('ROLE_CANDIDATE');
         // this.username = JSON.parse(localStorage.getItem("currentUser")).login;
         this.email = JSON.parse(localStorage.getItem("currentUser")).email;
+        console.log(this.email);
         this.candidate.id = JSON.parse(localStorage.getItem("currentUser")).id;
 
         this.majorService
@@ -111,8 +115,8 @@ export class ModifyresumeComponent implements OnInit {
             .subscribe(
                 (data: Candidate) => {
                     this.candidate = data;
-                    this.modifyResumeForm.get("name").setValue(this.candidate.tenUngVien);
                     this.modifyResumeForm.get("email").setValue(this.email);
+                    this.modifyResumeForm.get("name").setValue(this.candidate.tenUngVien);
                     this.modifyResumeForm.get("phone").setValue(this.candidate.sdt);
                     this.modifyResumeForm.get("address").setValue(this.candidate.diaChi);
                     this.modifyResumeForm.get("career").setValue(this.candidate.nganh.tenNganh);
@@ -265,36 +269,56 @@ export class ModifyresumeComponent implements OnInit {
             this.resume.major = this.modifyResumeForm.get("career").value;
             console.log("#resume ");
             console.log(this.resume);
-            // this.candidateService.modifyResume(this.resume);
-            // var c = new Candidate();
-            // c.tenUngVien = "name";
-            this.candidateService.modifyResume(this.resume).pipe(first())
-            .subscribe(
-              (data: Candidate[]) => {
-                  console.log(data);
-              },
-              error => {
-                console.log('Failed');
-              }
-            );;
+
+            const uploadData = new FormData();
+            uploadData.append('file', this.imageFile, this.imageFile.name);
+            this.uploadService.uploadFile(uploadData)
+                .pipe(first())
+                .subscribe(
+                    data => {
+                        // Success
+                        console.log('Uploaded');
+                        this.resume.imgUrl = 'http://localhost:8080/api/downloadFile/'+ this.imageFile.name;
+                        this.submitData();
+                        },
+                    error => {
+                        // Failed
+                        console.log('Failed');
+                        this.submitData();
+                    });
         }
     }
+    onFileChanged(event) {
+        this.imageFile = event.target.files[0];
+        console.log(this.imageFile);
+    }
 
-    // filterSkillsBasedOnMajor(){
-    //     if(this.allSkillsBasedOnMajor !== null){
-    //         this.allSkillsBasedOnMajor.length = 0;
-    //     }
-    //     if(this.candidate.nganh == null){
-    //         this.allSkillsBasedOnMajor = this.allSkills;
-    //         return;
-    //     }
-    //     if(this.allSkills.length == 0){
-    //         return;
-    //     }
-    //     for (var i = 0 ; i < this.allSkills.length ; ++i){
-    //         if(this.allSkills[i].nganh.tenNganh === this.candidate.nganh.tenNganh){
-    //             this.allSkillsBasedOnMajor.push(this.allSkills[i]);
-    //         }
-    //     }
-    // }
+    onUpload(){
+        const uploadData = new FormData();
+        uploadData.append('file', this.imageFile, this.imageFile.name);
+        this.uploadService.uploadFile(uploadData)
+            .pipe(first())
+            .subscribe(
+                data => {
+                    // Success
+                    console.log('Uploaded');
+                    },
+                error => {
+                    // Failed
+                    console.log('Failed');
+                });
+    }
+
+    submitData = function(){
+        this.candidateService.modifyResume(this.resume)
+            .pipe(first())
+            .subscribe(
+                (data: Candidate[]) => {
+                    console.log(data);
+                },
+                error => {
+                    console.log('Failed');
+                }
+            );;
+    }
 }

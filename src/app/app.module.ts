@@ -22,7 +22,6 @@ import { JobalertsComponent } from './jobalerts/jobalerts.component';
 import { ChangepasswordComponent } from './changepassword/changepassword.component';
 import { BrowseresumesComponent } from './browseresumes/browseresumes.component';
 import { ManageresumesComponent } from './manageresumes/manageresumes.component';
-import { AddresumeComponent } from './addresume/addresume.component';
 import { DetailCandidateComponent } from './detail-candidate/detail-candidate.component';
 import { PopupviewcontactComponent } from './popupviewcontact/popupviewcontact.component';
 import { ModifyresumeComponent } from './modifyresume/modifyresume.component';
@@ -46,7 +45,6 @@ import { ModifyCompanyInfoComponent } from './modify-company-info/modify-company
     ChangepasswordComponent,
     BrowseresumesComponent,
     ManageresumesComponent,
-    AddresumeComponent,
     DetailCandidateComponent,
     PopupviewcontactComponent,
     ModifyresumeComponent,

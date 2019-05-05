@@ -6,8 +6,8 @@
         <div class="col-md-8 col-sm-8 col-xs-12">
           <div class="inner-box my-resume">
             <div class="author-resume">
-              <div class="thumb">
-                <img src="assets/img/resume/img-1.jpg" alt="">
+              <div class="thumb" style="width:100px;height:100px;" >
+                <img src="{{candidate.imgUrl}}" alt="">
               </div>
               <div class="author-info">
                 <h3><label>{{candidate.tenUngVien}}</label></h3>
@@ -94,7 +94,7 @@
 
             <div class="about-me item">
               <h3>Kinh Nghiệm Làm Việc</h3>
-              
+
               <div *ngFor="let lichSuLamViec of viecLam">
                   <p><span>Công ty : </span><span>{{lichSuLamViec.congTy}}</span></p>
                   <p><span>Vị trí : </span><span>{{lichSuLamViec.vitri}}</span></p>

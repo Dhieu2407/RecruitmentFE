@@ -88,7 +88,7 @@
                   <div class="action-buttons">
                     <div class="upload-button">
                       <a class="btn btn-common" (click)="onSubmit('Browse')">Chọn ảnh</a>
-                      <input id="cover_img_file" type="file">
+                      <input id="cover_img_file" type="file" (change)="onFileChanged($event)">
                     </div>
                   </div>
                 </div>

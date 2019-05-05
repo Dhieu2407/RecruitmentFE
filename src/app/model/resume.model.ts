@@ -33,4 +33,6 @@ export class Resume {
   // skill
   skill: string;
   competentlyPercent: number;
+
+  imgUrl: string;
 }
