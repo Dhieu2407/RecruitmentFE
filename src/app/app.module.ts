@@ -29,6 +29,7 @@ import { ManageapplicationdetailComponent } from './manageapplicationdetail/mana
 import { ModifyCompanyInfoComponent } from './modify-company-info/modify-company-info.component';
 import { AppliedJobComponent } from './applied-job/applied-job.component';
 import { CompanyDetailComponent } from './company-detail/company-detail.component';
+import { DetailresumeComponent } from './detailresume/detailresume.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { CompanyDetailComponent } from './company-detail/company-detail.componen
     ModifyCompanyInfoComponent,
     AppliedJobComponent,
     CompanyDetailComponent,
+    DetailresumeComponent,
   ],
   imports: [
     BrowserModule,

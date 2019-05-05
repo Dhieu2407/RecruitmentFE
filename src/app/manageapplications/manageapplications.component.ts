@@ -3,8 +3,9 @@ import { Job } from '../model/job.model';
 import { JobService } from '../service/job.service';
 import {Company} from '../model/company.model';
 import {first} from 'rxjs/operators';
-import {Account} from "../model/account.model";
+import {Account} from '../model/account.model';
 import { AuthGuardService } from '../service/auth-guard.service';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-manageapplications',
@@ -15,11 +16,13 @@ export class ManageapplicationsComponent implements OnInit {
 
   constructor(
       private jobService: JobService,
+      private routerSnapshot: ActivatedRoute,
       private authGuardService: AuthGuardService
   ) {}
     page: number;
     pageSize: number;
   listJobOfCompany: Job[];
+  listCandidateApplyOfCompany: Company[];
   account = new Account();
   company = new Company();
   ngOnInit() {
@@ -28,12 +31,12 @@ export class ManageapplicationsComponent implements OnInit {
       this.page = 1;
       this.pageSize = 5;
       this.company.id = this.account.id;
-      this.jobService.getListJobOfCompany(JSON.stringify(this.company))
+      this.jobService.getCandidateApplyJobOCompany(this.company.id)
           .pipe(first())
           .subscribe(
-              (data: Job[]) => {
-                  this.listJobOfCompany = data;
-                  console.log(this.listJobOfCompany);
+              (data: Company[]) => {
+                  this.listCandidateApplyOfCompany = data;
+                  console.log(this.listCandidateApplyOfCompany);
               },
               error => {
                   console.log('Failed');
