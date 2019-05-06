@@ -23,7 +23,7 @@
                 <div class="job-alerts-item">
                     <h3 class="alerts-title">Quản lý tin tuyển dụng</h3>
                     <hr>
-                    <div *ngFor="let jobs of listJobOfCompany | slice: (page-1) * pageSize: (page-1) * pageSize + pageSize">
+                    <div *ngFor="let jobs of listJob | slice: (page-1) * pageSize: (page-1) * pageSize + pageSize">
                         <div class="applications-content">
                             <div class="row">
                                 <div class="col-md-5">
@@ -39,12 +39,13 @@
                                 <div class="col-md-2">
                                     <p>{{jobs.ngayDang}}</p>
                                 </div>
-                                <div class="col-md-2">
-                                    <p><span>{{jobs.trangThai == 0 ? 'Đang chờ duyệt' : (jobs.trangThai == 1 ? 'Đã được đăng' : (jobs.trangThai ==2 ? 'Bị từ chối' : ''))}}</span></p>
-                                </div>
                             </div>
+                            <div class="btn btn-common btn-rm" (click)="onRejected()" style ="float:right">Từ chối</div>
+                            <div class="btn btn-common btn-rm" (click)="onConfirmed()" style ="float:right">Xác nhận</div>
+                            <br>
                         </div>
                     </div>
+                    <ngb-pagination [(page)]="page" [pageSize]="pageSize" [collectionSize]="listJob.length"></ngb-pagination>
                 </div>
             </div>
         </div>
