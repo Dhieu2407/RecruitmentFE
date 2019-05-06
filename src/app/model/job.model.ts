@@ -21,4 +21,5 @@ export class Job {
   yeuCauHoSo: string;
   yeuCauGioiTinh: number;
   jobId : number;
+  trangThai: string;
 }
