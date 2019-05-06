@@ -19,6 +19,10 @@ export class JobService {
   getJobById(body: string) {
     return this.http.post(this.baseUrl + '/getJobById', body );
   }
+  findByTrangThai(body: string) {
+    return this.http.post(this.baseUrl + '/findByTrangThai', body );
+  }
+
   getListJobRelate(body: string) {
     return this.http.post(this.baseUrl + '/getListJobRelate', body);
   }
