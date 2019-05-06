@@ -47,32 +47,32 @@
                     <form role="form" [formGroup]="jobForm"  ngNativeValidate>
                         <div class="form-group">
                             <label class="control-label">Tiều đề công việc</label>
-                            <input type="text" value={{job.tenJob}} id="titleJob" formControlName="titleJob" name="titleJob" class="form-control" required>
+                            <input type="text" value={{job.tenJob}} id="tenJob" formControlName="tenJob" name="tenJob" class="form-control" required>
                         </div>
 
                         <div class="form-group">
                             <label class="control-label">Chức Vụ</label>
-                            <input type="text" value={{job.chucVu1}} id="chucVu" formControlName="chucVu" name="chucVu" class="form-control"  required>
+                            <input type="text" value={{job.chucVu1}} id="chucVu1" formControlName="chucVu1" name="chucVu1" class="form-control"  required>
                         </div>
 
                         <div class="form-group">
                             <label class="control-label">Địa điểm <span>(optional)</span></label>
-                            <input type="text" value={{job.diaChi}} id="location" formControlName="location" name="location" class="form-control" required>
+                            <input type="text" value={{job.diaChi}} id="diaChi" formControlName="diaChi" name="diaChi" class="form-control" required>
                         </div>
 
                         <div class="form-group">
                             <label class="control-label">Chuyên Ngành <span>(optional)</span></label>
-                            <input type="text" value={{job.nganh.tenNganh}} id="major" formControlName="major" name="major" class="form-control" required>
+                            <input type="text" value={{job.nganh.tenNganh}} id="tenNganh" formControlName="tenNganh" name="tenNganh" class="form-control" required>
                         </div>
 
                         <div class="form-group">
                             <label class="control-label">Mô tả công việc</label>
-                            <textarea class="form-control" value={{job.chiTiet}}  id="descriptionJob" formControlName="descriptionJob" name="descriptionJob" rows="7" ></textarea>
+                            <textarea class="form-control" value={{job.chiTiet}}  id="chiTiet" formControlName="chiTiet" name="chiTiet" rows="7" ></textarea>
                         </div>
 
                         <div class="form-group">
                             <label class="control-label">Yêu cầu ứng viên</label>
-                            <textarea class="form-control" value={{job.yeuCauCongViec}} id="yeuCauUngVien" formControlName="yeuCauUngVien" name="yeuCauUngVien" rows="7"  required></textarea>
+                            <textarea class="form-control" value={{job.yeuCauUngVien}} id="yeuCauUngVien" formControlName="yeuCauUngVien" name="yeuCauUngVien" rows="7"  required></textarea>
                         </div>
 
                         <div class="form-group">
@@ -85,7 +85,7 @@
                         </div>
                         <div class="form-group">
                             <label class="control-label">Số năm kinh nghiệm</label>
-                            <input type="number" id="soNamKinhNghiem" value={{job.knToiThieu}} formControlName="soNamKinhNghiem" name="soNamKinhNghiem" class="form-control" required>
+                            <input type="number" id="knToiThieu" value={{job.knToiThieu}} formControlName="knToiThieu" name="knToiThieu" class="form-control" required>
                         </div>
 
                         <div class="form-group">
@@ -95,17 +95,17 @@
 
                         <div class="form-group">
                             <label class="control-label">Mức Lương Tối Thiểu</label>
-                            <input type="number" id="salaryMin" value={{job.luongToiThieu}} formControlName="salaryMin" name="salaryMin" class="form-control"  required>
+                            <input type="number" id="luongToiThieu" value={{job.luongToiThieu}} formControlName="luongToiThieu" name="luongToiThieu" class="form-control"  required>
                         </div>
 
                         <div class="form-group">
                             <label class="control-label">Mức Lương Tối Đa</label>
-                            <input type="number" id="salaryMax" value={{job.luongToiDa}} formControlName="salaryMax" name="salaryMax" class="form-control">
+                            <input type="number" id="luongToiDa" value={{job.luongToiDa}} formControlName="luongToiDa" name="luongToiDa" class="form-control">
                         </div>
 
                         <div class="form-group">
                             <label class="control-label">Ngày hết hạn <span>(optional)</span></label>
-                            <input type="date" data-date="" value={{job.hanCuoi}} id="deadline" formControlName="deadline" name="deadline" placeholder="DD/MM/YYYY" class="form-control" required>
+                            <input type="date" data-date="" value={{job.hanCuoi}} id="hanCuoi" formControlName="hanCuoi" name="hanCuoi" placeholder="DD/MM/YYYY" class="form-control" required>
 
                             <p class="note">Hạn nộp hồ sơ.</p>
                         </div>

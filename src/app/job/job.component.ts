@@ -27,6 +27,7 @@ export class JobComponent implements OnInit {
 
   searchJobForm: FormGroup;
   listJobs: Job[];
+  job = new Job();
   listMajor: Major[];
   page: number;
   pageSize: number;
@@ -47,14 +48,14 @@ export class JobComponent implements OnInit {
               console.log(this.listJobs);
             },
             error => {
-              console.log('Faild');
+              console.log('Fail');
             }
           );
       } else {
         this.searchJob.tenJob = this.searchJobForm.get('keyword').value;
         this.searchJob.diaChi = this.searchJobForm.get('location').value;
-        this.searchJob.tenNgannh = this.searchJobForm.get('career').value;
-        this.searchJob.tenCongty = '';
+        this.searchJob.tenNganh = this.searchJobForm.get('career').value;
+        this.searchJob.tenCongTy = '';
         console.log(this.searchJob);
         this.jobService.searchJobs(JSON.stringify(this.searchJob))
           .pipe(first())
@@ -65,7 +66,7 @@ export class JobComponent implements OnInit {
               console.log(this.listJobs);
             },
             error => {
-              console.log('Faild');
+              console.log('Fail');
             }
           );
       }
@@ -94,17 +95,19 @@ export class JobComponent implements OnInit {
                   console.log('Fail');
               }
           );
-      this.jobService.getAllJobs()
-      .pipe(first())
-      .subscribe(
-        (data: Job[]) => {
-          this.listJobs = data;
-          console.log(this.listJobs);
-        },
-        error => {
-          console.log('Faild');
-        }
-      );
+
+      this.job.trangThai = "1";
+      this.jobService.findByTrangThai(JSON.stringify(this.job))
+          .pipe(first())
+          .subscribe(
+              (data: Job[]) => {
+                  this.listJobs = data;
+                  console.log(this.listJobs);
+              },
+              error => {
+                  console.log('Failed');
+              }
+          );
   }
   onBookmark(jobs: Job) {
     this.candidateSaveJobDTO = new CandidateSaveJobsDTO();
@@ -119,7 +122,7 @@ export class JobComponent implements OnInit {
                     console.log(data);
                 },
                 error => {
-                    console.log("Faild");
+                    console.log("Fail");
                 }
             );;
     }
@@ -137,7 +140,7 @@ export class JobComponent implements OnInit {
                     console.log(data);
                 },
                 error => {
-                    console.log("Faild");
+                    console.log("Fail");
                 }
             );;
     }

@@ -20,35 +20,32 @@ export class JobdetailComponent implements OnInit {
     private routerSnapshot: ActivatedRoute,
     private jobService: JobService,
   ) { }
-  idJob: number;
-  idMajor: number;
+  jobId: number;
+  majorId: number;
   job = new Job();
   listJobRelate: Job[];
   major = new Major();
   searchJob = new SearchJob();
 
   ngOnInit() {
-    // @ts-ignore
-    this.idJob = this.routerSnapshot.snapshot.paramMap.get('id');
-    this.searchJob.id = this.idJob;
+    this.jobId = parseInt(this.routerSnapshot.snapshot.paramMap.get('id'));
+    this.searchJob.jobId = this.routerSnapshot.snapshot.paramMap.get('id');
     this.jobService.getJobById(JSON.stringify(this.searchJob))
       .pipe(first())
       .subscribe(
         (data: Job) => {
           this.job = data;
-          // console.log(this.job.congTy.tenCongTy);
           console.log(this.job);
         },
         error => {
-          console.log('Faild');
+          console.log('Fail');
         }
       );
 
    // str.replace(/\n/g,'\\n')
     // get list job Related
-    // @ts-ignore
-    this.idMajor = this.routerSnapshot.snapshot.paramMap.get('idMajor');
-    this.major.nganhId = this.idMajor;
+    this.majorId = parseInt(this.routerSnapshot.snapshot.paramMap.get('idMajor'));
+    this.major.nganhId = this.routerSnapshot.snapshot.paramMap.get('idMajor');
     this.jobService.getListJobRelate(JSON.stringify(this.major))
       .pipe(first())
       .subscribe(
@@ -57,7 +54,7 @@ export class JobdetailComponent implements OnInit {
           console.log(this.listJobRelate);
         },
         error => {
-          console.log('Faild');
+          console.log('Fail');
         }
       );
 

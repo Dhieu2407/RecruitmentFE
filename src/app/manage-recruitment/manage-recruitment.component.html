@@ -23,7 +23,7 @@
                 <div class="job-alerts-item">
                     <h3 class="alerts-title">Quản lý tin tuyển dụng</h3>
                     <hr>
-                    <div *ngFor="let jobs of listJob | slice: (page-1) * pageSize: (page-1) * pageSize + pageSize">
+                    <div *ngFor="let jobs of listJob | slice: (page-1) * pageSize: (page-1) * pageSize + pageSize; let i = index">
                         <div class="applications-content">
                             <div class="row">
                                 <div class="col-md-5">
@@ -40,8 +40,8 @@
                                     <p>{{jobs.ngayDang}}</p>
                                 </div>
                             </div>
-                            <div class="btn btn-common btn-rm" (click)="onRejected()" style ="float:right">Từ chối</div>
-                            <div class="btn btn-common btn-rm" (click)="onConfirmed()" style ="float:right">Xác nhận</div>
+                            <div class="btn btn-common btn-rm" (click)="onRejected(i)" style ="float:right">Từ chối</div>
+                            <div class="btn btn-common btn-rm" (click)="onConfirmed(i)" style ="float:right">Xác nhận</div>
                             <br>
                         </div>
                     </div>

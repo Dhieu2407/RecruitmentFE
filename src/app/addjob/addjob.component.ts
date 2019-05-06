@@ -26,27 +26,8 @@ export class AddjobComponent implements OnInit {
   ) {}
 
     public flag: boolean;
-
-    titleJob = '';
-    chucVu = '';
-    location1 = '';
-    majorJob = '';
-    descriptionJob = '';
-    yeuCauUngVien = '';
-    quyenLoi = '';
-    yeuCauHoSo = '';
-    soNamKinhNghiem = '';
-    yeuCauGioiTinh = '';
-    soLuong = '';
-    salaryMin = '';
-    salaryMax = '';
-    tgLamViec = '';
-    deadline = '';
-
     job = new Job();
     jobResult = new Job();
-    searchJob = new SearchJob();
-    idJob: number;
     account = new Account();
     // try
     major = new Major();
@@ -57,20 +38,20 @@ export class AddjobComponent implements OnInit {
       this.authGuardService.canAccess('ROLE_EMPLOYER');
       this.account = JSON.parse(localStorage.getItem('currentUser'));
       this.formAddJob = this.formBuilder.group({
-      titleJob: ['', Validators.required],
-      location1: ['', Validators.required],
-      majorJob: ['', Validators.required],
+      tenJob: ['', Validators.required],
+      diaChi: ['', Validators.required],
+      tenNganh: ['', Validators.required],
       yeuCauUngVien: ['', Validators.required],
-      soNamKinhNghiem: ['', Validators.required],
-      descriptionJob: ['', Validators.required],
-      deadline: ['', Validators.required],
-      chucVu: ['', Validators.required],
+      knToiThieu: ['', Validators.required],
+      chiTiet: ['', Validators.required],
+      hanCuoi: ['', Validators.required],
+      chucVu1: ['', Validators.required],
       quyenLoi: ['', Validators.required],
       yeuCauHoSo: ['', Validators.required],
-      yeuCauGioiTinh: ['', Validators.required],
+      gioiTinh: ['', Validators.required],
       soLuong: ['', Validators.required],
-      salaryMin: ['', Validators.required],
-      salaryMax: ['', Validators.required],
+      luongToiThieu: ['', Validators.required],
+      luongToiDa: ['', Validators.required],
       tgLamViec: ['', Validators.required],
     });
     // try
@@ -81,7 +62,7 @@ export class AddjobComponent implements OnInit {
           this.listMajor = data;
         },
         error => {
-          console.log('Faild');
+          console.log('Fail');
         }
       );
   }
@@ -91,23 +72,23 @@ export class AddjobComponent implements OnInit {
     if (this.formAddJob.invalid) {
       return;
     }
-    this.job.titleJob = this.formAddJob.get('titleJob').value;
-    this.job.chucVu1 = this.formAddJob.get('chucVu').value;
-    this.job.location = this.formAddJob.get('location1').value;
-    this.job.major = this.formAddJob.get('majorJob').value;
-    this.job.requireCadiate = this.formAddJob.get('yeuCauUngVien').value;
-    this.job.requireYear = this.formAddJob.get('soNamKinhNghiem').value;
-    this.job.description = this.formAddJob.get('descriptionJob').value;
-    this.job.duedate = this.formAddJob.get('deadline').value;
+    this.job.tenJob = this.formAddJob.get('tenJob').value;
+    this.job.chucVu1 = this.formAddJob.get('chucVu1').value;
+    this.job.diaChi = this.formAddJob.get('diaChi').value;
+    this.job.tenNganh = this.formAddJob.get('tenNganh').value;
+    this.job.yeuCauUngVien = this.formAddJob.get('yeuCauUngVien').value;
+    this.job.knToiThieu = this.formAddJob.get('knToiThieu').value;
+    this.job.chiTiet = this.formAddJob.get('chiTiet').value;
+    this.job.hanCuoi = this.formAddJob.get('hanCuoi').value;
     this.job.quyenLoi = this.formAddJob.get('quyenLoi').value;
     this.job.yeuCauHoSo = this.formAddJob.get('yeuCauHoSo').value;
-    this.job.yeuCauGioiTinh = this.formAddJob.get('yeuCauGioiTinh').value;
+    this.job.gioiTinh = this.formAddJob.get('gioiTinh').value;
     this.job.soLuong = this.formAddJob.get('soLuong').value;
-    this.job.salaryMin = this.formAddJob.get('salaryMin').value;
-    this.job.salaryMax = this.formAddJob.get('salaryMax').value;
+    this.job.luongToiThieu = this.formAddJob.get('luongToiThieu').value;
+    this.job.luongToiDa = this.formAddJob.get('luongToiDa').value;
     this.job.tgLamViec = this.formAddJob.get('tgLamViec').value;
-    this.job.idCongTy =  this.account.id;
-    this.jobResult.id = 1;
+    this.job.congTyId =  this.account.id;
+    this.jobResult.jobId = 1;
     console.log(this.job);
     this.jobService.postJob(JSON.stringify(this.job))
       .pipe(first())
@@ -118,14 +99,14 @@ export class AddjobComponent implements OnInit {
           this.router.navigateByUrl('/managejob');
         },
         error => {
-          console.log('Faild');
+          console.log('Fail');
         }
       );
 
   }
 
   onselectClient(major1: Major) {
-    if (major1.nganhId !== 0) {
+    if (parseInt(major1.nganhId) !== 0) {
       this.major = major1;
       this.flag = false;
     }     else {

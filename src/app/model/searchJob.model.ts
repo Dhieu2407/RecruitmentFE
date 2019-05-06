@@ -1,9 +1,9 @@
 export class SearchJob {
-  id: number;
+  jobId: string;
   tenJob: string;
   diaChi: string;
-  tenNgannh: string;
-  tenCongty: string;
+  tenNganh: string;
+  tenCongTy: string;
 
   // fix
   keyword: string;

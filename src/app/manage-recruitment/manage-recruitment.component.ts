@@ -20,6 +20,7 @@ export class ManageRecruitmentComponent implements OnInit {
     listJob: Job[];
     account = new Account();
     job = new Job();
+    jobUpdate = new Job();
     ngOnInit() {
         this.account = JSON.parse(localStorage.getItem('currentUser'));
         this.page = 1;
@@ -38,11 +39,35 @@ export class ManageRecruitmentComponent implements OnInit {
             );
     }
 
-    onConfirmed(){
+    onConfirmed(i: number){
+        this.listJob[i].trangThai = "1";
 
+        console.log(this.listJob[i]);
+
+        this.jobService.updateJob(JSON.stringify(this.listJob[i]))
+            .pipe(first())
+            .subscribe(
+                (data) => {
+                    alert('Xác nhận thành công');
+                },
+                error => {
+                    console.log('Failed');
+                }
+            );
     }
 
-    onRejected(){
+    onRejected(i: number){
+        this.listJob[i].trangThai = "2";
 
+        this.jobService.updateJob(JSON.stringify(this.listJob[i]))
+            .pipe(first())
+            .subscribe(
+                (data) => {
+                    alert('Từ chối thành công');
+                },
+                error => {
+                    console.log('Failed');
+                }
+            );
     }
 }

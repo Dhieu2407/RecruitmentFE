@@ -1,4 +1,4 @@
 export class Major {
-    nganhId: number;
+    nganhId: string;
     tenNganh: string;
 }
