@@ -71,7 +71,7 @@ export class ManageEditJobdetailComponent implements OnInit {
         // @ts-ignore
         this.jobUpdate.yeuCauUngVien = $('#yeuCauUngVien').val();
         // @ts-ignore
-        this.jobUpdate.knToiThieu = $('#knToiThieu').val();
+        this.jobUpdate.knToiThieu = parseInt($('#knToiThieu').val());
         // @ts-ignore
         this.jobUpdate.chiTiet = $('#chiTiet').val();
         // @ts-ignore
@@ -81,11 +81,12 @@ export class ManageEditJobdetailComponent implements OnInit {
         // @ts-ignore
         this.jobUpdate.yeuCauHoSo = $('#yeuCauHoSo').val();
         // @ts-ignore
-        this.jobUpdate.soLuong = $('#soLuong').val();
+        this.jobUpdate.soLuong = parseInt($('#soLuong').val());
         // @ts-ignore
-        this.jobUpdate.luongToiThieu = $('#luongToiThieu').val();
+        this.jobUpdate.luongToiThieu = parseInt($('#luongToiThieu').val());
         // @ts-ignore
-        this.jobUpdate.luongToiDa = $('#luongToiDa').val();
+        this.jobUpdate.luongToiDa = parseInt($('#luongToiDa').val());
+        this.jobUpdate.trangThai = this.job.trangThai.toString();
         console.log(this.jobUpdate);
         this.jobService.updateJob(JSON.stringify(this.jobUpdate))
             .pipe(first())
