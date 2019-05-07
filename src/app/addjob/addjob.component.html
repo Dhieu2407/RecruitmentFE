@@ -13,23 +13,23 @@
             <!--</div>-->
             <div class="form-group">
               <label class="control-label">Tiều đề công việc</label>
-              <input type="text" id="titleJob" formControlName="titleJob" name="titleJob" class="form-control" placeholder="Nhập tiêu để công việc" required>
+              <input type="text" id="tenJob" formControlName="tenJob" name="tenJob" class="form-control" placeholder="Nhập tiêu để công việc" required>
             </div>
 
             <div class="form-group">
               <label class="control-label">Chức Vụ</label>
-              <input type="text" id="chucVu" formControlName="chucVu" name="chucVu" class="form-control" placeholder="Vị trí làm việc" required>
+              <input type="text" id="chucVu1" formControlName="chucVu1" name="chucVu1" class="form-control" placeholder="Vị trí làm việc" required>
             </div>
 
             <div class="form-group">
-              <label class="control-label">Địa điểm <span>(optional)</span></label>
-              <input type="text" id="location1" formControlName="location1" name="location1" class="form-control" placeholder="e.g. Hà Nội" required>
+              <label class="control-label">Địa chỉ <span>(optional)</span></label>
+              <input type="text" id="diaChi" formControlName="diaChi" name="diaChi" class="form-control" placeholder="e.g. Hà Nội" required>
             </div>
             <div class="form-group">
               <label class="control-label">Chuyên ngành</label>
               <div class="search-category-container">
                 <label class="styled-select">
-                  <select class="dropdown-product selectpicker" id="majorJob" formControlName="majorJob" name="majorJob" required >
+                  <select class="dropdown-product selectpicker" id="tenNganh" formControlName="tenNganh" name="tenNganh" required >
                     <option>Lựa Chọn</option>
                     <option *ngFor="let major of listMajor"
                             [value]="major.nganhId"
@@ -44,7 +44,7 @@
 
             <div class="form-group">
               <label class="control-label">Mô tả công việc</label>
-              <textarea class="form-control" id="descriptionJob" formControlName="descriptionJob" name="descriptionJob" rows="7" placeholder="Mô tả yêu cầu công việc..." required></textarea>
+              <textarea class="form-control" id="chiTiet" formControlName="chiTiet" name="chiTiet" rows="7" placeholder="Mô tả yêu cầu công việc..." required></textarea>
             </div>
 
             <div class="form-group">
@@ -63,14 +63,14 @@
 
             <div class="form-group">
               <label class="control-label">Số năm kinh nghiệm</label>
-              <input type="number" id="soNamKinhNghiem" formControlName="soNamKinhNghiem" name="soNamKinhNghiem" class="form-control" placeholder="Nhập số năm kinh nghiệm" required>
+              <input type="number" id="knToiThieu" formControlName="knToiThieu" name="knToiThieu" class="form-control" placeholder="Nhập số năm kinh nghiệm" required>
             </div>
 
             <div class="form-group">
               <label class="control-label">Yêu Cầu Giới Tính</label>
               <div>
                 <label class="styled-select">
-                  <select class="dropdown-product selectpicker" id="yeuCauGioiTinh" formControlName="yeuCauGioiTinh" name="yeuCauGioiTinh" required>
+                  <select class="dropdown-product selectpicker" id="gioiTinh" formControlName="gioiTinh" name="gioiTinh" required>
                     <option>Lựa Chọn</option>
                     <option value="0">Không yêu cầu</option>
                     <option value="1">Chỉ tuyển nam</option>
@@ -87,12 +87,12 @@
 
             <div class="form-group">
               <label class="control-label">Mức Lương Tối Thiểu</label>
-              <input type="number" id="salaryMin" formControlName="salaryMin" name="salaryMin" class="form-control" placeholder="Nhập mức lương tối thiểu" required>
+              <input type="number" id="luongToiThieu" formControlName="luongToiThieu" name="luongToiThieu" class="form-control" placeholder="Nhập mức lương tối thiểu" required>
             </div>
 
             <div class="form-group">
               <label class="control-label">Mức Lương Tối Đa</label>
-              <input type="number" id="salaryMax" formControlName="salaryMax" name="salaryMax" class="form-control" placeholder="Nhập mức lương tối đa" required>
+              <input type="number" id="luongToiDa" formControlName="luongToiDa" name="luongToiDa" class="form-control" placeholder="Nhập mức lương tối đa" required>
             </div>
 
             <div class="form-group">
@@ -110,7 +110,7 @@
 
             <div class="form-group">
               <label class="control-label">Ngày hết hạn <span>(optional)</span></label>
-              <input type="date" data-date="" id="deadline" formControlName="deadline" name="deadline" placeholder="DD/MM/YYYY" class="form-control" required>
+              <input type="date" data-date="" id="hanCuoi" formControlName="hanCuoi" name="hanCuoi" placeholder="DD/MM/YYYY" class="form-control" required>
 
               <p class="note">Hạn nộp hồ sơ.</p>
             </div>

@@ -1,0 +1,5 @@
+- Candidate
++
+- Employer
++ modify company chỉnh upload khi có file mới upload (đang ko chọn file upload thì bị lỗi)
++

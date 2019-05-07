@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {JobService} from '../service/job.service';
-import {FormBuilder, Validators} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {SearchJob} from "../model/searchJob.model";
 import {first} from "rxjs/operators";
 import {Job} from "../model/job.model";
@@ -20,30 +20,29 @@ export class ManageEditJobdetailComponent implements OnInit {
       private formBuilder: FormBuilder,
   ) { }
 
-    idJob: number;
+    jobForm: FormGroup;
+    jobId: number;
     searchJob = new SearchJob();
     job = new Job();
     jobUpdate = new Job();
   ngOnInit() {
-      // @ts-ignore
       this.jobForm = this.formBuilder.group({
-          descriptionJob: ['', Validators.required],
-          titleJob: ['', Validators.required],
-          chucVu: ['', Validators.required],
-          location: ['', Validators.required],
-          major: ['', Validators.required],
+          chiTiet: ['', Validators.required],
+          tenJob: ['', Validators.required],
+          chucVu1: ['', Validators.required],
+          diaChi: ['', Validators.required],
+          tenNganh: ['', Validators.required],
           yeuCauUngVien: ['', Validators.required],
           quyenLoi: ['', Validators.required],
           yeuCauHoSo: ['', Validators.required],
-          soNamKinhNghiem: ['', Validators.required],
+          knToiThieu: ['', Validators.required],
           soLuong: ['', Validators.required],
-          salaryMin: ['', Validators.required],
-          salaryMax: ['', Validators.required],
-          deadline: ['', Validators.required],
+          luongToiThieu: ['', Validators.required],
+          luongToiDa: ['', Validators.required],
+          hanCuoi: ['', Validators.required],
       });
-      // @ts-ignore
-      this.idJob = this.routerSnapshot.snapshot.paramMap.get('id');
-      this.searchJob.id = this.idJob;
+      this.jobId = parseInt(this.routerSnapshot.snapshot.paramMap.get('id'));
+      this.searchJob.jobId = this.routerSnapshot.snapshot.paramMap.get('id');
       this.jobService.getJobById(JSON.stringify(this.searchJob))
           .pipe(first())
           .subscribe(
@@ -51,7 +50,7 @@ export class ManageEditJobdetailComponent implements OnInit {
                   this.job = data;
               },
               error1 => {
-                  console.log('Faild');
+                  console.log('Fail');
               }
           );
   }
@@ -60,34 +59,34 @@ export class ManageEditJobdetailComponent implements OnInit {
     }
 
     onUpdate() {
-        this.jobUpdate.id = this.idJob;
+        this.jobUpdate.jobId = this.jobId;
         // @ts-ignore
-        this.jobUpdate.titleJob = $('#titleJob').val();
+        this.jobUpdate.tenJob = $('#tenJob').val();
         // @ts-ignore
-        this.jobUpdate.chucVu1 = $('#chucVu').val();
+        this.jobUpdate.chucVu1 = $('#chucVu1').val();
         // @ts-ignore
-        this.jobUpdate.location = $('#location').val();
+        this.jobUpdate.diaChi = $('#diaChi').val();
         // @ts-ignore
-        this.jobUpdate.major = $('#majorJob').val();
+        this.jobUpdate.tenNganh = $('#tenNganh').val();
         // @ts-ignore
-        this.jobUpdate.requireCadiate = $('#yeuCauUngVien').val();
+        this.jobUpdate.yeuCauUngVien = $('#yeuCauUngVien').val();
         // @ts-ignore
-        this.jobUpdate.requireYear = $('#soNamKinhNghiem').val();
+        this.jobUpdate.knToiThieu = parseInt($('#knToiThieu').val());
         // @ts-ignore
-        this.jobUpdate.description = $('#descriptionJob').val();
+        this.jobUpdate.chiTiet = $('#chiTiet').val();
         // @ts-ignore
-        this.jobUpdate.duedate = $('#deadline').val();
+        this.jobUpdate.hanCuoi = $('#hanCuoi').val();
         // @ts-ignore
         this.jobUpdate.quyenLoi = $('#quyenLoi').val();
         // @ts-ignore
         this.jobUpdate.yeuCauHoSo = $('#yeuCauHoSo').val();
         // @ts-ignore
-        this.jobUpdate.soLuong = $('#soLuong').val();
+        this.jobUpdate.soLuong = parseInt($('#soLuong').val());
         // @ts-ignore
-        this.jobUpdate.salaryMin = $('#salaryMin').val();
-
+        this.jobUpdate.luongToiThieu = parseInt($('#luongToiThieu').val());
         // @ts-ignore
-        this.jobUpdate.salaryMax = $('#salaryMax').val();
+        this.jobUpdate.luongToiDa = parseInt($('#luongToiDa').val());
+        this.jobUpdate.trangThai = this.job.trangThai.toString();
         console.log(this.jobUpdate);
         this.jobService.updateJob(JSON.stringify(this.jobUpdate))
             .pipe(first())

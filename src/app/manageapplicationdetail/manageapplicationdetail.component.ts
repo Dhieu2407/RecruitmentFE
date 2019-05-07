@@ -20,7 +20,7 @@ export class ManageapplicationdetailComponent implements OnInit {
       private jobService: JobService,
       private formBuilder: FormBuilder,
   ) { }
-    idJob: number;
+    jobId: number;
     job = new Job();
     searchJob = new SearchJob();
     jobForm: FormGroup;
@@ -32,13 +32,13 @@ export class ManageapplicationdetailComponent implements OnInit {
   ngOnInit() {
       this.btnEdit = true;
       // @ts-ignore
-      document.getElementById('titleJob').disabled = true;
+      document.getElementById('tenJob').disabled = true;
       // @ts-ignore
       document.getElementById('chucVu').disabled = true;
       // @ts-ignore
-      document.getElementById('location').disabled = true;
+      document.getElementById('diaChi').disabled = true;
       // @ts-ignore
-      document.getElementById('major').disabled = true;
+      document.getElementById('tenNganh').disabled = true;
       // @ts-ignore
       document.getElementById('yeuCauUngVien').disabled = true;
       // @ts-ignore
@@ -46,36 +46,35 @@ export class ManageapplicationdetailComponent implements OnInit {
       // @ts-ignore
       document.getElementById('yeuCauHoSo').disabled = true;
       // @ts-ignore
-      document.getElementById('descriptionJob').disabled = true;
+      document.getElementById('chiTiet').disabled = true;
       // @ts-ignore
       document.getElementById('soNamKinhNghiem').disabled = true;
       // @ts-ignore
       document.getElementById('soLuong').disabled = true;
       // @ts-ignore
-      document.getElementById('salaryMin').disabled = true;
+      document.getElementById('luongToiThieu').disabled = true;
       // @ts-ignore
-      document.getElementById('salaryMax').disabled = true;
+      document.getElementById('luongToiDa').disabled = true;
       // @ts-ignore
-      document.getElementById('deadline').disabled = true;
+      document.getElementById('hanCuoi').disabled = true;
       // @ts-ignore
       this.jobForm = this.formBuilder.group({
-           descriptionJob: ['', Validators.required],
-          titleJob: ['', Validators.required],
+          chiTiet: ['', Validators.required],
+          tenJob: ['', Validators.required],
           chucVu: ['', Validators.required],
-          location: ['', Validators.required],
-          major: ['', Validators.required],
+          diaChi: ['', Validators.required],
+          tenNganh: ['', Validators.required],
           yeuCauUngVien: ['', Validators.required],
           quyenLoi: ['', Validators.required],
           yeuCauHoSo: ['', Validators.required],
           soNamKinhNghiem: ['', Validators.required],
           soLuong: ['', Validators.required],
-          salaryMin: ['', Validators.required],
-          salaryMax: ['', Validators.required],
-          deadline: ['', Validators.required],
+          luongToiThieu: ['', Validators.required],
+          luongToiDa: ['', Validators.required],
+          hanCuoi: ['', Validators.required],
           });
-      // @ts-ignore
-      this.idJob = this.routerSnapshot.snapshot.paramMap.get('id');
-      this.searchJob.id = this.idJob;
+      this.jobId = parseInt(this.routerSnapshot.snapshot.paramMap.get('id'));
+      this.searchJob.jobId = this.routerSnapshot.snapshot.paramMap.get('id');
       this.jobService.getJobById(JSON.stringify(this.searchJob))
           .pipe(first())
           .subscribe(
@@ -95,13 +94,13 @@ export class ManageapplicationdetailComponent implements OnInit {
       this.btnEdit = false;
       this.show = true;
     // @ts-ignore
-      document.getElementById('titleJob').disabled = false;
+      document.getElementById('tenJob').disabled = false;
       // @ts-ignore
       document.getElementById('chucVu').disabled = false;
       // @ts-ignore
-      document.getElementById('location').disabled = false;
+      document.getElementById('diaChi').disabled = false;
       // @ts-ignore
-      document.getElementById('major').disabled = false;
+      document.getElementById('tenNganh').disabled = false;
       // @ts-ignore
       document.getElementById('yeuCauUngVien').disabled = false;
       // @ts-ignore
@@ -109,38 +108,38 @@ export class ManageapplicationdetailComponent implements OnInit {
       // @ts-ignore
       document.getElementById('yeuCauHoSo').disabled = false;
       // @ts-ignore
-      document.getElementById('descriptionJob').disabled = false;
+      document.getElementById('chiTiet').disabled = false;
       // @ts-ignore
       document.getElementById('soNamKinhNghiem').disabled = false;
       // @ts-ignore
       document.getElementById('soLuong').disabled = false;
       // @ts-ignore
-      document.getElementById('salaryMin').disabled = false;
+      document.getElementById('luongToiThieu').disabled = false;
       // @ts-ignore
-      document.getElementById('salaryMax').disabled = false;
+      document.getElementById('luongToiDa').disabled = false;
       // @ts-ignore
-      document.getElementById('deadline').disabled = false;
+      document.getElementById('hanCuoi').disabled = false;
       console.log('ok');
   }
 
   onUpdate() {
-      this.jobUpdate.id = this.idJob;
+      this.jobUpdate.jobId = this.jobId;
       // @ts-ignore
-      this.jobUpdate.titleJob = $('#titleJob').val();
+      this.jobUpdate.tenJob = $('#tenJob').val();
       // @ts-ignore
-      this.jobUpdate.chucVu1 = $('#chucVu').val();
+      this.jobUpdate.chucVu = $('#chucVu').val();
       // @ts-ignore
-      this.jobUpdate.location = $('#location').val();
+      this.jobUpdate.diaChi = $('#diaChi').val();
       // @ts-ignore
-      this.jobUpdate.major = $('#majorJob').val();
+      this.jobUpdate.tenNganh = $('#tenNganh').val();
       // @ts-ignore
-      this.jobUpdate.requireCadiate = $('#yeuCauUngVien').val();
+      this.jobUpdate.yeuCauUngVien = $('#yeuCauUngVien').val();
       // @ts-ignore
-      this.jobUpdate.requireYear = $('#soNamKinhNghiem').val();
+      this.jobUpdate.soNamKinhNghiem = $('#soNamKinhNghiem').val();
       // @ts-ignore
-      this.jobUpdate.description = $('#descriptionJob').val();
+      this.jobUpdate.chiTiet = $('#chiTiet').val();
       // @ts-ignore
-      this.jobUpdate.duedate = $('#deadline').val();
+      this.jobUpdate.hanCuoi = $('#hanCuoi').val();
       // @ts-ignore
       this.jobUpdate.quyenLoi = $('#quyenLoi').val();
       // @ts-ignore
@@ -148,10 +147,10 @@ export class ManageapplicationdetailComponent implements OnInit {
       // @ts-ignore
       this.jobUpdate.soLuong = $('#soLuong').val();
       // @ts-ignore
-      this.jobUpdate.salaryMin = $('#salaryMin').val();
+      this.jobUpdate.luongToiThieu = $('#luongToiThieu').val();
 
       // @ts-ignore
-      this.jobUpdate.salaryMax = $('#salaryMax').val();
+      this.jobUpdate.luongToiDa = $('#luongToiDa').val();
       console.log(this.jobUpdate);
       this.jobService.updateJob(JSON.stringify(this.jobUpdate))
           .pipe(first())

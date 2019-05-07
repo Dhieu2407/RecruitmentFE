@@ -25,7 +25,7 @@ export class ModifyCompanyInfoComponent implements OnInit {
         this.email = JSON.parse(localStorage.getItem("currentUser")).email;
         this.company.id = JSON.parse(localStorage.getItem("currentUser")).id;
         this.modifyCompanyForm = this.formBuilder.group({
-            name: ["", Validators.required],
+            tenCongTy: ["", Validators.required],
             email: ["", Validators.required],
             phone: ["", Validators.required],
             address: [""],
@@ -42,7 +42,7 @@ export class ModifyCompanyInfoComponent implements OnInit {
                     console.log(data);
                     this.company = data;
                     this.modifyCompanyForm.get("email").setValue(this.email);
-                    this.modifyCompanyForm.get("name").setValue(this.company.tenCongTy);
+                    this.modifyCompanyForm.get("tenCongTy").setValue(this.company.tenCongTy);
                     this.modifyCompanyForm.get("phone").setValue(this.company.sdt);
                     this.modifyCompanyForm.get("address").setValue(this.company.diaChi);
                     this.modifyCompanyForm.get("moTa").setValue(this.company.moTa);
@@ -61,7 +61,7 @@ export class ModifyCompanyInfoComponent implements OnInit {
                 this.company = new Company();
             }
             this.company.id = JSON.parse(localStorage.getItem("currentUser")).id;
-            this.company.tenCongTy = this.modifyCompanyForm.get("name").value;
+            this.company.tenCongTy = this.modifyCompanyForm.get("tenCongTy").value;
             this.company.email = this.modifyCompanyForm.get("email").value;
             this.company.sdt = this.modifyCompanyForm.get("phone").value;
             this.company.diaChi = this.modifyCompanyForm.get("address").value;

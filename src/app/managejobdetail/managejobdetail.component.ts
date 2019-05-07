@@ -23,19 +23,18 @@ export class ManagejobdetailComponent implements OnInit {
       private candidateService: CandidateService,
   ) { }
 
-    idJob: number;
+    jobId: number;
     job = new Job();
     searchJob = new SearchJob();
-    idJobdetale: number;
+    jobDetailId: number;
     listApply: Apply[];
     page: number;
     pageSize: number;
   ngOnInit() {
       this.page = 1;
       this.pageSize = 5;
-      // @ts-ignore
-      this.idJob = this.routerSnapshot.snapshot.paramMap.get('id');
-      this.searchJob.id = this.idJob;
+      this.jobId = parseInt(this.routerSnapshot.snapshot.paramMap.get('id'));
+      this.searchJob.jobId = this.routerSnapshot.snapshot.paramMap.get('id');
       this.jobService.getJobById(JSON.stringify(this.searchJob))
           .pipe(first())
           .subscribe(
@@ -55,7 +54,7 @@ export class ManagejobdetailComponent implements OnInit {
                   console.log(this.listApply);
               },
               error => {
-                  console.log('Faild');
+                  console.log('Fail');
               }
           );
   }
@@ -64,8 +63,8 @@ export class ManagejobdetailComponent implements OnInit {
             .pipe(first())
             .subscribe(
                 (data: number) => {
-                    this.idJobdetale = data;
-                    console.log(this.idJobdetale);
+                    this.jobDetailId = data;
+                    console.log(this.jobDetailId);
                     alert('Đã xóa tin tuyển dụng!');
                     this.router.navigateByUrl('/managejob');
                 },
@@ -75,7 +74,7 @@ export class ManagejobdetailComponent implements OnInit {
             );
     }
     onEditJob() {
-      location.href = '/manageeditjobdetail/' + this.idJob;
+      location.href = '/manageeditjobdetail/' + this.jobId;
     }
 
 }
