@@ -69,7 +69,7 @@
               </div>
               <div class="job-list-content">
                 <h4><a href="/jobdetail/{{jobs.jobId}}/{{jobs.nganh.nganhId}}">{{jobs.tenJob}}</a></h4>
-                <p>{{jobs.congTy.tenCongTy}}</p>
+                <p><a href="/companydetail/{{jobs.congTy.congtyId}}">{{jobs.congTy.tenCongTy}}</a></p>
                 <p>Thời Gian Làm Việc: <span class="full-time">{{jobs.tgLamViec == 1 ? 'Full-Time' : (jobs.tgLamViec == 0 ? 'Part-Time' : '')}}</span></p>
                 <div class="job-tag">
                   <div class="pull-left">

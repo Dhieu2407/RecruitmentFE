@@ -19,4 +19,5 @@ export class Candidate {
   mucTieuNgheNghiep: string;
   modifyDate : string;
   diaChi : string;
+  ungVienId : number;
 }

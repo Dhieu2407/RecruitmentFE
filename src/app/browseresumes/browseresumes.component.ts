@@ -7,6 +7,9 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { SearchCandidate } from '../model/searchcandidate.model';
 import { Major } from '../model/Major.model';
 import { MajorService } from '../service/major.service';
+import { Resume } from '../model/resume.model';
+import { CompanySaveCandidateDTO } from '../model/companySaveCandidateDTO.model';
+import { CompanyService } from '../service/company.service';
 
 @Component({
   selector: 'app-browseresumes',
@@ -14,12 +17,13 @@ import { MajorService } from '../service/major.service';
   styleUrls: ['./browseresumes.component.css']
 })
 export class BrowseresumesComponent implements OnInit {
-  
+
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
     private candidateService: CandidateService,
     private majorService: MajorService,
+    private companyService : CompanyService
   ) { }
 
   formSearchCandidate: FormGroup;
@@ -28,7 +32,8 @@ export class BrowseresumesComponent implements OnInit {
   searchCondidition = new Candidate();
   page: number;
   pageSize : number;
-  
+  companySaveCandidate = new CompanySaveCandidateDTO();
+
 
   onSearch(){
     this.searchCondidition.email = this.formSearchCandidate.get('title').value;
@@ -49,7 +54,7 @@ export class BrowseresumesComponent implements OnInit {
 
   ngOnInit() {
     this.page = 1;
-    this.pageSize = 2;
+    this.pageSize = 10;
     this.formSearchCandidate = this.formBuilder.group({
       title: ['', Validators.required],
       major: ['', Validators.required],
@@ -79,6 +84,21 @@ export class BrowseresumesComponent implements OnInit {
           });
 
 
+  }
+
+  onSave(resume : Candidate){
+    this.companySaveCandidate.candidateId = resume.ungVienId;
+    this.companySaveCandidate.companyId = JSON.parse(localStorage.getItem("currentUser")).id;
+    this.companyService.companySaveUngVien(this.companySaveCandidate)
+        .pipe(first())
+        .subscribe(
+            (data: any) => {
+                console.log(data);
+            },
+            error => {
+                console.log("Fail");
+            }
+        );
   }
 
 }
