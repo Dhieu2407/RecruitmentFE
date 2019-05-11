@@ -52,4 +52,7 @@ export class CandidateService {
   getListCandidateOfApply(body: string) {
       return this.http.post(this.baseUrl + '/getListUngTuyen', body);
   }
+  getCandidateApplyAllJobOfCompany(body: string) {
+      return this.http.post(this.baseUrl + '/getListUngTuyenOfCompany', body);
+  }
 }

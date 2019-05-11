@@ -26,25 +26,26 @@
           <div class="job-alerts-item">
             <h3 class="alerts-title">Quản lý đơn xin việc</h3>
            <hr>
-              <div *ngFor="let resume of listCandidateApplyOfCompany | slice: (page-1) * pageSize: (page-1) * pageSize + pageSize">
+              <div *ngFor="let apply of listCandidateApplyOfCompany | slice: (page-1) * pageSize: (page-1) * pageSize + pageSize">
               <div class="row">
               <!--<div class="col-md-6 col-sm-6 col-xs-12">-->
                   <div class="manager-resumes-item">
                       <div class="manager-content">
-                          <a href="/detailresume/{{resume.ungVienId}}"><img class="resume-thumb" src="{{resume.imgUrl}}" alt=""></a>
+                          <a href="/detailresume/{{apply.ungVien.ungVienId}}"><img class="resume-thumb" src="{{apply.ungVien.imgUrl}}" alt=""></a>
                           <div class="manager-info">
                               <div class="manager-name">
-                                  <h4><a href="/detailresume/{{resume.ungVienId}}">{{resume.tenUngVien}}</a></h4>
-                                  <h5 *ngIf="resume.nganh">{{resume.nganh.tenNganh}}</h5>
+                                  <h4><a href="/detailresume/{{apply.ungVien.ungVienId}}">{{apply.ungVien.tenUngVien}}</a></h4>
+                                  <h5 *ngIf="apply.ungVien.nganh">Ngành: {{apply.ungVien.nganh.tenNganh}}</h5>
                               </div>
                               <div class="manager-meta">
-                                  <span class="location"><i class="ti-location-pin"></i>{{resume.diaDiem}} </span>
-                                  <span class="rate"><i class="ti-money"></i>{{resume.luongMongMuon}}</span>
+                                  <span class="location"><i class="ti-location-pin"></i>{{apply.ungVien.diaChi}} </span>
+                                  <span class="rate"><i></i>Năm kinh nghiệm: {{apply.ungVien.kiNang[0] !=null ? apply.ungVien.kiNang[0].soNamKinhNghiem : '0'}} year</span>
+                                  <span class="rate"><i></i>Kỹ năng: {{apply.ungVien.kiNang[0] !=null ? apply.ungVien.kiNang[0].kiNang.tenKiNang : 'Không có thông tin'}}</span>
                               </div>
                           </div>
                       </div>
                       <div class="item-body">
-                          <p>{{resume.moTa}}</p>
+                          <h4><a href="/managejobdetail/{{apply.job.jobId}}">Đã Apply Job: {{apply.job.tenJob}}</a></h4>
                       </div>
                   </div>
               <!--</div>-->
