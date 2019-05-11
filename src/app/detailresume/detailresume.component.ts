@@ -3,6 +3,9 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {CandidateService} from '../service/candidate.service';
 import {Candidate} from "../model/candidate.model";
 import {first} from "rxjs/operators";
+import {Email} from "../model/email.model";
+import {Account} from "../model/account.model";
+import {EmailService} from '../service/email.service';
 
 @Component({
   selector: 'app-detailresume',
@@ -15,16 +18,23 @@ export class DetailresumeComponent implements OnInit {
       private router: Router,
       private route: ActivatedRoute,
       private candidateService: CandidateService,
+      private emailService: EmailService,
   ) { }
 
     candidate = new Candidate();
+    email = new Email();
+    emailRespon = new Email();
+    account = new Account();
     id: number;
+    idJob: number;
     nganh: string;
     hocVan: string;
     viecLam: string;
 
   ngOnInit() {
+      this.account = JSON.parse(localStorage.getItem('currentUser'));
       this.id = +this.route.snapshot.paramMap.get('id');
+      this.idJob = +this.route.snapshot.paramMap.get('idJob');
       this.candidateService.getCandidate(this.id)
           .pipe(first())
           .subscribe(
@@ -39,5 +49,23 @@ export class DetailresumeComponent implements OnInit {
                   console.log('Failed');
               });
   }
+  // sendEmail() {
+  //     this.email.idCompany = this.account.id;
+  //     this.email.idJob = this.idJob;
+  //     this.email.emailCandidate = this.candidate.email;
+  //     this.email.contentMail = this.formEmail.get('contentEmail').value;
+  //     this.emailService.sendEmailToCandidate(JSON.stringify(this.email))
+  //         .pipe(first())
+  //         .subscribe(
+  //             (data: Email) => {
+  //                 this.emailRespon = data;
+  //                 console.log(this.emailRespon);
+  //             },
+  //             error => {
+  //                 console.log('Faild');
+  //             }
+  //         );
+  //
+  // }
 
 }

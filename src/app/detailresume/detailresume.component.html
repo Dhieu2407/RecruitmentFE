@@ -52,11 +52,9 @@
                             <div class="author-info">
                                 <h3><label>{{candidate.tenUngVien}}</label></h3>
                                 <p class="sub-title"><label>Java Deverloper</label></p>
+                                <p class="sub-title"><label>Email: {{candidate.email}}</label></p>
                                 <p><span class="address"><i class="ti-location-pin"></i><label>{{candidate.diaChi}}</label></span><br><span><i class="ti-phone"></i><label class="ti-mobile">{{candidate.sdt}}</label></span></p>
 
-                                <form class="subscribe-box">
-                                    <input type="submit" class="btn-system" value="Sửa Hồ Sơ">
-                                </form>
                             </div>
                         </div>
 
@@ -79,16 +77,6 @@
                                     <p>Mức lương mong muốn: <label>{{candidate.luongMongMuon}}$</label></p>
                                 </div>
                             </div>
-
-                            <!-- <div class="row">
-                              <div class="col-md-6">
-                                <p>Số năm kinh nghiệm: <label>5 năm</label></p>
-                              </div>
-                              <div class="col-md-6">
-                                <p>Thời gian làm việc: <label>Full time</label></p>
-                              </div>
-                            </div> -->
-
 
                         </div>
 
@@ -142,11 +130,17 @@
                             </div>
 
 
-                            <div class="form-group">
-                                <label class="control-label" for="textarea">Mô tả công việc</label>
-                                <textarea class="form-control" rows="7" disabled> Lập trình Web full stack, sử dụng các FrameWork Hibernate...</textarea>
-                            </div>
                         </div>
+                        <!--<div class="about-me item">-->
+                            <!--<br>-->
+                            <!--<form class="form-ad" [formGroup]="formEmail" ngNativeValidate >-->
+                            <!--<div class="form-group">-->
+                                <!--<label class="control-label" for="textarea">Gửi Email liên hệ với ứng viên</label>-->
+                                <!--<textarea class="form-control" id="contentEmail" name="contentEmail" formControlName="contentEmail" rows="10" placeholder="Dear Ứng viên" required></textarea>-->
+                            <!--</div>-->
+                                <!--<button  class="create-button" (click)="sendEmail()">Gửi Mail</button>-->
+                            <!--</form>-->
+                        <!--</div>-->
 
                     </div>
 
