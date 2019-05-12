@@ -1,5 +1,4 @@
 import { RouterModule, Routes } from '@angular/router';
-import {TestComponent} from './test/test.component';
 import {HomeComponent} from './home/home.component';
 import {JobComponent} from './job/job.component';
 import {JobdetailComponent} from './jobdetail/jobdetail.component';
@@ -15,6 +14,9 @@ import {ChangepasswordComponent} from './changepassword/changepassword.component
 import {BrowseresumesComponent} from './browseresumes/browseresumes.component';
 import { ManageRecruitmentComponent} from './manage-recruitment/manage-recruitment.component';
 import {ManagejobComponent} from './managejob/managejob.component';
+import { ViewCandidateAccountComponent} from './view-candidate-account/view-candidate-account.component';
+import { ViewEmployerAccountComponent} from './view-employer-account/view-employer-account.component';
+
 
 //phucnh
 import {PopupviewcontactComponent} from './popupviewcontact/popupviewcontact.component';
@@ -49,18 +51,24 @@ const routes: Routes = [
   { path: 'appliedjobs', component: AppliedJobComponent },
   { path: 'companydetail/:id', component: CompanyDetailComponent },
   { path: 'manage-recruitment', component: ManageRecruitmentComponent },
+  { path: 'view-candidate-account', component: ViewCandidateAccountComponent },
+  { path: 'view-employer-account', component: ViewEmployerAccountComponent },
 
   //phucnh { path: 'product-details/:id', component: ProductDetails }
   { path: 'popupcandidate', component: PopupviewcontactComponent },
   {path: 'manageapplicationdetail/:id', component: ManageapplicationdetailComponent },
     {path: 'managejob' , component: ManagejobComponent},
-    {path: 'detailresume/:id/:idJob', component: DetailresumeComponent},
+    {path: 'detailresume/:id', component: DetailresumeComponent},
     {path: 'managejobdetail/:id' , component: ManagejobdetailComponent},
     {path: 'manageeditjobdetail/:id' , component: ManageEditJobdetailComponent },
     {path: 'savedcompany' , component: SavedcompanyComponent },
+  { path: 'manageapplicationdetail/:id', component: ManageapplicationdetailComponent },
+  { path: 'managejob' , component: ManagejobComponent},
+  { path: 'detailresume/:id', component: DetailresumeComponent},
+  { path: 'managejobdetail/:id' , component: ManagejobdetailComponent},
+  { path: 'manageeditjobdetail/:id' , component: ManageEditJobdetailComponent },
   //phucnh
 
-  { path: 'test', component: TestComponent },
   { path: '**', redirectTo: '/home', pathMatch: 'full' },
 ];
 export const routing = RouterModule.forRoot(routes);

@@ -29,7 +29,7 @@ export class ManageRecruitmentComponent implements OnInit {
         this.findByTrangThai(this.job);
     }
 
-    onConfirmed(i: number){
+    onConfirmed(i){
 
         this.jobUpdate.trangThai = "1";
         this.jobUpdate.jobId = this.listJob[i].jobId;
@@ -48,9 +48,6 @@ export class ManageRecruitmentComponent implements OnInit {
 
         if(this.jobUpdate.yeuCauUngVien === undefined) this.jobUpdate.yeuCauUngVien = "";
 
-
-        console.log(JSON.stringify(this.jobUpdate));
-
         this.jobService.updateJob(JSON.stringify(this.jobUpdate))
             .pipe(first())
             .subscribe(
@@ -64,7 +61,7 @@ export class ManageRecruitmentComponent implements OnInit {
             );
     }
 
-    onRejected(i: number){
+    onRejected(i){
         this.jobUpdate.trangThai = "2";
         this.jobUpdate.jobId = this.listJob[i].jobId;
         this.jobUpdate.yeuCauUngVien = this.listJob[i].yeuCauUngVien;
@@ -81,8 +78,6 @@ export class ManageRecruitmentComponent implements OnInit {
         this.jobUpdate.soLuong = this.listJob[i].soLuong;
 
         if(this.jobUpdate.yeuCauUngVien === undefined) this.jobUpdate.yeuCauUngVien = "";
-
-        console.log(this.jobUpdate);
 
         this.jobService.updateJob(JSON.stringify(this.jobUpdate))
             .pipe(first())

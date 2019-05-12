@@ -11,6 +11,10 @@ export class AccountService {
   constructor(private http: HttpClient) { }
   baseUrl = environment.baseUrl;
 
+  getAllUsers(){
+      return this.http.get(this.baseUrl + '/users');
+  }
+
   getAccount() {
     return this.http.get(this.baseUrl + '/account');
   }

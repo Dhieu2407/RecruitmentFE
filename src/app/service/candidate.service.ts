@@ -61,4 +61,7 @@ export class CandidateService {
     getAllSavedCompanies(id : number){
         return this.http.get(this.baseUrl + "/getAllCompaniesSaved/" + id);
     }
+  getCandidateApplyAllJobOfCompany(body: string) {
+      return this.http.post(this.baseUrl + '/getListUngTuyenOfCompany', body);
+  }
 }
