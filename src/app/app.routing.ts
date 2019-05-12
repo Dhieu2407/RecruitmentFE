@@ -26,6 +26,7 @@ import { CompanyDetailComponent } from './company-detail/company-detail.componen
 import { DetailresumeComponent} from './detailresume/detailresume.component';
 import { ManagejobdetailComponent} from './managejobdetail/managejobdetail.component';
 import { ManageEditJobdetailComponent} from './manage-edit-jobdetail/manage-edit-jobdetail.component';
+import { SavedcompanyComponent } from './savedcompany/savedcompany.component';
 //phucnh
 
 const routes: Routes = [
@@ -56,6 +57,7 @@ const routes: Routes = [
     {path: 'detailresume/:id/:idJob', component: DetailresumeComponent},
     {path: 'managejobdetail/:id' , component: ManagejobdetailComponent},
     {path: 'manageeditjobdetail/:id' , component: ManageEditJobdetailComponent },
+    {path: 'savedcompany' , component: SavedcompanyComponent },
   //phucnh
 
   { path: 'test', component: TestComponent },

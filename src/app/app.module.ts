@@ -33,6 +33,7 @@ import { ManageRecruitmentComponent} from './manage-recruitment/manage-recruitme
 import { ManagejobComponent} from './managejob/managejob.component';
 import { ManagejobdetailComponent } from './managejobdetail/managejobdetail.component';
 import { ManageEditJobdetailComponent } from './manage-edit-jobdetail/manage-edit-jobdetail.component';
+import { SavedcompanyComponent } from './savedcompany/savedcompany.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { ManageEditJobdetailComponent } from './manage-edit-jobdetail/manage-edi
       ManagejobComponent,
       ManagejobdetailComponent,
       ManageEditJobdetailComponent,
+      SavedcompanyComponent,
   ],
   imports: [
     BrowserModule,
