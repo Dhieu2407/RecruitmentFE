@@ -57,7 +57,7 @@ const routes: Routes = [
   { path: 'popupcandidate', component: PopupviewcontactComponent },
   {path: 'manageapplicationdetail/:id', component: ManageapplicationdetailComponent },
     {path: 'managejob' , component: ManagejobComponent},
-    {path: 'detailresume/:id/:idJob', component: DetailresumeComponent},
+    {path: 'detailresume/:id', component: DetailresumeComponent},
     {path: 'managejobdetail/:id' , component: ManagejobdetailComponent},
     {path: 'manageeditjobdetail/:id' , component: ManageEditJobdetailComponent },
   { path: 'manageapplicationdetail/:id', component: ManageapplicationdetailComponent },
