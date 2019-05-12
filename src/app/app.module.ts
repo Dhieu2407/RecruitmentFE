@@ -7,7 +7,6 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { TestComponent } from './test/test.component';
 import { HomeComponent } from './home/home.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { JobComponent } from './job/job.component';
@@ -33,11 +32,12 @@ import { ManageRecruitmentComponent} from './manage-recruitment/manage-recruitme
 import { ManagejobComponent} from './managejob/managejob.component';
 import { ManagejobdetailComponent } from './managejobdetail/managejobdetail.component';
 import { ManageEditJobdetailComponent } from './manage-edit-jobdetail/manage-edit-jobdetail.component';
+import { ViewCandidateAccountComponent } from './view-candidate-account/view-candidate-account.component';
+import { ViewEmployerAccountComponent } from './view-employer-account/view-employer-account.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TestComponent,
     HomeComponent,
     JobComponent,
     AddjobComponent,
@@ -58,10 +58,12 @@ import { ManageEditJobdetailComponent } from './manage-edit-jobdetail/manage-edi
     AppliedJobComponent,
     CompanyDetailComponent,
     DetailresumeComponent,
-      ManageRecruitmentComponent,
-      ManagejobComponent,
-      ManagejobdetailComponent,
-      ManageEditJobdetailComponent,
+    ManageRecruitmentComponent,
+    ManagejobComponent,
+    ManagejobdetailComponent,
+    ManageEditJobdetailComponent,
+    ViewCandidateAccountComponent,
+    ViewEmployerAccountComponent,
   ],
   imports: [
     BrowserModule,

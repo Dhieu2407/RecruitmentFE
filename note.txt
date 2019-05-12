@@ -1,5 +1,6 @@
 - Candidate
-+
++ trang modify resume chua co thong bao thanh cong hay fail
++ chua link đến thẳng trang modify resume nếu chưa có resume (muốn đến trang modify resume hiện tại phải fix cứng link trang web)
 - Employer
 + modify company chỉnh upload khi có file mới upload (đang ko chọn file upload thì bị lỗi)
 +
