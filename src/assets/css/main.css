@@ -2001,6 +2001,68 @@ footer {
   color: #ff4f57;
   font-size: 16px;
 }
+/*phucnh*/
+  .company-list {
+      border: 1px solid #f1f1f1;
+      padding: 15px;
+      display: inline-block;
+      margin-bottom: 15px;
+  }
+.company-list .thumb {
+    float: left;
+}
+.company-list .thumb img {
+    border-radius: 4px;
+}
+.company-list .job-list-content {
+    display: block;
+    margin-left: 125px;
+    position: relative;
+}
+.company-list .job-list-content h4 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+.company-list .job-list-content p {
+    margin-bottom: 20px;
+}
+.company-list .job-tag {
+    border-top: 1px solid #ddd;
+    padding: 15px 0;
+    line-height: 35px;
+}
+.company-list .job-tag .meta-tag span {
+    font-size: 14px;
+    color: #999;
+    margin-right: 10px;
+}
+.company-list .job-tag .meta-tag span a {
+    color: #999;
+}
+.company-list .job-tag .meta-tag span a:hover {
+    color: #ff4f57;
+}
+.company-list .job-tag .meta-tag span i {
+    margin-right: 5px;
+}
+.company-list{
+    height: 200px;
+    width: 550px;
+}
+.company-list .job-tag .icon {
+    float: left;
+    border: 1px solid #ddd;
+    width: 40px;
+    height: 40px;
+    line-height: 42px;
+    border-radius: 50px;
+    text-align: center;
+    margin-right: 18px;
+    background: #f1f1f1;
+    color: #ff4f57;
+    font-size: 16px;
+}
+/*phucnh*/
 /* ==========================================================================
    Job Alerts Pages Style
    ========================================================================== */

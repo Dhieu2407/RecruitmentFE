@@ -1,0 +1,83 @@
+<!-- Page Header Start -->
+<div class="page-header" style="background: url(assets/img/testimonial/testimonial-bg.jpg);">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="breadcrumb-wrapper">
+                    <div class="search-container">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="content">
+                                        <form [formGroup]="searchCompanyForm" ngNativeValidate>
+                                            <div class="row">
+                                                <div class="col-md-5 col-sm-6">
+                                                    <div class="form-group">
+                                                        <input class="form-control" type="text" placeholder=" Tên công ty" formControlName="keyword" id="keyword">
+                                                        <i class="ti-time"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-sm-6">
+                                                    <div class="search-category-container">
+                                                        <label class="styled-select">
+                                                            <select class="dropdown-product selectpicker" formControlName="career" id="career">
+                                                                <option value="0">All Categories</option>
+                                                                <option *ngFor="let major of listMajor"
+                                                                        [value]="major.nganhId"
+                                                                        [attr.selected]="major.tenNganh">
+                                                                    {{major.tenNganh}}
+                                                                </option>
+                                                            </select>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1 col-sm-6">
+                                                    <button type="button" class="btn btn-search-icon" ><i class="ti-search"></i></button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Page Header End -->
+<!-- Find Job Section Start -->
+<section class="find-job section">
+    <div class="container">
+        <h2 class="section-title">Tìm kiếm công ty</h2>
+        <hr>
+        <div class="row">
+            <div *ngFor="let company of listSearchCompany | slice: (page-1) * pageSize: (page-1) * pageSize + pageSize">
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="company-list">
+                        <div class="thumb">
+                            <a href="/deatilcompany/{{company.congtyId}}"> <img src="{{company.imgUrl}}" style="width:100px;height:100px;"  alt=""></a>
+                        </div>
+                        <div class="job-list-content">
+                            <h4><a href="/deatilcompany/{{company.congtyId}}">{{company.tenCongTy}}</a></h4>
+                            <p class="ti-location-pin">{{company.diaChi}}</p>
+                            <div class="job-tag">
+                                <div class="pull-left">
+                                    <div class="meta-tag">
+                                        <span><i class="ti-location-pin">{{company.diaChi}}</i></span>
+                                        <span><i class="ti-time"></i>60/Hour</span>
+                                    </div>
+                                </div>
+                                <div class="pull-right">
+                                    <div class="btn btn-common btn-rm">Quan Tâm</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <ngb-pagination [(page)]="page" [pageSize]="pageSize" [collectionSize]="listSearchCompany.length" *ngIf="listSearchCompany"></ngb-pagination>
+    </div>
+</section>

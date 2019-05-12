@@ -1,0 +1,95 @@
+<div class="page-header" style="background: url(assets/img/testimonial/testimonial-bg.jpg);">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="breadcrumb-wrapper">
+                    <div class="search-container">
+                        <div class="container">
+                            <div class="row">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Page Header End -->
+<!-- Start Content -->
+<div id="content">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="inner-box my-resume">
+                    <div class="author-resume">
+                        <div class="thumb" style="width:100px;height:100px;" >
+                            <img src="{{company.imgUrl}}" alt="">
+                        </div>
+                        <div class="author-info">
+                            <h2><label>{{company.tenCongTy}}</label></h2>
+                            <p class="sub-title"><label>Java Deverloper</label></p>
+                            <p><span class="address"><i class="ti-location-pin"></i><label>{{company.diaChi}}</label></span><br><span><i class="ti-phone"></i></span></p>
+                                <div class="btn btn-common btn-rm">Quan Tâm</div>
+
+                        </div>
+                    </div>
+
+                    <div class="about-me item">
+                        <h2>Giới Thiệu Công Ty</h2>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p>Quy Mô: <span><label>{{company.quyMo}} Nhân viên</label></span> </p>
+                            </div>
+                        </div>
+
+                        <h4><b>Mô tả</b></h4>
+                        <p style="white-space: pre-wrap">{{company.moTa}}</p>
+                        <h4><b>Phúc Lợi</b></h4>
+                        <p style="white-space: pre-wrap">{{company.phucLoi}}</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div *ngIf="listJobs==null" class="inner-box my-resume">
+            <h3><div>Công ty hiện tại không tuyển nhân viên</div></h3>
+        </div>
+        <div *ngIf="listJobs!=null" class="inner-box my-resume">
+        <h2 class="section-title">Đang tuyển dụng</h2>
+        <div class="row">
+            <div *ngFor="let jobs of listJobs | slice: (page-1) * pageSize: (page-1) * pageSize + pageSize">
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="job-list">
+                        <div class="thumb">
+                            <a href="job-details.html"><img src="assets/img/jobs/img-1.jpg" alt=""></a>
+                        </div>
+                        <div class="job-list-content">
+                            <h4><a href="/jobdetail/{{jobs.jobId}}/{{jobs.nganh.nganhId}}">{{jobs.tenJob}}</a></h4>
+                            <p><a href="/companydetail/{{jobs.congTy.congtyId}}">{{jobs.congTy.tenCongTy}}</a></p>
+                            <p>Thời Gian Làm Việc: <span class="full-time">{{jobs.tgLamViec == 1 ? 'Full-Time' : (jobs.tgLamViec == 0 ? 'Part-Time' : '')}}</span></p>
+                            <div class="job-tag">
+                                <div class="pull-left">
+                                    <div class="meta-tag">
+                                        <span>Số Lượng:{{jobs.soLuong}}</span>
+                                        <span><i class="ti-location-pin"></i>{{jobs.diaChi}}</span>
+                                        <span><i class="ti-time"></i>60/Hour</span>
+                                    </div>
+                                </div>
+                                <div class="pull-right">
+                                    <div class="icon">
+                                        <i class="ti-heart" (click)="onBookmark(jobs)"></i>
+                                    </div>
+                                    <div class="btn btn-common btn-rm" (click)="onApply(jobs)">Apply Job</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <ngb-pagination [(page)]="page" [pageSize]="pageSize" [collectionSize]="listJobs.length" *ngIf="listJobs"></ngb-pagination>
+        </div>
+    </div>
+</div>
+<!-- End Content -->

@@ -32,4 +32,7 @@ export class CompanyService {
     companySaveUngVien(companySaveUngVien : CompanySaveCandidateDTO){
         return this.http.post(this.baseUrl + '/saveCandidate', companySaveUngVien);
     }
+    getAllCompany() {
+        return this.http.get(this.baseUrl + '/getAllCompanies');
+    }
 }

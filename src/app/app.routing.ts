@@ -29,6 +29,8 @@ import { DetailresumeComponent} from './detailresume/detailresume.component';
 import { ManagejobdetailComponent} from './managejobdetail/managejobdetail.component';
 import { ManageEditJobdetailComponent} from './manage-edit-jobdetail/manage-edit-jobdetail.component';
 import { SavedcompanyComponent } from './savedcompany/savedcompany.component';
+import { BrowsercompanyComponent} from './browsercompany/browsercompany.component';
+import { DetailcompanyComponent} from './detailcompany/detailcompany.component';
 //phucnh
 
 const routes: Routes = [
@@ -67,6 +69,8 @@ const routes: Routes = [
   { path: 'detailresume/:id', component: DetailresumeComponent},
   { path: 'managejobdetail/:id' , component: ManagejobdetailComponent},
   { path: 'manageeditjobdetail/:id' , component: ManageEditJobdetailComponent },
+    {path: 'browsercompany' , component: BrowsercompanyComponent},
+    {path: 'deatilcompany/:id', component: DetailcompanyComponent},
   //phucnh
 
   { path: '**', redirectTo: '/home', pathMatch: 'full' },

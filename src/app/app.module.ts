@@ -35,6 +35,8 @@ import { ManageEditJobdetailComponent } from './manage-edit-jobdetail/manage-edi
 import { SavedcompanyComponent } from './savedcompany/savedcompany.component';
 import { ViewCandidateAccountComponent } from './view-candidate-account/view-candidate-account.component';
 import { ViewEmployerAccountComponent } from './view-employer-account/view-employer-account.component';
+import { BrowsercompanyComponent } from './browsercompany/browsercompany.component';
+import { DetailcompanyComponent } from './detailcompany/detailcompany.component';
 
 @NgModule({
   declarations: [
@@ -66,6 +68,8 @@ import { ViewEmployerAccountComponent } from './view-employer-account/view-emplo
     ManageEditJobdetailComponent,
     ViewCandidateAccountComponent,
     ViewEmployerAccountComponent,
+      BrowsercompanyComponent,
+      DetailcompanyComponent,
   ],
   imports: [
     BrowserModule,
