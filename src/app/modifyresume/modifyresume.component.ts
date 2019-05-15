@@ -47,7 +47,6 @@ export class ModifyresumeComponent implements OnInit {
     imageFile : File;
 
     ngOnInit() {
-        this.authGuardService.canAccess('ROLE_CANDIDATE');
         // this.username = JSON.parse(localStorage.getItem("currentUser")).login;
         this.email = JSON.parse(localStorage.getItem("currentUser")).email;
         console.log(this.email);

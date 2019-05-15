@@ -23,8 +23,6 @@ export class ViewCandidateAccountComponent implements OnInit {
   resume: Candidate[]
 
   ngOnInit() {
-      this.authGuardService.canAccess("ROLE_MANAGER");
-
       this.accountService.getAllUsers()
           .pipe(first())
           .subscribe(

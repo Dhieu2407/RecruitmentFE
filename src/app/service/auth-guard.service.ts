@@ -1,32 +1,20 @@
 import { Injectable } from '@angular/core';
-import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
-import { Account } from '../model/account.model';
+import { Router } from '@angular/router';
+import { AuthenticationService } from './auth.service';
 
-@Injectable({ providedIn: 'root' })
+@Injectable()
 export class AuthGuardService{
     constructor(
-        private router: Router
+        private router: Router,
+        private authService: AuthenticationService,
     ) {}
 
-    currentUser = new Account();
-
-    canAccess(role: string){
-        this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        if(!this.currentUser) {
-            alert('Bạn chưa đăng nhập');
-            this.router.navigate(['/']);
-            return;
-        }
-        if(this.currentUser.authorities[0] !== role){
-            alert('Bạn không có quyền truy cập trang này');
-            this.router.navigate(['/']);
-        }
-    }
-
-    canLogin(){
-        this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        if(this.currentUser) {
+    canActivate(): boolean{
+        if(this.authService.loggedIn()){
             return true;
-        } else return false;
+        } else {
+            this.router.navigate(['/login']);
+            return false;
+        }
     }
 }

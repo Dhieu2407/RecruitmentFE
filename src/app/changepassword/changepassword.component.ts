@@ -30,11 +30,6 @@ export class ChangepasswordComponent implements OnInit {
   confirmPassword = '';
 
   ngOnInit() {
-      if(this.authGuardService.canLogin() == false){
-          alert('Bạn chưa đăng nhập');
-          this.router.navigate(['/']);
-      }
-
       this.changePasswordForm = this.formBuilder.group({
           currentPassword: ['', Validators.required],
           newPassword: ['', Validators.required],

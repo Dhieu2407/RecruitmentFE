@@ -13,7 +13,6 @@ export class JobalertsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-      this.authGuardService.canAccess('ROLE_CANDIDATE');
   }
 
 }

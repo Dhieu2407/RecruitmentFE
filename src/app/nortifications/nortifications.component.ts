@@ -16,7 +16,6 @@ export class NortificationsComponent implements OnInit {
   account = new Account();
 
   ngOnInit() {
-      this.authGuardService.canAccess('ROLE_EMPLOYER');
       this.account = JSON.parse(localStorage.getItem('currentUser'));
   }
 

@@ -21,7 +21,6 @@ export class ModifyCompanyInfoComponent implements OnInit {
     email: string;
     imageFile: File;
     ngOnInit() {
-        this.authGuardService.canAccess("ROLE_EMPLOYER");
         this.email = JSON.parse(localStorage.getItem("currentUser")).email;
         this.company.id = JSON.parse(localStorage.getItem("currentUser")).id;
         this.modifyCompanyForm = this.formBuilder.group({

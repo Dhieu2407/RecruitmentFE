@@ -31,7 +31,6 @@ export class ManageapplicationsComponent implements OnInit {
   account = new Account();
   company = new Company();
   ngOnInit() {
-      this.authGuardService.canAccess('ROLE_EMPLOYER');
       this.account = JSON.parse(localStorage.getItem('currentUser'));
       this.page = 1;
       this.pageSize = 5;
