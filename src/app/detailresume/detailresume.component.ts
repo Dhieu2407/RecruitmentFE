@@ -6,6 +6,7 @@ import {first} from "rxjs/operators";
 import {Email} from "../model/email.model";
 import {Account} from "../model/account.model";
 import {EmailService} from '../service/email.service';
+import {ApplyService} from "../service/apply.service";
 
 @Component({
   selector: 'app-detailresume',
@@ -19,6 +20,7 @@ export class DetailresumeComponent implements OnInit {
       private route: ActivatedRoute,
       private candidateService: CandidateService,
       private emailService: EmailService,
+      private applyService: ApplyService,
   ) { }
 
     candidate = new Candidate();
@@ -30,6 +32,7 @@ export class DetailresumeComponent implements OnInit {
     nganh: string;
     hocVan: string;
     viecLam: string;
+    numberOfNotify: number;
 
   ngOnInit() {
       this.account = JSON.parse(localStorage.getItem('currentUser'));
@@ -48,6 +51,17 @@ export class DetailresumeComponent implements OnInit {
               error => {
                   console.log('Failed');
               });
+      this.applyService.getNumberNotify()
+          .pipe(first())
+          .subscribe(
+              (data: number) => {
+                  this.numberOfNotify = data;
+                  console.log(this.numberOfNotify);
+              },
+              error => {
+                  console.log('Faild');
+              }
+          );
   }
   // sendEmail() {
   //     this.email.idCompany = this.account.id;

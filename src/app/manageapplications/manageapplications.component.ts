@@ -10,6 +10,7 @@ import {CompanyService} from "../service/company.service";
 import {Candidate} from "../model/candidate.model";
 import {Apply} from "../model/apply.model";
 import {CandidateService} from "../service/candidate.service";
+import {ApplyService} from '../service/apply.service';
 
 @Component({
   selector: 'app-manageapplications',
@@ -23,13 +24,16 @@ export class ManageapplicationsComponent implements OnInit {
       private routerSnapshot: ActivatedRoute,
       private authGuardService: AuthGuardService,
       private candidate: CandidateService,
+      private applyService: ApplyService,
   ) {}
     page: number;
     pageSize: number;
-  listJobOfCompany: Job[];
+    apply = new Apply();
+    applyResult = new Apply();
   listCandidateApplyOfCompany: Apply[];
   account = new Account();
   company = new Company();
+  numberOfNotify: number;
   ngOnInit() {
       this.authGuardService.canAccess('ROLE_EMPLOYER');
       this.account = JSON.parse(localStorage.getItem('currentUser'));
@@ -47,10 +51,32 @@ export class ManageapplicationsComponent implements OnInit {
                   console.log('Failed');
               }
           );
-
-
-
-
+      this.applyService.getNumberNotify()
+          .pipe(first())
+          .subscribe(
+              (data: number) => {
+                  this.numberOfNotify = data;
+                  console.log(this.numberOfNotify);
+              },
+              error => {
+                  console.log('Faild');
+              }
+          );
+  }
+      viewDetailResume(jobId: number, candidateId: number) {
+      this.apply.jobId = jobId;
+      this.apply.candidateId = candidateId
+      this.applyService.chuyenTrangThaiXem(JSON.stringify(this.apply))
+          .pipe(first())
+          .subscribe(
+              (data: Apply) => {
+                  this.applyResult = data;
+              },
+              error => {
+                  console.log('Faild');
+              }
+          );
+      location.href = '/detailresume/' + this.apply.candidateId;
   }
 
 }

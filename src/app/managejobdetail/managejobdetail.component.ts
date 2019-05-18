@@ -7,6 +7,8 @@ import {SearchJob} from '../model/searchJob.model';
 import {first} from 'rxjs/operators';
 import {CandidateService} from "../service/candidate.service";
 import {Apply} from "../model/apply.model";
+import {ApplyService} from "../service/apply.service";
+import {Account} from "../model/account.model";
 
 @Component({
   selector: 'app-managejobdetail',
@@ -21,6 +23,7 @@ export class ManagejobdetailComponent implements OnInit {
       private jobService: JobService,
       private formBuilder: FormBuilder,
       private candidateService: CandidateService,
+      private applyService: ApplyService,
   ) { }
 
     jobId: number;
@@ -30,9 +33,12 @@ export class ManagejobdetailComponent implements OnInit {
     listApply: Apply[];
     page: number;
     pageSize: number;
+    numberOfNotify: number;
+    account = new Account();
   ngOnInit() {
       this.page = 1;
       this.pageSize = 5;
+      this.account = JSON.parse(localStorage.getItem('currentUser'));
       this.jobId = parseInt(this.routerSnapshot.snapshot.paramMap.get('id'));
       this.searchJob.jobId = this.routerSnapshot.snapshot.paramMap.get('id');
       this.jobService.getJobById(JSON.stringify(this.searchJob))
@@ -55,6 +61,17 @@ export class ManagejobdetailComponent implements OnInit {
               },
               error => {
                   console.log('Fail');
+              }
+          );
+      this.applyService.getNumberNotify()
+          .pipe(first())
+          .subscribe(
+              (data: number) => {
+                  this.numberOfNotify = data;
+                  console.log(this.numberOfNotify);
+              },
+              error => {
+                  console.log('Faild');
               }
           );
   }

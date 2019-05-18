@@ -4,6 +4,7 @@ import {Job} from '../model/job.model';
 import {Account} from '../model/account.model';
 import {Company} from '../model/company.model';
 import {first} from 'rxjs/operators';
+import {ApplyService} from "../service/apply.service";
 
 @Component({
   selector: 'app-managejob',
@@ -14,12 +15,14 @@ export class ManagejobComponent implements OnInit  {
 
     constructor(
         private jobService: JobService,
+        private applyService: ApplyService,
     ) {}
     page: number;
     pageSize: number;
     listJobOfCompany: Job[];
     account = new Account();
     company = new Company();
+    numberOfNotify: number;
     ngOnInit() {
         this.account = JSON.parse(localStorage.getItem('currentUser'));
         this.page = 1;
@@ -36,7 +39,17 @@ export class ManagejobComponent implements OnInit  {
                     console.log('Failed');
                 }
             );
-
+        this.applyService.getNumberNotify()
+            .pipe(first())
+            .subscribe(
+                (data: number) => {
+                    this.numberOfNotify = data;
+                    console.log(this.numberOfNotify);
+                },
+                error => {
+                    console.log('Faild');
+                }
+            );
 
 
 

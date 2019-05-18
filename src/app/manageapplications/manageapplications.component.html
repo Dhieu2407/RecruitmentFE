@@ -14,7 +14,7 @@
               <h4>Quản lý công việc</h4>
                 <ul class="lest item">
                     <li><a href="/managejob">Quản lý tin đăng tuyển</a></li>
-                    <li><a href="/manageapplications">Quản lý đơn xin việc</a></li>
+                    <li><a href="/manageapplications">Quản lý đơn xin việc<span class="notinumber">{{numberOfNotify}}</span></a></li>
                 </ul>
               <ul class="lest">
                 <li><a href="/changepassword">Đổi mật khẩu</a></li>
@@ -34,7 +34,7 @@
                           <a href="/detailresume/{{apply.ungVien.ungVienId}}"><img class="resume-thumb" src="{{apply.ungVien.imgUrl}}" alt=""></a>
                           <div class="manager-info">
                               <div class="manager-name">
-                                  <h4><a href="/detailresume/{{apply.ungVien.ungVienId}}">{{apply.ungVien.tenUngVien}}</a></h4>
+                                  <h4 (click)="viewDetailResume(apply.job.jobId,apply.ungVien.ungVienId)">{{apply.ungVien.tenUngVien}}</h4>
                                   <h5 *ngIf="apply.ungVien.nganh">Ngành: {{apply.ungVien.nganh.tenNganh}}</h5>
                               </div>
                               <div class="manager-meta">
@@ -44,8 +44,15 @@
                               </div>
                           </div>
                       </div>
-                      <div class="item-body">
-                          <h4><a href="/managejobdetail/{{apply.job.jobId}}">Đã Apply Job: {{apply.job.tenJob}}</a></h4>
+                      <div class="item-body" >
+                          <div class="row">
+                              <div class="col-md-10">
+                                  <h4><a href="/managejobdetail/{{apply.job.jobId}}">Đã Apply Job: {{apply.job.tenJob}}</a></h4>
+                              </div>
+                              <div class="col-md-2">
+                                  <span><p class="ti-eye" style="font-weight: bold">{{apply.trangThaiXem ==1 ? 'Đã Xem' : 'Chưa Xem'}}</p></span>
+                              </div>
+                          </div>
                       </div>
                   </div>
               <!--</div>-->
