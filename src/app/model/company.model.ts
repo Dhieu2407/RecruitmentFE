@@ -8,4 +8,5 @@ export class Company {
     phucLoi: string;
     quyMo: number;
     imgUrl: string;
+    ungVienSaved: any[];
 }
