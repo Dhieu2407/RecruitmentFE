@@ -69,6 +69,7 @@ const routes: Routes = [
   { path: 'manageeditjobdetail/:id' , component: ManageEditJobdetailComponent },
     {path: 'browsercompany' , component: BrowsercompanyComponent},
     {path: 'deatilcompany/:id', component: DetailcompanyComponent},
+
   // phucnh
     // phucnh { path: 'product-details/:id', component: ProductDetails }
     { path: 'popupcandidate', component: PopupviewcontactComponent },

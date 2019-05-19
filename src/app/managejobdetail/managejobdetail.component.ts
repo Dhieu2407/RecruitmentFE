@@ -9,6 +9,7 @@ import {CandidateService} from "../service/candidate.service";
 import {Apply} from "../model/apply.model";
 import {ApplyService} from "../service/apply.service";
 import {Account} from "../model/account.model";
+import {Company} from "../model/company.model";
 
 @Component({
   selector: 'app-managejobdetail',
@@ -34,11 +35,14 @@ export class ManagejobdetailComponent implements OnInit {
     page: number;
     pageSize: number;
     numberOfNotify: number;
+    numberOfNotifyTinder: number;
     account = new Account();
+    company = new Company();
   ngOnInit() {
       this.page = 1;
       this.pageSize = 5;
       this.account = JSON.parse(localStorage.getItem('currentUser'));
+      this.company.id = this.account.id;
       this.jobId = parseInt(this.routerSnapshot.snapshot.paramMap.get('id'));
       this.searchJob.jobId = this.routerSnapshot.snapshot.paramMap.get('id');
       this.jobService.getJobById(JSON.stringify(this.searchJob))
@@ -63,7 +67,7 @@ export class ManagejobdetailComponent implements OnInit {
                   console.log('Fail');
               }
           );
-      this.applyService.getNumberNotify()
+      this.applyService.getNumberNotify(JSON.stringify(this.company))
           .pipe(first())
           .subscribe(
               (data: number) => {
@@ -74,6 +78,16 @@ export class ManagejobdetailComponent implements OnInit {
                   console.log('Faild');
               }
           );
+      this.candidateService.getNumberNotifyTinder(JSON.stringify(this.company))
+          .pipe(first())
+          .subscribe(
+              (data: number) => {
+                  this.numberOfNotifyTinder = data;
+              },
+              error1 => {
+                  console.log('Faild');
+              }
+          )
   }
     onDeleteJob() {
         this.jobService.deleteJob(JSON.stringify(this.searchJob))

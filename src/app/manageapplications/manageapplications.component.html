@@ -9,7 +9,7 @@
               <h4>Quản lý tài khoản</h4>
               <ul class="lest item">
                 <li><a href="/modifycompany/{{this.account.id}}">Cập nhật thông tin</a></li>
-                <li><a href="/nortifications">Thông báo <span class="notinumber">2</span></a></li>
+                <li><a href="/nortifications">Thông báo <span class="notinumber">{{numberOfNotifyTinder}}</span></a></li>
               </ul>
               <h4>Quản lý công việc</h4>
                 <ul class="lest item">
@@ -32,7 +32,7 @@
               <!--<div class="col-md-6 col-sm-6 col-xs-12">-->
                   <div class="manager-resumes-item">
                       <div class="manager-content">
-                          <a href="/detailresume/{{apply.ungVien.ungVienId}}"><img class="resume-thumb" src="{{apply.ungVien.imgUrl}}" alt=""></a>
+                          <a (click)="viewDetailResume(apply.job.jobId,apply.ungVien.ungVienId)"><img class="resume-thumb" src="{{apply.ungVien.imgUrl}}" alt=""></a>
                           <div class="manager-info">
                               <div class="manager-name">
                                   <h4 (click)="viewDetailResume(apply.job.jobId,apply.ungVien.ungVienId)">{{apply.ungVien.tenUngVien}}</h4>

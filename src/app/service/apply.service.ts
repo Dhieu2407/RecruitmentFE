@@ -9,8 +9,8 @@ export class ApplyService {
     baseUrl  =  environment.baseUrl + '/apply';
     constructor(private http: HttpClient) {}
 
-    getNumberNotify() {
-        return this.http.get(this.baseUrl + '/getNumBerNotify');
+    getNumberNotify(body: string) {
+        return this.http.post(this.baseUrl + '/getNumBerNotify' , body );
     }
     chuyenTrangThaiXem(body: string) {
         return this.http.post(this.baseUrl + '/chuyenTrangThaiXem' , body);

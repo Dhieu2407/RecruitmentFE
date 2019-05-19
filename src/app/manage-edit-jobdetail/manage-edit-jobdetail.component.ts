@@ -5,6 +5,12 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {SearchJob} from "../model/searchJob.model";
 import {first} from "rxjs/operators";
 import {Job} from "../model/job.model";
+import {ApplyService} from "../service/apply.service";
+import {CandidateService} from "../service/candidate.service";
+import {Company} from "../model/company.model";
+import {AuthGuardService} from "../service/auth-guard.service";
+import {Account} from "../model/account.model";
+import {Candidate} from "../model/candidate.model";
 
 @Component({
   selector: 'app-manage-edit-jobdetail',
@@ -14,18 +20,28 @@ import {Job} from "../model/job.model";
 export class ManageEditJobdetailComponent implements OnInit {
 
   constructor(
+      private authGuardService: AuthGuardService,
       private router: Router,
       private routerSnapshot: ActivatedRoute,
       private jobService: JobService,
       private formBuilder: FormBuilder,
+      private applyService: ApplyService,
+      private candidateService: CandidateService,
   ) { }
 
     jobForm: FormGroup;
+    numberOfNotifyTinder: number;
+    numberOfNotify: number;
+    company = new Company();
     jobId: number;
     searchJob = new SearchJob();
     job = new Job();
     jobUpdate = new Job();
+    account = new Account();
   ngOnInit() {
+      this.authGuardService.canAccess('ROLE_EMPLOYER');
+      this.account = JSON.parse(localStorage.getItem('currentUser'));
+      this.company.id = this.account.id;
       this.jobForm = this.formBuilder.group({
           chiTiet: ['', Validators.required],
           tenJob: ['', Validators.required],
@@ -51,6 +67,27 @@ export class ManageEditJobdetailComponent implements OnInit {
               },
               error1 => {
                   console.log('Fail');
+              }
+          );
+      this.applyService.getNumberNotify(JSON.stringify(this.company))
+          .pipe(first())
+          .subscribe(
+              (data: number) => {
+                  this.numberOfNotify = data;
+                  console.log(this.numberOfNotify);
+              },
+              error => {
+                  console.log('Faild');
+              }
+          );
+      this.candidateService.getNumberNotifyTinder(JSON.stringify(this.company))
+          .pipe(first())
+          .subscribe(
+              (data: number) => {
+                  this.numberOfNotifyTinder = data;
+              },
+              error => {
+                  console.log('Faild');
               }
           );
   }

@@ -1,132 +1,95 @@
 <body>
-  <!-- Start Content -->
-  <div id="content">
+<!-- Start Content -->
+<div id="content">
     <div class="container">
-      <div class="row">
-          <div class="col-md-4 col-sm-4 col-xs-12">
-              <div class="right-sideabr">
-                  <div class="inner-box">
-                      <h4>Quản lý tài khoản</h4>
-                      <ul class="lest item">
-                          <li><a href="/modifycompany/{{this.account.id}}">Cập nhật thông tin</a></li>
-                          <li><a href="/nortifications">Thông báo <span class="notinumber">2</span></a></li>
-                      </ul>
-                      <h4>Quản lý công việc</h4>
-                      <ul class="lest item">
-                          <li><a href="/managejob">Quản lý tin đăng tuyển</a></li>
-                          <li><a href="/manageapplications">Quản lý đơn xin việc</a></li>
-                      </ul>
-                      <ul class="lest">
-                          <li><a href="/changepassword">Đổi mật khẩu</a></li>
-                      </ul>
-                  </div>
-              </div>
-          </div>
-        <div class="col-md-8 col-sm-8 col-xs-12">
-          <div class="job-alerts-item notification">
-            <h3 class="alerts-title">Your Notifications</h3>
-            <div class="notification-item">
-              <div class="thums">
-                <img src="assets/img/jobs/img-1.jpg" alt="">
-              </div>
-              <div class="text-left">
-                <p>Your Bookmarked job "Web designer needed" from Banana Inc, has expired.</p>
-                <span class="time"><i class="ti-time"></i>3 Hours ago</span>
-              </div>
-            </div>
-            <div class="notification-item">
-              <div class="thums">
-                <img src="assets/img/jobs/img-2.jpg" alt="">
-              </div>
-              <div class="text-left">
-                <p>Your Bookmarked job "Web designer needed" from Banana Inc, has expired.</p>
-                <span class="time"><i class="ti-time"></i>3 Hours ago</span>
-              </div>
-            </div>
-            <div class="notification-item">
-              <div class="thums">
-                <img src="assets/img/jobs/img-3.jpg" alt="">
-              </div>
-              <div class="text-left">
-                <p>Your Bookmarked job "Web designer needed" from Banana Inc, has expired.</p>
-                <span class="time"><i class="ti-time"></i>3 Hours ago</span>
-              </div>
-            </div>
-            <div class="notification-item">
-              <div class="thums">
-                <img src="assets/img/jobs/img-4.jpg" alt="">
-              </div>
-              <div class="text-left">
-                <p>Your Bookmarked job "Web designer needed" from Banana Inc, has expired.</p>
-                <span class="time"><i class="ti-time"></i>3 Hours ago</span>
-              </div>
-            </div>
-            <div class="notification-item">
-              <div class="thums">
-                <img src="assets/img/jobs/img-5.jpg" alt="">
-              </div>
-              <div class="text-left">
-                <p>Your Bookmarked job "Web designer needed" from Banana Inc, has expired.</p>
-                <span class="time"><i class="ti-time"></i>3 Hours ago</span>
-              </div>
-            </div>
-            <div class="notification-item">
-              <div class="thums">
-                <img src="assets/img/jobs/img-4.jpg" alt="">
-              </div>
-              <div class="text-left">
-                <p>Your Bookmarked job "Web designer needed" from Banana Inc, has expired.</p>
-                <span class="time"><i class="ti-time"></i>3 Hours ago</span>
-              </div>
-            </div>
-            <!-- Start Pagination -->
-            <ul class="pagination">
-              <li class="active"><a href="#" class="btn btn-common" ><i class="ti-angle-left"></i> prev</a></li>
-              <li><a href="#">1</a></li>
-              <li><a href="#">2</a></li>
-              <li><a href="#">3</a></li>
-              <li><a href="#">4</a></li>
-              <li><a href="#">5</a></li>
-              <li class="active"><a href="#" class="btn btn-common">Next <i class="ti-angle-right"></i></a></li>
-            </ul>
-            <!-- End Pagination -->
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- End Content -->
-
-    <!-- Copyright Start  -->
-    <div id="copyright">
-      <div class="container">
         <div class="row">
-          <div class="col-md-12">
-            <p>All Rights reserved &copy; 2018 - Designed & Developed by <a rel="nofollow" href="#">You</a></p>
-          </div>
+            <div class="col-md-4 col-sm-4 col-xs-12">
+                <div class="right-sideabr">
+                    <div class="inner-box">
+                        <h4>Quản lý tài khoản</h4>
+                        <ul class="lest item">
+                            <li><a href="/modifycompany/{{this.account.id}}">Cập nhật thông tin</a></li>
+                            <li><a href="/nortifications">Thông báo <span class="notinumber">{{numberOfNotifyTinder}}</span></a></li>
+                        </ul>
+                        <h4>Quản lý công việc</h4>
+                        <ul class="lest item">
+                            <li><a href="/managejob">Quản lý tin đăng tuyển</a></li>
+                            <li><a href="/manageapplications">Quản lý đơn xin việc<span class="notinumber">{{numberOfNotify}}</span></a></li>
+                            <li><a href="/savedcandidate">Ứng viên đã lưu</a></li>
+                        </ul>
+                        <ul class="lest">
+                            <li><a href="/changepassword">Đổi mật khẩu</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8 col-sm-8 col-xs-12">
+                <div class="job-alerts-item">
+                    <h3 class="alerts-title">Ứng Viên Quan Tâm Công Ty Bạn</h3>
+                    <hr>
+                    <div *ngFor="let candidate of listCandidate | slice: (page-1) * pageSize: (page-1) * pageSize + pageSize">
+                        <div class="row">
+                            <!--<div class="col-md-6 col-sm-6 col-xs-12">-->
+                            <div class="manager-resumes-item">
+                                <div class="manager-content">
+                                    <a href="detailresume/{{candidate.ungVienId}}"><img class="resume-thumb" src="{{candidate.imgUrl}}" alt=""></a>
+                                    <div class="manager-info">
+                                        <div class="manager-name">
+                                            <a href="detailresume/{{candidate.ungVienId}}"><h4>{{candidate.tenUngVien}}</h4></a>
+                                            <h5 *ngIf="candidate.nganh">Ngành: {{candidate.nganh.tenNganh}}</h5>
+                                        </div>
+                                        <div class="manager-meta">
+                                            <span class="location"><i class="ti-location-pin"></i>{{candidate.diaChi}} </span>
+                                            <span class="rate"><i></i>Năm kinh nghiệm: {{candidate.kiNang[0] !=null ? candidate.kiNang[0].soNamKinhNghiem : '0'}} year</span>
+                                            <span class="rate"><i></i>Kỹ năng: {{candidate.kiNang[0] !=null ? candidate.kiNang[0].kiNang.tenKiNang : 'Không có thông tin'}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!--</div>-->
+                        </div>
+                    </div>
+                    <ngb-pagination *ngIf="listCandidate" [(page)]="page" [pageSize]="pageSize" [collectionSize]="listCandidate.length"></ngb-pagination>
+
+
+                    <br>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-    <!-- Copyright End -->
+</div>
+<!-- End Content -->
 
+<!-- Copyright Start  -->
+<div id="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <p>All Rights reserved &copy; 2018 - Designed & Developed by <a rel="nofollow" href="#">You</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Copyright End -->
 
-  <!-- Go To Top Link -->
-  <a href="#" class="back-to-top">
+<!-- Go To Top Link -->
+<a href="#" class="back-to-top">
     <i class="ti-arrow-up"></i>
-  </a>
+</a>
 
-  <div id="loading">
+<div id="loading">
     <div id="loading-center">
-      <div id="loading-center-absolute">
-        <div class="object" id="object_one"></div>
-        <div class="object" id="object_two"></div>
-        <div class="object" id="object_three"></div>
-        <div class="object" id="object_four"></div>
-        <div class="object" id="object_five"></div>
-        <div class="object" id="object_six"></div>
-        <div class="object" id="object_seven"></div>
-        <div class="object" id="object_eight"></div>
-      </div>
+        <div id="loading-center-absolute">
+            <div class="object" id="object_one"></div>
+            <div class="object" id="object_two"></div>
+            <div class="object" id="object_three"></div>
+            <div class="object" id="object_four"></div>
+            <div class="object" id="object_five"></div>
+            <div class="object" id="object_six"></div>
+            <div class="object" id="object_seven"></div>
+            <div class="object" id="object_eight"></div>
+        </div>
     </div>
-  </div>
+</div>
 </body>

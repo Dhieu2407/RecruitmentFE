@@ -64,4 +64,10 @@ export class CandidateService {
   getCandidateApplyAllJobOfCompany(body: string) {
       return this.http.post(this.baseUrl + '/getListUngTuyenOfCompany', body);
   }
+  getNumberNotifyTinder(body: string) {
+        return this.http.post(this.baseUrl + '/getNumberNotifyTinder', body);
+  }
+  getListCandidateTinder(body: string) {
+        return this.http.post(this.baseUrl + '/getCandidateTinder', body);
+  }
 }

@@ -5,6 +5,9 @@ import {Router} from '@angular/router';
 import { AccountService } from '../service/account.service';
 import {first} from "rxjs/operators";
 import {Account} from "../model/account.model";
+import {CandidateService} from "../service/candidate.service";
+import {Company} from "../model/company.model";
+import {ApplyService} from "../service/apply.service";
 
 @Component({
   selector: 'app-changepassword',
@@ -17,14 +20,17 @@ export class ChangepasswordComponent implements OnInit {
       private authGuardService: AuthGuardService,
       private accountService: AccountService,
       private router: Router,
+      private candidateService: CandidateService,
+      private applyService: ApplyService,
   ) { }
 
   account = new Account();
   changePasswordForm: FormGroup;
-
+    company = new Company();
   roleCandidate = false;
   roleEmployer = false;
-
+    numberOfNotifyTinder: number;
+    numberOfNotify: number;
   currentPassword = '';
   newPassword = '';
   confirmPassword = '';
@@ -49,6 +55,27 @@ export class ChangepasswordComponent implements OnInit {
           this.roleEmployer = true;
           this.roleCandidate = false;
       }
+      this.company.id = this.account.id;
+      this.candidateService.getNumberNotifyTinder(JSON.stringify(this.company))
+          .pipe(first())
+          .subscribe(
+              (data: number) => {
+                  this.numberOfNotifyTinder = data;
+              },
+              error1 => {
+                  console.log('Faild');
+              }
+          );
+      this.applyService.getNumberNotify(JSON.stringify(this.company))
+          .pipe(first())
+          .subscribe(
+              (data: number) => {
+                  this.numberOfNotify = data;
+              },
+              error1 => {
+                  console.log('Faild');
+              }
+          );
   }
 
   onChangePassword(){

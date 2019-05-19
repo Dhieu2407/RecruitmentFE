@@ -9,6 +9,7 @@ import {EmailService} from '../service/email.service';
 import {ApplyService} from '../service/apply.service';
 import { CompanySaveCandidateDTO } from '../model/companySaveCandidateDTO.model';
 import { CompanyService } from '../service/company.service';
+import {Company} from "../model/company.model";
 
 @Component({
     selector: 'app-detailresume',
@@ -34,6 +35,8 @@ export class DetailresumeComponent implements OnInit {
     hocVan: string;
     viecLam: string;
     numberOfNotify: number;
+    numberOfNotifyTinder: number;
+    company = new Company();
   // sendEmail() {
   //     this.email.idCompany = this.account.id;
   //     this.email.idJob = this.idJob;
@@ -59,6 +62,7 @@ export class DetailresumeComponent implements OnInit {
       this.account = JSON.parse(localStorage.getItem('currentUser'));
       this.id = +this.route.snapshot.paramMap.get('id');
       this.idJob = +this.route.snapshot.paramMap.get('idJob');
+      this.company.id = this.account.id;
       this.candidateService.getCandidate(this.id)
           .pipe(first())
           .subscribe(
@@ -72,7 +76,7 @@ export class DetailresumeComponent implements OnInit {
               error => {
                   console.log('Failed');
               });
-      this.applyService.getNumberNotify()
+      this.applyService.getNumberNotify(JSON.stringify(this.company))
           .pipe(first())
           .subscribe(
               (data: number) => {
@@ -83,6 +87,16 @@ export class DetailresumeComponent implements OnInit {
                   console.log('Faild');
               }
           );
+      this.candidateService.getNumberNotifyTinder(JSON.stringify(this.company))
+          .pipe(first())
+          .subscribe(
+              (data: number) => {
+                  this.numberOfNotifyTinder = data;
+              },
+              error1 => {
+                  console.log('Faild');
+              }
+          )
   }
     // sendEmail() {
     //     this.email.idCompany = this.account.id;

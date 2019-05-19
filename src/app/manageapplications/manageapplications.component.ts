@@ -34,6 +34,7 @@ export class ManageapplicationsComponent implements OnInit {
   account = new Account();
   company = new Company();
   numberOfNotify: number;
+    numberOfNotifyTinder: number;
   ngOnInit() {
       this.authGuardService.canAccess('ROLE_EMPLOYER');
       this.account = JSON.parse(localStorage.getItem('currentUser'));
@@ -51,12 +52,22 @@ export class ManageapplicationsComponent implements OnInit {
                   console.log('Failed');
               }
           );
-      this.applyService.getNumberNotify()
+      this.applyService.getNumberNotify(JSON.stringify(this.company))
           .pipe(first())
           .subscribe(
               (data: number) => {
                   this.numberOfNotify = data;
                   console.log(this.numberOfNotify);
+              },
+              error => {
+                  console.log('Faild');
+              }
+          );
+      this.candidate.getNumberNotifyTinder(JSON.stringify(this.company))
+          .pipe(first())
+          .subscribe(
+              (data: number) => {
+                  this.numberOfNotifyTinder = data;
               },
               error => {
                   console.log('Faild');

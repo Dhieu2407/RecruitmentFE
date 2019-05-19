@@ -5,6 +5,8 @@ import {Account} from '../model/account.model';
 import {Company} from '../model/company.model';
 import {first} from 'rxjs/operators';
 import {ApplyService} from "../service/apply.service";
+import {Candidate} from "../model/candidate.model";
+import {CandidateService} from "../service/candidate.service";
 
 @Component({
   selector: 'app-managejob',
@@ -16,6 +18,7 @@ export class ManagejobComponent implements OnInit  {
     constructor(
         private jobService: JobService,
         private applyService: ApplyService,
+        private candidateService: CandidateService,
     ) {}
     page: number;
     pageSize: number;
@@ -23,6 +26,7 @@ export class ManagejobComponent implements OnInit  {
     account = new Account();
     company = new Company();
     numberOfNotify: number;
+    numberOfNotifyTinder: number;
     ngOnInit() {
         this.account = JSON.parse(localStorage.getItem('currentUser'));
         this.page = 1;
@@ -39,7 +43,7 @@ export class ManagejobComponent implements OnInit  {
                     console.log('Failed');
                 }
             );
-        this.applyService.getNumberNotify()
+        this.applyService.getNumberNotify(JSON.stringify(this.company))
             .pipe(first())
             .subscribe(
                 (data: number) => {
@@ -50,7 +54,16 @@ export class ManagejobComponent implements OnInit  {
                     console.log('Faild');
                 }
             );
-
+        this.candidateService.getNumberNotifyTinder(JSON.stringify(this.company))
+            .pipe(first())
+            .subscribe(
+                (data: number) => {
+                    this.numberOfNotifyTinder = data;
+                },
+                error => {
+                    console.log('Faild');
+                }
+            );
 
 
     }
