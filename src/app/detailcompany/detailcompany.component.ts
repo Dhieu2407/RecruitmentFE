@@ -5,6 +5,8 @@ import {CompanyService} from '../service/company.service';
 import {first} from "rxjs/operators";
 import {Job} from '../model/job.model';
 import {JobService} from '../service/job.service';
+import { CompanySaveCandidateDTO } from '../model/companySaveCandidateDTO.model';
+import { CandidateService } from '../service/candidate.service';
 
 @Component({
   selector: 'app-detailcompany',
@@ -18,6 +20,7 @@ export class DetailcompanyComponent implements OnInit {
       private routerSnapshot: ActivatedRoute,
       private companyService: CompanyService,
       private jobService: JobService,
+      private candidateService: CandidateService
   ) { }
     company = new Company();
     companySearchJob = new Company();
@@ -25,6 +28,7 @@ export class DetailcompanyComponent implements OnInit {
     listJobs: Job[];
     page: number;
     pageSize: number;
+    companySaveCandidateDTO  = new CompanySaveCandidateDTO();
   ngOnInit() {
       this.page = 1;
       this.pageSize = 4;
@@ -53,5 +57,21 @@ export class DetailcompanyComponent implements OnInit {
               }
           );
   }
+
+  onSave(company: any) {
+    this.companySaveCandidateDTO.candidateId = JSON.parse(localStorage.getItem("currentUser")).id;
+    this.companySaveCandidateDTO.companyId = company.congtyId;
+    this.candidateService
+        .saveCompany(this.companySaveCandidateDTO)
+        .pipe(first())
+        .subscribe(
+            (data: any) => {
+                console.log(data);
+            },
+            error => {
+                console.log("Faild");
+            }
+        );
+}
 
 }

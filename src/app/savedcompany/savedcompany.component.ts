@@ -21,8 +21,10 @@ export class SavedcompanyComponent implements OnInit {
     showJob: boolean;
     companyList: Company[];
     companySaveCandidateDto = new CompanySaveCandidateDTO();
+    notificationCount : number;
 
     ngOnInit() {
+        this.notificationCount = 0;
         this.page = 1;
         this.pageSize = 10;
         this.showJob = false;
@@ -38,6 +40,33 @@ export class SavedcompanyComponent implements OnInit {
                     // console.log(data);
                     this.companyList = data;
                     console.log(this.companyList);
+                },
+                error => {
+                    console.log("Failed");
+                }
+            );
+        this.candidateService
+            .getAllSavedCompanies(this.id)
+            .pipe(first())
+            .subscribe(
+                (data: Company[]) => {
+                    // console.log(data);
+                    this.companyList = data;
+                    // console.log();
+                    console.log(this.companyList);
+
+                    for (var i = 0; i < this.companyList.length; ++i) {
+                        var savedCandidatesByCurrentCompany = this.companyList[i].ungVienSaved;
+                        console.log(savedCandidatesByCurrentCompany);
+                        for (var y = 0; y < savedCandidatesByCurrentCompany.length; ++y) {
+                            if (savedCandidatesByCurrentCompany[y].ungVien.ungVienId == this.id || savedCandidatesByCurrentCompany[y].ungVien == this.id) {
+                                this.notificationCount++;
+                                break;
+                            }
+                        }
+                    }
+                    console.log("matched");
+                    console.log(this.notificationCount);
                 },
                 error => {
                     console.log("Failed");
