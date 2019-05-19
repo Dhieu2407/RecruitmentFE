@@ -37,6 +37,8 @@ import { ViewCandidateAccountComponent } from './view-candidate-account/view-can
 import { ViewEmployerAccountComponent } from './view-employer-account/view-employer-account.component';
 import { BrowsercompanyComponent } from './browsercompany/browsercompany.component';
 import { DetailcompanyComponent } from './detailcompany/detailcompany.component';
+import { SavedcandidateComponent } from './savedcandidate/savedcandidate.component';
+import { CandidateNotificationComponent } from './candidate-notification/candidate-notification.component';
 
 @NgModule({
   declarations: [
@@ -61,15 +63,17 @@ import { DetailcompanyComponent } from './detailcompany/detailcompany.component'
     AppliedJobComponent,
     CompanyDetailComponent,
     DetailresumeComponent,
-      SavedcompanyComponent,
+    SavedcompanyComponent,
     ManageRecruitmentComponent,
     ManagejobComponent,
     ManagejobdetailComponent,
     ManageEditJobdetailComponent,
     ViewCandidateAccountComponent,
     ViewEmployerAccountComponent,
-      BrowsercompanyComponent,
-      DetailcompanyComponent,
+    BrowsercompanyComponent,
+    DetailcompanyComponent,
+    SavedcandidateComponent,
+    CandidateNotificationComponent,
   ],
   imports: [
     BrowserModule,
