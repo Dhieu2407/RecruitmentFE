@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpResponse} from '@angular/common/http';
 import { Account } from '../model/account.model';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment.prod';
@@ -15,12 +15,12 @@ export class AccountService {
       return this.http.get(this.baseUrl + '/users');
   }
 
-  getAccount() {
-    return this.http.get(this.baseUrl + '/account');
+  get(): Observable<HttpResponse<Account>> {
+     return this.http.get<Account>(this.baseUrl + '/account', { observe: 'response' });
   }
 
-  saveAccount(account: Account) {
-    return this.http.post(this.baseUrl + '/account', account);
+  save(account: any): Observable<HttpResponse<any>> {
+     return this.http.post(this.baseUrl + '/account', account, { observe: 'response' });
   }
 
   createUser(account: Account) {

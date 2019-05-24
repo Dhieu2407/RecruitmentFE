@@ -9,6 +9,7 @@ import {Major} from "../model/major.model";
 import { CandidateService } from '../service/candidate.service';
 import { CandidateSaveJobsDTO } from '../model/candidateSaveJobsDTO.model';
 import { MajorService } from '../service/major.service';
+import { Account } from '../model/account.model'
 
 @Component({
   selector: 'app-job',
@@ -22,9 +23,10 @@ export class JobComponent implements OnInit {
     private router: Router,
     private jobService: JobService,
     private candidateService: CandidateService,
-    private majorService: MajorService
+    private majorService: MajorService,
   ) { }
 
+  account: Account;
   searchJobForm: FormGroup;
   listJobs: Job[];
   job = new Job();

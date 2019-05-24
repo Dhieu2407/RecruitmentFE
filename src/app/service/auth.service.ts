@@ -10,57 +10,54 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class AuthenticationService {
 
   authUrl  =  environment.baseUrl;
-  private currentUserSubject: BehaviorSubject<Account>;
-  public currentUser: Observable<Account>;
 
   constructor(private router: Router,
               private http: HttpClient,
-  ) {
-      this.currentUserSubject = new BehaviorSubject<Account>(JSON.parse(localStorage.getItem('currentUser')));
-      this.currentUser = this.currentUserSubject.asObservable();
+  ) {}
+
+  public getToken() {
+     return localStorage.getItem('authenticationToken');
   }
 
-  getUsers() {
-    return  this.http.get(`${this.authUrl}/authenticate`);
-  }
+    login(data) {
+        return this.http.post<any>(`${this.authUrl}/authenticate`, {username: data.username, password: data.password},
+            { observe: 'response' }).pipe(map(authenticateSuccess.bind(this)));
 
-    public get currentUserValue(): Account {
-        return this.currentUserSubject.value;
+        function authenticateSuccess(resp) {
+            const bearerToken = resp.headers.get('Authorization');
+            if (bearerToken && bearerToken.slice(0, 7) === 'Bearer ') {
+                const token = bearerToken.slice(7, bearerToken.length);
+                //this.storeAuthenticationToken(jwt, credentials.rememberMe);
+                return token;
+            }
+        }
     }
 
-  login(username: string, password: string) {
-    return this.http.post<any>(`${this.authUrl}/authenticate`, {username: username, password: password})
-      .pipe(map(user => {
-        // login successful if there's a jwt token in the response
-        // if (account && account.token) {
-          // store user details and jwt token in local storage to keep user logged in between page refreshes
-            localStorage.setItem('currentUser', JSON.stringify(user));
-            this.currentUserSubject.next(user);
-        // }
+    loginWithToken(jwt, rememberMe) {
+        if (jwt) {
+            this.storeAuthenticationToken(jwt, rememberMe);
+            return Promise.resolve(jwt);
+        } else {
+            return Promise.reject('Rejected');
+        }
+    }
 
-        // this.accountService.getUserByLogin(username)
-        //     .pipe(first())
-        //     .subscribe(
-        //         (data) => {
-        //             localStorage.setItem('currentUser', JSON.stringify(data));
-        //             window.location.reload();
-        //           },
-        //         error => {
-        //                 console.log('Failed');
-        //           });
-        return user;
-      }));
-
-
-  }
+    storeAuthenticationToken(jwt, rememberMe) {
+        if (rememberMe) {
+            localStorage.setItem('authenticationToken', jwt);
+        } else {
+            sessionStorage.setItem('authenticationToken', jwt);
+        }
+        console.log(jwt);
+    }
 
   loggedIn(){
-      return !!localStorage.getItem('currentUser');
+      return !!localStorage.getItem('authenticationToken');
   }
 
   logout() {
     // remove user from local storage to log user out
-    localStorage.removeItem('currentUser');
-      this.currentUserSubject.next(null);
+    localStorage.removeItem('authenticationToken');
+    sessionStorage.removeItem('authenticationToken');
   }
 }

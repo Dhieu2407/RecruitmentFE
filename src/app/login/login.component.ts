@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
     private candidateService: CandidateService,
     private authService: AuthenticationService,
     private accountService: AccountService,
-    private authGuardService: AuthGuardService
+    private authGuardService: AuthGuardService,
 ) {}
 
   account = new Account();
@@ -29,6 +29,7 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   usernameLogin = '';
   passwordLogin = '';
+  rememberMe: boolean;
   role = '';
 
   ngOnInit() {
@@ -43,6 +44,7 @@ export class LoginComponent implements OnInit {
     this.loginForm = this.formBuilder.group({
       usernameLogin: ['', Validators.required],
       passwordLogin: ['', Validators.required],
+      rememberMe: ['',Validators],
     });
 
   }
@@ -80,11 +82,18 @@ export class LoginComponent implements OnInit {
     // call login here
     this.usernameLogin = this.loginForm.get('usernameLogin').value;
     this.passwordLogin = this.loginForm.get('passwordLogin').value;
-    this.authService.login(this.usernameLogin, this.passwordLogin)
+    this.rememberMe = this.loginForm.get('rememberMe').value;
+    if(this.rememberMe !== true) this.rememberMe = false;
+    const data = {
+        username: this.usernameLogin,
+        password: this.passwordLogin,
+        rememberMe: this.rememberMe
+    };
+    this.authService.login(data)
       .pipe(first())
       .subscribe(
         res => {
-            console.log(res);
+           this.authService.storeAuthenticationToken(res, this.rememberMe);
         },
           err => console.log(err)
       );
