@@ -7,6 +7,7 @@ import { CompanyService } from "../service/company.service";
 import { Company } from "../model/company.model";
 import { CompanySaveCandidateDTO } from "../model/companySaveCandidateDTO.model";
 import { CandidateService } from '../service/candidate.service';
+import {SearchCompany} from "../model/searchCompany.model";
 
 @Component({
     selector: "app-browsercompany",
@@ -14,12 +15,16 @@ import { CandidateService } from '../service/candidate.service';
     styleUrls: ["./browsercompany.component.css"]
 })
 export class BrowsercompanyComponent implements OnInit {
-    constructor(private formBuilder: FormBuilder, private majorService: MajorService, private companyService: CompanyService,  private candidateService: CandidateService, ) {}
+    constructor(private formBuilder: FormBuilder,
+                private majorService: MajorService,
+                private companyService: CompanyService,
+                private candidateService: CandidateService, ) {}
     searchCompanyForm: FormGroup;
     listMajor: Major[];
     listSearchCompany: Company[];
     page: number;
     pageSize: number;
+    searchCompany = new SearchCompany();
     companySaveCandidateDTO = new CompanySaveCandidateDTO();
     ngOnInit() {
         this.page = 1;
@@ -67,5 +72,22 @@ export class BrowsercompanyComponent implements OnInit {
                     console.log("Faild");
                 }
             );
+    }
+    onSubmit(buttonType): void {
+        if (buttonType === 'Search') {
+            this.searchCompany.companyName = this.searchCompanyForm.get('keyword').value;
+            this.searchCompany.careerId = this.searchCompanyForm.get('career').value;
+            this.companyService.getSearchCompany(JSON.stringify(this.searchCompany))
+                .pipe(first())
+                .subscribe(
+                    (data: Company[]) => {
+                        this.listSearchCompany = data;
+                        console.log(this.listSearchCompany);
+                    },
+                    error => {
+                        console.log('Faild');
+                    }
+                );
+        }
     }
 }

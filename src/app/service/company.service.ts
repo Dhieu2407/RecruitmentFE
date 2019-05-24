@@ -38,4 +38,7 @@ export class CompanyService {
     getSavedCandidate(id: number) {
         return this.http.get(this.baseUrl + '/getSavedCandidate/' + id);
     }
+    getSearchCompany(body: string) {
+        return this.http.post(this.baseUrl + '/searchCompany' , body);
+    }
 }
