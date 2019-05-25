@@ -49,6 +49,7 @@ export class ModifyresumeComponent implements OnInit {
     email : string;
     imageFile : File;
     allCertificates : Certificate[];
+    imageSrc: string;
 
     ngOnInit() {
         this.authGuardService.canAccess('ROLE_CANDIDATE');
@@ -133,6 +134,7 @@ export class ModifyresumeComponent implements OnInit {
             .subscribe(
                 (data: Candidate) => {
                     this.candidate = data;
+                    this.imageSrc = this.candidate.imgUrl;
                     this.modifyResumeForm.get("email").setValue(this.email);
                     this.modifyResumeForm.get("name").setValue(this.candidate.tenUngVien);
                     this.modifyResumeForm.get("phone").setValue(this.candidate.sdt);
@@ -356,6 +358,14 @@ export class ModifyresumeComponent implements OnInit {
     onFileChanged(event) {
         this.imageFile = event.target.files[0];
         console.log(this.imageFile);
+        if (event.target.files && event.target.files[0]) {
+            const file = event.target.files[0];
+
+            const reader = new FileReader();
+            reader.onload = e => this.imageSrc = reader.result as string;
+
+            reader.readAsDataURL(file);
+        }
     }
 
     onUpload(){

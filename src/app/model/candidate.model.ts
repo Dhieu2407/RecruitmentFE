@@ -22,4 +22,5 @@ export class Candidate {
   diaChi : string;
   ungVienId : number;
   chungChi: Certificate;
+  imgUrl: string;
 }

@@ -1,70 +1,84 @@
 <body>
-  <!-- Content section Start -->
-  <section id="content">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-9 col-md-offset-2">
-          <div class="page-ads box">
+    <!-- Content section Start -->
+    <section id="content">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9 col-md-offset-2">
+                    <div class="page-ads box">
+                        <form class="form-ad">
+                            <form [formGroup]="modifyResumeForm" (ngSubmit)="onSubmit(buttonType)" ngNativeValidate>
 
-            <form class="form-ad">
-              <form [formGroup]="modifyResumeForm" (ngSubmit)="onSubmit(buttonType)" ngNativeValidate>
-              <div class="divider"><h3>Thông tin cơ bản</h3></div>
-              <div class="form-group">
-                <label class="control-label" for="textarea">Tên</label>
-                <input type="text" class="form-control" placeholder="Tên của bạn" formControlName="name" id="name" [disabled]="true">
-              </div>
-              <div class="form-group">
-                <label class="control-label" for="textarea"></label>
-                <label class="control-label" for="textarea">Email</label>
-                <input type="email" class="form-control" placeholder="Your@domain.com" formControlName="email" id="email" [disabled]="true">
-              </div>
+                                <div class="form-group">
+                                    <div class="button-group">
+                                        <div class="action-buttons">
+                                            <div class="upload-button">
+                                                <div class="divider"><h3>Ảnh đại diện</h3></div>
+                                                <input id="cover_img_file" type="file" (change)="onFileChanged($event)" />
+                                                <img id="blah" [src]="imageSrc || 'http://placehold.it/180'" alt="your image" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
-              <div class="form-group">
-                <label class="control-label" for="textarea">Số Điện Thoại</label>
-                <input type="text" class="form-control"  placeholder="Số điện thoai" formControlName="phone" id="phone" required>
-              </div>
+                                <div class="divider"><h3>Thông tin cơ bản</h3></div>
 
-              <div class="form-group">
-                <label class="control-label" for="textarea">Địa chỉ</label>
-                <input type="text" class="form-control"  placeholder="Địa chỉ" formControlName="address" id="address" required>
-              </div>
+                                <div class="form-group">
+                                    <label class="control-label" for="textarea">Tên</label>
+                                    <input type="text" class="form-control" placeholder="Tên của bạn" formControlName="name" id="name" [disabled]="true" />
+                                </div>
 
-              <div class="form-group">
-                <label class="control-label" for="textarea">Chuyên ngành</label>
-                <select class="form-control" id="career" formControlName="career" name="career">
-                  <option value="" selected>Select Major</option>
-                  <option *ngFor="let major of allMajors" [value]="major.tenNganh"> {{major.tenNganh}}</option>
-                </select>
-                <!-- <input type="text" class="form-control"  placeholder="Tiêu đề (e.g. Lập trình viên)" formControlName="career" id="career" required> -->
-              </div>
-              <!-- <div class="form-group">
+                                <div class="form-group">
+                                    <label class="control-label" for="textarea"></label>
+                                    <label class="control-label" for="textarea">Email</label>
+                                    <input type="email" class="form-control" placeholder="Your@domain.com" formControlName="email" id="email" [disabled]="true" />
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label" for="textarea">Số Điện Thoại</label>
+                                    <input type="text" class="form-control" placeholder="Số điện thoai" formControlName="phone" id="phone" required />
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label" for="textarea">Địa chỉ</label>
+                                    <input type="text" class="form-control" placeholder="Địa chỉ" formControlName="address" id="address" required />
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label" for="textarea">Chuyên ngành</label>
+                                    <select class="form-control" id="career" formControlName="career" name="career">
+                                        <option value="" selected>Select Major</option>
+                                        <option *ngFor="let major of allMajors" [value]="major.tenNganh"> {{ major.tenNganh }}</option>
+                                    </select>
+                                    <!-- <input type="text" class="form-control"  placeholder="Tiêu đề (e.g. Lập trình viên)" formControlName="career" id="career" required> -->
+                                </div>
+                                <!-- <div class="form-group">
                 <label class="control-label" for="textarea">Vị trí(Mong muốn)</label>
                 <input type="text" class="form-control"  placeholder="Vị trí, e.g" formControlName="wantedPosition" id="wantedPosition" required>
               </div> -->
-              <!--<div class="form-group">-->
-                <!--<label class="control-label" for="textarea">Web</label>-->
-                <!--<input type="text" class="form-control"  placeholder="Website address">-->
-              <!--</div>-->
-              <!--<div class="form-group">-->
-                <!--<label class="control-label" for="textarea">Pre Hour</label>-->
-                <!--<input type="text" class="form-control"  placeholder="Salary, e.g. 85">-->
-              <!--</div>-->
-              <!-- <div class="form-group">
+                                <!--<div class="form-group">-->
+                                <!--<label class="control-label" for="textarea">Web</label>-->
+                                <!--<input type="text" class="form-control"  placeholder="Website address">-->
+                                <!--</div>-->
+                                <!--<div class="form-group">-->
+                                <!--<label class="control-label" for="textarea">Pre Hour</label>-->
+                                <!--<input type="text" class="form-control"  placeholder="Salary, e.g. 85">-->
+                                <!--</div>-->
+                                <!-- <div class="form-group">
                 <label class="control-label" for="textarea">Tuổi</label>
                 <input type="text" class="form-control"  placeholder="Tuổi của bạn" formControlName="age" id="age" required>
               </div> -->
 
-              <div class="form-group">
-                <label class="control-label" for="textarea">Lương mong muốn</label>
-                <input type="number" class="form-control"  placeholder="$$$" formControlName="wantedSalary" id="wantedSalary" required>
-              </div>
+                                <div class="form-group">
+                                    <label class="control-label" for="textarea">Lương mong muốn</label>
+                                    <input type="number" class="form-control" placeholder="$$$" formControlName="wantedSalary" id="wantedSalary" required />
+                                </div>
 
-              <!-- <div class="form-group">
+                                <!-- <div class="form-group">
                 <label class="control-label" for="textarea">Số năm kinh nghiệm</label>
                 <input type="number" class="form-control"  placeholder="Nhập số năm kinh nghiệm" formControlName="yearsOfExperience" id="yearsOfExperience" required>
               </div> -->
 
-              <!-- <div class="form-group">
+                                <!-- <div class="form-group">
                 <label class="control-label" for="textarea">Hình thức làm việc</label>
                 <select class="form-control" formControlName="workForm" id="workForm" required>
                   <option value="0">Part Time</option>
@@ -72,81 +86,63 @@
 
                 </select>
               </div> -->
-              <!-- <div class="form-group">
+                                <!-- <div class="form-group">
                 <label class="control-label" for="textarea">Kiến thức chuyên môn</label>
                 <textarea class="form-control" rows="5" formControlName="expertise" id="expertise" required></textarea>
               </div> -->
 
-              <div class="form-group">
-                <label class="control-label" for="textarea">Mục tiêu nghề nghiệp</label>
-                <textarea class="form-control" rows="5" formControlName="careerGoals" id="careerGoals" required></textarea>
-              </div>
+                                <div class="form-group">
+                                    <label class="control-label" for="textarea">Mục tiêu nghề nghiệp</label>
+                                    <textarea class="form-control" rows="5" formControlName="careerGoals" id="careerGoals" required></textarea>
+                                </div>
 
+                                <div class="divider"><h3>Bằng cấp</h3></div>
+                                <div class="add-post-btn">
+                                    <div class="pull-left">
+                                        <button (click)="createInputSchool()" class="btn-added"><i class="ti-plus"></i> Add New Education</button>
+                                    </div>
+                                </div>
+                                <div formArrayName="school" *ngFor="let s of modifyResumeForm.get('school').controls; let i = index">
+                                    <div [formGroupName]="i">
+                                        <div class="form-group">
+                                            <label class="control-label" for="textarea">Trường</label>
+                                            <input type="text" class="form-control" placeholder="Tên trường, e.g. Đh Bách Khoa Hà Nội" formControlName="daihoc" id="daihoc" required />
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" for="textarea">Ngành học</label>
+                                            <input type="text" class="form-control" placeholder="Ngành, e.g Kế toán" formControlName="chuyennganh" id="chuyennganh" required />
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" for="textarea">GPA</label>
+                                            <input type="text" class="form-control" placeholder="Điểm, e.g 3.0" formControlName="GPA" id="GPA" required />
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <label class="control-label" for="textarea">From</label>
+                                                    <!-- <input type="date" data-date=""  placeholder="dd/MM/YYYY" class="form-control" formControlName="startAt" id="startAt" required> -->
+                                                    <input type="text" data-date="" placeholder="dd/MM/YYYY" class="form-control" formControlName="batdau" id="batdau" required />
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="control-label" for="textarea">To</label>
+                                                    <!-- <input type="date" data-date=""  placeholder="dd/MM/YYYY" class="form-control" formControlName="endAt" id="endAt" required> -->
+                                                    <input type="text" data-date="" placeholder="dd/MM/YYYY" class="form-control" formControlName="ketthuc" id="ketthuc" required />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" for="textarea">Description</label>
+                                            <textarea class="form-control" rows="7" formControlName="mota" id="mota"></textarea>
+                                        </div>
+                                        <div class="add-post-btn">
+                                            <div class="pull-right">
+                                                <button (click)="removeSchool(i)" class="btn-delete"><i class="ti-trash"></i> Delete This</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
-              <div class="form-group">
-                <div class="button-group">
-                  <div class="action-buttons">
-                    <div class="upload-button">
-                      <a class="btn btn-common" (click)="onSubmit('Browse')">Chọn ảnh</a>
-                      <input id="cover_img_file" type="file" (change)="onFileChanged($event)">
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-
-
-              <div class="divider"><h3>Bằng cấp</h3></div>
-              <div class="add-post-btn">
-              <div class="pull-left">
-                <button (click)="createInputSchool()" class="btn-added"><i class="ti-plus"></i> Add New Education</button>
-              </div>
-            </div>
-              <div formArrayName="school" *ngFor="let s of modifyResumeForm.get('school').controls; let i = index">
-                <div [formGroupName]="i">
-                    <div class="form-group">
-                        <label class="control-label" for="textarea">Trường</label>
-                        <input type="text" class="form-control" placeholder="Tên trường, e.g. Đh Bách Khoa Hà Nội" formControlName="daihoc" id="daihoc" required>
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label" for="textarea">Ngành học</label>
-                        <input type="text" class="form-control"  placeholder="Ngành, e.g Kế toán" formControlName="chuyennganh" id="chuyennganh" required>
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label" for="textarea">GPA</label>
-                        <input type="text" class="form-control"  placeholder="Điểm, e.g 3.0" formControlName="GPA" id="GPA" required>
-                      </div>
-                      <div class="form-group">
-                        <div class="row">
-                          <div class="col-md-6">
-                            <label class="control-label" for="textarea">From</label>
-                            <!-- <input type="date" data-date=""  placeholder="dd/MM/YYYY" class="form-control" formControlName="startAt" id="startAt" required> -->
-                            <input type="text" data-date=""  placeholder="dd/MM/YYYY" class="form-control" formControlName="batdau" id="batdau" required>
-                          </div>
-                          <div class="col-md-6">
-                            <label class="control-label" for="textarea">To</label>
-                            <!-- <input type="date" data-date=""  placeholder="dd/MM/YYYY" class="form-control" formControlName="endAt" id="endAt" required> -->
-                            <input type="text" data-date=""  placeholder="dd/MM/YYYY" class="form-control" formControlName="ketthuc" id="ketthuc" required>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label" for="textarea">Description</label>
-                        <textarea class="form-control" rows="7" formControlName="mota" id="mota"></textarea>
-                      </div>
-                      <div class="add-post-btn">
-                        <div class="pull-right">
-                          <button (click)="removeSchool(i)" class="btn-delete"><i class="ti-trash"></i> Delete This</button>
-                        </div>
-                      </div>
-                </div>
-            </div>
-
-
-
-
-
-              <!-- <div class="divider"><h3>Kỹ Năng</h3></div>
+                                <!-- <div class="divider"><h3>Kỹ Năng</h3></div>
                 <div formArrayName="skill" *ngFor="let s of modifyResumeForm.get('skill').controls; let i = index">
                     <div [formGroupName]="i">
                             <div class="row">
@@ -162,67 +158,47 @@
                     </div>
                 </div> -->
 
+                                <div class="divider"><h3>Kinh nghiệm làm việc</h3></div>
+                                <div class="add-post-btn">
+                                    <div class="pull-left">
+                                        <button (click)="createInputWork()" class="btn-added"><i class="ti-plus"></i> Add New Experience</button>
+                                    </div>
+                                </div>
+                                <div formArrayName="workDescription" *ngFor="let s of modifyResumeForm.get('workDescription').controls; let i = index">
+                                    <div [formGroupName]="i">
+                                        <div class="form-group">
+                                            <label class="control-label" for="textarea">Tên công ty</label>
+                                            <input type="text" class="form-control" placeholder="Tên công ty" formControlName="congTy" id="congTy" required />
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" for="textarea">Vị trí làm việc</label>
+                                            <input type="text" class="form-control" placeholder="e.g Lập trình viên BackEnd" formControlName="vitri" id="vitri" required />
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <label class="control-label" for="textarea">Thời gian bắt đầu</label>
+                                                    <input type="text" data-date="" placeholder="dd/MM/YYYY" class="form-control" formControlName="batdau" id="batdau" required />
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="control-label" for="textarea">Thời gian kết thúc</label>
+                                                    <input type="text" data-date="" placeholder="dd/MM/YYYY" class="form-control" formControlName="ketthuc" id="ketthuc" required />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" for="textarea">Mô tả công việc</label>
+                                            <textarea class="form-control" rows="7" formControlName="mota" id="mota"></textarea>
+                                        </div>
+                                        <div class="add-post-btn">
+                                            <div class="pull-right">
+                                                <button (click)="removeWork(i)" class="btn-delete"><i class="ti-trash"></i> Delete This</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-              <div class="divider"><h3>Kinh nghiệm làm việc</h3></div>
-              <div class="add-post-btn">
-              <div class="pull-left">
-                <button (click)="createInputWork()" class="btn-added"><i class="ti-plus"></i> Add New Experience</button>
-              </div>
-            </div>
-              <div formArrayName="workDescription" *ngFor="let s of modifyResumeForm.get('workDescription').controls; let i = index">
-                <div [formGroupName]="i">
-                    <div class="form-group">
-                        <label class="control-label" for="textarea">Tên công ty</label>
-                        <input type="text" class="form-control"  placeholder="Tên công ty" formControlName="congTy" id="congTy" required>
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label" for="textarea">Vị trí làm việc</label>
-                        <input type="text" class="form-control"  placeholder="e.g Lập trình viên BackEnd" formControlName="vitri" id="vitri" required>
-                      </div>
-                      <div class="form-group">
-                        <div class="row">
-                          <div class="col-md-6">
-                            <label class="control-label" for="textarea">Thời gian bắt đầu</label>
-                            <input type="text" data-date=""  placeholder="dd/MM/YYYY" class="form-control" formControlName="batdau" id="batdau" required>
-                          </div>
-                          <div class="col-md-6">
-                            <label class="control-label" for="textarea">Thời gian kết thúc</label>
-                            <input type="text" data-date=""  placeholder="dd/MM/YYYY" class="form-control" formControlName="ketthuc" id="ketthuc" required>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label" for="textarea">Mô tả công việc</label>
-                        <textarea class="form-control" rows="7" formControlName="mota" id="mota"></textarea>
-                      </div>
-                      <div class="add-post-btn">
-                        <div class="pull-right">
-                          <button (click)="removeWork(i)" class="btn-delete"><i class="ti-trash"></i> Delete This</button>
-                        </div>
-                      </div>
-                </div>
-            </div>
-
-
-
-
-
-
-              <!-- <div formArrayName="skill" *ngFor="let s of modifyResumeForm.get('skill').controls; let i = index">
+                                <!-- <div formArrayName="skill" *ngFor="let s of modifyResumeForm.get('skill').controls; let i = index">
                 <div [formGroupName]="i">
                     <div class="row">
                         <div class="col-md-6">
@@ -245,9 +221,7 @@
                 </div>
             </div> -->
 
-
-
-              <!-- <div class="divider"><h3>Kỹ Năng</h3></div>
+                                <!-- <div class="divider"><h3>Kỹ Năng</h3></div>
               <div class="form-group">
                 <div class="row">
                   <div class="col-md-6">
@@ -262,123 +236,104 @@
               </div>
                -->
 
-                <div class="divider"><h3>Kỹ Năng</h3></div>
-                <div class="add-post-btn">
-                    <div class="pull-left">
-                        <button (click)="createInputSkill()" class="btn-added"><i class="ti-plus"></i> Add New Skills</button>
+                                <div class="divider"><h3>Kỹ Năng</h3></div>
+                                <div class="add-post-btn">
+                                    <div class="pull-left">
+                                        <button (click)="createInputSkill()" class="btn-added"><i class="ti-plus"></i> Add New Skills</button>
+                                    </div>
+                                </div>
+
+                                <div formArrayName="skill" *ngFor="let s of modifyResumeForm.get('skill').controls; let i = index">
+                                    <div [formGroupName]="i">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label class="control-label" for="textarea">Tên kĩ năng</label>
+                                                <!-- <input class="form-control" placeholder="Tên kĩ năng, e.g. code BackEnd" type="text" formControlName="skillName" id="skillName" required> -->
+                                                <select class="form-control" id="career" formControlName="skillName" name="skillName">
+                                                    <option value="" selected>Select Skill</option>
+                                                    <option *ngFor="let oneSkill of allSkills" [value]="oneSkill.tenKiNang"> {{ oneSkill.tenKiNang }}</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="control-label" for="textarea">Số năm kinh nghiệm</label>
+                                                <input class="form-control" placeholder="Years of experience" type="text" formControlName="expYear" id="competentlyPercent" required />
+                                            </div>
+                                        </div>
+                                        <div class="add-post-btn">
+                                            <div class="pull-right">
+                                                <button (click)="removeSkill(i)" class="btn-delete"><i class="ti-trash"></i> Delete This</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="divider"><h3>Trình Độ Ngoại Ngữ</h3></div>
+                                <div class="add-post-btn">
+                                    <div class="pull-left">
+                                        <button (click)="createInputCertificate()" class="btn-added"><i class="ti-plus"></i> Add New Certificates</button>
+                                    </div>
+                                </div>
+
+                                <div formArrayName="certificate" *ngFor="let s of modifyResumeForm.get('certificate').controls; let i = index">
+                                    <div [formGroupName]="i">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label class="control-label" for="textarea">Tên chứng chỉ</label>
+                                                <select class="form-control" id="career" formControlName="certificateName" name="certificateName">
+                                                    <option value="" selected>Select Certificate</option>
+                                                    <option *ngFor="let oneCertificate of allCertificates" [value]="oneCertificate.tenChungChi"> {{ oneCertificate.tenChungChi }}</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="control-label" for="textarea">Điểm số</label>
+                                                <input class="form-control" placeholder="Score" type="text" formControlName="score" id="certificateScore" required />
+                                            </div>
+                                        </div>
+                                        <div class="add-post-btn">
+                                            <div class="pull-right">
+                                                <button (click)="removeCertificate(i)" class="btn-delete"><i class="ti-trash"></i> Delete This</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <button class="btn btn-common" (click)="onSubmit('Submit')">Lưu lại</button>
+                            </form>
+                        </form>
                     </div>
                 </div>
-
-                <div formArrayName="skill" *ngFor="let s of modifyResumeForm.get('skill').controls; let i = index">
-                    <div [formGroupName]="i">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label class="control-label" for="textarea">Tên kĩ năng</label>
-                                <!-- <input class="form-control" placeholder="Tên kĩ năng, e.g. code BackEnd" type="text" formControlName="skillName" id="skillName" required> -->
-                                <select class="form-control" id="career" formControlName="skillName" name="skillName">
-                                    <option value="" selected>Select Skill</option>
-                                    <option *ngFor="let oneSkill of allSkills" [value]="oneSkill.tenKiNang"> {{oneSkill.tenKiNang}}</option>
-                                  </select>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="control-label" for="textarea">Số năm kinh nghiệm</label>
-                                <input class="form-control" placeholder="Years of experience" type="text" formControlName="expYear" id="competentlyPercent" required>
-                            </div>
-                        </div>
-                        <div class="add-post-btn">
-                            <div class="pull-right">
-                              <button (click)="removeSkill(i)" class="btn-delete"><i class="ti-trash"></i> Delete This</button>
-                            </div>
-                          </div>
-                    </div>
-                </div>
-
-
-
-
-
-                <div class="divider"><h3>Trình Độ Ngoại Ngữ</h3></div>
-                <div class="add-post-btn">
-                    <div class="pull-left">
-                        <button (click)="createInputCertificate()" class="btn-added"><i class="ti-plus"></i> Add New Certificates</button>
-                    </div>
-                </div>
-
-                <div formArrayName="certificate" *ngFor="let s of modifyResumeForm.get('certificate').controls; let i = index">
-                    <div [formGroupName]="i">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label class="control-label" for="textarea">Tên chứng chỉ</label>
-                                <select class="form-control" id="career" formControlName="certificateName" name="certificateName">
-                                    <option value="" selected>Select Certificate</option>
-                                    <option *ngFor="let oneCertificate of allCertificates" [value]="oneCertificate.tenChungChi"> {{oneCertificate.tenChungChi}}</option>
-                                </select>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="control-label" for="textarea">Điểm số</label>
-                                <input class="form-control" placeholder="Score" type="text" formControlName="score" id="certificateScore" required>
-                            </div>
-                        </div>
-                        <div class="add-post-btn">
-                            <div class="pull-right">
-                            <button (click)="removeCertificate(i)" class="btn-delete"><i class="ti-trash"></i> Delete This</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                <button class="btn btn-common" (click)="onSubmit('Submit')">Lưu lại</button>
-              </form>
-            </form>
-          </div>
+            </div>
         </div>
-      </div>
+    </section>
+    <!-- Content section End -->
+
+    <!-- Go To Top Link -->
+    <a href="#" class="back-to-top">
+        <i class="ti-arrow-up"></i>
+    </a>
+
+    <div id="loading">
+        <div id="loading-center">
+            <div id="loading-center-absolute">
+                <div class="object" id="object_one"></div>
+                <div class="object" id="object_two"></div>
+                <div class="object" id="object_three"></div>
+                <div class="object" id="object_four"></div>
+                <div class="object" id="object_five"></div>
+                <div class="object" id="object_six"></div>
+                <div class="object" id="object_seven"></div>
+                <div class="object" id="object_eight"></div>
+            </div>
+        </div>
     </div>
-  </section>
-  <!-- Content section End -->
-
-  <!-- Go To Top Link -->
-  <a href="#" class="back-to-top">
-    <i class="ti-arrow-up"></i>
-  </a>
-
-  <div id="loading">
-    <div id="loading-center">
-      <div id="loading-center-absolute">
-        <div class="object" id="object_one"></div>
-        <div class="object" id="object_two"></div>
-        <div class="object" id="object_three"></div>
-        <div class="object" id="object_four"></div>
-        <div class="object" id="object_five"></div>
-        <div class="object" id="object_six"></div>
-        <div class="object" id="object_seven"></div>
-        <div class="object" id="object_eight"></div>
-      </div>
-    </div>
-  </div>
-  <script>
-    $(document).ready(function() {
-      $('#summernote').summernote({
-        height: 250,                 // set editor height
-        minHeight: null,             // set minimum height of editor
-        maxHeight: null,             // set maximum height of editor
-        focus: true                  // set focus to editable area after initializing summernote
-      });
-    });
-  </script>
-
+    <script>
+        $(document).ready(function() {
+            $("#summernote").summernote({
+                height: 250, // set editor height
+                minHeight: null, // set minimum height of editor
+                maxHeight: null, // set maximum height of editor
+                focus: true // set focus to editable area after initializing summernote
+            });
+        });
+    </script>
 </body>
