@@ -1,5 +1,6 @@
 import { skill } from './skill.model';
 import { Major } from './major.model';
+import { Certificate } from './certificate.model';
 
 export class Candidate {
   id: number;
@@ -20,4 +21,5 @@ export class Candidate {
   modifyDate : string;
   diaChi : string;
   ungVienId : number;
+  chungChi: Certificate;
 }

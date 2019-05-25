@@ -16,7 +16,6 @@ export class Resume {
   careerGoals: string; // mục tiêu nghề nghiệp
 
   // education
-  certificate: string; // bằng cấp
   major: string; // ngành học
   school: string;
   fromDate: any;
@@ -33,6 +32,9 @@ export class Resume {
   // skill
   skill: string;
   competentlyPercent: number;
+
+  //language certificate
+  certificate: string;
 
   imgUrl: string;
 }

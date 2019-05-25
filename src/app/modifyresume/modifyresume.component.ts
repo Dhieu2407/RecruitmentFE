@@ -12,6 +12,8 @@ import { formatDate } from '@angular/common';
 import { SkillService } from '../service/skill.service';
 import {AuthGuardService} from "../service/auth-guard.service";
 import { UploadService } from '../service/upload.service';
+import { Certificate } from '../model/certificate.model';
+import { CertificateService } from '../service/certificate.service';
 
 @Component({
     selector: "app-modifyresume",
@@ -27,7 +29,8 @@ export class ModifyresumeComponent implements OnInit {
         private majorService: MajorService,
         private skillService: SkillService,
         private authGuardService: AuthGuardService,
-        private uploadService: UploadService
+        private uploadService: UploadService,
+        private certificateService: CertificateService
     ) {}
 
     modifyResumeForm: FormGroup;
@@ -45,6 +48,7 @@ export class ModifyresumeComponent implements OnInit {
     username : string;
     email : string;
     imageFile : File;
+    allCertificates : Certificate[];
 
     ngOnInit() {
         this.authGuardService.canAccess('ROLE_CANDIDATE');
@@ -82,6 +86,20 @@ export class ModifyresumeComponent implements OnInit {
                 }
             );
 
+        this.certificateService
+            .getAllCertificates()
+            .pipe(first())
+            .subscribe(
+                (data: Certificate[]) => {
+                    console.log("skill success");
+                    this.allCertificates = data;
+                    console.log(this.allCertificates);
+                },
+                error => {
+                    console.log("Failed");
+                }
+            );
+
         this.modifyResumeForm = this.formBuilder.group({
             name: ["", Validators.required],
             email: ["", Validators.required],
@@ -95,7 +113,6 @@ export class ModifyresumeComponent implements OnInit {
             workForm: ["", Validators.required],
             expertise: ["", Validators.required],
             careerGoals: ["", Validators.required],
-            certificate: ["", Validators.required],
             major: ["", Validators.required],
             school: this.formBuilder.array([]),
             fromDate: ["", Validators.required],
@@ -106,7 +123,8 @@ export class ModifyresumeComponent implements OnInit {
             startDate: ["", Validators.required],
             endDate: ["", Validators.required],
             workDescription: this.formBuilder.array([]),
-            skill: this.formBuilder.array([])
+            skill: this.formBuilder.array([]),
+            certificate: this.formBuilder.array([])
         });
         this.id = +this.route.snapshot.paramMap.get("id");
         this.candidateService
@@ -137,6 +155,26 @@ export class ModifyresumeComponent implements OnInit {
                             controlArray.controls[i].get("expYear").setValue(skill[i].soNamKinhNghiem);
                         }
                     }
+
+                    // certificate
+                    console.log("cer");
+                    console.log(this.candidate);
+                    var certificate = JSON.parse(JSON.stringify(this.candidate.chungChi) + "");
+                    console.log("certificate  : " + certificate.length);
+                    var controlCertificateArray = <FormArray>this.modifyResumeForm.get("certificate");
+                    if(certificate.length == 0){
+                        controlCertificateArray.push(this.createCertificate());
+                    }else{
+                        for (var i = 0; i < certificate.length; ++i) {
+                            controlCertificateArray.push(this.createCertificate());
+                            controlCertificateArray.controls[i].get("certificateName").setValue(certificate[i].chungChi.tenChungChi);
+                            controlCertificateArray.controls[i].get("score").setValue(certificate[i].diemSo);
+                        }
+                    }
+
+
+
+
 
                     var controlArraySchool = <FormArray>this.modifyResumeForm.get("school");
                     if(this.candidate.trinhDoDaiHoc != null){
@@ -196,6 +234,10 @@ export class ModifyresumeComponent implements OnInit {
         return this.modifyResumeForm.get('workDescription') as FormArray;
     }
 
+    get certificate(): FormArray {
+        return this.modifyResumeForm.get('certificate') as FormArray;
+    }
+
     createSkill(): FormGroup {
         return this.formBuilder.group({
             skillName: "",
@@ -211,6 +253,28 @@ export class ModifyresumeComponent implements OnInit {
     removeSkill(index: number) {
         this.skill.removeAt(index);
     }
+
+
+
+    createCertificate(): FormGroup {
+        return this.formBuilder.group({
+            certificateName: "",
+            score: ""
+        });
+    }
+
+    createInputCertificate() {
+        var controlArray = <FormArray>this.modifyResumeForm.get("certificate");
+        controlArray.push(this.createCertificate());
+    }
+
+    removeCertificate(index: number) {
+        this.certificate.removeAt(index);
+    }
+
+
+
+
 
     createSchool(): FormGroup {
         return this.formBuilder.group({
@@ -264,6 +328,7 @@ export class ModifyresumeComponent implements OnInit {
             this.resume.wantedSalary = this.modifyResumeForm.get("wantedSalary").value;
             this.resume.careerGoals = this.modifyResumeForm.get("careerGoals").value;
             this.resume.skill = this.modifyResumeForm.get("skill").value;
+            this.resume.certificate = this.modifyResumeForm.get("certificate").value;
             this.resume.school = this.modifyResumeForm.get("school").value;
             this.resume.workDescription = this.modifyResumeForm.get("workDescription").value;
             this.resume.major = this.modifyResumeForm.get("career").value;

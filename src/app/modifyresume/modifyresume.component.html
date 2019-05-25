@@ -297,6 +297,47 @@
 
 
 
+                <div class="divider"><h3>Trình Độ Ngoại Ngữ</h3></div>
+                <div class="add-post-btn">
+                    <div class="pull-left">
+                        <button (click)="createInputCertificate()" class="btn-added"><i class="ti-plus"></i> Add New Certificates</button>
+                    </div>
+                </div>
+
+                <div formArrayName="certificate" *ngFor="let s of modifyResumeForm.get('certificate').controls; let i = index">
+                    <div [formGroupName]="i">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label class="control-label" for="textarea">Tên chứng chỉ</label>
+                                <select class="form-control" id="career" formControlName="certificateName" name="certificateName">
+                                    <option value="" selected>Select Certificate</option>
+                                    <option *ngFor="let oneCertificate of allCertificates" [value]="oneCertificate.tenChungChi"> {{oneCertificate.tenChungChi}}</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="control-label" for="textarea">Điểm số</label>
+                                <input class="form-control" placeholder="Score" type="text" formControlName="score" id="certificateScore" required>
+                            </div>
+                        </div>
+                        <div class="add-post-btn">
+                            <div class="pull-right">
+                            <button (click)="removeCertificate(i)" class="btn-delete"><i class="ti-trash"></i> Delete This</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
