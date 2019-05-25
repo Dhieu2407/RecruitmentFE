@@ -1,99 +1,94 @@
 <body>
-  <!-- Page Header Start -->
+    <!-- Page Header Start -->
     <div class="container">
-      <div class="row">
-        <div class="search">
-          <form class="form-ad" [formGroup]="formSearchCandidate">
-            <label>Tìm Kiếm Ứng Viên</label>
-            <div class="row">
-              <div class="col-md-4 col-sm-4 col-xs-12">
-                <input type="text" class="form-control" id="title" formControlName="title" name="title" placeholder="Search by username, email">
-              </div>
-              <div class="col-md-4 col-sm-4 col-xs-12">
-                  <select class="form-control" id="major" formControlName="major" name="major">
-                    <option value="" selected>Select Major</option>
-                    <option *ngFor="let major of allMajors" [value]="major.tenNganh"> {{major.tenNganh}}</option>
-                  </select>
+        <div class="row">
+            <div class="search">
+                <form class="form-ad" [formGroup]="formSearchCandidate">
+                    <label>Tìm Kiếm Ứng Viên</label>
+                    <div class="row">
+                        <div class="col-md-4 col-sm-4 col-xs-12">
+                            <input type="text" class="form-control" id="title" formControlName="title" name="title" placeholder="Search by username, email" />
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-12">
+                            <select class="form-control" id="major" formControlName="major" name="major">
+                                <option value="" selected>Select Major</option>
+                                <option *ngFor="let major of allMajors" [value]="major.tenNganh"> {{ major.tenNganh }}</option>
+                            </select>
 
-                <!-- <input type="text" class="form-control" id="major" formControlName="major" name="major" placeholder="Chuyên ngành"> -->
-              </div>
-              <div class="col-md-4 col-sm-4 col-xs-12">
-                <select class="form-control" id="experimentYear" formControlName="experimentYear" name="experimentYear">
-                  <option value="0"> Chưa có kinh nghiệm</option>
-                  <option value="01">1 Năm kinh nghiêm</option>
-                  <option value="2">2 Năm kinh nghiệm</option>
-                  <option value="3">3 Năm kinh nghiệm</option>
-                  <option value="4">4 Năm kinh nghiệm</option>
-                  <option value="5">Hơn 5 Năm kinh nghiệm</option>
-
-                </select>
-              </div>
+                            <!-- <input type="text" class="form-control" id="major" formControlName="major" name="major" placeholder="Chuyên ngành"> -->
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-12">
+                            <select class="form-control" id="career" formControlName="skill" name="skill">
+                                <option value="" selected>Select Skill</option>
+                                <option *ngFor="let oneSkill of allSkills" [value]="oneSkill.kinangId"> {{ oneSkill.tenKiNang }}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row" style="text-align: right">
+                        <button class="btn btn-common" (click)="onSearch()">Tìm Kiếm</button>
+                    </div>
+                </form>
             </div>
-            <div class="row" style="text-align: right">
-              <button class="btn btn-common" (click)="onSearch()">Tìm Kiếm</button>
-            </div>
-          </form>
         </div>
-      </div>
     </div>
-  <!-- Page Header End -->
+    <!-- Page Header End -->
 
-  <!-- Start Content -->
-  <div id="content">
-    <div class="container">
-      <div class="row">
-
-        <div *ngFor="let resume of listCandidate | slice: (page-1) * pageSize: (page-1) * pageSize + pageSize">
-          <div class="col-md-6 col-sm-6 col-xs-12">
-            <div class="manager-resumes-item">
-              <div class="manager-content">
-                <a href="/resume/{{resume.ungVienId}}"><img class="resume-thumb" src="{{resume.imgUrl}}" alt=""></a>
-                <div class="manager-info">
-                  <div class="manager-name">
-                    <h4><a href="/resume/{{resume.ungVienId}}">{{resume.tenUngVien}}</a></h4>
-                    <h5 *ngIf="resume.nganh">{{resume.nganh.tenNganh}}</h5>
-                  </div>
-                  <div class="manager-meta">
-                    <span class="location"><i class="ti-location-pin"></i>{{resume.diaChi}} </span>
-                    <span class="rate"><i class="ti-money"></i>{{resume.luongMongMuon}}</span>
-                  </div>
-                </div>
-              </div>
-              <div class="item-body">
-                <!-- <p>{{resume.moTa}}</p> -->
-                <div class="pull-right">
-                    <div class="icon">
-                        <i class="ti-heart" (click)="onSave(resume)"></i>
+    <!-- Start Content -->
+    <div id="content">
+        <div class="container">
+            <div class="row">
+                <div *ngFor="let resume of listCandidate | slice: (page - 1) * pageSize:(page - 1) * pageSize + pageSize">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="manager-resumes-item">
+                            <div class="manager-content">
+                                <a href="/resume/{{ resume.ungVienId }}"><img class="resume-thumb" src="{{ resume.imgUrl }}" alt=""/></a>
+                                <div class="manager-info">
+                                    <div class="manager-name">
+                                        <h4>
+                                            <a href="/resume/{{ resume.ungVienId }}">{{ resume.tenUngVien }}</a>
+                                        </h4>
+                                        <h5 *ngIf="resume.nganh">{{ resume.nganh.tenNganh }}</h5>
+                                    </div>
+                                    <div class="manager-meta">
+                                        <span class="location"><i class="ti-location-pin"></i>{{ resume.diaChi }} </span>
+                                        <span class="rate"><i class="ti-money"></i>{{ resume.luongMongMuon }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item-body">
+                                <!-- <p>{{resume.moTa}}</p> -->
+                                <div class="pull-right">
+                                    <div class="icon">
+                                        <i class="ti-heart" (click)="onSave(resume)"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-              </div>
             </div>
-          </div>
+            <ngb-pagination *ngIf="listCandidate" [(page)]="page" [pageSize]="pageSize" [collectionSize]="listCandidate.length"></ngb-pagination>
         </div>
-      </div>
-      <ngb-pagination *ngIf="listCandidate" [(page)]="page" [pageSize]="pageSize" [collectionSize]="listCandidate.length"></ngb-pagination>
-
     </div>
-  </div>
-<!-- End Content -->
+    <!-- End Content -->
 
-<!-- Go To Top Link -->
-<a href="#" class="back-to-top">
-  <i class="ti-arrow-up"></i>
-</a>
+    <!-- Go To Top Link -->
+    <a href="#" class="back-to-top">
+        <i class="ti-arrow-up"></i>
+    </a>
 
-<div id="loading">
-  <div id="loading-center">
-    <div id="loading-center-absolute">
-      <div class="object" id="object_one"></div>
-      <div class="object" id="object_two"></div>
-      <div class="object" id="object_three"></div>
-      <div class="object" id="object_four"></div>
-      <div class="object" id="object_five"></div>
-      <div class="object" id="object_six"></div>
-      <div class="object" id="object_seven"></div>
-      <div class="object" id="object_eight"></div>
+    <div id="loading">
+        <div id="loading-center">
+            <div id="loading-center-absolute">
+                <div class="object" id="object_one"></div>
+                <div class="object" id="object_two"></div>
+                <div class="object" id="object_three"></div>
+                <div class="object" id="object_four"></div>
+                <div class="object" id="object_five"></div>
+                <div class="object" id="object_six"></div>
+                <div class="object" id="object_seven"></div>
+                <div class="object" id="object_eight"></div>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
 </body>
