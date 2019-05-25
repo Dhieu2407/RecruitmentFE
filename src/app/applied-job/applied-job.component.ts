@@ -24,6 +24,8 @@ export class AppliedJobComponent implements OnInit {
     candidateSaveJobDTO: CandidateSaveJobsDTO;
     companyList: Company[];
     notificationCount: number;
+    savedJobs: Job[];
+    savedJobsId = [];
 
     ngOnInit() {
         this.notificationCount = 0;
@@ -41,6 +43,21 @@ export class AppliedJobComponent implements OnInit {
                     // console.log(data);
                     this.jobList = data;
                     console.log(this.jobList);
+                },
+                error => {
+                    console.log("Failed");
+                }
+            );
+        this.candidateService
+            .getBookmarkedJob(this.id)
+            .pipe(first())
+            .subscribe(
+                (data: Job[]) => {
+                    this.savedJobs = data;
+                    for (var i = 0; i < this.savedJobs.length; ++i) {
+                        this.savedJobsId.push(this.savedJobs[i].jobId);
+                    }
+                    console.log(this.savedJobsId);
                 },
                 error => {
                     console.log("Failed");

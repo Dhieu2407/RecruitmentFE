@@ -1,97 +1,103 @@
 <body>
     <!-- Start Content -->
     <div id="content">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-4 col-sm-4 col-xs-12">
-            <div class="right-sideabr">
-              <div class="inner-box">
-                <h4>Quản lý tài khoản</h4>
-                <ul class="lest item">
-                  <li><a href="/manageresumes">Quản lý hồ sơ</a></li>
-                  <li><a href="/bookmarkedjob">Công việc đã lưu</a></li>
-                  <li><a href="/savedcompany">Công ty đã lưu</a></li>
-                </ul>
-                <h4>Quản lý công việc</h4>
-                <ul class="lest item">
-                  <li><a href="/appliedjobs">Quản lý đơn xin việc</a></li>
-                  <li><a href="/candidatenotification">Thông báo <span class="notinumber">{{notificationCount}}</span></a></li>
-                </ul>
-                <ul class="lest">
-                  <li><a href="/changepassword">Đổi mật khẩu</a></li>
-                </ul>
-              </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-sm-4 col-xs-12">
+                    <div class="right-sideabr">
+                        <div class="inner-box">
+                            <h4>Quản lý tài khoản</h4>
+                            <ul class="lest item">
+                                <li><a href="/manageresumes">Quản lý hồ sơ</a></li>
+                                <li><a href="/bookmarkedjob">Công việc đã lưu</a></li>
+                                <li><a href="/savedcompany">Công ty đã lưu</a></li>
+                            </ul>
+                            <h4>Quản lý công việc</h4>
+                            <ul class="lest item">
+                                <li><a href="/appliedjobs">Quản lý đơn xin việc</a></li>
+                                <li>
+                                    <a href="/candidatenotification"
+                                        >Thông báo <span class="notinumber">{{ notificationCount }}</span></a
+                                    >
+                                </li>
+                            </ul>
+                            <ul class="lest">
+                                <li><a href="/changepassword">Đổi mật khẩu</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div *ngFor="let jobs of jobList | slice: (page - 1) * pageSize:(page - 1) * pageSize + pageSize">
+                    <div class="col-md-8 col-sm-8 col-xs-12" style="float:right;" *ngIf="jobList">
+                        <div class="job-list">
+                            <div class="thumb">
+                                <a href="job-details.html"><img src="assets/img/jobs/img-1.jpg" alt=""/></a>
+                            </div>
+                            <div class="job-list-content">
+                                <h4>
+                                    <a href="/jobdetail/{{ jobs.jobId }}/{{ jobs.nganh.nganhId }}">{{ jobs.tenJob }}</a>
+                                </h4>
+                                <p>{{ jobs.congTy.tenCongTy }}</p>
+                                <p>
+                                    Thời Gian Làm Việc: <span class="full-time">{{ jobs.tgLamViec == 1 ? "Full-Time" : jobs.tgLamViec == 0 ? "Part-Time" : "" }}</span>
+                                </p>
+                                <div class="job-tag">
+                                    <div class="pull-left">
+                                        <div class="meta-tag">
+                                            <span>Số Lượng:{{ jobs.soLuong }}</span>
+                                            <br />
+                                            <span><i class="ti-location-pin"></i>{{ jobs.diaChi }}</span>
+                                            <br />
+                                            <span><i class="ti-time"></i>60/Hour</span>
+                                        </div>
+                                    </div>
+                                    <div class="pull-right">
+                                        <div class="icon">
+                                            <i class="ti-heart-broken" (click)="onBookmark(jobs)" *ngIf="savedJobsId.indexOf(jobs.jobId) !== -1"></i>
+                                            <i class="ti-heart" (click)="onBookmark(jobs)" *ngIf="savedJobsId.indexOf(jobs.jobId) == -1"></i>
+                                        </div>
+                                        <div class="btn btn-common btn-rm">Cancel Apply Job</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-
-          <div *ngFor="let jobs of jobList | slice: (page-1) * pageSize: (page-1) * pageSize + pageSize">
-              <div class="col-md-8 col-sm-8 col-xs-12" style="float:right;" *ngIf="jobList">
-                  <div class="job-list">
-                      <div class="thumb">
-                          <a href="job-details.html"><img src="assets/img/jobs/img-1.jpg" alt=""></a>
-                      </div>
-                      <div class="job-list-content">
-                          <h4><a href="/jobdetail/{{jobs.jobId}}/{{jobs.nganh.nganhId}}">{{jobs.tenJob}}</a></h4>
-                          <p>{{jobs.congTy.tenCongTy}}</p>
-                          <p>Thời Gian Làm Việc: <span class="full-time">{{jobs.tgLamViec == 1 ? 'Full-Time' : (jobs.tgLamViec == 0 ? 'Part-Time' : '')}}</span></p>
-                          <div class="job-tag">
-                              <div class="pull-left">
-                                  <div class="meta-tag">
-                                      <span>Số Lượng:{{jobs.soLuong}}</span>
-                                      <br/>
-                                      <span><i class="ti-location-pin"></i>{{jobs.diaChi}}</span>
-                                      <br/>
-                                      <span><i class="ti-time"></i>60/Hour</span>
-                                  </div>
-                              </div>
-                              <div class="pull-right">
-                                  <div class="icon">
-                                      <i class="ti-heart" (click)="onBookmark(jobs)"></i>
-                                  </div>
-                                  <div class="btn btn-common btn-rm">Apply Job</div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-
-
-
         </div>
-      </div>
     </div>
     <!-- End Content -->
 
-      <!-- Copyright Start  -->
-      <div id="copyright">
+    <!-- Copyright Start  -->
+    <div id="copyright">
         <div class="container">
-          <div class="row">
-            <div class="col-md-12">
-              <p>All Rights reserved &copy; 2018 - Designed & Developed by <a rel="nofollow" href="#">You</a></p>
+            <div class="row">
+                <div class="col-md-12">
+                    <p>All Rights reserved &copy; 2018 - Designed & Developed by <a rel="nofollow" href="#">You</a></p>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
-      <!-- Copyright End -->
+    </div>
+    <!-- Copyright End -->
 
     <!-- Go To Top Link -->
     <a href="#" class="back-to-top">
-      <i class="ti-arrow-up"></i>
+        <i class="ti-arrow-up"></i>
     </a>
 
     <div id="loading">
-      <div id="loading-center">
-        <div id="loading-center-absolute">
-          <div class="object" id="object_one"></div>
-          <div class="object" id="object_two"></div>
-          <div class="object" id="object_three"></div>
-          <div class="object" id="object_four"></div>
-          <div class="object" id="object_five"></div>
-          <div class="object" id="object_six"></div>
-          <div class="object" id="object_seven"></div>
-          <div class="object" id="object_eight"></div>
+        <div id="loading-center">
+            <div id="loading-center-absolute">
+                <div class="object" id="object_one"></div>
+                <div class="object" id="object_two"></div>
+                <div class="object" id="object_three"></div>
+                <div class="object" id="object_four"></div>
+                <div class="object" id="object_five"></div>
+                <div class="object" id="object_six"></div>
+                <div class="object" id="object_seven"></div>
+                <div class="object" id="object_eight"></div>
+            </div>
         </div>
-      </div>
     </div>
-  </body>
+</body>

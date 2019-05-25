@@ -4,7 +4,7 @@ import { Candidate } from "../model/candidate.model";
 import { Job } from "../model/job.model";
 import { CandidateSaveJobsDTO } from "../model/candidateSaveJobsDTO.model";
 import { first } from "rxjs/operators";
-import { Company } from '../model/company.model';
+import { Company } from "../model/company.model";
 
 @Component({
     selector: "app-bookmarkedjob",
@@ -23,7 +23,10 @@ export class BookmarkedjobComponent implements OnInit {
     showJob: boolean;
     candidateSaveJobDTO: CandidateSaveJobsDTO;
     notificationCount: number;
-    companyList : Company[];
+    companyList: Company[];
+    appliedJobs: Job[];
+    appliedJobsId = [];
+
     ngOnInit() {
         this.notificationCount = 0;
         this.page = 1;
@@ -40,6 +43,21 @@ export class BookmarkedjobComponent implements OnInit {
                     // console.log(data);
                     this.jobList = data;
                     console.log(this.jobList);
+                },
+                error => {
+                    console.log("Failed");
+                }
+            );
+        this.candidateService
+            .getAppliedJobs(this.id)
+            .pipe(first())
+            .subscribe(
+                (data: Job[]) => {
+                    this.appliedJobs = data;
+                    for (var i = 0; i < this.appliedJobs.length; ++i) {
+                        this.appliedJobsId.push(this.appliedJobs[i].jobId);
+                    }
+                    console.log(this.appliedJobsId);
                 },
                 error => {
                     console.log("Failed");
