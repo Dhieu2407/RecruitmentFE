@@ -91,4 +91,42 @@ export class BookmarkedjobComponent implements OnInit {
                 }
             );
     }
+
+    onBookmark(jobs: Job) {
+        this.candidateSaveJobDTO = new CandidateSaveJobsDTO();
+        this.candidateSaveJobDTO.candidateId = JSON.parse(localStorage.getItem("currentUser")).id;
+        console.log(jobs);
+        this.candidateSaveJobDTO.jobId = jobs.jobId;
+        console.log(this.candidateSaveJobDTO);
+        this.candidateService
+            .candidateSaveJob(this.candidateSaveJobDTO)
+            .pipe(first())
+            .subscribe(
+                (data: any) => {
+                    console.log(data);
+                },
+                error => {
+                    console.log("Fail");
+                }
+            );
+    }
+
+    onApply(jobs: Job) {
+        this.candidateSaveJobDTO = new CandidateSaveJobsDTO();
+        this.candidateSaveJobDTO.candidateId = JSON.parse(localStorage.getItem("currentUser")).id;
+        console.log(jobs);
+        this.candidateSaveJobDTO.jobId = jobs.jobId;
+        console.log(this.candidateSaveJobDTO);
+        this.candidateService
+            .candidateApplyJob(this.candidateSaveJobDTO)
+            .pipe(first())
+            .subscribe(
+                (data: any) => {
+                    console.log(data);
+                },
+                error => {
+                    console.log("Fail");
+                }
+            );
+    }
 }
