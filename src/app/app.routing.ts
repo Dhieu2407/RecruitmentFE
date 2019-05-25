@@ -30,6 +30,7 @@ import { BrowsercompanyComponent} from './browsercompany/browsercompany.componen
 import { DetailcompanyComponent} from './detailcompany/detailcompany.component';
 import { SavedcandidateComponent } from './savedcandidate/savedcandidate.component';
 import { CandidateNotificationComponent } from './candidate-notification/candidate-notification.component';
+import {ApproveresumeapplyComponent} from './approveresumeapply/approveresumeapply.component';
 
 const routes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -86,6 +87,7 @@ const routes: Routes = [
     { path: 'manageeditjobdetail/:id', component: ManageEditJobdetailComponent },
     { path: 'savedcandidate', component: SavedcandidateComponent },
     { path: 'candidatenotification', component: CandidateNotificationComponent },
+    {path: 'approveresumeapply/:id/:idJob' , component: ApproveresumeapplyComponent},
     // phucnh
 
     { path: '**', redirectTo: '/home', pathMatch: 'full' }

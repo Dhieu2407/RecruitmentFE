@@ -39,6 +39,7 @@ import { BrowsercompanyComponent } from './browsercompany/browsercompany.compone
 import { DetailcompanyComponent } from './detailcompany/detailcompany.component';
 import { SavedcandidateComponent } from './savedcandidate/savedcandidate.component';
 import { CandidateNotificationComponent } from './candidate-notification/candidate-notification.component';
+import { ApproveresumeapplyComponent } from './approveresumeapply/approveresumeapply.component';
 
 @NgModule({
   declarations: [
@@ -74,6 +75,7 @@ import { CandidateNotificationComponent } from './candidate-notification/candida
     DetailcompanyComponent,
     SavedcandidateComponent,
     CandidateNotificationComponent,
+    ApproveresumeapplyComponent,
   ],
   imports: [
     BrowserModule,

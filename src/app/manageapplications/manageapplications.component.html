@@ -47,11 +47,14 @@
                       </div>
                       <div class="item-body" >
                           <div class="row">
-                              <div class="col-md-10">
+                              <div class="col-md-7">
                                   <h4><a href="/managejobdetail/{{apply.job.jobId}}">Đã Apply Job: {{apply.job.tenJob}}</a></h4>
                               </div>
                               <div class="col-md-2">
                                   <span><p class="ti-eye" style="font-weight: bold">{{apply.trangThaiXem ==1 ? 'Đã Xem' : 'Chưa Xem'}}</p></span>
+                              </div>
+                              <div class="col-md-3">
+                                  <span><p class="ti-eye" style="font-weight: bold">{{apply.trangThai ==0 ? 'Chưa duyệt' : apply.trangThai==1 ? 'Đã duyệt' : 'Đã từ chối'}}</p></span>
                               </div>
                           </div>
                       </div>

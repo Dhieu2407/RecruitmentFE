@@ -37,25 +37,6 @@ export class DetailresumeComponent implements OnInit {
     numberOfNotify: number;
     numberOfNotifyTinder: number;
     company = new Company();
-  // sendEmail() {
-  //     this.email.idCompany = this.account.id;
-  //     this.email.idJob = this.idJob;
-  //     this.email.emailCandidate = this.candidate.email;
-  //     this.email.contentMail = this.formEmail.get('contentEmail').value;
-  //     this.emailService.sendEmailToCandidate(JSON.stringify(this.email))
-  //         .pipe(first())
-  //         .subscribe(
-  //             (data: Email) => {
-  //                 this.emailRespon = data;
-  //                 console.log(this.emailRespon);
-  //             },
-  //             error => {
-  //                 console.log('Faild');
-  //             }
-  //         );
-  //
-  // }
-
     companySaveCandidateDto = new CompanySaveCandidateDTO();
 
   ngOnInit() {
@@ -96,26 +77,8 @@ export class DetailresumeComponent implements OnInit {
               error1 => {
                   console.log('Faild');
               }
-          )
+          );
   }
-    // sendEmail() {
-    //     this.email.idCompany = this.account.id;
-    //     this.email.idJob = this.idJob;
-    //     this.email.emailCandidate = this.candidate.email;
-    //     this.email.contentMail = this.formEmail.get('contentEmail').value;
-    //     this.emailService.sendEmailToCandidate(JSON.stringify(this.email))
-    //         .pipe(first())
-    //         .subscribe(
-    //             (data: Email) => {
-    //                 this.emailRespon = data;
-    //                 console.log(this.emailRespon);
-    //             },
-    //             error => {
-    //                 console.log('Faild');
-    //             }
-    //         );
-    //
-    // }
     onSave() {
         this.companySaveCandidateDto.candidateId = this.id;
         this.companySaveCandidateDto.companyId = JSON.parse(localStorage.getItem('currentUser')).id;

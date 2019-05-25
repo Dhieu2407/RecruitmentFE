@@ -15,4 +15,10 @@ export class ApplyService {
     chuyenTrangThaiXem(body: string) {
         return this.http.post(this.baseUrl + '/chuyenTrangThaiXem' , body);
     }
+    chuyenTrangThaiPheDuyet(body: string) {
+        return this.http.post(this.baseUrl + '/approveCandidate' , body);
+    }
+    getUngTuyern(body: string) {
+        return this.http.post(this.baseUrl + '/findApply' , body);
+    }
 }

@@ -87,7 +87,7 @@ export class ManageapplicationsComponent implements OnInit {
                   console.log('Faild');
               }
           );
-      location.href = '/detailresume/' + this.apply.candidateId;
+      location.href = '/approveresumeapply/' + this.apply.candidateId + '/' + this.apply.jobId;
   }
 
 }
