@@ -12,6 +12,7 @@ import { CompanySaveCandidateDTO } from "../model/companySaveCandidateDTO.model"
 import { CompanyService } from "../service/company.service";
 import { SkillService } from "../service/skill.service";
 import { skill } from '../model/skill.model';
+import {Account} from '../model/account.model';
 
 @Component({
     selector: "app-browseresumes",
@@ -19,8 +20,15 @@ import { skill } from '../model/skill.model';
     styleUrls: ["./browseresumes.component.css"]
 })
 export class BrowseresumesComponent implements OnInit {
-    constructor(private formBuilder: FormBuilder, private router: Router, private candidateService: CandidateService, private majorService: MajorService, private companyService: CompanyService, private skillService: SkillService) {}
+    constructor(
+        private formBuilder: FormBuilder,
+        private router: Router,
+        private candidateService: CandidateService,
+        private majorService: MajorService,
+        private companyService: CompanyService,
+        private skillService: SkillService) {}
 
+    account: Account;
     formSearchCandidate: FormGroup;
     listCandidate: Candidate[];
     allMajors: Major[];
@@ -51,6 +59,8 @@ export class BrowseresumesComponent implements OnInit {
     }
 
     ngOnInit() {
+        if(!!localStorage.getItem('currentUser') === false) this.account = JSON.parse(sessionStorage.getItem('currentUser'));
+        else this.account = JSON.parse(localStorage.getItem('currentUser'));
         this.page = 1;
         this.pageSize = 10;
         this.formSearchCandidate = this.formBuilder.group({
@@ -97,20 +107,18 @@ export class BrowseresumesComponent implements OnInit {
                 }
             );
     }
-
-    onSave(resume: Candidate) {
-        this.companySaveCandidate.candidateId = resume.ungVienId;
-        this.companySaveCandidate.companyId = JSON.parse(localStorage.getItem("currentUser")).id;
-        this.companyService
-            .companySaveUngVien(this.companySaveCandidate)
-            .pipe(first())
-            .subscribe(
-                (data: any) => {
-                    console.log(data);
-                },
-                error => {
-                    console.log("Fail");
-                }
-            );
-    }
+  onSave(resume : Candidate){
+    this.companySaveCandidate.candidateId = resume.ungVienId;
+    this.companySaveCandidate.companyId = this.account.id;
+    this.companyService.companySaveUngVien(this.companySaveCandidate)
+        .pipe(first())
+        .subscribe(
+            (data: any) => {
+                console.log(data);
+            },
+            error => {
+                console.log("Fail");
+            }
+        );
+  }
 }

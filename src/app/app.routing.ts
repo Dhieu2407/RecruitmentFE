@@ -5,7 +5,6 @@ import { JobdetailComponent } from './jobdetail/jobdetail.component';
 import { AddjobComponent } from './addjob/addjob.component';
 import { LoginComponent } from './login/login.component';
 import { ResumeComponent } from './resume/resume.component';
-import { JobalertsComponent } from './jobalerts/jobalerts.component';
 import { BookmarkedjobComponent } from './bookmarkedjob/bookmarkedjob.component';
 import { NortificationsComponent } from './nortifications/nortifications.component';
 import { ManageapplicationsComponent } from './manageapplications/manageapplications.component';
@@ -31,65 +30,51 @@ import { DetailcompanyComponent} from './detailcompany/detailcompany.component';
 import { SavedcandidateComponent } from './savedcandidate/savedcandidate.component';
 import { CandidateNotificationComponent } from './candidate-notification/candidate-notification.component';
 import {ApproveresumeapplyComponent} from './approveresumeapply/approveresumeapply.component';
+import {AuthGuardService} from "./service/auth-guard.service";
 
 const routes: Routes = [
-    { path: '', redirectTo: '/home', pathMatch: 'full' },
-    { path: 'home', component: HomeComponent },
-    { path: 'login', component: LoginComponent },
-    { path: 'job', component: JobComponent },
-    { path: 'jobdetail/:id/:idMajor', component: JobdetailComponent },
-    { path: 'addjob', component: AddjobComponent },
-    { path: 'jobalerts', component: JobalertsComponent },
-    { path: 'resume/:id', component: ResumeComponent },
-    { path: 'bookmarkedjob', component: BookmarkedjobComponent },
-    { path: 'nortifications', component: NortificationsComponent },
-    { path: 'manageapplications', component: ManageapplicationsComponent },
-    { path: 'manageresumes', component: ManageresumesComponent },
-    { path: 'changepassword', component: ChangepasswordComponent },
-    { path: 'browseresumes', component: BrowseresumesComponent },
-    { path: 'modifyresume/:id', component: ModifyresumeComponent },
-    { path: 'modifycompany/:id', component: ModifyCompanyInfoComponent },
-    { path: 'appliedjobs', component: AppliedJobComponent },
-    { path: 'companydetail/:id', component: CompanyDetailComponent },
-    { path: 'manage-recruitment', component: ManageRecruitmentComponent },
-    { path: 'view-candidate-account', component: ViewCandidateAccountComponent },
-    { path: 'view-employer-account', component: ViewEmployerAccountComponent },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'job', component: JobComponent },
+  { path: 'jobdetail/:id/:idMajor', component: JobdetailComponent},
 
-  // phucnh { path: 'product-details/:id', component: ProductDetails }
-  { path: 'popupcandidate', component: PopupviewcontactComponent },
-  {path: 'manageapplicationdetail/:id', component: ManageapplicationdetailComponent },
-    {path: 'managejob' , component: ManagejobComponent},
-    {path: 'detailresume/:id', component: DetailresumeComponent},
-    {path: 'managejobdetail/:id' , component: ManagejobdetailComponent},
-    {path: 'manageeditjobdetail/:id' , component: ManageEditJobdetailComponent },
-    {path: 'savedcompany' , component: SavedcompanyComponent },
-  { path: 'manageapplicationdetail/:id', component: ManageapplicationdetailComponent },
-  { path: 'managejob' , component: ManagejobComponent},
-  { path: 'detailresume/:id', component: DetailresumeComponent},
-  { path: 'managejobdetail/:id' , component: ManagejobdetailComponent},
-  { path: 'manageeditjobdetail/:id' , component: ManageEditJobdetailComponent },
-    {path: 'browsercompany' , component: BrowsercompanyComponent},
-    {path: 'deatilcompany/:id', component: DetailcompanyComponent},
+  { path: 'changepassword', component: ChangepasswordComponent, canActivate: [AuthGuardService]},
 
-  // phucnh
-    // phucnh { path: 'product-details/:id', component: ProductDetails }
-    { path: 'popupcandidate', component: PopupviewcontactComponent },
-    { path: 'manageapplicationdetail/:id', component: ManageapplicationdetailComponent },
-    { path: 'managejob', component: ManagejobComponent },
-    { path: 'detailresume/:id', component: DetailresumeComponent },
-    { path: 'managejobdetail/:id', component: ManagejobdetailComponent },
-    { path: 'manageeditjobdetail/:id', component: ManageEditJobdetailComponent },
-    { path: 'savedcompany', component: SavedcompanyComponent },
-    { path: 'manageapplicationdetail/:id', component: ManageapplicationdetailComponent },
-    { path: 'managejob', component: ManagejobComponent },
-    { path: 'detailresume/:id', component: DetailresumeComponent },
-    { path: 'managejobdetail/:id', component: ManagejobdetailComponent },
-    { path: 'manageeditjobdetail/:id', component: ManageEditJobdetailComponent },
-    { path: 'savedcandidate', component: SavedcandidateComponent },
+  // Role Candidate
+  { path: 'manageresumes', component: ManageresumesComponent, canActivate: [AuthGuardService]},
+  { path: 'modifyresume/:id', component: ModifyresumeComponent, canActivate: [AuthGuardService]},
+  { path: 'resume/:id', component: ResumeComponent, canActivate: [AuthGuardService]},
+  { path: 'bookmarkedjob', component: BookmarkedjobComponent, canActivate: [AuthGuardService]},
+  { path: 'browsercompany' , component: BrowsercompanyComponent, canActivate: [AuthGuardService]},
+  { path: 'detailcompany/:id', component: DetailcompanyComponent, canActivate: [AuthGuardService]},
     { path: 'candidatenotification', component: CandidateNotificationComponent },
-    {path: 'approveresumeapply/:id/:idJob' , component: ApproveresumeapplyComponent},
-    // phucnh
 
-    { path: '**', redirectTo: '/home', pathMatch: 'full' }
+  // Role Employer
+  { path: 'addjob', component: AddjobComponent, canActivate: [AuthGuardService]},
+  { path: 'manageapplications', component: ManageapplicationsComponent, canActivate: [AuthGuardService]},
+  {path: 'manageapplicationdetail/:id', component: ManageapplicationdetailComponent , canActivate: [AuthGuardService]},
+  { path: 'nortifications', component: NortificationsComponent, canActivate: [AuthGuardService]},
+  { path: 'browseresumes', component: BrowseresumesComponent, canActivate: [AuthGuardService]},
+  { path: 'modifycompany/:id', component: ModifyCompanyInfoComponent, canActivate: [AuthGuardService]},
+  { path: 'managejobdetail/:id' , component: ManagejobdetailComponent, canActivate: [AuthGuardService]},
+  { path: 'manageeditjobdetail/:id' , component: ManageEditJobdetailComponent, canActivate: [AuthGuardService]},
+    { path: 'savedcandidate', component: SavedcandidateComponent },
+    {path: 'approveresumeapply/:id/:idJob' , component: ApproveresumeapplyComponent},
+
+  // Role Manager
+  { path: 'manage-recruitment', component: ManageRecruitmentComponent, canActivate: [AuthGuardService] },
+  { path: 'view-candidate-account', component: ViewCandidateAccountComponent, canActivate: [AuthGuardService] },
+  { path: 'view-employer-account', component: ViewEmployerAccountComponent, canActivate: [AuthGuardService] },
+
+  // ??
+  { path: 'appliedjobs', component: AppliedJobComponent, canActivate: [AuthGuardService] },
+  { path: 'companydetail/:id', component: CompanyDetailComponent, canActivate: [AuthGuardService] },
+  { path: 'popupcandidate', component: PopupviewcontactComponent, canActivate: [AuthGuardService] },
+  { path: 'managejob' , component: ManagejobComponent, canActivate: [AuthGuardService]},
+  { path: 'detailresume/:id', component: DetailresumeComponent, canActivate: [AuthGuardService]},
+  { path: 'savedcompany' , component: SavedcompanyComponent, canActivate: [AuthGuardService] },
+
+  { path: '**', redirectTo: '/home', pathMatch: 'full' },
 ];
 export const routing = RouterModule.forRoot(routes);

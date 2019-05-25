@@ -36,8 +36,8 @@ export class ManageapplicationsComponent implements OnInit {
   numberOfNotify: number;
     numberOfNotifyTinder: number;
   ngOnInit() {
-      this.authGuardService.canAccess('ROLE_EMPLOYER');
-      this.account = JSON.parse(localStorage.getItem('currentUser'));
+      if(!!localStorage.getItem('currentUser') === false) this.account = JSON.parse(sessionStorage.getItem('currentUser'));
+      else this.account = JSON.parse(localStorage.getItem('currentUser'));
       this.page = 1;
       this.pageSize = 5;
       this.company.id = this.account.id;

@@ -5,7 +5,7 @@ import { Job } from "../model/job.model";
 import { CandidateSaveJobsDTO } from "../model/candidateSaveJobsDTO.model";
 import { first } from "rxjs/operators";
 import { Company } from "../model/company.model";
-
+import { Account } from '../model/account.model';
 @Component({
     selector: "app-applied-job",
     templateUrl: "./applied-job.component.html",
@@ -13,7 +13,7 @@ import { Company } from "../model/company.model";
 })
 export class AppliedJobComponent implements OnInit {
     constructor(private candidateService: CandidateService) {}
-
+   account: Account;
     id: number;
     candidate: Candidate;
     jobList: Job[];
@@ -28,13 +28,15 @@ export class AppliedJobComponent implements OnInit {
     savedJobsId = [];
 
     ngOnInit() {
+        if(!!localStorage.getItem('currentUser') === false) this.account = JSON.parse(sessionStorage.getItem('currentUser'));
+        else this.account = JSON.parse(localStorage.getItem('currentUser'));
         this.notificationCount = 0;
         this.page = 1;
         this.pageSize = 10;
         this.showJob = false;
         this.showCandidate = true;
-        // console.log(JSON.parse(localStorage.getItem("currentUser")));
-        this.id = JSON.parse(localStorage.getItem("currentUser")).id;
+
+        this.id = this.account.id;
         this.candidateService
             .getAppliedJobs(this.id)
             .pipe(first())

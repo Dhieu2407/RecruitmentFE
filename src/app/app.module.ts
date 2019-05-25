@@ -4,7 +4,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import {routing} from './app.routing';
 import {ReactiveFormsModule} from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
+import { JwtInterceptor } from './service/jwt.interceptor';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -17,7 +18,6 @@ import { ResumeComponent } from './resume/resume.component';
 import { BookmarkedjobComponent } from './bookmarkedjob/bookmarkedjob.component';
 import { NortificationsComponent } from './nortifications/nortifications.component';
 import { ManageapplicationsComponent } from './manageapplications/manageapplications.component';
-import { JobalertsComponent } from './jobalerts/jobalerts.component';
 import { ChangepasswordComponent } from './changepassword/changepassword.component';
 import { BrowseresumesComponent } from './browseresumes/browseresumes.component';
 import { ManageresumesComponent } from './manageresumes/manageresumes.component';
@@ -37,9 +37,14 @@ import { ViewCandidateAccountComponent } from './view-candidate-account/view-can
 import { ViewEmployerAccountComponent } from './view-employer-account/view-employer-account.component';
 import { BrowsercompanyComponent } from './browsercompany/browsercompany.component';
 import { DetailcompanyComponent } from './detailcompany/detailcompany.component';
+
 import { SavedcandidateComponent } from './savedcandidate/savedcandidate.component';
 import { CandidateNotificationComponent } from './candidate-notification/candidate-notification.component';
 import { ApproveresumeapplyComponent } from './approveresumeapply/approveresumeapply.component';
+
+import {AuthenticationService} from "./service/auth.service";
+import {AuthGuardService} from "./service/auth-guard.service";
+
 
 @NgModule({
   declarations: [
@@ -53,7 +58,6 @@ import { ApproveresumeapplyComponent } from './approveresumeapply/approveresumea
     BookmarkedjobComponent,
     NortificationsComponent,
     ManageapplicationsComponent,
-    JobalertsComponent,
     ChangepasswordComponent,
     BrowseresumesComponent,
     ManageresumesComponent,
@@ -85,7 +89,9 @@ import { ApproveresumeapplyComponent } from './approveresumeapply/approveresumea
     FormsModule,
     NgbModule,
   ],
-  providers: [],
+  providers: [ AuthenticationService, AuthGuardService,
+      { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -3,7 +3,6 @@ import { CompanyService } from '../service/company.service';
 import { Company } from '../model/company.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs/operators';
-import { NgLocalization } from '@angular/common';
 
 @Component({
   selector: 'app-company-detail',

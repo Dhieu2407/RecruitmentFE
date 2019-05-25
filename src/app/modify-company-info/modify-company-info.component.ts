@@ -6,6 +6,7 @@ import { CompanyService } from "../service/company.service";
 import { Router, ActivatedRoute } from "@angular/router";
 import { AuthGuardService } from "../service/auth-guard.service";
 import { UploadService } from "../service/upload.service";
+import {Account} from '../model/account.model';
 
 @Component({
     selector: "app-modify-company-info",
@@ -15,15 +16,17 @@ import { UploadService } from "../service/upload.service";
 export class ModifyCompanyInfoComponent implements OnInit {
     constructor(private uploadService: UploadService, private formBuilder: FormBuilder, private companyService: CompanyService, private router: Router, private route: ActivatedRoute, private authGuardService: AuthGuardService) {}
 
+    account: Account;
     modifyCompanyForm: FormGroup;
     company = new Company();
     id: number;
     email: string;
     imageFile: File;
     ngOnInit() {
-        this.authGuardService.canAccess("ROLE_EMPLOYER");
-        this.email = JSON.parse(localStorage.getItem("currentUser")).email;
-        this.company.id = JSON.parse(localStorage.getItem("currentUser")).id;
+        if(!!localStorage.getItem('currentUser') === false) this.account = JSON.parse(sessionStorage.getItem('currentUser'));
+        else this.account = JSON.parse(localStorage.getItem('currentUser'));
+        this.email = this.account.email;
+        this.company.id = this.account.id;
         this.modifyCompanyForm = this.formBuilder.group({
             tenCongTy: ["", Validators.required],
             email: ["", Validators.required],
@@ -60,7 +63,7 @@ export class ModifyCompanyInfoComponent implements OnInit {
             if (this.company == null) {
                 this.company = new Company();
             }
-            this.company.id = JSON.parse(localStorage.getItem("currentUser")).id;
+            this.company.id = this.account.id;
             this.company.tenCongTy = this.modifyCompanyForm.get("tenCongTy").value;
             this.company.email = this.modifyCompanyForm.get("email").value;
             this.company.sdt = this.modifyCompanyForm.get("phone").value;

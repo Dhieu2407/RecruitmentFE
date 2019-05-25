@@ -5,6 +5,7 @@ import { Job } from "../model/job.model";
 import { CandidateSaveJobsDTO } from "../model/candidateSaveJobsDTO.model";
 import { first } from "rxjs/operators";
 import { Company } from "../model/company.model";
+import { Account } from '../model/account.model';
 
 @Component({
     selector: "app-bookmarkedjob",
@@ -14,6 +15,7 @@ import { Company } from "../model/company.model";
 export class BookmarkedjobComponent implements OnInit {
     constructor(private candidateService: CandidateService) {}
 
+    account: Account;
     id: number;
     candidate: Candidate;
     jobList: Job[];
@@ -33,8 +35,9 @@ export class BookmarkedjobComponent implements OnInit {
         this.pageSize = 10;
         this.showJob = false;
         this.showCandidate = true;
-        // console.log(JSON.parse(localStorage.getItem("currentUser")));
-        this.id = JSON.parse(localStorage.getItem("currentUser")).id;
+        if(!!localStorage.getItem('currentUser') === false) this.account = JSON.parse(sessionStorage.getItem('currentUser'));
+        else this.account = JSON.parse(localStorage.getItem('currentUser'));
+        this.id = this.account.id;
         this.candidateService
             .getBookmarkedJob(this.id)
             .pipe(first())

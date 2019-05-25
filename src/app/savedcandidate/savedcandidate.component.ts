@@ -32,8 +32,8 @@ export class SavedcandidateComponent implements OnInit {
     account = new Account();
     companySaveCandidate = new CompanySaveCandidateDTO();
     ngOnInit() {
-        this.authGuardService.canAccess('ROLE_EMPLOYER');
-        this.account = JSON.parse(localStorage.getItem('currentUser'));
+        if(!!localStorage.getItem('currentUser') === false) this.account = JSON.parse(sessionStorage.getItem('currentUser'));
+        else this.account = JSON.parse(localStorage.getItem('currentUser'));
         this.company.id = this.account.id;
         this.page = 1;
         this.pageSize = 10;

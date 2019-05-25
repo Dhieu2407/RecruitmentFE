@@ -8,6 +8,7 @@ import { Company } from "../model/company.model";
 import { CompanySaveCandidateDTO } from "../model/companySaveCandidateDTO.model";
 import { CandidateService } from '../service/candidate.service';
 import {SearchCompany} from "../model/searchCompany.model";
+import {Account} from '../model/account.model';
 
 @Component({
     selector: "app-browsercompany",
@@ -19,6 +20,8 @@ export class BrowsercompanyComponent implements OnInit {
                 private majorService: MajorService,
                 private companyService: CompanyService,
                 private candidateService: CandidateService, ) {}
+
+    account:Account;
     searchCompanyForm: FormGroup;
     listMajor: Major[];
     listSearchCompany: Company[];
@@ -26,40 +29,40 @@ export class BrowsercompanyComponent implements OnInit {
     pageSize: number;
     searchCompany = new SearchCompany();
     companySaveCandidateDTO = new CompanySaveCandidateDTO();
-    ngOnInit() {
-        this.page = 1;
-        this.pageSize = 10;
-        this.searchCompanyForm = this.formBuilder.group({
-            keyword: ["", Validators.required],
-            career: ["", Validators.required]
-        });
-        this.majorService
-            .getAllMajors()
-            .pipe(first())
-            .subscribe(
-                (data: Major[]) => {
-                    this.listMajor = data;
-                },
-                error => {
-                    console.log("Faild");
-                }
-            );
-        this.companyService
-            .getAllCompany()
-            .pipe(first())
-            .subscribe(
-                (data: Company[]) => {
-                    this.listSearchCompany = data;
-                    console.log(this.listSearchCompany);
-                },
-                error => {
-                    console.log("Faild");
-                }
-            );
-    }
+  ngOnInit() {
+      if(!!localStorage.getItem('currentUser') === false) this.account = JSON.parse(sessionStorage.getItem('currentUser'));
+      else this.account = JSON.parse(localStorage.getItem('currentUser'));
+      this.page = 1;
+      this.pageSize = 10;
+      this.searchCompanyForm = this.formBuilder.group({
+          keyword: ['', Validators.required],
+          career: ['', Validators.required],
+      });
+      this.majorService.getAllMajors()
+          .pipe(first())
+          .subscribe(
+              (data: Major[]) => {
+                  this.listMajor = data;
+              },
+              error => {
+                  console.log('Fail');
+              }
+          );
+      this.companyService.getAllCompany()
+          .pipe(first())
+          .subscribe(
+              (data: Company[]) => {
+                  this.listSearchCompany = data;
+                  console.log(this.listSearchCompany);
+              },
+              error => {
+                  console.log('Fail');
+              }
+          );
+  }
 
     onSave(company: any) {
-        this.companySaveCandidateDTO.candidateId = JSON.parse(localStorage.getItem("currentUser")).id;
+        this.companySaveCandidateDTO.candidateId = this.account.id;
         this.companySaveCandidateDTO.companyId = company.congtyId;
         this.candidateService
             .saveCompany(this.companySaveCandidateDTO)

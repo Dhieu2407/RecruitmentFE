@@ -40,7 +40,8 @@ export class DetailresumeComponent implements OnInit {
     companySaveCandidateDto = new CompanySaveCandidateDTO();
 
   ngOnInit() {
-      this.account = JSON.parse(localStorage.getItem('currentUser'));
+      if(!!localStorage.getItem('currentUser') === false) this.account = JSON.parse(sessionStorage.getItem('currentUser'));
+      else this.account = JSON.parse(localStorage.getItem('currentUser'));
       this.id = +this.route.snapshot.paramMap.get('id');
       this.idJob = +this.route.snapshot.paramMap.get('idJob');
       this.company.id = this.account.id;

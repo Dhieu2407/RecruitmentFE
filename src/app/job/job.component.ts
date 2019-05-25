@@ -9,6 +9,9 @@ import { Major } from "../model/major.model";
 import { CandidateService } from "../service/candidate.service";
 import { CandidateSaveJobsDTO } from "../model/candidateSaveJobsDTO.model";
 import { MajorService } from "../service/major.service";
+import { Account } from '../model/account.model'
+import { AccountService } from '../service/account.service';
+
 
 @Component({
     selector: "app-job",
@@ -16,7 +19,13 @@ import { MajorService } from "../service/major.service";
     styleUrls: ["./job.component.css"]
 })
 export class JobComponent implements OnInit {
-    constructor(private formBuilder: FormBuilder, private router: Router, private jobService: JobService, private candidateService: CandidateService, private majorService: MajorService) {}
+    constructor(
+        private formBuilder: FormBuilder,
+        private router: Router,
+        private jobService: JobService,
+        private candidateService: CandidateService,
+        private majorService: MajorService,
+        private accountService: AccountService) {}
 
     searchJobForm: FormGroup;
     listJobs: Job[];
@@ -32,6 +41,8 @@ export class JobComponent implements OnInit {
     appliedJobsId = [];
 
     candidateSaveJobDTO: CandidateSaveJobsDTO;
+    account: Account;
+    role = '';
 
     onSubmit(buttonType): void {
         if (buttonType === "Search") {
@@ -78,7 +89,9 @@ export class JobComponent implements OnInit {
     ngOnInit() {
         this.page = 1;
         this.pageSize = 10;
-        this.id = JSON.parse(localStorage.getItem("currentUser")).id;
+        if(!!localStorage.getItem('currentUser') === false) this.account = JSON.parse(sessionStorage.getItem('currentUser'));
+        else this.account = JSON.parse(localStorage.getItem('currentUser'));
+        this.id = this.account.id;
         this.searchJobForm = this.formBuilder.group({
             keyword: ["", Validators.required],
             location: ["", Validators.required],
@@ -138,14 +151,14 @@ export class JobComponent implements OnInit {
                 }
             );
     }
-    onBookmark(jobs: Job) {
-        this.candidateSaveJobDTO = new CandidateSaveJobsDTO();
-        this.candidateSaveJobDTO.candidateId = JSON.parse(localStorage.getItem("currentUser")).id;
-        console.log(jobs);
-        this.candidateSaveJobDTO.jobId = jobs.jobId;
-        console.log(this.candidateSaveJobDTO);
-        this.candidateService
-            .candidateSaveJob(this.candidateSaveJobDTO)
+
+  onBookmark(jobs: Job) {
+    this.candidateSaveJobDTO = new CandidateSaveJobsDTO();
+    this.candidateSaveJobDTO.candidateId =  this.account.id;
+    console.log(jobs);
+    this.candidateSaveJobDTO.jobId =  jobs.jobId;
+    console.log(this.candidateSaveJobDTO);
+    this.candidateService.candidateSaveJob(this.candidateSaveJobDTO)
             .pipe(first())
             .subscribe(
                 (data: any) => {
@@ -159,7 +172,7 @@ export class JobComponent implements OnInit {
 
     onApply(jobs: Job) {
         this.candidateSaveJobDTO = new CandidateSaveJobsDTO();
-        this.candidateSaveJobDTO.candidateId = JSON.parse(localStorage.getItem("currentUser")).id;
+        this.candidateSaveJobDTO.candidateId =  this.account.id;
         console.log(jobs);
         this.candidateSaveJobDTO.jobId = jobs.jobId;
         console.log(this.candidateSaveJobDTO);

@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
     private candidateService: CandidateService,
     private authService: AuthenticationService,
     private accountService: AccountService,
-    private authGuardService: AuthGuardService
+    private authGuardService: AuthGuardService,
 ) {}
 
   account = new Account();
@@ -29,14 +29,13 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   usernameLogin = '';
   passwordLogin = '';
+  rememberMe: boolean;
   role = '';
 
   ngOnInit() {
-    if(this.authGuardService.canLogin() === true){
-        alert('Bạn đã đăng nhập');
-        this.router.navigate(['/']);
-        return;
-    }
+      if(localStorage.getItem('authenticationToken') !== null || sessionStorage.getItem('authenticationToken') !== null)
+          this.router.navigate(['/']);
+
     this.registerForm = this.formBuilder.group({
       Username: ['', Validators.required],
       Email: ['', Validators.required],
@@ -48,6 +47,7 @@ export class LoginComponent implements OnInit {
     this.loginForm = this.formBuilder.group({
       usernameLogin: ['', Validators.required],
       passwordLogin: ['', Validators.required],
+      rememberMe: ['',Validators],
     });
 
   }
@@ -85,11 +85,29 @@ export class LoginComponent implements OnInit {
     // call login here
     this.usernameLogin = this.loginForm.get('usernameLogin').value;
     this.passwordLogin = this.loginForm.get('passwordLogin').value;
-    this.authService.login(this.usernameLogin, this.passwordLogin)
+    this.rememberMe = this.loginForm.get('rememberMe').value;
+    if(this.rememberMe !== true) this.rememberMe = false;
+    const data = {
+        username: this.usernameLogin,
+        password: this.passwordLogin,
+        rememberMe: this.rememberMe
+    };
+    this.authService.login(data)
       .pipe(first())
       .subscribe(
-        token => {
-          console.log(token);
-        });
+        res => {
+            this.accountService.getAccount().pipe(first())
+                .subscribe(
+                    data => {
+                        this.authService.storeUserData(JSON.stringify(data.body), this.rememberMe);
+                    },
+                    error => {
+                        console.log(error);
+                    });
+            alert('Đăng nhập thành công');
+            location.reload();
+        },
+          err => console.log(err)
+      );
   }
 }

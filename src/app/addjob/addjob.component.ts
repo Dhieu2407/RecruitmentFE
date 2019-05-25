@@ -35,8 +35,8 @@ export class AddjobComponent implements OnInit {
     formAddJob: FormGroup;
 
   ngOnInit() {
-      this.authGuardService.canAccess('ROLE_EMPLOYER');
-      this.account = JSON.parse(localStorage.getItem('currentUser'));
+      if(!!localStorage.getItem('currentUser') === false) this.account = JSON.parse(sessionStorage.getItem('currentUser'));
+      else this.account = JSON.parse(localStorage.getItem('currentUser'));
       this.formAddJob = this.formBuilder.group({
       tenJob: ['', Validators.required],
       diaChi: ['', Validators.required],
