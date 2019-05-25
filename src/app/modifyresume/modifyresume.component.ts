@@ -8,12 +8,12 @@ import { first } from "rxjs/operators";
 import { Major } from "../model/major.model";
 import { skill } from "../model/skill.model";
 import { MajorService } from "../service/major.service";
-import { formatDate } from '@angular/common';
-import { SkillService } from '../service/skill.service';
-import {AuthGuardService} from "../service/auth-guard.service";
-import { UploadService } from '../service/upload.service';
-import { Certificate } from '../model/certificate.model';
-import { CertificateService } from '../service/certificate.service';
+import { formatDate } from "@angular/common";
+import { SkillService } from "../service/skill.service";
+import { AuthGuardService } from "../service/auth-guard.service";
+import { UploadService } from "../service/upload.service";
+import { Certificate } from "../model/certificate.model";
+import { CertificateService } from "../service/certificate.service";
 
 @Component({
     selector: "app-modifyresume",
@@ -21,17 +21,7 @@ import { CertificateService } from '../service/certificate.service';
     styleUrls: ["./modifyresume.component.css"]
 })
 export class ModifyresumeComponent implements OnInit {
-    constructor(
-        private router: Router,
-        private route: ActivatedRoute,
-        private formBuilder: FormBuilder,
-        private candidateService: CandidateService,
-        private majorService: MajorService,
-        private skillService: SkillService,
-        private authGuardService: AuthGuardService,
-        private uploadService: UploadService,
-        private certificateService: CertificateService
-    ) {}
+    constructor(private router: Router, private route: ActivatedRoute, private formBuilder: FormBuilder, private candidateService: CandidateService, private majorService: MajorService, private skillService: SkillService, private authGuardService: AuthGuardService, private uploadService: UploadService, private certificateService: CertificateService) {}
 
     modifyResumeForm: FormGroup;
 
@@ -45,14 +35,14 @@ export class ModifyresumeComponent implements OnInit {
     allSkills: skill[];
     viecLam: string;
     allSkillsBasedOnMajor: skill[];
-    username : string;
-    email : string;
-    imageFile : File;
-    allCertificates : Certificate[];
+    username: string;
+    email: string;
+    imageFile: File;
+    allCertificates: Certificate[];
     imageSrc: string;
 
     ngOnInit() {
-        this.authGuardService.canAccess('ROLE_CANDIDATE');
+        this.authGuardService.canAccess("ROLE_CANDIDATE");
         // this.username = JSON.parse(localStorage.getItem("currentUser")).login;
         this.email = JSON.parse(localStorage.getItem("currentUser")).email;
         console.log(this.email);
@@ -148,9 +138,9 @@ export class ModifyresumeComponent implements OnInit {
                     var skill = JSON.parse(JSON.stringify(this.candidate.kiNang) + "");
                     console.log(skill.length);
                     var controlArray = <FormArray>this.modifyResumeForm.get("skill");
-                    if(skill.length == 0){
+                    if (skill.length == 0) {
                         controlArray.push(this.createSkill());
-                    }else{
+                    } else {
                         for (var i = 0; i < skill.length; ++i) {
                             controlArray.push(this.createSkill());
                             controlArray.controls[i].get("skillName").setValue(skill[i].kiNang.tenKiNang);
@@ -164,9 +154,9 @@ export class ModifyresumeComponent implements OnInit {
                     var certificate = JSON.parse(JSON.stringify(this.candidate.chungChi) + "");
                     console.log("certificate  : " + certificate.length);
                     var controlCertificateArray = <FormArray>this.modifyResumeForm.get("certificate");
-                    if(certificate.length == 0){
+                    if (certificate.length == 0) {
                         controlCertificateArray.push(this.createCertificate());
-                    }else{
+                    } else {
                         for (var i = 0; i < certificate.length; ++i) {
                             controlCertificateArray.push(this.createCertificate());
                             controlCertificateArray.controls[i].get("certificateName").setValue(certificate[i].chungChi.tenChungChi);
@@ -174,12 +164,8 @@ export class ModifyresumeComponent implements OnInit {
                         }
                     }
 
-
-
-
-
                     var controlArraySchool = <FormArray>this.modifyResumeForm.get("school");
-                    if(this.candidate.trinhDoDaiHoc != null){
+                    if (this.candidate.trinhDoDaiHoc != null) {
                         var schoolData = JSON.parse(this.candidate.trinhDoDaiHoc);
                         for (var i = 0; i < schoolData.length; ++i) {
                             controlArraySchool.push(this.createSchool());
@@ -191,12 +177,12 @@ export class ModifyresumeComponent implements OnInit {
                             controlArraySchool.controls[i].get("chuyennganh").setValue(schoolData[i].chuyennganh);
                             controlArraySchool.controls[i].get("mota").setValue(schoolData[i].mota);
                         }
-                    }else{
+                    } else {
                         controlArraySchool.push(this.createSchool());
                     }
 
                     var controlArrayWork = <FormArray>this.modifyResumeForm.get("workDescription");
-                    if(this.candidate.lichSuLamViec != null){
+                    if (this.candidate.lichSuLamViec != null) {
                         var workData = JSON.parse(this.candidate.lichSuLamViec);
                         for (var i = 0; i < workData.length; ++i) {
                             controlArrayWork.push(this.createWork());
@@ -207,7 +193,7 @@ export class ModifyresumeComponent implements OnInit {
                             controlArrayWork.controls[i].get("vitri").setValue(workData[i].vitri);
                             controlArrayWork.controls[i].get("mota").setValue(workData[i].mota);
                         }
-                    }else{
+                    } else {
                         controlArrayWork.push(this.createWork());
                     }
 
@@ -225,19 +211,19 @@ export class ModifyresumeComponent implements OnInit {
     }
 
     get skill(): FormArray {
-        return this.modifyResumeForm.get('skill') as FormArray;
+        return this.modifyResumeForm.get("skill") as FormArray;
     }
 
     get school(): FormArray {
-        return this.modifyResumeForm.get('school') as FormArray;
+        return this.modifyResumeForm.get("school") as FormArray;
     }
 
     get workDescription(): FormArray {
-        return this.modifyResumeForm.get('workDescription') as FormArray;
+        return this.modifyResumeForm.get("workDescription") as FormArray;
     }
 
     get certificate(): FormArray {
-        return this.modifyResumeForm.get('certificate') as FormArray;
+        return this.modifyResumeForm.get("certificate") as FormArray;
     }
 
     createSkill(): FormGroup {
@@ -256,8 +242,6 @@ export class ModifyresumeComponent implements OnInit {
         this.skill.removeAt(index);
     }
 
-
-
     createCertificate(): FormGroup {
         return this.formBuilder.group({
             certificateName: "",
@@ -273,10 +257,6 @@ export class ModifyresumeComponent implements OnInit {
     removeCertificate(index: number) {
         this.certificate.removeAt(index);
     }
-
-
-
-
 
     createSchool(): FormGroup {
         return this.formBuilder.group({
@@ -319,9 +299,6 @@ export class ModifyresumeComponent implements OnInit {
 
     onSubmit(buttonType): void {
         if (buttonType === "Submit") {
-            // if (this.modifyResumeForm.invalid) {
-            //     return;
-            // }
             this.resume.id = JSON.parse(localStorage.getItem("currentUser")).id;
             this.resume.name = this.modifyResumeForm.get("name").value;
             this.resume.email = this.modifyResumeForm.get("email").value;
@@ -338,21 +315,27 @@ export class ModifyresumeComponent implements OnInit {
             console.log(this.resume);
 
             const uploadData = new FormData();
-            uploadData.append('file', this.imageFile, this.imageFile.name);
-            this.uploadService.uploadFile(uploadData)
-                .pipe(first())
-                .subscribe(
-                    data => {
-                        // Success
-                        console.log('Uploaded');
-                        this.resume.imgUrl = 'http://localhost:8080/api/downloadFile/'+ this.imageFile.name;
-                        this.submitData();
+            if (!this.imageFile) {
+                this.submitData();
+            } else {
+                uploadData.append("file", this.imageFile, this.imageFile.name);
+                this.uploadService
+                    .uploadFile(uploadData)
+                    .pipe(first())
+                    .subscribe(
+                        data => {
+                            // Success
+                            console.log("Uploaded");
+                            this.resume.imgUrl = "http://localhost:8080/api/downloadFile/" + this.imageFile.name;
+                            this.submitData();
                         },
-                    error => {
-                        // Failed
-                        console.log('Failed');
-                        this.submitData();
-                    });
+                        error => {
+                            // Failed
+                            console.log("Failed");
+                            this.submitData();
+                        }
+                    );
+            }
         }
     }
     onFileChanged(event) {
@@ -362,38 +345,41 @@ export class ModifyresumeComponent implements OnInit {
             const file = event.target.files[0];
 
             const reader = new FileReader();
-            reader.onload = e => this.imageSrc = reader.result as string;
+            reader.onload = e => (this.imageSrc = reader.result as string);
 
             reader.readAsDataURL(file);
         }
     }
 
-    onUpload(){
+    onUpload() {
         const uploadData = new FormData();
-        uploadData.append('file', this.imageFile, this.imageFile.name);
-        this.uploadService.uploadFile(uploadData)
+        uploadData.append("file", this.imageFile, this.imageFile.name);
+        this.uploadService
+            .uploadFile(uploadData)
             .pipe(first())
             .subscribe(
                 data => {
                     // Success
-                    console.log('Uploaded');
-                    },
+                    console.log("Uploaded");
+                },
                 error => {
                     // Failed
-                    console.log('Failed');
-                });
+                    console.log("Failed");
+                }
+            );
     }
 
-    submitData = function(){
-        this.candidateService.modifyResume(this.resume)
+    submitData = function() {
+        this.candidateService
+            .modifyResume(this.resume)
             .pipe(first())
             .subscribe(
                 (data: Candidate[]) => {
                     console.log(data);
                 },
                 error => {
-                    console.log('Failed');
+                    console.log("Failed");
                 }
-            );;
-    }
+            );
+    };
 }
