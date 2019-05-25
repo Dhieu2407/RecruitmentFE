@@ -5,7 +5,6 @@ import {JobdetailComponent} from './jobdetail/jobdetail.component';
 import {AddjobComponent} from './addjob/addjob.component';
 import {LoginComponent} from './login/login.component';
 import {ResumeComponent} from './resume/resume.component';
-import {JobalertsComponent} from './jobalerts/jobalerts.component';
 import {BookmarkedjobComponent} from './bookmarkedjob/bookmarkedjob.component';
 import {NortificationsComponent} from './nortifications/nortifications.component';
 import {ManageapplicationsComponent} from './manageapplications/manageapplications.component';
@@ -44,7 +43,6 @@ const routes: Routes = [
   { path: 'modifyresume/:id', component: ModifyresumeComponent, canActivate: [AuthGuardService]},
   { path: 'resume/:id', component: ResumeComponent, canActivate: [AuthGuardService]},
   { path: 'bookmarkedjob', component: BookmarkedjobComponent, canActivate: [AuthGuardService]},
-  { path: 'jobalerts', component: JobalertsComponent, canActivate: [AuthGuardService]},
   { path: 'browsercompany' , component: BrowsercompanyComponent, canActivate: [AuthGuardService]},
   { path: 'detailcompany/:id', component: DetailcompanyComponent, canActivate: [AuthGuardService]},
 

@@ -12,6 +12,7 @@ import { formatDate } from '@angular/common';
 import { SkillService } from '../service/skill.service';
 import {AuthGuardService} from "../service/auth-guard.service";
 import { UploadService } from '../service/upload.service';
+import { Account } from '../model/account.model';
 
 @Component({
     selector: "app-modifyresume",
@@ -33,7 +34,7 @@ export class ModifyresumeComponent implements OnInit {
     modifyResumeForm: FormGroup;
 
     resume = new Resume();
-
+    account: Account;
     id: number;
     candidate = new Candidate();
     nganh: string;
@@ -47,10 +48,11 @@ export class ModifyresumeComponent implements OnInit {
     imageFile : File;
 
     ngOnInit() {
-        // this.username = JSON.parse(localStorage.getItem("currentUser")).login;
-        this.email = JSON.parse(localStorage.getItem("currentUser")).email;
+        if(!!localStorage.getItem('currentUser') === false) this.account = JSON.parse(sessionStorage.getItem('currentUser'));
+        else this.account = JSON.parse(localStorage.getItem('currentUser'));
+        this.email = this.account.email;
         console.log(this.email);
-        this.candidate.id = JSON.parse(localStorage.getItem("currentUser")).id;
+        this.candidate.id = this.account.id;
 
         this.majorService
             .getAllMajors()
@@ -255,7 +257,7 @@ export class ModifyresumeComponent implements OnInit {
             // if (this.modifyResumeForm.invalid) {
             //     return;
             // }
-            this.resume.id = JSON.parse(localStorage.getItem("currentUser")).id;
+            this.resume.id = this.account.id;
             this.resume.name = this.modifyResumeForm.get("name").value;
             this.resume.email = this.modifyResumeForm.get("email").value;
             this.resume.phone = this.modifyResumeForm.get("phone").value;

@@ -10,6 +10,7 @@ import { CandidateService } from '../service/candidate.service';
 import { CandidateSaveJobsDTO } from '../model/candidateSaveJobsDTO.model';
 import { MajorService } from '../service/major.service';
 import { Account } from '../model/account.model'
+import { AccountService } from '../service/account.service';
 
 @Component({
   selector: 'app-job',
@@ -24,9 +25,11 @@ export class JobComponent implements OnInit {
     private jobService: JobService,
     private candidateService: CandidateService,
     private majorService: MajorService,
+    private accountService: AccountService
   ) { }
 
   account: Account;
+  role = '';
   searchJobForm: FormGroup;
   listJobs: Job[];
   job = new Job();
@@ -80,6 +83,9 @@ export class JobComponent implements OnInit {
   }
 
   ngOnInit() {
+      if(!!localStorage.getItem('currentUser') === false) this.account = JSON.parse(sessionStorage.getItem('currentUser'));
+      else this.account = JSON.parse(localStorage.getItem('currentUser'));
+
       this.page = 1;
       this.pageSize = 10;
       this.searchJobForm = this.formBuilder.group({
@@ -113,7 +119,7 @@ export class JobComponent implements OnInit {
   }
   onBookmark(jobs: Job) {
     this.candidateSaveJobDTO = new CandidateSaveJobsDTO();
-    this.candidateSaveJobDTO.candidateId =  JSON.parse(localStorage.getItem("currentUser")).id;
+    this.candidateSaveJobDTO.candidateId =  this.account.id;
     console.log(jobs);
     this.candidateSaveJobDTO.jobId =  jobs.jobId;
     console.log(this.candidateSaveJobDTO);
@@ -126,12 +132,12 @@ export class JobComponent implements OnInit {
                 error => {
                     console.log("Fail");
                 }
-            );;
+            );
     }
 
     onApply(jobs: Job) {
         this.candidateSaveJobDTO = new CandidateSaveJobsDTO();
-        this.candidateSaveJobDTO.candidateId =  JSON.parse(localStorage.getItem("currentUser")).id;
+        this.candidateSaveJobDTO.candidateId =  this.account.id;
         console.log(jobs);
         this.candidateSaveJobDTO.jobId =  jobs.jobId;
         console.log(this.candidateSaveJobDTO);
@@ -144,7 +150,7 @@ export class JobComponent implements OnInit {
                 error => {
                     console.log("Fail");
                 }
-            );;
+            );
     }
 
 }

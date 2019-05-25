@@ -4,6 +4,7 @@ import { first } from 'rxjs/operators';
 import { Candidate } from '../model/candidate.model';
 import { Job } from '../model/job.model';
 import { CandidateSaveJobsDTO } from '../model/candidateSaveJobsDTO.model';
+import { Account } from '../model/account.model';
 
 @Component({
     selector: "app-manageresumes",
@@ -13,7 +14,7 @@ import { CandidateSaveJobsDTO } from '../model/candidateSaveJobsDTO.model';
 export class ManageresumesComponent implements OnInit {
     constructor(
         private candidateService: CandidateService) {}
-
+    account: Account;
     id: number;
     candidate : Candidate;
     jobList : Job[];
@@ -28,8 +29,9 @@ export class ManageresumesComponent implements OnInit {
         this.pageSize = 10;
         this.showJob = false;
         this.showCandidate = true;
-        // console.log(JSON.parse(localStorage.getItem("currentUser")));
-        this.id = JSON.parse(localStorage.getItem("currentUser")).id;
+        if(!!localStorage.getItem('currentUser') === false) this.account = JSON.parse(sessionStorage.getItem('currentUser'));
+        else this.account = JSON.parse(localStorage.getItem('currentUser'));
+        this.id = this.account.id;
 
         this.candidateService
             .getCandidate(this.id)
@@ -70,7 +72,7 @@ export class ManageresumesComponent implements OnInit {
 
     onBookmark(jobs: Job) {
         this.candidateSaveJobDTO = new CandidateSaveJobsDTO();
-        this.candidateSaveJobDTO.candidateId =  JSON.parse(localStorage.getItem("currentUser")).id;
+        this.candidateSaveJobDTO.candidateId =  this.account.id;
         console.log(jobs);
         this.candidateSaveJobDTO.jobId =  jobs.jobId;
         console.log(this.candidateSaveJobDTO);

@@ -16,7 +16,8 @@ export class NortificationsComponent implements OnInit {
   account = new Account();
 
   ngOnInit() {
-      this.account = JSON.parse(localStorage.getItem('currentUser'));
+      if(!!localStorage.getItem('currentUser') === false) this.account = JSON.parse(sessionStorage.getItem('currentUser'));
+      else this.account = JSON.parse(localStorage.getItem('currentUser'));
   }
 
 }

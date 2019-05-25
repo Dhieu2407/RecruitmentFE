@@ -36,7 +36,8 @@ export class ChangepasswordComponent implements OnInit {
           confirmPassword: ['', Validators.required],
       });
 
-      this.account = JSON.parse(localStorage.getItem('currentUser'));
+      if(!!localStorage.getItem('currentUser') === false) this.account = JSON.parse(sessionStorage.getItem('currentUser'));
+      else this.account = JSON.parse(localStorage.getItem('currentUser'));
       if (this.account.authorities[0] === 'ROLE_CANDIDATE') {
           this.roleCandidate = true;
           this.roleEmployer = false;

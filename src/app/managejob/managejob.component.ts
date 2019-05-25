@@ -21,8 +21,8 @@ export class ManagejobComponent implements OnInit  {
     account = new Account();
     company = new Company();
     ngOnInit() {
-        this.account = JSON.parse(localStorage.getItem('currentUser'));
-        this.page = 1;
+        if(!!localStorage.getItem('currentUser') === false) this.account = JSON.parse(sessionStorage.getItem('currentUser'));
+        else this.account = JSON.parse(localStorage.getItem('currentUser'));
         this.pageSize = 5;
         this.company.id = this.account.id;
         this.jobService.getListJobOfCompany(JSON.stringify(this.company))

@@ -18,7 +18,6 @@ import { ResumeComponent } from './resume/resume.component';
 import { BookmarkedjobComponent } from './bookmarkedjob/bookmarkedjob.component';
 import { NortificationsComponent } from './nortifications/nortifications.component';
 import { ManageapplicationsComponent } from './manageapplications/manageapplications.component';
-import { JobalertsComponent } from './jobalerts/jobalerts.component';
 import { ChangepasswordComponent } from './changepassword/changepassword.component';
 import { BrowseresumesComponent } from './browseresumes/browseresumes.component';
 import { ManageresumesComponent } from './manageresumes/manageresumes.component';
@@ -53,7 +52,6 @@ import {AuthGuardService} from "./service/auth-guard.service";
     BookmarkedjobComponent,
     NortificationsComponent,
     ManageapplicationsComponent,
-    JobalertsComponent,
     ChangepasswordComponent,
     BrowseresumesComponent,
     ManageresumesComponent,

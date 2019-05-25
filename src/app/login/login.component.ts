@@ -33,6 +33,9 @@ export class LoginComponent implements OnInit {
   role = '';
 
   ngOnInit() {
+      if(localStorage.getItem('authenticationToken') !== null || sessionStorage.getItem('authenticationToken') !== null)
+          this.router.navigate(['/']);
+
     this.registerForm = this.formBuilder.group({
       Username: ['', Validators.required],
       Email: ['', Validators.required],
@@ -94,6 +97,17 @@ export class LoginComponent implements OnInit {
       .subscribe(
         res => {
            this.authService.storeAuthenticationToken(res, this.rememberMe);
+
+            this.accountService.getAccount().pipe(first())
+                .subscribe(
+                    data => {
+                        this.authService.storeUserData(JSON.stringify(data.body), this.rememberMe);
+                    },
+                    error => {
+                        console.log(error);
+                    });
+            alert('Đăng nhập thành công');
+            location.reload();
         },
           err => console.log(err)
       );

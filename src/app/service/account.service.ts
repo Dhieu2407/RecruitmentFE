@@ -15,11 +15,11 @@ export class AccountService {
       return this.http.get(this.baseUrl + '/users');
   }
 
-  get(): Observable<HttpResponse<Account>> {
+  getAccount(): Observable<HttpResponse<Account>> {
      return this.http.get<Account>(this.baseUrl + '/account', { observe: 'response' });
   }
 
-  save(account: any): Observable<HttpResponse<any>> {
+  saveAccount(account: any): Observable<HttpResponse<any>> {
      return this.http.post(this.baseUrl + '/account', account, { observe: 'response' });
   }
 

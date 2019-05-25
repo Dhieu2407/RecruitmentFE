@@ -37,7 +37,7 @@ export class BrowsercompanyComponent implements OnInit {
                   this.listMajor = data;
               },
               error => {
-                  console.log('Faild');
+                  console.log('Fail');
               }
           );
       this.companyService.getAllCompany()
@@ -48,7 +48,7 @@ export class BrowsercompanyComponent implements OnInit {
                   console.log(this.listSearchCompany);
               },
               error => {
-                  console.log('Faild');
+                  console.log('Fail');
               }
           );
   }

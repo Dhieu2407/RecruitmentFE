@@ -4,8 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment.prod';
 import {Router} from '@angular/router';
 import { Account } from '../model/account.model';
-import { BehaviorSubject, Observable } from 'rxjs';
-
+import { AccountService } from  '../service/account.service';
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
 
@@ -13,12 +12,13 @@ export class AuthenticationService {
 
   constructor(private router: Router,
               private http: HttpClient,
+              private accountService: AccountService,
   ) {}
 
   public getToken() {
+     if(localStorage.getItem('authenticationToken') === null) return sessionStorage.getItem('authenticationToken');
      return localStorage.getItem('authenticationToken');
   }
-
     login(data) {
         return this.http.post<any>(`${this.authUrl}/authenticate`, {username: data.username, password: data.password},
             { observe: 'response' }).pipe(map(authenticateSuccess.bind(this)));
@@ -42,16 +42,27 @@ export class AuthenticationService {
         }
     }
 
-    storeAuthenticationToken(jwt, rememberMe) {
+    storeAuthenticationToken(token, rememberMe) {
         if (rememberMe) {
-            localStorage.setItem('authenticationToken', jwt);
+            localStorage.setItem('authenticationToken', token);
         } else {
-            sessionStorage.setItem('authenticationToken', jwt);
+            sessionStorage.setItem('authenticationToken', token);
         }
-        console.log(jwt);
+        console.log(token);
+    }
+
+    storeUserData(data, rememberMe){
+        if (rememberMe) {
+            localStorage.setItem('currentUser', data);
+        } else {
+            sessionStorage.setItem('currentUser', data);
+        }
+        console.log(data);
     }
 
   loggedIn(){
+      if(!!localStorage.getItem('authenticationToken') === false)
+          return !!sessionStorage.getItem('authenticationToken');
       return !!localStorage.getItem('authenticationToken');
   }
 
@@ -59,5 +70,7 @@ export class AuthenticationService {
     // remove user from local storage to log user out
     localStorage.removeItem('authenticationToken');
     sessionStorage.removeItem('authenticationToken');
+    localStorage.removeItem('currentUser');
+    sessionStorage.removeItem('currentUser');
   }
 }

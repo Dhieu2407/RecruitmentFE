@@ -4,6 +4,7 @@ import { Candidate } from '../model/candidate.model';
 import { Job } from '../model/job.model';
 import { CandidateSaveJobsDTO } from '../model/candidateSaveJobsDTO.model';
 import { first } from 'rxjs/operators';
+import { Account } from '../model/account.model';
 
 @Component({
   selector: 'app-applied-job',
@@ -13,8 +14,7 @@ import { first } from 'rxjs/operators';
 export class AppliedJobComponent implements OnInit {
 
    constructor(private candidateService: CandidateService) { }
-
-
+   account: Account;
     id: number;
     candidate : Candidate;
     jobList : Job[];
@@ -29,9 +29,9 @@ export class AppliedJobComponent implements OnInit {
     this.pageSize = 10;
     this.showJob = false;
     this.showCandidate = true;
-    // console.log(JSON.parse(localStorage.getItem("currentUser")));
-    this.id = JSON.parse(localStorage.getItem("currentUser")).id;
-    this.candidateService.getAppliedJobs(this.id)
+      if(!!localStorage.getItem('currentUser') === false) this.account = JSON.parse(sessionStorage.getItem('currentUser'));
+      else this.account = JSON.parse(localStorage.getItem('currentUser'));
+    this.candidateService.getAppliedJobs(this.account.id)
         .pipe(first())
         .subscribe(
             (data: any) => {

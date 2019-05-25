@@ -10,6 +10,7 @@ import { MajorService } from '../service/major.service';
 import { Resume } from '../model/resume.model';
 import { CompanySaveCandidateDTO } from '../model/companySaveCandidateDTO.model';
 import { CompanyService } from '../service/company.service';
+import {Account} from '../model/account.model';
 
 @Component({
   selector: 'app-browseresumes',
@@ -25,7 +26,7 @@ export class BrowseresumesComponent implements OnInit {
     private majorService: MajorService,
     private companyService : CompanyService
   ) { }
-
+    account: Account;
   formSearchCandidate: FormGroup;
   listCandidate: Candidate[];
   allMajors: Major[];
@@ -88,7 +89,9 @@ export class BrowseresumesComponent implements OnInit {
 
   onSave(resume : Candidate){
     this.companySaveCandidate.candidateId = resume.ungVienId;
-    this.companySaveCandidate.companyId = JSON.parse(localStorage.getItem("currentUser")).id;
+      if(!!localStorage.getItem('currentUser') === false) this.account = JSON.parse(sessionStorage.getItem('currentUser'));
+      else this.account = JSON.parse(localStorage.getItem('currentUser'));
+    this.companySaveCandidate.companyId = this.account.id;
     this.companyService.companySaveUngVien(this.companySaveCandidate)
         .pipe(first())
         .subscribe(
