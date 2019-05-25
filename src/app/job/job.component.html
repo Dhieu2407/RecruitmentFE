@@ -1,119 +1,124 @@
 <body>
-  <!-- Page Header Start -->
-  <div class="page-header" style="background: url(assets/img/testimonial/testimonial-bg.jpg);">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="breadcrumb-wrapper">
-            <div class="search-container">
-              <div class="container">
-                <div class="row">
-                  <div class="col-md-12">
-                    <div class="content">
-                      <form [formGroup]="searchJobForm" (ngSubmit)="onSubmit(buttonType)" ngNativeValidate>
-                        <div class="row">
-                          <div class="col-md-4 col-sm-6">
-                            <div class="form-group">
-                              <input class="form-control" type="text" placeholder="Ngành nghề / Từ khóa / Tên công ty" formControlName="keyword" id="keyword">
-                              <i class="ti-time"></i>
+    <!-- Page Header Start -->
+    <div class="page-header" style="background: url(assets/img/testimonial/testimonial-bg.jpg);">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="breadcrumb-wrapper">
+                        <div class="search-container">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="content">
+                                            <form [formGroup]="searchJobForm" (ngSubmit)="onSubmit(buttonType)" ngNativeValidate>
+                                                <div class="row">
+                                                    <div class="col-md-4 col-sm-6">
+                                                        <div class="form-group">
+                                                            <input class="form-control" type="text" placeholder="Ngành nghề / Từ khóa / Tên công ty" formControlName="keyword" id="keyword" />
+                                                            <i class="ti-time"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4 col-sm-6">
+                                                        <div class="form-group">
+                                                            <input class="form-control" type="email" placeholder="Địa điểm" formControlName="location" id="location" />
+                                                            <i class="ti-location-pin"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3 col-sm-6">
+                                                        <div class="search-category-container">
+                                                            <label class="styled-select">
+                                                                <select class="dropdown-product selectpicker" formControlName="career" id="career">
+                                                                    <option value="0">All Categories</option>
+                                                                    <option *ngFor="let major of listMajor" [value]="major.nganhId" [attr.selected]="major.tenNganh">
+                                                                        {{ major.tenNganh }}
+                                                                    </option>
+                                                                </select>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-1 col-sm-6">
+                                                        <button type="button" class="btn btn-search-icon" (click)="onSubmit('Search')"><i class="ti-search"></i></button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                          </div>
-                          <div class="col-md-4 col-sm-6">
-                            <div class="form-group">
-                              <input class="form-control" type="email" placeholder="Địa điểm" formControlName="location" id="location">
-                              <i class="ti-location-pin"></i>
-                            </div>
-                          </div>
-                          <div class="col-md-3 col-sm-6">
-                            <div class="search-category-container">
-                              <label class="styled-select">
-                                <select class="dropdown-product selectpicker" formControlName="career" id="career">
-                                  <option value="0">All Categories</option>
-                                    <option *ngFor="let major of listMajor"
-                                            [value]="major.nganhId"
-                                            [attr.selected]="major.tenNganh">
-                                        {{major.tenNganh}}
-                                    </option>
-                                </select>
-                              </label>
-                            </div>
-                          </div>
-                          <div class="col-md-1 col-sm-6">
-                            <button type="button" class="btn btn-search-icon" (click)="onSubmit('Search')"><i class="ti-search"></i></button>
-                          </div>
                         </div>
-                      </form>
                     </div>
-                  </div>
                 </div>
-              </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
-  <!-- Page Header End -->
+    <!-- Page Header End -->
 
-  <!-- Find Job Section Start -->
-  <section class="find-job section">
-    <div class="container">
-      <h2 class="section-title">Find good a Job</h2>
-      <div class="row">
-
-          <div *ngFor="let jobs of listJobs | slice: (page-1) * pageSize: (page-1) * pageSize + pageSize">
-            <div class="col-md-6 col-sm-6 col-xs-12">
-            <div class="job-list">
-              <div class="thumb">
-                <a href="job-details.html"><img src="assets/img/jobs/img-1.jpg" alt=""></a>
-              </div>
-              <div class="job-list-content">
-                <h4><a href="/jobdetail/{{jobs.jobId}}/{{jobs.nganh.nganhId}}">{{jobs.tenJob}}</a></h4>
-                <p><a href="/companydetail/{{jobs.congTy.congtyId}}">{{jobs.congTy.tenCongTy}}</a></p>
-                <p>Thời Gian Làm Việc: <span class="full-time">{{jobs.tgLamViec == 1 ? 'Full-Time' : (jobs.tgLamViec == 0 ? 'Part-Time' : '')}}</span></p>
-                <div class="job-tag">
-                  <div class="pull-left">
-                    <div class="meta-tag">
-                      <span>Số Lượng:{{jobs.soLuong}}</span>
-                      <span><i class="ti-location-pin"></i>{{jobs.diaChi}}</span>
-                      <span><i class="ti-time"></i>60/Hour</span>
+    <!-- Find Job Section Start -->
+    <section class="find-job section">
+        <div class="container">
+            <h2 class="section-title">Find a good job</h2>
+            <div class="row">
+                <div *ngFor="let jobs of listJobs | slice: (page - 1) * pageSize:(page - 1) * pageSize + pageSize">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="job-list">
+                            <div class="thumb">
+                                <a href="job-details.html"><img src="assets/img/jobs/img-1.jpg" alt=""/></a>
+                            </div>
+                            <div class="job-list-content">
+                                <h4>
+                                    <a href="/jobdetail/{{ jobs.jobId }}/{{ jobs.nganh.nganhId }}">{{ jobs.tenJob }}</a>
+                                </h4>
+                                <p>
+                                    <a href="/companydetail/{{ jobs.congTy.congtyId }}">{{ jobs.congTy.tenCongTy }}</a>
+                                </p>
+                                <p>
+                                    Thời Gian Làm Việc: <span class="full-time">{{ jobs.tgLamViec == 1 ? "Full-Time" : jobs.tgLamViec == 0 ? "Part-Time" : "" }}</span>
+                                </p>
+                                <div class="job-tag">
+                                    <div class="pull-left">
+                                        <div class="meta-tag">
+                                            <span>Số Lượng:{{ jobs.soLuong }}</span>
+                                            <span><i class="ti-location-pin"></i>{{ jobs.diaChi }}</span>
+                                            <span><i class="ti-time"></i>60/Hour</span>
+                                        </div>
+                                    </div>
+                                    <div class="pull-right">
+                                        <div class="icon">
+                                            <i class="ti-heart-broken" (click)="onBookmark(jobs)" *ngIf="appliedJobsId.indexOf(jobs.jobId) == -1"></i>
+                                            <i class="ti-heart" (click)="onBookmark(jobs)" *ngIf="appliedJobsId.indexOf(jobs.jobId) !== -1"></i>
+                                        </div>
+                                        <div class="btn btn-common btn-rm" (click)="onApply(jobs)" *ngIf="appliedJobsId.indexOf(jobs.jobId) !== -1">Cancel Apply Job</div>
+                                        <div class="btn btn-common btn-rm" (click)="onApply(jobs)" *ngIf="appliedJobsId.indexOf(jobs.jobId) == -1">Apply Job</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                  </div>
-                  <div class="pull-right">
-                    <div class="icon">
-                      <i class="ti-heart" (click)="onBookmark(jobs)"></i>
-                    </div>
-                    <div class="btn btn-common btn-rm" (click)="onApply(jobs)">Apply Job</div>
-                  </div>
                 </div>
-              </div>
             </div>
-          </div>
+            <ngb-pagination [(page)]="page" [pageSize]="pageSize" [collectionSize]="listJobs.length" *ngIf="listJobs"></ngb-pagination>
         </div>
-      </div>
-        <ngb-pagination [(page)]="page" [pageSize]="pageSize" [collectionSize]="listJobs.length" *ngIf="listJobs"></ngb-pagination>
+    </section>
+
+    <!-- Find Job Section End -->
+
+    <!-- Go To Top Link -->
+    <a href="#" class="back-to-top">
+        <i class="ti-arrow-up"></i>
+    </a>
+
+    <div id="loading">
+        <div id="loading-center">
+            <div id="loading-center-absolute">
+                <div class="object" id="object_one"></div>
+                <div class="object" id="object_two"></div>
+                <div class="object" id="object_three"></div>
+                <div class="object" id="object_four"></div>
+                <div class="object" id="object_five"></div>
+                <div class="object" id="object_six"></div>
+                <div class="object" id="object_seven"></div>
+                <div class="object" id="object_eight"></div>
+            </div>
+        </div>
     </div>
-  </section>
-
-  <!-- Find Job Section End -->
-
-  <!-- Go To Top Link -->
-  <a href="#" class="back-to-top">
-    <i class="ti-arrow-up"></i>
-  </a>
-
-  <div id="loading">
-    <div id="loading-center">
-      <div id="loading-center-absolute">
-        <div class="object" id="object_one"></div>
-        <div class="object" id="object_two"></div>
-        <div class="object" id="object_three"></div>
-        <div class="object" id="object_four"></div>
-        <div class="object" id="object_five"></div>
-        <div class="object" id="object_six"></div>
-        <div class="object" id="object_seven"></div>
-        <div class="object" id="object_eight"></div>
-      </div>
-    </div>
-  </div>
 </body>

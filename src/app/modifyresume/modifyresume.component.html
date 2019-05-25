@@ -49,47 +49,12 @@
                                         <option value="" selected>Select Major</option>
                                         <option *ngFor="let major of allMajors" [value]="major.tenNganh"> {{ major.tenNganh }}</option>
                                     </select>
-                                    <!-- <input type="text" class="form-control"  placeholder="Tiêu đề (e.g. Lập trình viên)" formControlName="career" id="career" required> -->
                                 </div>
-                                <!-- <div class="form-group">
-                <label class="control-label" for="textarea">Vị trí(Mong muốn)</label>
-                <input type="text" class="form-control"  placeholder="Vị trí, e.g" formControlName="wantedPosition" id="wantedPosition" required>
-              </div> -->
-                                <!--<div class="form-group">-->
-                                <!--<label class="control-label" for="textarea">Web</label>-->
-                                <!--<input type="text" class="form-control"  placeholder="Website address">-->
-                                <!--</div>-->
-                                <!--<div class="form-group">-->
-                                <!--<label class="control-label" for="textarea">Pre Hour</label>-->
-                                <!--<input type="text" class="form-control"  placeholder="Salary, e.g. 85">-->
-                                <!--</div>-->
-                                <!-- <div class="form-group">
-                <label class="control-label" for="textarea">Tuổi</label>
-                <input type="text" class="form-control"  placeholder="Tuổi của bạn" formControlName="age" id="age" required>
-              </div> -->
 
                                 <div class="form-group">
                                     <label class="control-label" for="textarea">Lương mong muốn</label>
                                     <input type="number" class="form-control" placeholder="$$$" formControlName="wantedSalary" id="wantedSalary" required />
                                 </div>
-
-                                <!-- <div class="form-group">
-                <label class="control-label" for="textarea">Số năm kinh nghiệm</label>
-                <input type="number" class="form-control"  placeholder="Nhập số năm kinh nghiệm" formControlName="yearsOfExperience" id="yearsOfExperience" required>
-              </div> -->
-
-                                <!-- <div class="form-group">
-                <label class="control-label" for="textarea">Hình thức làm việc</label>
-                <select class="form-control" formControlName="workForm" id="workForm" required>
-                  <option value="0">Part Time</option>
-                  <option value="1">Full Time</option>
-
-                </select>
-              </div> -->
-                                <!-- <div class="form-group">
-                <label class="control-label" for="textarea">Kiến thức chuyên môn</label>
-                <textarea class="form-control" rows="5" formControlName="expertise" id="expertise" required></textarea>
-              </div> -->
 
                                 <div class="form-group">
                                     <label class="control-label" for="textarea">Mục tiêu nghề nghiệp</label>
@@ -142,22 +107,6 @@
                                     </div>
                                 </div>
 
-                                <!-- <div class="divider"><h3>Kỹ Năng</h3></div>
-                <div formArrayName="skill" *ngFor="let s of modifyResumeForm.get('skill').controls; let i = index">
-                    <div [formGroupName]="i">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label class="control-label" for="textarea">Tên kĩ năng</label>
-                                    <input class="form-control" placeholder="Tên kĩ năng, e.g. code BackEnd" type="text" formControlName="skillName" id="skillName" required>
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="control-label" for="textarea">Số năm kinh nghiệm</label>
-                                    <input class="form-control" placeholder="Years of experience" type="text" formControlName="expYear" id="competentlyPercent" required>
-                                </div>
-                            </div>
-                    </div>
-                </div> -->
-
                                 <div class="divider"><h3>Kinh nghiệm làm việc</h3></div>
                                 <div class="add-post-btn">
                                     <div class="pull-left">
@@ -198,44 +147,6 @@
                                     </div>
                                 </div>
 
-                                <!-- <div formArrayName="skill" *ngFor="let s of modifyResumeForm.get('skill').controls; let i = index">
-                <div [formGroupName]="i">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label class="control-label" for="textarea">Tên kĩ năng</label>
-                            <input class="form-control" placeholder="Tên kĩ năng, e.g. code BackEnd" type="text" formControlName="skillName" id="skillName" required>
-                        </div>
-                        <div class="col-md-6">
-                            <label class="control-label" for="textarea">Số năm kinh nghiệm</label>
-                            <input class="form-control" placeholder="Years of experience" type="text" formControlName="expYear" id="competentlyPercent" required>
-                        </div>
-                    </div>
-                    <div class="add-post-btn">
-                        <div class="pull-left">
-                          <button (click)="createInputSkill()" class="btn-added"><i class="ti-plus"></i> Add New Skills</button>
-                        </div>
-                        <div class="pull-right">
-                          <a href="#" class="btn-delete"><i class="ti-trash"></i> Delete This</a>
-                        </div>
-                      </div>
-                </div>
-            </div> -->
-
-                                <!-- <div class="divider"><h3>Kỹ Năng</h3></div>
-              <div class="form-group">
-                <div class="row">
-                  <div class="col-md-6">
-                    <label class="control-label" for="textarea">Tên kĩ năng</label>
-                    <input class="form-control" placeholder="Tên kĩ năng, e.g. code BackEnd" type="text" formControlName="skillName" id="skillName" required>
-                  </div>
-                  <div class="col-md-6">
-                    <label class="control-label" for="textarea">Số năm kinh nghiệm</label>
-                    <input class="form-control" placeholder="Skill proficiency, e.g. 90" type="text" formControlName="competentlyPercent" id="competentlyPercent" required>
-                  </div>
-                </div>
-              </div>
-               -->
-
                                 <div class="divider"><h3>Kỹ Năng</h3></div>
                                 <div class="add-post-btn">
                                     <div class="pull-left">
@@ -248,7 +159,6 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <label class="control-label" for="textarea">Tên kĩ năng</label>
-                                                <!-- <input class="form-control" placeholder="Tên kĩ năng, e.g. code BackEnd" type="text" formControlName="skillName" id="skillName" required> -->
                                                 <select class="form-control" id="career" formControlName="skillName" name="skillName">
                                                     <option value="" selected>Select Skill</option>
                                                     <option *ngFor="let oneSkill of allSkills" [value]="oneSkill.tenKiNang"> {{ oneSkill.tenKiNang }}</option>
