@@ -60,7 +60,7 @@
             <div class="row">
                 <div *ngFor="let jobs of listJobs | slice: (page - 1) * pageSize:(page - 1) * pageSize + pageSize">
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                        <div class="job-list">
+                        <div class="job-list"  style="height:365px;width:100%;">
                             <div class="thumb">
                                 <a href="job-details.html"><img src="assets/img/jobs/img-1.jpg" alt=""/></a>
                             </div>
@@ -74,12 +74,12 @@
                                 <p>
                                     Thời Gian Làm Việc: <span class="full-time">{{ jobs.tgLamViec == 1 ? "Full-Time" : jobs.tgLamViec == 0 ? "Part-Time" : "" }}</span>
                                 </p>
-                                <div class="job-tag">
+                                <div class="job-tag" >
                                     <div class="pull-left">
                                         <div class="meta-tag">
-                                            <span>Số Lượng:{{ jobs.soLuong }}</span>
-                                            <span><i class="ti-location-pin"></i>{{ jobs.diaChi }}</span>
-                                            <span><i class="ti-time"></i>60/Hour</span>
+                                            <p><span>Số Lượng:{{ jobs.soLuong }}</span></p>
+                                            <p><span><i class="ti-location-pin"></i>{{ jobs.diaChi }}</span></p>
+                                            <!-- <p><span><i class="ti-time"></i>60/Hour</span></p> -->
                                         </div>
                                     </div>
                                     <div class="pull-right">

@@ -30,7 +30,7 @@
 
                 <div *ngFor="let jobs of jobList | slice: (page - 1) * pageSize:(page - 1) * pageSize + pageSize">
                     <div class="col-md-8 col-sm-8 col-xs-12" style="float:right;" *ngIf="jobList">
-                        <div class="job-list">
+                        <div class="job-list" style="width:100%;">
                             <div class="thumb">
                                 <a href="job-details.html"><img src="assets/img/jobs/img-1.jpg" alt=""/></a>
                             </div>
