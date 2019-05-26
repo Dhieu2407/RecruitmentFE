@@ -30,6 +30,15 @@ export class JobdetailComponent implements OnInit {
   ngOnInit() {
     this.jobId = parseInt(this.routerSnapshot.snapshot.paramMap.get('id'));
     this.searchJob.jobId = this.routerSnapshot.snapshot.paramMap.get('id');
+    this.jobService.updateViewCount(JSON.stringify(this.searchJob))
+        .pipe(first())
+        .subscribe(
+        (data: any) => {
+            console.log(data);
+        },
+        error => {
+            console.log('Fail');
+        });
     this.jobService.getJobById(JSON.stringify(this.searchJob))
       .pipe(first())
       .subscribe(

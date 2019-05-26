@@ -38,5 +38,7 @@ export class JobService {
   deleteJob(body: string) {
       return this.http.post( this.baseUrl + '/deleteJobById', body);
   }
-
+  updateViewCount(body: string) {
+    return this.http.post( this.baseUrl + '/updateJobViewCount', body);
+  }
 }

@@ -19,4 +19,5 @@ export class Job {
     trangThai: string;
     ngayDang: string;
     yeuCauCongViec: string;
+    soLuongView: number;
 }
