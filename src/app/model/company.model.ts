@@ -9,4 +9,5 @@ export class Company {
     quyMo: number;
     imgUrl: string;
     ungVienSaved: any[];
+    congtyId : number;
 }

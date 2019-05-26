@@ -55,7 +55,35 @@
         <div class="row">
             <div *ngFor="let company of listSearchCompany | slice: (page-1) * pageSize: (page-1) * pageSize + pageSize">
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                    <div class="company-list">
+
+
+                    <div class="job-list" style="height:285px;width:100%;">
+                        <div class="thumb">
+                            <a href="/companydetail/{{ company.congtyId }}"><img style="width:100px;height:100px;" src="{{ company.imgUrl }}" alt=""/></a>
+                        </div>
+                        <div class="job-list-content">
+                            <h4>
+                                <a href="/companydetail/{{ company.congtyId }}">{{ company.tenCongTy }}</a>
+                            </h4>
+                            <p>Chuyên ngành : <span>{{ company.nganh.tenNganh }}</span></p>
+                            <p><span><i class="ti-location-pin"></i>{{ company.diaChi }}</span></p>
+
+                            <div class="job-tag" >
+                                <div class="pull-left">
+                                    <div class="meta-tag">
+                                        <p><span class="location"><i class="ti-email"></i>{{ company.email }} </span></p>
+                                        <p><span class="location"><i class="ti-mobile"></i>{{ company.sdt }} </span></p>
+                                    </div>
+                                </div>
+                                <div class="pull-right">
+                                    <div class="btn btn-common btn-rm" (click)="onSave(company)" *ngIf="savedCompanyId.indexOf(company.congtyId) !== -1">Bỏ Quan Tâm</div>
+                                    <div class="btn btn-common btn-rm" (click)="onSave(company)" *ngIf="savedCompanyId.indexOf(company.congtyId) == -1">Quan Tâm</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- <div class="company-list">
                         <div class="thumb">
                             <a href="/deatilcompany/{{company.congtyId}}"> <img src="{{company.imgUrl}}" style="width:100px;height:100px;"  alt=""></a>
                         </div>
@@ -65,16 +93,18 @@
                             <div class="job-tag">
                                 <div class="pull-left">
                                     <div class="meta-tag">
-                                        <span><i class="ti-location-pin">{{company.diaChi}}</i></span>
-                                        <span><i class="ti-time"></i>60/Hour</span>
+                                        <p><span><i class="ti-location-pin">{{company.diaChi}}</i></span></p>
                                     </div>
                                 </div>
                                 <div class="pull-right">
-                                    <div class="btn btn-common btn-rm" (click)="onSave(company)">Quan Tâm</div>
+                                    <div class="btn btn-common btn-rm" (click)="onSave(company)" *ngIf="savedCompanyId.indexOf(company.congtyId) !== -1">Bỏ Quan Tâm</div>
+                                    <div class="btn btn-common btn-rm" (click)="onSave(company)" *ngIf="savedCompanyId.indexOf(company.congtyId) == -1">Quan Tâm</div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
+
+
                 </div>
             </div>
         </div>

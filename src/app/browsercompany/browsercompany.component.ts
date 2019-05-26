@@ -6,9 +6,9 @@ import { first } from "rxjs/operators";
 import { CompanyService } from "../service/company.service";
 import { Company } from "../model/company.model";
 import { CompanySaveCandidateDTO } from "../model/companySaveCandidateDTO.model";
-import { CandidateService } from '../service/candidate.service';
-import {SearchCompany} from "../model/searchCompany.model";
-import {Account} from '../model/account.model';
+import { CandidateService } from "../service/candidate.service";
+import { SearchCompany } from "../model/searchCompany.model";
+import { Account } from "../model/account.model";
 
 @Component({
     selector: "app-browsercompany",
@@ -16,12 +16,9 @@ import {Account} from '../model/account.model';
     styleUrls: ["./browsercompany.component.css"]
 })
 export class BrowsercompanyComponent implements OnInit {
-    constructor(private formBuilder: FormBuilder,
-                private majorService: MajorService,
-                private companyService: CompanyService,
-                private candidateService: CandidateService, ) {}
+    constructor(private formBuilder: FormBuilder, private majorService: MajorService, private companyService: CompanyService, private candidateService: CandidateService) {}
 
-    account:Account;
+    account: Account;
     searchCompanyForm: FormGroup;
     listMajor: Major[];
     listSearchCompany: Company[];
@@ -29,37 +26,57 @@ export class BrowsercompanyComponent implements OnInit {
     pageSize: number;
     searchCompany = new SearchCompany();
     companySaveCandidateDTO = new CompanySaveCandidateDTO();
-  ngOnInit() {
-      if(!!localStorage.getItem('currentUser') === false) this.account = JSON.parse(sessionStorage.getItem('currentUser'));
-      else this.account = JSON.parse(localStorage.getItem('currentUser'));
-      this.page = 1;
-      this.pageSize = 10;
-      this.searchCompanyForm = this.formBuilder.group({
-          keyword: ['', Validators.required],
-          career: ['', Validators.required],
-      });
-      this.majorService.getAllMajors()
-          .pipe(first())
-          .subscribe(
-              (data: Major[]) => {
-                  this.listMajor = data;
-              },
-              error => {
-                  console.log('Fail');
-              }
-          );
-      this.companyService.getAllCompany()
-          .pipe(first())
-          .subscribe(
-              (data: Company[]) => {
-                  this.listSearchCompany = data;
-                  console.log(this.listSearchCompany);
-              },
-              error => {
-                  console.log('Fail');
-              }
-          );
-  }
+    id: number;
+    savedCompanyId = [];
+    savedCompany : Company[];
+    ngOnInit() {
+        if (!!localStorage.getItem("currentUser") === false) this.account = JSON.parse(sessionStorage.getItem("currentUser"));
+        else this.account = JSON.parse(localStorage.getItem("currentUser"));
+        this.id = this.account.id;
+        this.page = 1;
+        this.pageSize = 10;
+        this.searchCompanyForm = this.formBuilder.group({
+            keyword: ["", Validators.required],
+            career: ["", Validators.required]
+        });
+        this.majorService
+            .getAllMajors()
+            .pipe(first())
+            .subscribe(
+                (data: Major[]) => {
+                    this.listMajor = data;
+                },
+                error => {
+                    console.log("Fail");
+                }
+            );
+        this.companyService
+            .getAllCompany()
+            .pipe(first())
+            .subscribe(
+                (data: Company[]) => {
+                    this.listSearchCompany = data;
+                    console.log(this.listSearchCompany);
+                },
+                error => {
+                    console.log("Fail");
+                }
+            );
+        this.candidateService.getAllSavedCompanies(this.id)
+            .pipe(first())
+            .subscribe(
+            (data: Company[]) => {
+                this.savedCompany = data;
+                for(var i = 0 ; i < this.savedCompany.length ; ++i){
+                    this.savedCompanyId.push(this.savedCompany[i].congtyId);
+                }
+                console.log("saved  : " + this.savedCompanyId);
+            },
+            error => {
+                console.log("Fail");
+            }
+        );
+    }
 
     onSave(company: any) {
         this.companySaveCandidateDTO.candidateId = this.account.id;
@@ -70,6 +87,7 @@ export class BrowsercompanyComponent implements OnInit {
             .subscribe(
                 (data: any) => {
                     console.log(data);
+                    window.location.reload();
                 },
                 error => {
                     console.log("Faild");
@@ -77,10 +95,11 @@ export class BrowsercompanyComponent implements OnInit {
             );
     }
     onSubmit(buttonType): void {
-        if (buttonType === 'Search') {
-            this.searchCompany.companyName = this.searchCompanyForm.get('keyword').value;
-            this.searchCompany.careerId = this.searchCompanyForm.get('career').value;
-            this.companyService.getSearchCompany(JSON.stringify(this.searchCompany))
+        if (buttonType === "Search") {
+            this.searchCompany.companyName = this.searchCompanyForm.get("keyword").value;
+            this.searchCompany.careerId = this.searchCompanyForm.get("career").value;
+            this.companyService
+                .getSearchCompany(JSON.stringify(this.searchCompany))
                 .pipe(first())
                 .subscribe(
                     (data: Company[]) => {
@@ -88,7 +107,7 @@ export class BrowsercompanyComponent implements OnInit {
                         console.log(this.listSearchCompany);
                     },
                     error => {
-                        console.log('Faild');
+                        console.log("Faild");
                     }
                 );
         }
