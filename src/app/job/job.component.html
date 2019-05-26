@@ -60,9 +60,9 @@
             <div class="row">
                 <div *ngFor="let jobs of listJobs | slice: (page - 1) * pageSize:(page - 1) * pageSize + pageSize">
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                        <div class="job-list"  style="height:365px;width:100%;">
+                        <div class="job-list"  style="height:340px;width:100%;">
                             <div class="thumb">
-                                <a href="/jobdetail/{{ jobs.jobId }}/{{ jobs.nganh.nganhId }}"><img src="assets/img/jobs/img-1.jpg" alt=""/></a>
+                                <a href="/jobdetail/{{ jobs.jobId }}/{{ jobs.nganh.nganhId }}"><img style="width:100px;height:100px;" src="{{ jobs.congTy.imgUrl }}" alt=""/></a>
                             </div>
                             <div class="job-list-content">
                                 <h4>

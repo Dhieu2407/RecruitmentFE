@@ -59,7 +59,8 @@
                                 <!-- <p>{{resume.moTa}}</p> -->
                                 <div class="pull-right">
                                     <div class="icon">
-                                        <i class="ti-heart" (click)="onSave(resume)"></i>
+                                        <i class="ti-heart-broken" (click)="onSave(resume,-1)" *ngIf="candidateSaveId.indexOf(resume.ungVienId) ==-1"></i>
+                                        <i class="ti-heart" (click)="onSave(resume,1)" *ngIf="candidateSaveId.indexOf(resume.ungVienId) !==-1"></i>
                                     </div>
                                 </div>
                             </div>

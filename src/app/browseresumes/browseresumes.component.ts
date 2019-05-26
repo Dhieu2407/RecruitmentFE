@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit } from '@angular/core';
 import { Candidate } from "../model/candidate.model";
 import { CandidateService } from "../service/candidate.service";
 import { Router } from "@angular/router";
@@ -37,7 +37,8 @@ export class BrowseresumesComponent implements OnInit {
     pageSize: number;
     companySaveCandidate = new CompanySaveCandidateDTO();
     allSkills: skill[];
-
+    candidateSave: Candidate[];
+    candidateSaveId = [];
     onSearch() {
         this.searchCondidition.email = this.formSearchCandidate.get("title").value;
         this.searchCondidition.username = this.formSearchCandidate.get("title").value;
@@ -75,7 +76,7 @@ export class BrowseresumesComponent implements OnInit {
             .subscribe(
                 (data: Candidate[]) => {
                     this.listCandidate = data;
-                    console.log(this.listCandidate);
+                   // console.log(this.listCandidate);
                 },
                 error => {
                     console.log("Failed");
@@ -88,7 +89,7 @@ export class BrowseresumesComponent implements OnInit {
             .subscribe(
                 (data: Major[]) => {
                     this.allMajors = data;
-                    console.log(this.allMajors);
+                   // console.log(this.allMajors);
                 },
                 error => {
                     console.log("Failed");
@@ -100,14 +101,26 @@ export class BrowseresumesComponent implements OnInit {
             .subscribe(
                 (data: skill[]) => {
                     this.allSkills = data;
-                    console.log(this.allSkills);
+                    //console.log(this.allSkills);
                 },
                 error => {
                     console.log("Failed");
                 }
             );
+        this.companyService.getCandidateSaved(this.account.id)
+            .pipe(first())
+            .subscribe(
+                (data: Candidate[]) => {
+                    this.candidateSave = data;
+                    console.log(this.candidateSave);
+                    for(var i = 0 ; i < this.candidateSave.length ; ++i) {
+                        this.candidateSaveId.push(this.candidateSave[i].ungVienId);
+                    }
+                    console.log(this.candidateSaveId);
+                }
+            );
     }
-  onSave(resume : Candidate){
+  onSave(resume : Candidate, stt: number){
     this.companySaveCandidate.candidateId = resume.ungVienId;
     this.companySaveCandidate.companyId = this.account.id;
     this.companyService.companySaveUngVien(this.companySaveCandidate)
@@ -115,9 +128,15 @@ export class BrowseresumesComponent implements OnInit {
         .subscribe(
             (data: any) => {
                 console.log(data);
+                if (stt === 1) {
+                    alert('Bạn đã bỏ lưu ứng viên: ' + resume.tenUngVien);
+                } else {
+                    alert('Bạn đã lưu ứng viên: ' + resume.tenUngVien);
+                }
+                window.location.reload();
             },
             error => {
-                console.log("Fail");
+                console.log('Fail');
             }
         );
   }

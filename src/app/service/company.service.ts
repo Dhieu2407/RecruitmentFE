@@ -41,4 +41,8 @@ export class CompanyService {
     getSearchCompany(body: string) {
         return this.http.post(this.baseUrl + '/searchCompany' , body);
     }
+    /*lay minh obj cua Candidate*/
+    getCandidateSaved(id: number) {
+        return this.http.get(this.baseUrl + '/getCandidateSave/' + id );
+    }
 }

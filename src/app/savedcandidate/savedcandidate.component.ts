@@ -73,15 +73,14 @@ export class SavedcandidateComponent implements OnInit {
             );
     }
 
-    onSave(candidate: Candidate){
+    onSave(candidate: Candidate, stt: number){
         this.companySaveCandidate.companyId = this.id;
         this.companySaveCandidate.candidateId = candidate.ungVienId;
         this.companyService.companySaveUngVien(this.companySaveCandidate)
         .pipe(first())
         .subscribe(
             (data: any) => {
-                // console.log(data);
-                // this.listCandidate = data;
+                alert('Bạn đã bỏ lưu ứng viên: ' + candidate.tenUngVien);
                 console.log(data);
                 window.location.reload();
             },
