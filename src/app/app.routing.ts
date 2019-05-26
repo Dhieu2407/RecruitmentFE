@@ -31,6 +31,7 @@ import { SavedcandidateComponent } from './savedcandidate/savedcandidate.compone
 import { CandidateNotificationComponent } from './candidate-notification/candidate-notification.component';
 import {ApproveresumeapplyComponent} from './approveresumeapply/approveresumeapply.component';
 import {AuthGuardService} from "./service/auth-guard.service";
+import { ActivateComponent } from './activate/activate.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -38,8 +39,8 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'job', component: JobComponent },
   { path: 'jobdetail/:id/:idMajor', component: JobdetailComponent},
-
   { path: 'changepassword', component: ChangepasswordComponent, canActivate: [AuthGuardService]},
+    { path: 'activate', component: ActivateComponent},
 
   // Role Candidate
   { path: 'manageresumes', component: ManageresumesComponent, canActivate: [AuthGuardService]},

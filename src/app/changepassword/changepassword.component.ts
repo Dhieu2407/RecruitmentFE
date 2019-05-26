@@ -27,8 +27,8 @@ export class ChangepasswordComponent implements OnInit {
   account = new Account();
   changePasswordForm: FormGroup;
     company = new Company();
-  roleCandidate = false;
-  roleEmployer = false;
+  roleCandidate: boolean;
+  roleEmployer: boolean;
     numberOfNotifyTinder: number;
     numberOfNotify: number;
   currentPassword = '';
@@ -44,14 +44,14 @@ export class ChangepasswordComponent implements OnInit {
 
       if(!!localStorage.getItem('currentUser') === false) this.account = JSON.parse(sessionStorage.getItem('currentUser'));
       else this.account = JSON.parse(localStorage.getItem('currentUser'));
-      if (this.account.authorities[0] === 'ROLE_CANDIDATE') {
-          this.roleCandidate = true;
-          this.roleEmployer = false;
-      } if(this.account.authorities[0] === 'ROLE_EMPLOYER') {
-          this.roleEmployer = true;
-          this.roleCandidate = false;
-      }
+
+      this.roleCandidate = false;
+      this.roleEmployer = false;
+      if (this.account.authorities[0] === 'ROLE_CANDIDATE')   this.roleCandidate = true;
+      else if(this.account.authorities[0] === 'ROLE_EMPLOYER') this.roleEmployer = true;
+
       this.company.id = this.account.id;
+
       this.candidateService.getNumberNotifyTinder(JSON.stringify(this.company))
           .pipe(first())
           .subscribe(
@@ -87,11 +87,10 @@ export class ChangepasswordComponent implements OnInit {
           .pipe(first())
           .subscribe(
               data => {
-                  alert('Change password success');
-                  this.router.navigate(['/home']);
+                  alert('Đổi mật khẩu thành công');
               },
               error => {
-                  console.log(error);
+                  alert('Mật khẩu cũ không đúng');
               });
   }
 }

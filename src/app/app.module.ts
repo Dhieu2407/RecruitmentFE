@@ -44,6 +44,7 @@ import { ApproveresumeapplyComponent } from './approveresumeapply/approveresumea
 
 import {AuthenticationService} from "./service/auth.service";
 import {AuthGuardService} from "./service/auth-guard.service";
+import { ActivateComponent } from './activate/activate.component';
 
 
 @NgModule({
@@ -80,6 +81,7 @@ import {AuthGuardService} from "./service/auth-guard.service";
     SavedcandidateComponent,
     CandidateNotificationComponent,
     ApproveresumeapplyComponent,
+    ActivateComponent,
   ],
   imports: [
     BrowserModule,

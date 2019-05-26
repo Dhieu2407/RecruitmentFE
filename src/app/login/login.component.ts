@@ -69,12 +69,11 @@ export class LoginComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
-          alert('Registration succesful');
-          this.router.navigate(['/home']);
+          alert('Đăng ký thành công, xin kiểm tra mail để hoàn tất đăng ký');
         },
         error => {
             console.log(error);
-          alert('Registration failed');
+          alert('Đăng ký thất bại');
         });
   }
 
