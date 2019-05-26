@@ -4,6 +4,7 @@ import { Candidate } from '../model/candidate.model';
 import { Company } from '../model/company.model';
 import { CompanySaveCandidateDTO } from '../model/companySaveCandidateDTO.model';
 import { first } from 'rxjs/operators';
+import { Account } from '../model/account.model';
 
 @Component({
     selector: "app-candidate-notification",
@@ -23,6 +24,7 @@ export class CandidateNotificationComponent implements OnInit {
     matchedCompanyList: Company[] = [];
     companySaveCandidateDto = new CompanySaveCandidateDTO();
     notificationCount : number;
+    account: Account;
 
     ngOnInit() {
         this.notificationCount = 0;
@@ -31,7 +33,9 @@ export class CandidateNotificationComponent implements OnInit {
         this.showJob = false;
         this.showCandidate = true;
         // console.log(JSON.parse(localStorage.getItem("currentUser")));
-        this.id = JSON.parse(localStorage.getItem("currentUser")).id;
+        if(!!localStorage.getItem('currentUser') === false) this.account = JSON.parse(sessionStorage.getItem('currentUser'));
+        else this.account = JSON.parse(localStorage.getItem('currentUser'));
+        this.id = this.account.id;
         console.log(this.id);
         this.candidateService
             .getAllSavedCompanies(this.id)
