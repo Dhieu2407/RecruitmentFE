@@ -163,9 +163,11 @@ export class JobComponent implements OnInit {
             .subscribe(
                 (data: any) => {
                     console.log(data);
+                    window.location.reload();
                 },
                 error => {
                     console.log("Fail");
+                    window.location.reload();
                 }
             );
     }
@@ -182,9 +184,11 @@ export class JobComponent implements OnInit {
             .subscribe(
                 (data: any) => {
                     console.log(data);
+                    window.location.reload();
                 },
                 error => {
                     console.log("Fail");
+                    window.location.reload();
                 }
             );
     }

@@ -95,7 +95,7 @@ export class AppliedJobComponent implements OnInit {
     }
     onBookmark(jobs: Job) {
         this.candidateSaveJobDTO = new CandidateSaveJobsDTO();
-        this.candidateSaveJobDTO.candidateId = JSON.parse(localStorage.getItem("currentUser")).id;
+        this.candidateSaveJobDTO.candidateId = this.id;
         console.log(jobs);
         this.candidateSaveJobDTO.jobId = jobs.jobId;
         console.log(this.candidateSaveJobDTO);
@@ -105,16 +105,20 @@ export class AppliedJobComponent implements OnInit {
             .subscribe(
                 (data: any) => {
                     console.log(data);
+                    alert("Lưu tin tuyển dụng thành công");
+                    window.location.reload();
                 },
                 error => {
                     console.log("Fail");
+                    alert("Lưu tin tuyển dụng thất bại");
+                    window.location.reload();
                 }
             );
     }
 
     onApply(jobs: Job) {
         this.candidateSaveJobDTO = new CandidateSaveJobsDTO();
-        this.candidateSaveJobDTO.candidateId = JSON.parse(localStorage.getItem("currentUser")).id;
+        this.candidateSaveJobDTO.candidateId = this.id;
         console.log(jobs);
         this.candidateSaveJobDTO.jobId = jobs.jobId;
         console.log(this.candidateSaveJobDTO);
@@ -124,9 +128,11 @@ export class AppliedJobComponent implements OnInit {
             .subscribe(
                 (data: any) => {
                     console.log(data);
+                    window.location.reload();
                 },
                 error => {
                     console.log("Fail");
+                    window.location.reload();
                 }
             );
     }

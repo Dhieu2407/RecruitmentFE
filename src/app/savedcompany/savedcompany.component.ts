@@ -85,6 +85,7 @@ export class SavedcompanyComponent implements OnInit {
         .subscribe(
             (data: any) => {
                 console.log(data);
+                window.location.reload();
             },
             error => {
                 console.log("Failed");
