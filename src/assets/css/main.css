@@ -2260,6 +2260,20 @@ footer {
   white-space: nowrap;
   display: inline-block;
 }
+.manager-resumes-item .item-body .pull-right .icon {
+    float: left;
+    border: 1px solid #ddd;
+    width: 40px;
+    height: 40px;
+    line-height: 42px;
+    border-radius: 50px;
+    text-align: center;
+    margin-right: 18px;
+    margin-top: -22px;
+    background: #f1f1f1;
+    color: #ff4f57;
+    font-size: 16px;
+}
 .manager-resumes-item .manager-content {
   padding: 20px 30px;
   border-bottom: 1px solid #f1f1f1;
@@ -2324,6 +2338,7 @@ footer {
 .manager-resumes-item .btn-danger {
   background-color: #ef4d42 !important;
 }
+
 /* ==========================================================================
    Notifications Page Style
    ========================================================================== */
