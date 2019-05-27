@@ -32,15 +32,17 @@ import { CandidateNotificationComponent } from './candidate-notification/candida
 import {ApproveresumeapplyComponent} from './approveresumeapply/approveresumeapply.component';
 import {AuthGuardService} from "./service/auth-guard.service";
 import { ActivateComponent } from './activate/activate.component';
+import { PasswordResetComponent } from './password-reset/password-reset.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'activate', component: ActivateComponent},
+  { path: 'password-reset', component: PasswordResetComponent },
   { path: 'job', component: JobComponent },
   { path: 'jobdetail/:id/:idMajor', component: JobdetailComponent},
   { path: 'changepassword', component: ChangepasswordComponent, canActivate: [AuthGuardService]},
-    { path: 'activate', component: ActivateComponent},
 
   // Role Candidate
   { path: 'manageresumes', component: ManageresumesComponent, canActivate: [AuthGuardService]},

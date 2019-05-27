@@ -7,6 +7,7 @@ import {Router} from '@angular/router';
 import { Account } from '../model/account.model';
 import { AccountService } from '../service/account.service';
 import { AuthGuardService } from '../service/auth-guard.service';
+import { ForgotPasswordService } from '../service/forgot-password.service';
 
 @Component({
   selector: 'app-login',
@@ -22,15 +23,18 @@ export class LoginComponent implements OnInit {
     private authService: AuthenticationService,
     private accountService: AccountService,
     private authGuardService: AuthGuardService,
+    private forgotPasswordService: ForgotPasswordService,
 ) {}
 
   account = new Account();
   registerForm: FormGroup;
   loginForm: FormGroup;
+  resetForm: FormGroup;
   usernameLogin = '';
   passwordLogin = '';
   rememberMe: boolean;
   role = '';
+  email = '';
 
   ngOnInit() {
       if(localStorage.getItem('authenticationToken') !== null || sessionStorage.getItem('authenticationToken') !== null)
@@ -49,6 +53,10 @@ export class LoginComponent implements OnInit {
       passwordLogin: ['', Validators.required],
       rememberMe: ['',Validators],
     });
+
+      this.resetForm = this.formBuilder.group({
+          email: ['', Validators.required],
+      });
 
   }
 
@@ -109,4 +117,20 @@ export class LoginComponent implements OnInit {
           err => console.log(err)
       );
   }
+
+    requestReset(){
+        if (this.resetForm.invalid) {
+            return;
+        }
+        this.email = this.resetForm.get('email').value;
+        this.forgotPasswordService.save(this.email).subscribe(
+            () => {
+                alert('Kiểm tra mail của bạn để hoàn tất khôi phục mật khẩu');
+            },
+            response => {
+                console.log(response);
+                alert('Email không tồn tại!');
+            }
+        );
+    }
 }

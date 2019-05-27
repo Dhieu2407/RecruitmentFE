@@ -3,9 +3,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {CandidateService} from '../service/candidate.service';
 import {Candidate} from '../model/candidate.model';
 import {first} from 'rxjs/operators';
-import {Email} from '../model/email.model';
 import {Account} from '../model/account.model';
-import {EmailService} from '../service/email.service';
 import {ApplyService} from '../service/apply.service';
 import { CompanySaveCandidateDTO } from '../model/companySaveCandidateDTO.model';
 import { CompanyService } from '../service/company.service';
@@ -21,13 +19,10 @@ export class DetailresumeComponent implements OnInit {
       private router: Router,
       private route: ActivatedRoute,
       private candidateService: CandidateService,
-      private emailService: EmailService,
       private applyService: ApplyService,
       private companyService: CompanyService,
   ) { }
     candidate = new Candidate();
-    email = new Email();
-    emailRespon = new Email();
     account = new Account();
     id: number;
     idJob: number;

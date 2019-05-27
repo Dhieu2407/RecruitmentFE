@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {CandidateService} from "../service/candidate.service";
-import {EmailService} from "../service/email.service";
 import {ApplyService} from "../service/apply.service";
 import {CompanyService} from "../service/company.service";
 import {Candidate} from "../model/candidate.model";
-import {Email} from "../model/email.model";
 import {Account} from "../model/account.model";
 import {Company} from "../model/company.model";
 import {CompanySaveCandidateDTO} from "../model/companySaveCandidateDTO.model";
@@ -25,14 +23,12 @@ export class ApproveresumeapplyComponent implements OnInit {
   constructor(private router: Router,
               private route: ActivatedRoute,
               private candidateService: CandidateService,
-              private emailService: EmailService,
               private applyService: ApplyService,
               private companyService: CompanyService,
               private jobService: JobService,
               ) { }
 
     candidate = new Candidate();
-    email = new Email();
     job = new Job();
     account = new Account();
     id: number;

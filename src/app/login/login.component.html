@@ -30,7 +30,7 @@
                     <label for="rememberMe" class="rememberMe">
                       <input name="rememberMe" id="rememberMe" formControlName="rememberMe" value="forever" type="checkbox"> Lưu đăng nhập</label>
                   </div>
-                  <p class="cd-form-bottom-message"><a href="#">Quên mật khẩu?</a></p>
+                  <p class="cd-form-bottom-message"><a href="#0">Quên mật khẩu?</a></p>
                 </div>
               </form>
             </div>
@@ -82,19 +82,16 @@
             </div>
           </div>
           <div class="page-login-form" id="cd-reset-password"> <!-- reset password form -->
-            <p class="cd-form-message">Lost your password? Please enter your email address. You will receive a link to create a new password.</p>
-            <form class="cd-form">
-              <div class="form-group">
-                <div class="input-icon">
-                  <i class="ti-email"></i>
-                  <input type="text" id="sender-email" class="form-control" name="email" placeholder="Email">
-                </div>
-              </div>
-              <p class="fieldset">
-                <button class="btn btn-common log-btn" type="submit">Reset password</button>
-              </p>
-            </form>
-            <p class="cd-form-bottom-message"><a href="#0">Back to log-in</a></p>
+              <form role="form" class="reset-form" (ngSubmit)="requestReset()" [formGroup]="resetForm" ngNativeValidate>
+                  <div class="form-group">
+                      <div class="input-icon">
+                          <i class="ti-user"></i>
+                          <input type="email" class="form-control" placeholder="Nhập email khôi phục" formControlName="email" required>
+                      </div>
+                  </div>
+                  <button class="btn btn-common log-btn">Reset Password</button>
+              </form>
+            <p class="cd-form-bottom-message"><a href="#0">Trờ về trang đăng nhập</a></p>
           </div> <!-- cd-reset-password -->
         </div>
       </div>

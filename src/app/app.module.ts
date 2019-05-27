@@ -45,6 +45,7 @@ import { ApproveresumeapplyComponent } from './approveresumeapply/approveresumea
 import {AuthenticationService} from "./service/auth.service";
 import {AuthGuardService} from "./service/auth-guard.service";
 import { ActivateComponent } from './activate/activate.component';
+import { PasswordResetComponent } from './password-reset/password-reset.component';
 
 
 @NgModule({
@@ -82,6 +83,7 @@ import { ActivateComponent } from './activate/activate.component';
     CandidateNotificationComponent,
     ApproveresumeapplyComponent,
     ActivateComponent,
+    PasswordResetComponent,
   ],
   imports: [
     BrowserModule,
