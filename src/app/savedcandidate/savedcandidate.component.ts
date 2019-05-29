@@ -8,6 +8,7 @@ import {Account} from '../model/account.model';
 import {AuthGuardService} from '../service/auth-guard.service';
 import {Company} from "../model/company.model";
 import {CandidateService} from "../service/candidate.service";
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-savedcandidate',
@@ -16,6 +17,7 @@ import {CandidateService} from "../service/candidate.service";
 })
 export class SavedcandidateComponent implements OnInit {
     constructor(
+        private router: Router,
         private companyService: CompanyService,
         private applyService: ApplyService,
         private candidateService: CandidateService,
@@ -34,6 +36,7 @@ export class SavedcandidateComponent implements OnInit {
     ngOnInit() {
         if(!!localStorage.getItem('currentUser') === false) this.account = JSON.parse(sessionStorage.getItem('currentUser'));
         else this.account = JSON.parse(localStorage.getItem('currentUser'));
+        if(this.account.authorities[0] !== "ROLE_EMPLOYER") this.router.navigate(['/']);
         this.company.id = this.account.id;
         this.page = 1;
         this.pageSize = 10;

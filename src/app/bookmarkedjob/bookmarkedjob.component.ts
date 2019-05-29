@@ -6,6 +6,7 @@ import { CandidateSaveJobsDTO } from "../model/candidateSaveJobsDTO.model";
 import { first } from "rxjs/operators";
 import { Company } from "../model/company.model";
 import { Account } from '../model/account.model';
+import { Router} from "@angular/router";
 
 @Component({
     selector: "app-bookmarkedjob",
@@ -13,7 +14,9 @@ import { Account } from '../model/account.model';
     styleUrls: ["./bookmarkedjob.component.css"]
 })
 export class BookmarkedjobComponent implements OnInit {
-    constructor(private candidateService: CandidateService) {}
+    constructor(
+        private router: Router,
+        private candidateService: CandidateService) {}
 
     account: Account;
     id: number;
@@ -37,6 +40,7 @@ export class BookmarkedjobComponent implements OnInit {
         this.showCandidate = true;
         if(!!localStorage.getItem('currentUser') === false) this.account = JSON.parse(sessionStorage.getItem('currentUser'));
         else this.account = JSON.parse(localStorage.getItem('currentUser'));
+        if(this.account.authorities[0] !== "ROLE_CANDIDATE") this.router.navigate(['/']);
         this.id = this.account.id;
         this.candidateService
             .getBookmarkedJob(this.id)

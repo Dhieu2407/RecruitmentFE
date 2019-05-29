@@ -7,6 +7,7 @@ import {first} from 'rxjs/operators';
 import {ApplyService} from "../service/apply.service";
 import {Candidate} from "../model/candidate.model";
 import {CandidateService} from "../service/candidate.service";
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-managejob',
@@ -16,6 +17,7 @@ import {CandidateService} from "../service/candidate.service";
 export class ManagejobComponent implements OnInit  {
 
     constructor(
+        private router: Router,
         private jobService: JobService,
         private applyService: ApplyService,
         private candidateService: CandidateService,
@@ -30,6 +32,7 @@ export class ManagejobComponent implements OnInit  {
     ngOnInit() {
         if(!!localStorage.getItem('currentUser') === false) this.account = JSON.parse(sessionStorage.getItem('currentUser'));
         else this.account = JSON.parse(localStorage.getItem('currentUser'));
+        if(this.account.authorities[0] !== "ROLE_EMPLOYER") this.router.navigate(['/']);
         this.pageSize = 5;
         this.company.id = this.account.id;
         this.jobService.getListJobOfCompany(JSON.stringify(this.company))

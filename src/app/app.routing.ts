@@ -52,6 +52,7 @@ const routes: Routes = [
   { path: 'browsercompany' , component: BrowsercompanyComponent, canActivate: [AuthGuardService]},
   { path: 'detailcompany/:id', component: DetailcompanyComponent, canActivate: [AuthGuardService]},
     { path: 'candidatenotification', component: CandidateNotificationComponent },
+    { path: 'appliedjobs', component: AppliedJobComponent, canActivate: [AuthGuardService] },
 
   // Role Employer
   { path: 'addjob', component: AddjobComponent, canActivate: [AuthGuardService]},
@@ -62,8 +63,8 @@ const routes: Routes = [
   { path: 'modifycompany/:id', component: ModifyCompanyInfoComponent, canActivate: [AuthGuardService]},
   { path: 'managejobdetail/:id' , component: ManagejobdetailComponent, canActivate: [AuthGuardService]},
   { path: 'manageeditjobdetail/:id' , component: ManageEditJobdetailComponent, canActivate: [AuthGuardService]},
-    { path: 'savedcandidate', component: SavedcandidateComponent },
-    {path: 'approveresumeapply/:id/:idJob' , component: ApproveresumeapplyComponent},
+  { path: 'savedcandidate', component: SavedcandidateComponent },
+  { path: 'approveresumeapply/:id/:idJob' , component: ApproveresumeapplyComponent},
 
   // Role Manager
   { path: 'manage-recruitment', component: ManageRecruitmentComponent, canActivate: [AuthGuardService] },
@@ -71,7 +72,6 @@ const routes: Routes = [
   { path: 'view-employer-account', component: ViewEmployerAccountComponent, canActivate: [AuthGuardService] },
 
   // ??
-  { path: 'appliedjobs', component: AppliedJobComponent, canActivate: [AuthGuardService] },
   { path: 'companydetail/:id', component: CompanyDetailComponent, canActivate: [AuthGuardService] },
   { path: 'popupcandidate', component: PopupviewcontactComponent, canActivate: [AuthGuardService] },
   { path: 'managejob' , component: ManagejobComponent, canActivate: [AuthGuardService]},

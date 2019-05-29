@@ -25,6 +25,7 @@ export class ModifyCompanyInfoComponent implements OnInit {
     ngOnInit() {
         if(!!localStorage.getItem('currentUser') === false) this.account = JSON.parse(sessionStorage.getItem('currentUser'));
         else this.account = JSON.parse(localStorage.getItem('currentUser'));
+        if(this.account.authorities[0] !== "ROLE_EMPLOYER") this.router.navigate(['/']);
         this.email = this.account.email;
         this.company.id = this.account.id;
         this.modifyCompanyForm = this.formBuilder.group({

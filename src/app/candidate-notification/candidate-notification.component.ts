@@ -5,6 +5,7 @@ import { Company } from '../model/company.model';
 import { CompanySaveCandidateDTO } from '../model/companySaveCandidateDTO.model';
 import { first } from 'rxjs/operators';
 import { Account } from '../model/account.model';
+import { Router } from "@angular/router";
 
 @Component({
     selector: "app-candidate-notification",
@@ -12,7 +13,9 @@ import { Account } from '../model/account.model';
     styleUrls: ["./candidate-notification.component.css"]
 })
 export class CandidateNotificationComponent implements OnInit {
-    constructor(private candidateService: CandidateService) {}
+    constructor(
+        private router: Router,
+        private candidateService: CandidateService) {}
 
     id: number;
     candidate: Candidate;
@@ -35,6 +38,7 @@ export class CandidateNotificationComponent implements OnInit {
         // console.log(JSON.parse(localStorage.getItem("currentUser")));
         if(!!localStorage.getItem('currentUser') === false) this.account = JSON.parse(sessionStorage.getItem('currentUser'));
         else this.account = JSON.parse(localStorage.getItem('currentUser'));
+        if(this.account.authorities[0] !== "ROLE_CANDIDATE") this.router.navigate(['/']);
         this.id = this.account.id;
         console.log(this.id);
         this.candidateService

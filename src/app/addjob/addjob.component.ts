@@ -37,6 +37,7 @@ export class AddjobComponent implements OnInit {
   ngOnInit() {
       if(!!localStorage.getItem('currentUser') === false) this.account = JSON.parse(sessionStorage.getItem('currentUser'));
       else this.account = JSON.parse(localStorage.getItem('currentUser'));
+      if(this.account.authorities[0] !== "ROLE_EMPLOYER") this.router.navigate(['/']);
       this.formAddJob = this.formBuilder.group({
       tenJob: ['', Validators.required],
       diaChi: ['', Validators.required],

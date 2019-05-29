@@ -5,6 +5,7 @@ import {first} from "rxjs/operators";
 import { Account } from '../model/account.model';
 import {Company} from "../model/company.model";
 import { CompanyService } from '../service/company.service';
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-view-employer-account',
@@ -14,6 +15,7 @@ import { CompanyService } from '../service/company.service';
 export class ViewEmployerAccountComponent implements OnInit {
 
     constructor(
+        private router: Router,
         private accountService: AccountService,
         private authGuardService: AuthGuardService,
         private companyService: CompanyService,
@@ -21,11 +23,15 @@ export class ViewEmployerAccountComponent implements OnInit {
 
     page: number;
     pageSize: number;
+    acc = new Account();
     account: Account[];
     listCompany = [];
     count = 0;
 
     ngOnInit() {
+        if(!!localStorage.getItem('currentUser') === false) this.acc = JSON.parse(sessionStorage.getItem('currentUser'));
+        else this.acc = JSON.parse(localStorage.getItem('currentUser'));
+        if(this.acc.authorities[0] !== "ROLE_MANAGER") this.router.navigate(['/']);
         this.page = 1;
         this.pageSize = 5;
         this.accountService.getAllUsers()

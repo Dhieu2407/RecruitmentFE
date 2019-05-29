@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { Router} from "@angular/router";
 import { Major } from "../model/major.model";
 import { MajorService } from "../service/major.service";
 import { first } from "rxjs/operators";
@@ -16,7 +17,12 @@ import { Account } from "../model/account.model";
     styleUrls: ["./browsercompany.component.css"]
 })
 export class BrowsercompanyComponent implements OnInit {
-    constructor(private formBuilder: FormBuilder, private majorService: MajorService, private companyService: CompanyService, private candidateService: CandidateService) {}
+    constructor(
+        private router: Router,
+        private formBuilder: FormBuilder,
+        private majorService: MajorService,
+        private companyService: CompanyService,
+        private candidateService: CandidateService) {}
 
     account: Account;
     searchCompanyForm: FormGroup;
@@ -32,6 +38,7 @@ export class BrowsercompanyComponent implements OnInit {
     ngOnInit() {
         if (!!localStorage.getItem("currentUser") === false) this.account = JSON.parse(sessionStorage.getItem("currentUser"));
         else this.account = JSON.parse(localStorage.getItem("currentUser"));
+        if(this.account.authorities[0] !== "ROLE_CANDIDATE") this.router.navigate(['/']);
         this.id = this.account.id;
         this.page = 1;
         this.pageSize = 10;

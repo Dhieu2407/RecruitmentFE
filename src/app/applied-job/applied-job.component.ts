@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { CandidateService } from "../service/candidate.service";
 import { Candidate } from "../model/candidate.model";
 import { Job } from "../model/job.model";
+import {Router} from "@angular/router";
 import { CandidateSaveJobsDTO } from "../model/candidateSaveJobsDTO.model";
 import { first } from "rxjs/operators";
 import { Company } from "../model/company.model";
@@ -12,7 +13,9 @@ import { Account } from '../model/account.model';
     styleUrls: ["./applied-job.component.css"]
 })
 export class AppliedJobComponent implements OnInit {
-    constructor(private candidateService: CandidateService) {}
+    constructor(
+        private router: Router,
+        private candidateService: CandidateService) {}
    account: Account;
     id: number;
     candidate: Candidate;
@@ -30,6 +33,7 @@ export class AppliedJobComponent implements OnInit {
     ngOnInit() {
         if(!!localStorage.getItem('currentUser') === false) this.account = JSON.parse(sessionStorage.getItem('currentUser'));
         else this.account = JSON.parse(localStorage.getItem('currentUser'));
+        if(this.account.authorities[0] !== "ROLE_CANDIDATE") this.router.navigate(['/']);
         this.notificationCount = 0;
         this.page = 1;
         this.pageSize = 10;

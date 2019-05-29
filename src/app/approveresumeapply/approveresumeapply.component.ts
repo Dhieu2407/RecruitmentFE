@@ -49,6 +49,7 @@ export class ApproveresumeapplyComponent implements OnInit {
 
     ngOnInit() {
         this.account = JSON.parse(localStorage.getItem('currentUser'));
+        if(this.account.authorities[0] !== "ROLE_EMPLOYER") this.router.navigate(['/']);
         this.id = +this.route.snapshot.paramMap.get('id');
         this.idJob = +this.route.snapshot.paramMap.get('idJob');
         this.applySearch.candidateId = this.id;

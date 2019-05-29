@@ -62,6 +62,7 @@ export class BrowseresumesComponent implements OnInit {
     ngOnInit() {
         if(!!localStorage.getItem('currentUser') === false) this.account = JSON.parse(sessionStorage.getItem('currentUser'));
         else this.account = JSON.parse(localStorage.getItem('currentUser'));
+        if(this.account.authorities[0] !== "ROLE_EMPLOYER") this.router.navigate(['/']);
         this.page = 1;
         this.pageSize = 10;
         this.formSearchCandidate = this.formBuilder.group({

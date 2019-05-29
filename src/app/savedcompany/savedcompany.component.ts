@@ -5,6 +5,7 @@ import { CandidateService } from "../service/candidate.service";
 import { first } from "rxjs/operators";
 import { CompanySaveCandidateDTO } from '../model/companySaveCandidateDTO.model';
 import { Account } from '../model/account.model';
+import {Router} from'@angular/router';
 
 @Component({
     selector: "app-savedcompany",
@@ -12,7 +13,9 @@ import { Account } from '../model/account.model';
     styleUrls: ["./savedcompany.component.css"]
 })
 export class SavedcompanyComponent implements OnInit {
-    constructor(private candidateService: CandidateService) {}
+    constructor(
+        private router: Router,
+        private candidateService: CandidateService) {}
     account: Account;
     id: number;
     candidate: Candidate;
@@ -30,9 +33,9 @@ export class SavedcompanyComponent implements OnInit {
         this.pageSize = 10;
         this.showJob = false;
         this.showCandidate = true;
-        // console.log(JSON.parse(localStorage.getItem("currentUser")));
         if(!!localStorage.getItem('currentUser') === false) this.account = JSON.parse(sessionStorage.getItem('currentUser'));
         else this.account = JSON.parse(localStorage.getItem('currentUser'));
+        if(this.account.authorities[0] !== "ROLE_CANDIDATE") this.router.navigate(['/']);
         this.id = this.account.id;
         this.candidateService
             .getAllSavedCompanies(this.id)

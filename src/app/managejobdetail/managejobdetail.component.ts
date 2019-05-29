@@ -41,7 +41,9 @@ export class ManagejobdetailComponent implements OnInit {
   ngOnInit() {
       this.page = 1;
       this.pageSize = 5;
-      this.account = JSON.parse(localStorage.getItem('currentUser'));
+      if(!!localStorage.getItem('currentUser') === false) this.account = JSON.parse(sessionStorage.getItem('currentUser'));
+      else this.account = JSON.parse(localStorage.getItem('currentUser'));
+      if(this.account.authorities[0] !== "ROLE_EMPLOYER") this.router.navigate(['/']);
       this.company.id = this.account.id;
       this.jobId = parseInt(this.routerSnapshot.snapshot.paramMap.get('id'));
       this.searchJob.jobId = this.routerSnapshot.snapshot.paramMap.get('id');

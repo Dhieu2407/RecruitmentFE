@@ -3,6 +3,7 @@ import {JobService} from "../service/job.service";
 import {Job} from "../model/job.model";
 import {Account} from "../model/account.model";
 import {first} from "rxjs/operators";
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-manage-recruitment',
@@ -12,6 +13,7 @@ import {first} from "rxjs/operators";
 export class ManageRecruitmentComponent implements OnInit {
 
   constructor(
+      private router: Router,
       private jobService: JobService,
   ) { }
 
@@ -25,6 +27,7 @@ export class ManageRecruitmentComponent implements OnInit {
     ngOnInit() {
         if(!!localStorage.getItem('currentUser') === false) this.account = JSON.parse(sessionStorage.getItem('currentUser'));
         else this.account = JSON.parse(localStorage.getItem('currentUser'));
+        if(this.account.authorities[0] !== "ROLE_MANAGER") this.router.navigate(['/']);
         this.page = 1;
         this.pageSize = 5;
         this.job.trangThai = "0";

@@ -6,6 +6,7 @@ import { Job } from "../model/job.model";
 import { CandidateSaveJobsDTO } from "../model/candidateSaveJobsDTO.model";
 import { Company } from "../model/company.model";
 import { Account } from '../model/account.model';
+import {Router} from '@angular/router';
 
 @Component({
     selector: "app-manageresumes",
@@ -14,6 +15,7 @@ import { Account } from '../model/account.model';
 })
 export class ManageresumesComponent implements OnInit {
     constructor(
+        private router: Router,
         private candidateService: CandidateService) {}
     account: Account;
     id: number;
@@ -35,6 +37,7 @@ export class ManageresumesComponent implements OnInit {
         this.showCandidate = true;
         if(!!localStorage.getItem('currentUser') === false) this.account = JSON.parse(sessionStorage.getItem('currentUser'));
         else this.account = JSON.parse(localStorage.getItem('currentUser'));
+        if(this.account.authorities[0] !== "ROLE_CANDIDATE") this.router.navigate(['/']);
         this.id = this.account.id;
 
         this.candidateService
