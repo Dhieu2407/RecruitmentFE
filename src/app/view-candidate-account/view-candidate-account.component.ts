@@ -19,15 +19,21 @@ export class ViewCandidateAccountComponent implements OnInit {
       private candidateService: CandidateService,
   ) { }
 
+    page: number;
+    pageSize: number;
   account: Account[];
-  resume: Candidate[]
+  listCandidate = [];
+  count = 0;
 
   ngOnInit() {
+      this.page = 1;
+      this.pageSize = 5;
       this.accountService.getAllUsers()
           .pipe(first())
           .subscribe(
               (data: Account[]) => {
                   this.account = data;
+                  console.log(this.account);
                   for(let i = 0; i < this.account.length; i++) {
                       if(this.account[i].authorities[0] === "ROLE_CANDIDATE"){
                           this.getCandidate(this.account[i].id);
@@ -43,9 +49,10 @@ export class ViewCandidateAccountComponent implements OnInit {
       this.candidateService.getCandidate(i)
           .pipe(first())
           .subscribe(
-              (data: Candidate[]) => {
-                  this.resume = data;
-                  console.log(this.resume);
+              (data: Candidate) => {
+                  this.listCandidate[this.count] = data;
+                  console.log(this.listCandidate);
+                  this.count++;
               },
               error => {
                   console.log('Failed');
@@ -56,6 +63,4 @@ export class ViewCandidateAccountComponent implements OnInit {
   onDelete(i){
 
   }
-
-
 }

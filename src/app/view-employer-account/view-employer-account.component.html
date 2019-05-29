@@ -1,3 +1,82 @@
-<p>
-  view-employer-account works!
-</p>
+<body>
+<!-- Start Content -->
+<div id="content">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-sm-4 col-xs-12">
+                <div class="right-sideabr">
+                    <div class="inner-box">
+                        <h4>Quản lý tài khoản</h4>
+                        <ul class="lest item">
+                            <li><a href="/view-candidate-account">Quản lý tài khoản ứng viên</a></li>
+                            <li><a href="/view-employer-account">Quản lý tài khoản nhà tuyển dụng</a></li>
+                        </ul>
+                        <h4>Quản lý tuyển dụng</h4>
+                        <ul class="lest item">
+                            <li><a href="/manage-recruitment">Quản lý tin tuyển dụng <span class="notinumber">2</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8 col-sm-8 col-xs-12">
+                <div class="job-alerts-item">
+                    <h3 class="alerts-title">Quản lý tài khoản nhà tuyển dụng</h3>
+                    <hr>
+                    <div *ngFor="let company of listCompany | slice: (page-1) * pageSize: (page-1) * pageSize + pageSize; let i = index">
+                        <div class="applications-content">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <div class="thums">
+                                        <img src="{{company.imgUrl}}" alt="">
+                                    </div>
+                                    <h3><a href="/companydetail/{{company.congtyId}}">{{company.tenCongTy}}</a></h3>
+                                </div>
+                                <div class="col-md-5">
+                                    <h3><span>Email: {{company.email}}</span></h3>
+                                    <span>Số điện thoại: {{company.sdt}}</span>
+                                </div>
+                            </div>
+                            <div class="btn btn-common btn-rm" (click)="onDelete(i)" style ="float:right">Xóa tài khoản</div>
+                            <br>
+                        </div>
+                    </div>
+                    <ngb-pagination [(page)]="page" [pageSize]="pageSize" [collectionSize]="count"></ngb-pagination>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Content -->
+
+<!-- Copyright Start  -->
+<div id="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <p>All Rights reserved &copy; 2018 - Designed & Developed by <a rel="nofollow" href="#">You</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Copyright End -->
+
+<!-- Go To Top Link -->
+<a href="#" class="back-to-top">
+    <i class="ti-arrow-up"></i>
+</a>
+
+<div id="loading">
+    <div id="loading-center">
+        <div id="loading-center-absolute">
+            <div class="object" id="object_one"></div>
+            <div class="object" id="object_two"></div>
+            <div class="object" id="object_three"></div>
+            <div class="object" id="object_four"></div>
+            <div class="object" id="object_five"></div>
+            <div class="object" id="object_six"></div>
+            <div class="object" id="object_seven"></div>
+            <div class="object" id="object_eight"></div>
+        </div>
+    </div>
+</div>
+</body>

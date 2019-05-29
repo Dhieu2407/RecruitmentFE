@@ -21,6 +21,7 @@ export class ManageRecruitmentComponent implements OnInit {
     account = new Account();
     job = new Job();
     jobUpdate = new Job();
+    count = 0;
     ngOnInit() {
         if(!!localStorage.getItem('currentUser') === false) this.account = JSON.parse(sessionStorage.getItem('currentUser'));
         else this.account = JSON.parse(localStorage.getItem('currentUser'));
@@ -31,7 +32,6 @@ export class ManageRecruitmentComponent implements OnInit {
     }
 
     onConfirmed(i){
-
         this.jobUpdate.trangThai = "1";
         this.jobUpdate.jobId = this.listJob[i].jobId;
         this.jobUpdate.yeuCauUngVien = this.listJob[i].yeuCauUngVien;
@@ -100,6 +100,7 @@ export class ManageRecruitmentComponent implements OnInit {
                 (data: Job[]) => {
                     this.listJob = data;
                     console.log(this.listJob);
+                    this.count = this.listJob.length;
                 },
                 error => {
                     console.log('Failed');
