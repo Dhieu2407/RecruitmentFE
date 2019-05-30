@@ -114,8 +114,9 @@ export class LoginComponent implements OnInit {
             alert('Đăng nhập thành công');
             location.reload();
         },
-          err => console.log(err)
-      );
+          err => {
+              alert('Đăng nhập thất bại');
+          });
   }
 
     requestReset(){

@@ -40,7 +40,7 @@ export class ModifyresumeComponent implements OnInit {
     email: string;
     imageFile: File;
     allCertificates: Certificate[];
-    imageSrc: string;
+    imageSrc = '';
 
     ngOnInit() {
         if(!!localStorage.getItem('currentUser') === false) this.account = JSON.parse(sessionStorage.getItem('currentUser'));
@@ -127,7 +127,7 @@ export class ModifyresumeComponent implements OnInit {
             .subscribe(
                 (data: Candidate) => {
                     this.candidate = data;
-                    this.imageSrc = this.candidate.imgUrl;
+                    if(this.candidate.imgUrl !== null) this.imageSrc = this.candidate.imgUrl;
                     this.modifyResumeForm.get("email").setValue(this.email);
                     this.modifyResumeForm.get("name").setValue(this.candidate.tenUngVien);
                     this.modifyResumeForm.get("phone").setValue(this.candidate.sdt);
