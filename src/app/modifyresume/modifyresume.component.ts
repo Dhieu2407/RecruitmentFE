@@ -300,7 +300,9 @@ export class ModifyresumeComponent implements OnInit {
 
     onSubmit(buttonType): void {
         if (buttonType === "Submit") {
-            cd r
+            // if (this.modifyResumeForm.invalid) {
+            //     return;
+            // }
             this.resume.id = this.account.id;
             this.resume.name = this.modifyResumeForm.get("name").value;
             this.resume.email = this.email;
