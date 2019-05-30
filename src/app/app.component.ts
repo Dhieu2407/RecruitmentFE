@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {Account} from "./model/account.model";
 import { AuthenticationService } from './service/auth.service';
+import {Router} from '@angular/router';
+import {CandidateService} from './service/candidate.service';
+import {first} from "rxjs/operators";
 
 @Component({
   selector: 'app-root',
@@ -18,6 +21,8 @@ export class AppComponent implements OnInit {
   roleManager: boolean;
   urlModifyCompany: string;
   constructor(
+      private router: Router,
+      private candidateService: CandidateService,
       private authService: AuthenticationService,
   ) {}
 
@@ -35,6 +40,19 @@ export class AppComponent implements OnInit {
           else if(this.account.authorities[0] === 'ROLE_EMPLOYER') this.roleEmployer = true;
           else if(this.account.authorities[0] === 'ROLE_MANAGER')  this.roleManager = true;
       } else this.logged = false;
+      if(this.roleCandidate === true){
+          this.candidateService.getCandidate(this.account.id)
+              .pipe(first())
+              .subscribe(
+                  (data) => {
+                      if(data === null){
+                          this.router.navigate(['/modifyresume/' + this.account.id]);
+                      }
+                  },
+                  error => {
+                      console.log(error);
+                  });
+      }
   }
 
   onLogout(){
