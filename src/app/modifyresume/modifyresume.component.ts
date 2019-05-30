@@ -43,7 +43,6 @@ export class ModifyresumeComponent implements OnInit {
     imageSrc: string;
 
     ngOnInit() {
-        this.email = JSON.parse(localStorage.getItem("currentUser")).email;
         if(!!localStorage.getItem('currentUser') === false) this.account = JSON.parse(sessionStorage.getItem('currentUser'));
         else this.account = JSON.parse(localStorage.getItem('currentUser'));
         if(this.account.authorities[0] !== "ROLE_CANDIDATE") this.router.navigate(['/']);
