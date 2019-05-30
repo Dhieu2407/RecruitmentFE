@@ -96,7 +96,6 @@ export class ModifyresumeComponent implements OnInit {
 
         this.modifyResumeForm = this.formBuilder.group({
             name: ["", Validators.required],
-            email: ["", Validators.required],
             phone: ["", Validators.required],
             address: ["", Validators.required],
             career: ["", Validators.required],
@@ -128,7 +127,6 @@ export class ModifyresumeComponent implements OnInit {
                 (data: Candidate) => {
                     this.candidate = data;
                     if(this.candidate.imgUrl !== null) this.imageSrc = this.candidate.imgUrl;
-                    this.modifyResumeForm.get("email").setValue(this.email);
                     this.modifyResumeForm.get("name").setValue(this.candidate.tenUngVien);
                     this.modifyResumeForm.get("phone").setValue(this.candidate.sdt);
                     this.modifyResumeForm.get("address").setValue(this.candidate.diaChi);
@@ -302,12 +300,10 @@ export class ModifyresumeComponent implements OnInit {
 
     onSubmit(buttonType): void {
         if (buttonType === "Submit") {
-            // if (this.modifyResumeForm.invalid) {
-            //     return;
-            // }
+            cd r
             this.resume.id = this.account.id;
             this.resume.name = this.modifyResumeForm.get("name").value;
-            this.resume.email = this.modifyResumeForm.get("email").value;
+            this.resume.email = this.email;
             this.resume.phone = this.modifyResumeForm.get("phone").value;
             this.resume.address = this.modifyResumeForm.get("address").value;
             this.resume.wantedSalary = this.modifyResumeForm.get("wantedSalary").value;
@@ -382,6 +378,8 @@ export class ModifyresumeComponent implements OnInit {
             .subscribe(
                 (data: Candidate[]) => {
                     console.log(data);
+                    alert('Gửi thành công');
+                    this.router.navigate(['/resume/' + this.resume.id]);
                 },
                 error => {
                     console.log("Failed");
