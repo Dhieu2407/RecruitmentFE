@@ -110,6 +110,9 @@ export class LoginComponent implements OnInit {
                     },
                     error => {
                         console.log(error);
+                        this.authService.logout();
+                        alert('Đăng nhập thất bại');
+                        location.reload();
                     });
             alert('Đăng nhập thành công');
             location.reload();
