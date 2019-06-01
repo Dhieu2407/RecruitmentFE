@@ -45,9 +45,9 @@
                 <div class="job-alerts-item">
                     <h3 class="alerts-title">Manage detail applications</h3>
                     <hr>
-                    <div class="inner-box my-resume">
+                    <div class="inner-box my-resume" *ngIf="applyResult.ungVien">
                         <div class="author-resume">
-                            <div class="thumb" style="width:100px;height:100px;" >
+                            <div class="thumb" style="width:100px;height:100px;">
                                 <img src="{{applyResult.ungVien.imgUrl}}" alt="">
                             </div>
                             <div class="author-info">
@@ -90,7 +90,7 @@
                             </div>
                         </div>
 
-                        <div class="about-me item">
+                        <div class="about-me item" >
                             <h3>Mục Tiêu Nghề Nghiệp</h3>
                             <span style="white-space: pre">{{applyResult.ungVien.mucTieuNgheNghiep}}</span>
                         </div>

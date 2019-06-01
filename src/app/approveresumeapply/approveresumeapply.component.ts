@@ -47,8 +47,10 @@ export class ApproveresumeapplyComponent implements OnInit {
     applyApprove = new Apply();
     applyAfterApprove = new Apply();
 
+
     ngOnInit() {
-        this.account = JSON.parse(localStorage.getItem('currentUser'));
+        if(!!localStorage.getItem('currentUser') === false) this.account = JSON.parse(sessionStorage.getItem('currentUser'));
+        else this.account = JSON.parse(localStorage.getItem('currentUser'));
         if(this.account.authorities[0] !== "ROLE_EMPLOYER") this.router.navigate(['/']);
         this.id = +this.route.snapshot.paramMap.get('id');
         this.idJob = +this.route.snapshot.paramMap.get('idJob');
@@ -60,6 +62,10 @@ export class ApproveresumeapplyComponent implements OnInit {
             .subscribe(
                 (data: Apply) => {
                     this.applyResult = data;
+                    console.log(this.applyResult);
+                    this.nganh = this.applyResult.ungVien.nganh.tenNganh;
+                    this.hocVan = JSON.parse(this.applyResult.ungVien.trinhDoDaiHoc);
+                    this.viecLam = JSON.parse(this.applyResult.ungVien.lichSuLamViec);
                     if (0 === this.applyResult.trangThai) {
                         this.hidden = false;
                     } else {
