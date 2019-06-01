@@ -107,6 +107,8 @@ export class LoginComponent implements OnInit {
                 .subscribe(
                     data => {
                         this.authService.storeUserData(JSON.stringify(data.body), this.rememberMe);
+                        alert('Đăng nhập thành công');
+                        location.reload();
                     },
                     error => {
                         console.log(error);
@@ -114,10 +116,10 @@ export class LoginComponent implements OnInit {
                         alert('Đăng nhập thất bại');
                         location.reload();
                     });
-            alert('Đăng nhập thành công');
-            location.reload();
         },
           err => {
+              console.log(err);
+              this.authService.logout();
               alert('Đăng nhập thất bại');
           });
   }
