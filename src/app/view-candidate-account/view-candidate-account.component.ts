@@ -27,6 +27,7 @@ export class ViewCandidateAccountComponent implements OnInit {
   account: Account[];
   listCandidate = [];
   count = 0;
+  deleteCandidate = new Candidate();
 
   ngOnInit() {
       if(!!localStorage.getItem('currentUser') === false) this.acc = JSON.parse(sessionStorage.getItem('currentUser'));
@@ -67,6 +68,25 @@ export class ViewCandidateAccountComponent implements OnInit {
   }
 
   onDelete(i){
-
+      this.deleteCandidate.id = this.listCandidate[i].ungVienId;
+      this.accountService.deleteUser(this.deleteCandidate.id)
+          .pipe(first())
+          .subscribe(
+              () => {
+                  this.candidateService.deleteCandidate(this.deleteCandidate)
+                      .pipe(first())
+                      .subscribe(
+                          () => {
+                              alert('Xóa ứng viên thành công');
+                          },
+                          error => {
+                              console.log(error);
+                              alert('Xóa ứng viên thất bại');
+                          });
+              },
+              error => {
+                  console.log(error);
+                  alert('Xóa ứng viên thất bại');
+              });
   }
 }

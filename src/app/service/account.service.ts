@@ -36,7 +36,7 @@ export class AccountService {
   }
 
   deleteUser(id: number) {
-    return this.http.delete(this.baseUrl + '/' + id);
+    return this.http.delete(this.baseUrl + '/users/' + id);
   }
 
   changePassword(currentPassword: string, newPassword: string) {

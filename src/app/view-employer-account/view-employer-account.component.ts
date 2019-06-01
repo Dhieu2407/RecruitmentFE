@@ -27,6 +27,7 @@ export class ViewEmployerAccountComponent implements OnInit {
     account: Account[];
     listCompany = [];
     count = 0;
+    deleteCompany = new Company();
 
     ngOnInit() {
         if(!!localStorage.getItem('currentUser') === false) this.acc = JSON.parse(sessionStorage.getItem('currentUser'));
@@ -67,6 +68,25 @@ export class ViewEmployerAccountComponent implements OnInit {
     }
 
     onDelete(i){
-
+        this.deleteCompany.id = this.listCompany[i].congtyId;
+        this.accountService.deleteUser(this.deleteCompany.id)
+            .pipe(first())
+            .subscribe(
+                () => {
+                    this.companyService.deleteCompany(this.deleteCompany)
+                        .pipe(first())
+                        .subscribe(
+                            () => {
+                                alert('Xóa công ty thành công');
+                            },
+                            error => {
+                                console.log(error);
+                                alert('Xóa công ty thất bại');
+                            });
+                },
+                error => {
+                    console.log(error);
+                    alert('Xóa công ty thất bại');
+                });
     }
 }

@@ -3,6 +3,7 @@ import { CompanyService } from '../service/company.service';
 import { Company } from '../model/company.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs/operators';
+import {Account} from '../model/account.model';
 
 @Component({
   selector: 'app-company-detail',
@@ -15,9 +16,13 @@ export class CompanyDetailComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute) { }
 
+    account = new Account();
   company : Company;
   id: number;
   ngOnInit() {
+      if(!!localStorage.getItem('currentUser') === false) this.account = JSON.parse(sessionStorage.getItem('currentUser'));
+      else this.account = JSON.parse(localStorage.getItem('currentUser'));
+
     this.id = +this.route.snapshot.paramMap.get("id");
     this.companyService.getCompany(this.id)
         .pipe(first())
