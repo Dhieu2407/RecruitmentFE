@@ -78,6 +78,7 @@ export class ViewCandidateAccountComponent implements OnInit {
                       .subscribe(
                           () => {
                               alert('Xóa ứng viên thành công');
+                              location.reload();
                           },
                           error => {
                               console.log(error);

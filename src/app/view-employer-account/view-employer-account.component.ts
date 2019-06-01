@@ -78,6 +78,7 @@ export class ViewEmployerAccountComponent implements OnInit {
                         .subscribe(
                             () => {
                                 alert('Xóa công ty thành công');
+                                location.reload();
                             },
                             error => {
                                 console.log(error);
