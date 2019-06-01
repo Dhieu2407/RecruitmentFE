@@ -14,7 +14,7 @@
                   <!-- <p class="sub-title"><label>Java Deverloper</label></p> -->
                   <p><span class="address"><i class="ti-location-pin"></i><label>{{company.diaChi}}</label></span><br><span><i class="ti-phone"></i><label class="ti-mobile">{{company.sdt}}</label></span></p>
 
-                  <form class="subscribe-box">
+                  <form class="subscribe-box" *ngIf="account.authorities[0] === 'ROLE_EMPLOYER'">
                     <input type="submit" class="btn-system" value="Sửa Hồ Sơ" (click)="toModifyCompany()">
                   </form>
                 </div>

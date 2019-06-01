@@ -31,6 +31,10 @@ export class CandidateService {
         return this.http.post(this.baseUrl + "/searchCandidates", candidate);
     }
 
+    deleteCandidate(candidate: Candidate){
+        return this.http.post(this.baseUrl + "/deleteCandidate", candidate);
+    }
+
     modifyResume(resume: Resume) {
         return this.http.post(this.baseUrl + "/updateProfileCandidates", resume);
     }

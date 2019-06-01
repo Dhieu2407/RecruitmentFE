@@ -26,6 +26,10 @@ export class CompanyService {
     getCompany(id: number) {
         return this.http.get(this.baseUrl + '/getCompany/' + id);
     }
+
+    deleteCompany(company: Company){
+        return this.http.post(this.baseUrl + "/deleteCompany", company);
+    }
     getCandidateApplyJobOCompany(id: number) {
         return this.http.get(this.baseUrl + '/getCandidateByCompany/' + id);
     }
