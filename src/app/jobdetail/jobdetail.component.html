@@ -5,7 +5,7 @@
       <div class="divider" style = "text-align: center"><h3>Thông tin chi tiết công việc</h3></div>
     <div class="row">
       <div class="col-md-12 col-sm-12 col-xs-12">
-        <div class="header-detail">
+        <div class="header-detail"  *ngIf="job.tenJob">
           <div class="header-content pull-left">
             <h3>{{job.tenJob}}</h3>
             <p><span>Date Posted: {{job.ngayDang}}</span></p>
