@@ -1,3 +1,5 @@
+import {Major} from "./major.model";
+
 export class Job {
     jobId : number;
     tenJob: string;
@@ -20,4 +22,5 @@ export class Job {
     ngayDang: string;
     yeuCauCongViec: string;
     soLuongView: number;
+    nganh: Major;
 }

@@ -33,6 +33,7 @@ export class ManagejobComponent implements OnInit  {
         if(!!localStorage.getItem('currentUser') === false) this.account = JSON.parse(sessionStorage.getItem('currentUser'));
         else this.account = JSON.parse(localStorage.getItem('currentUser'));
         if(this.account.authorities[0] !== "ROLE_EMPLOYER") this.router.navigate(['/']);
+        this.page = 0;
         this.pageSize = 5;
         this.company.id = this.account.id;
         this.jobService.getListJobOfCompany(JSON.stringify(this.company))

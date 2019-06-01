@@ -21,7 +21,6 @@ export class JobdetailComponent implements OnInit {
     private jobService: JobService,
   ) { }
   jobId: number;
-  majorId: number;
   job = new Job();
   listJobRelate: Job[];
   major = new Major();
@@ -45,28 +44,24 @@ export class JobdetailComponent implements OnInit {
         (data: Job) => {
           this.job = data;
           console.log(this.job);
+            this.major.nganhId = this.job.nganh.nganhId.toString();
+            // get list job Related
+            this.jobService.getListJobRelate(JSON.stringify(this.major))
+                .pipe(first())
+                .subscribe(
+                    (data: Job[]) => {
+                        this.listJobRelate = data;
+                        console.log(this.listJobRelate);
+                    },
+                    error => {
+                        console.log(error);
+                    }
+                );
         },
         error => {
           console.log('Fail');
         }
       );
-
-   // str.replace(/\n/g,'\\n')
-    // get list job Related
-    this.majorId = parseInt(this.routerSnapshot.snapshot.paramMap.get('idMajor'));
-    this.major.nganhId = this.routerSnapshot.snapshot.paramMap.get('idMajor');
-    this.jobService.getListJobRelate(JSON.stringify(this.major))
-      .pipe(first())
-      .subscribe(
-        (data: Job[]) => {
-          this.listJobRelate = data;
-          console.log(this.listJobRelate);
-        },
-        error => {
-          console.log('Fail');
-        }
-      );
-
   }
 
 }

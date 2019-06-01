@@ -65,7 +65,7 @@
                             <h4>
                                 <a href="/companydetail/{{ company.congtyId }}">{{ company.tenCongTy }}</a>
                             </h4>
-                            <p>Chuyên ngành : <span>{{ company.nganh.tenNganh }}</span></p>
+                            <p *ngIf="company.nganh">Chuyên ngành : <span>{{ company.nganh.tenNganh }}</span></p>
                             <p><span><i class="ti-location-pin"></i>{{ company.diaChi }}</span></p>
 
                             <div class="job-tag" >

@@ -41,7 +41,7 @@ const routes: Routes = [
   { path: 'activate', component: ActivateComponent},
   { path: 'password-reset', component: PasswordResetComponent },
   { path: 'job', component: JobComponent },
-  { path: 'jobdetail/:id/:idMajor', component: JobdetailComponent},
+  { path: 'jobdetail/:id', component: JobdetailComponent},
   { path: 'changepassword', component: ChangepasswordComponent, canActivate: [AuthGuardService]},
 
   // Role Candidate

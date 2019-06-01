@@ -14,7 +14,13 @@ import {Account} from '../model/account.model';
     styleUrls: ["./modify-company-info.component.css"]
 })
 export class ModifyCompanyInfoComponent implements OnInit {
-    constructor(private uploadService: UploadService, private formBuilder: FormBuilder, private companyService: CompanyService, private router: Router, private route: ActivatedRoute, private authGuardService: AuthGuardService) {}
+    constructor(
+        private uploadService: UploadService,
+        private formBuilder: FormBuilder,
+        private companyService: CompanyService,
+        private router: Router,
+        private route: ActivatedRoute,
+        private authGuardService: AuthGuardService) {}
 
     account: Account;
     modifyCompanyForm: FormGroup;
@@ -30,7 +36,6 @@ export class ModifyCompanyInfoComponent implements OnInit {
         this.company.id = this.account.id;
         this.modifyCompanyForm = this.formBuilder.group({
             tenCongTy: ["", Validators.required],
-            email: ["", Validators.required],
             phone: ["", Validators.required],
             address: [""],
             moTa: [""],
@@ -45,7 +50,6 @@ export class ModifyCompanyInfoComponent implements OnInit {
                 (data: Company) => {
                     console.log(data);
                     this.company = data;
-                    this.modifyCompanyForm.get("email").setValue(this.email);
                     this.modifyCompanyForm.get("tenCongTy").setValue(this.company.tenCongTy);
                     this.modifyCompanyForm.get("phone").setValue(this.company.sdt);
                     this.modifyCompanyForm.get("address").setValue(this.company.diaChi);
@@ -66,7 +70,7 @@ export class ModifyCompanyInfoComponent implements OnInit {
             }
             this.company.id = this.account.id;
             this.company.tenCongTy = this.modifyCompanyForm.get("tenCongTy").value;
-            this.company.email = this.modifyCompanyForm.get("email").value;
+            this.company.email = this.email;
             this.company.sdt = this.modifyCompanyForm.get("phone").value;
             this.company.diaChi = this.modifyCompanyForm.get("address").value;
             this.company.moTa = this.modifyCompanyForm.get("moTa").value;
@@ -74,7 +78,9 @@ export class ModifyCompanyInfoComponent implements OnInit {
             this.company.quyMo = this.modifyCompanyForm.get("quyMo").value;
             console.log(this.company);
             const uploadData = new FormData();
-            uploadData.append('file', this.imageFile, this.imageFile.name);
+            if(this.imageFile !== undefined) {
+                uploadData.append('file', this.imageFile, this.imageFile.name);
+            }
             this.uploadService.uploadFile(uploadData)
                 .pipe(first())
                 .subscribe(
@@ -122,7 +128,7 @@ export class ModifyCompanyInfoComponent implements OnInit {
             .subscribe(
                 (data: Company[]) => {
                     console.log(data);
-                    location.href =  '/companydetail/' + this.id ;
+                    location.href =  '/companydetail/' + this.id;
                 },
                 error => {
                     console.log("Failed");

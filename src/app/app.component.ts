@@ -4,6 +4,7 @@ import { AuthenticationService } from './service/auth.service';
 import {Router} from '@angular/router';
 import {CandidateService} from './service/candidate.service';
 import {first} from "rxjs/operators";
+import { CompanyService } from './service/company.service';
 
 @Component({
   selector: 'app-root',
@@ -24,6 +25,7 @@ export class AppComponent implements OnInit {
       private router: Router,
       private candidateService: CandidateService,
       private authService: AuthenticationService,
+      private companyService: CompanyService,
   ) {}
 
   ngOnInit() {
@@ -47,6 +49,19 @@ export class AppComponent implements OnInit {
                   (data) => {
                       if(data === null){
                           this.router.navigate(['/modifyresume/' + this.account.id]);
+                      }
+                  },
+                  error => {
+                      console.log(error);
+                  });
+      }
+      else if(this.roleEmployer === true){
+          this.companyService.getCompany(this.account.id)
+              .pipe(first())
+              .subscribe(
+                  (data) => {
+                      if(data === null){
+                          this.router.navigate(['/modifycompany/' + this.account.id]);
                       }
                   },
                   error => {
