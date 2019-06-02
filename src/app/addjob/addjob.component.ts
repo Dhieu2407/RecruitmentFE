@@ -61,6 +61,7 @@ export class AddjobComponent implements OnInit {
       .subscribe(
         (data: Major[]) => {
           this.listMajor = data;
+          console.log(this.listMajor);
         },
         error => {
           console.log('Fail');
@@ -107,7 +108,7 @@ export class AddjobComponent implements OnInit {
   }
 
   onselectClient(major1: Major) {
-    if (parseInt(major1.nganhId) !== 0) {
+    if (major1.nganhId !== 0) {
       this.major = major1;
       this.flag = false;
     }     else {

@@ -7,50 +7,6 @@
                         <h1>Tìm việc làm ngay bây giờ</h1>
                         <br />
                         <h2>Có <strong>12,000</strong> công việc đang chờ bạn!</h2>
-                        <div class="content">
-                            <form [formGroup]="searchJobForm" (ngSubmit)="onSubmit(buttonType)" ngNativeValidate>
-                                <div class="row">
-                                    <div class="col-md-4 col-sm-6">
-                                        <div class="form-group">
-                                            <input class="form-control" type="text" placeholder="Ngành nghề / Từ khóa / Tên công ty" formControlName="keyword" id="keyword" />
-                                            <i class="ti-time"></i>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 col-sm-6">
-                                        <div class="form-group">
-                                            <input class="form-control" type="email" placeholder="Địa điểm" formControlName="location" id="location" />
-                                            <i class="ti-location-pin"></i>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3 col-sm-6">
-                                        <div class="search-category-container">
-                                            <label class="styled-select">
-                                                <select class="dropdown-product selectpicker" formControlName="career" id="career">
-                                                    <option>Tất cả các ngành</option>
-                                                    <option>Tài chính</option>
-                                                    <option>Công nghệ thông tin</option>
-                                                    <option>Giáo dục</option>
-                                                    <option>Thiết kế</option>
-                                                    <option>Kinh doanh</option>
-                                                    <option>Y tế</option>
-                                                    <option>Khoa học</option>
-                                                    <option>Dịch vụ ăn uống</option>
-                                                </select>
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-1 col-sm-6">
-                                        <button type="button" class="btn btn-search-icon" (click)="onSubmit('Search')"><i class="ti-search"></i></button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="popular-jobs">
-                            <b>Popular Keywords: </b>
-                            <a href="#">Thiết kế web</a>
-                            <a href="#">Quản lý</a>
-                            <a href="#">Lập trình</a>
-                        </div>
                     </div>
                 </div>
             </div>

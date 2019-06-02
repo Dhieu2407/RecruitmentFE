@@ -1,7 +1,7 @@
 import { Job } from './job.model';
 
 export class Major {
-    nganhId: string;
+    nganhId: number;
     tenNganh: string;
     tinTuyenDung: Job[];
 }

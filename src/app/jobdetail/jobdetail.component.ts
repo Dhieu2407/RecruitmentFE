@@ -44,7 +44,7 @@ export class JobdetailComponent implements OnInit {
         (data: Job) => {
           this.job = data;
           console.log(this.job);
-            this.major.nganhId = this.job.nganh.nganhId.toString();
+            this.major.nganhId = this.job.nganh.nganhId;
             // get list job Related
             this.jobService.getListJobRelate(JSON.stringify(this.major))
                 .pipe(first())
