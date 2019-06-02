@@ -1,3 +1,5 @@
+import {Major} from "./major.model";
+
 export class Company {
     id: number;
     tenCongTy: string;
@@ -9,5 +11,7 @@ export class Company {
     quyMo: number;
     imgUrl: string;
     ungVienSaved: any[];
-    congtyId : number;
+    congtyId: number;
+    idNganh: number;
+    major: Major;
 }

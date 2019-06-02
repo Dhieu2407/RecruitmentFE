@@ -7,6 +7,8 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { AuthGuardService } from "../service/auth-guard.service";
 import { UploadService } from "../service/upload.service";
 import {Account} from '../model/account.model';
+import {Major} from "../model/major.model";
+import {MajorService} from "../service/major.service";
 
 @Component({
     selector: "app-modify-company-info",
@@ -20,7 +22,8 @@ export class ModifyCompanyInfoComponent implements OnInit {
         private companyService: CompanyService,
         private router: Router,
         private route: ActivatedRoute,
-        private authGuardService: AuthGuardService) {}
+        private authGuardService: AuthGuardService,
+        private majorService: MajorService, ) {}
 
     account: Account;
     modifyCompanyForm: FormGroup;
@@ -28,6 +31,8 @@ export class ModifyCompanyInfoComponent implements OnInit {
     id: number;
     email: string;
     imageFile: File;
+    major = new Major();
+    listMajor: Major[];
     ngOnInit() {
         if(!!localStorage.getItem('currentUser') === false) this.account = JSON.parse(sessionStorage.getItem('currentUser'));
         else this.account = JSON.parse(localStorage.getItem('currentUser'));
@@ -40,14 +45,26 @@ export class ModifyCompanyInfoComponent implements OnInit {
             address: [""],
             moTa: [""],
             phucLoi: [""],
-            quyMo: [""]
+            quyMo: [""],
+            tenNganh: ["", Validators.required],
         });
+        this.majorService.getAllMajors()
+            .pipe(first())
+            .subscribe(
+                (data: Major[]) => {
+                    this.listMajor = data;
+                    console.log(this.listMajor);
+                },
+                error => {
+                    console.log('Fail');
+                }
+            );
         this.id = +this.route.snapshot.paramMap.get("id");
         this.companyService
             .getCompany(this.id)
             .pipe(first())
             .subscribe(
-                (data: Company) => {
+                (data: any) => {
                     console.log(data);
                     this.company = data;
                     this.modifyCompanyForm.get("tenCongTy").setValue(this.company.tenCongTy);
@@ -56,6 +73,9 @@ export class ModifyCompanyInfoComponent implements OnInit {
                     this.modifyCompanyForm.get("moTa").setValue(this.company.moTa);
                     this.modifyCompanyForm.get("phucLoi").setValue(this.company.phucLoi);
                     this.modifyCompanyForm.get("quyMo").setValue(this.company.quyMo);
+                    console.log(data.nganh.nganhId);
+                    this.modifyCompanyForm.get("tenNganh").setValue(data.nganh.nganhId);
+                    console.log(this.modifyCompanyForm.get("tenNganh").value);
                 },
                 error => {
                     console.log("Failed");
@@ -65,6 +85,12 @@ export class ModifyCompanyInfoComponent implements OnInit {
 
     onSubmit(buttonType): void {
         if (buttonType === "Submit") {
+            // if(this.modifyCompanyForm.invalid){
+            //     return;
+            // }
+            if (this.modifyCompanyForm.invalid) {
+                return;
+            }
             if (this.company == null) {
                 this.company = new Company();
             }
@@ -76,6 +102,7 @@ export class ModifyCompanyInfoComponent implements OnInit {
             this.company.moTa = this.modifyCompanyForm.get("moTa").value;
             this.company.phucLoi = this.modifyCompanyForm.get("phucLoi").value;
             this.company.quyMo = this.modifyCompanyForm.get("quyMo").value;
+            this.company.idNganh = this.modifyCompanyForm.get("tenNganh").value;
             console.log(this.company);
             const uploadData = new FormData();
             if(this.imageFile !== undefined) {
