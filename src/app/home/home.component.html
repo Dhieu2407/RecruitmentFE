@@ -119,7 +119,7 @@
             <div class="row">
                 <div *ngFor="let jobs of jobList | slice: (page - 1) * pageSize:(page - 1) * pageSize + pageSize">
                     <div class="col-md-4 col-sm-6 col-xs-12">
-                        <div class="featured-item" style="height:430px;">
+                        <div class="featured-item" style="height:450px;">
                             <div class="featured-wrap" style="height:350px;">
                                 <div class="featured-inner">
                                     <figure class="item-thumb">
@@ -136,8 +136,9 @@
                                 </div>
                             </div>
                             <div class="item-foot">
-                                <span><i class="ti-calendar"></i> {{ jobs.hanCuoi }}</span>
-                                <span><i class="ti-time"></i> {{ jobs.tgLamViec == 1 ? "Full-Time" : jobs.tgLamViec == 0 ? "Part-Time" : "" }}</span>
+                                <p><span><i class="ti-calendar"></i> {{ jobs.hanCuoi }}</span>
+                                   <span><i class="ti-time"></i> {{ jobs.tgLamViec == 1 ? "Full-Time" : jobs.tgLamViec == 0 ? "Part-Time" : "" }}</span></p>
+                                <p><span>{{jobs.soLuongView}} lượt view</span></p>
                             </div>
                         </div>
                     </div>
