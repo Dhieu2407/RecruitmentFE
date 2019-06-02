@@ -43,7 +43,7 @@ export class ViewEmployerAccountComponent implements OnInit {
                     console.log(this.account);
                     for(let i = 0; i < this.account.length; i++) {
                         if(this.account[i].authorities[0] === "ROLE_EMPLOYER"){
-                            this.getCandidate(this.account[i].id);
+                            this.getCompany(this.account[i].id, i);
                         }
                     }
                 },
@@ -52,12 +52,16 @@ export class ViewEmployerAccountComponent implements OnInit {
                 });
     }
 
-    getCandidate(i: number){
-        this.companyService.getCompany(i)
+    getCompany(id: number, i: number){
+        this.companyService.getCompany(id)
             .pipe(first())
             .subscribe(
                 (data: Company) => {
                     this.listCompany[this.count] = data;
+                    if(this.listCompany[this.count] === null){
+                        this.listCompany[this.count] = new Company();
+                        this.listCompany[this.count].email = this.account[i].email;
+                    }
                     console.log(this.listCompany);
                     this.count++;
                 },

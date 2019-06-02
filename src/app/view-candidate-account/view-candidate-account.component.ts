@@ -6,6 +6,7 @@ import { Account } from '../model/account.model';
 import {Candidate} from "../model/candidate.model";
 import { CandidateService } from '../service/candidate.service';
 import {Router} from '@angular/router';
+import {Company} from "../model/company.model";
 
 @Component({
   selector: 'app-view-candidate-account',
@@ -43,7 +44,7 @@ export class ViewCandidateAccountComponent implements OnInit {
                   console.log(this.account);
                   for(let i = 0; i < this.account.length; i++) {
                       if(this.account[i].authorities[0] === "ROLE_CANDIDATE"){
-                          this.getCandidate(this.account[i].id);
+                          this.getCandidate(this.account[i].id, i);
                       }
                   }
               },
@@ -52,12 +53,17 @@ export class ViewCandidateAccountComponent implements OnInit {
               });
   }
 
-  getCandidate(i: number){
-      this.candidateService.getCandidate(i)
+  getCandidate(id: number, i: number){
+      this.candidateService.getCandidate(id)
           .pipe(first())
           .subscribe(
               (data: Candidate) => {
                   this.listCandidate[this.count] = data;
+
+                  if(this.listCandidate[this.count] === null){
+                      this.listCandidate[this.count] = new Candidate();
+                      this.listCandidate[this.count].email = this.account[i].email;
+                  }
                   console.log(this.listCandidate);
                   this.count++;
               },
