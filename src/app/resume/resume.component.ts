@@ -36,6 +36,7 @@ export class ResumeComponent implements OnInit {
           this.nganh = this.candidate.nganh.tenNganh;
           this.hocVan = JSON.parse(this.candidate.trinhDoDaiHoc);
           this.viecLam = JSON.parse(this.candidate.lichSuLamViec);
+          console.log(this.candidate);
 
         },
         error => {
