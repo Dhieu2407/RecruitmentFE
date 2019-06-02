@@ -1,62 +1,45 @@
 <body>
-    <!-- Page Header Start -->
-    <div class="page-header" style="background: url(assets/img/testimonial/testimonial-bg.jpg);">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="breadcrumb-wrapper">
-                        <div class="search-container">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="content">
-                                            <form [formGroup]="searchJobForm" (ngSubmit)="onSubmit(buttonType)" ngNativeValidate>
-                                                <div class="row">
-                                                    <div class="col-md-4 col-sm-6">
-                                                        <div class="form-group">
-                                                            <input class="form-control" type="text" placeholder="Ngành nghề / Từ khóa / Tên công ty" formControlName="keyword" id="keyword" />
-                                                            <i class="ti-time"></i>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-4 col-sm-6">
-                                                        <div class="form-group">
-                                                            <input class="form-control" type="email" placeholder="Địa điểm" formControlName="location" id="location" />
-                                                            <i class="ti-location-pin"></i>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-3 col-sm-6">
-                                                        <div class="search-category-container">
-                                                            <label class="styled-select">
-                                                                <select class="dropdown-product selectpicker" formControlName="career" id="career">
-                                                                    <option value="0">All Categories</option>
-                                                                    <option *ngFor="let major of listMajor" [value]="major.nganhId" [attr.selected]="major.tenNganh">
-                                                                        {{ major.tenNganh }}
-                                                                    </option>
-                                                                </select>
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-1 col-sm-6">
-                                                        <button type="button" class="btn btn-search-icon" (click)="onSubmit('Search')"><i class="ti-search"></i></button>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+<!-- Page Header Start -->
+<div class="container">
+    <div class="row">
+        <div class="search">
+            <form [formGroup]="searchJobForm" (ngSubmit)="onSubmit(buttonType)" ngNativeValidate>
+                <label>Tìm kiếm tin tuyển dụng</label>
+                <div class="row">
+                    <div class="col-md-4 col-sm-6">
+                        <div class="form-group">
+                            <input class="form-control" type="text" placeholder="Ngành nghề / Từ khóa / Tên công ty" formControlName="keyword" id="keyword" />
                         </div>
                     </div>
+                    <div class="col-md-4 col-sm-6">
+                        <div class="form-group">
+                            <input class="form-control" type="email" placeholder="Địa điểm" formControlName="location" id="location" />
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="search-category-container">
+                            <label class="styled-select">
+                                <select class="dropdown-product selectpicker" formControlName="career" id="career">
+                                    <option value="0">All Categories</option>
+                                    <option *ngFor="let major of listMajor" [value]="major.nganhId" [attr.selected]="major.tenNganh">
+                                        {{ major.tenNganh }}
+                                    </option>
+                                </select>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-1 col-sm-5">
+                        <button type="button" style = "width: 45px !important; height: 38px !important;" class="btn btn-search-icon" (click)="onSubmit('Search')">
+                            <i class="ti-search"></i></button>
+                    </div>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
-    <!-- Page Header End -->
-
+</div>
     <!-- Find Job Section Start -->
     <section class="find-job section">
         <div class="container">
-            <h2 class="section-title">Find a good job</h2>
             <div class="row">
                 <div *ngFor="let jobs of listJobs | slice: (page - 1) * pageSize:(page - 1) * pageSize + pageSize">
                     <div class="col-md-6 col-sm-6 col-xs-12">
