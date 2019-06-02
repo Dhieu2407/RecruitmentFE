@@ -70,4 +70,21 @@ export class CandidateNotificationComponent implements OnInit {
                 }
             );
     }
+    onSave(company: any){
+        this.id = this.account.id;
+        this.companySaveCandidateDto.candidateId = this.id;
+        this.companySaveCandidateDto.companyId = company.congtyId;
+        this.candidateService.saveCompany(this.companySaveCandidateDto)
+        .pipe(first())
+        .subscribe(
+            (data: any) => {
+                console.log(data);
+                alert("Bạn đã bỏ lưu công ty " + company.tenCongTy + " thành công");
+                window.location.reload();
+            },
+            error => {
+                console.log("Failed");
+            }
+        );
+    }
 }
