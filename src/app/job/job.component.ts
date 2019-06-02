@@ -91,7 +91,8 @@ export class JobComponent implements OnInit {
         this.pageSize = 10;
         if(!!localStorage.getItem('currentUser') === false) this.account = JSON.parse(sessionStorage.getItem('currentUser'));
         else this.account = JSON.parse(localStorage.getItem('currentUser'));
-        this.id = this.account.id;
+        if(this.account !== null)
+            this.id = this.account.id;
         this.searchJobForm = this.formBuilder.group({
             keyword: ["", Validators.required],
             location: ["", Validators.required],
