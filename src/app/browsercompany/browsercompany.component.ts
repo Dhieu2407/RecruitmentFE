@@ -94,6 +94,11 @@ export class BrowsercompanyComponent implements OnInit {
             .subscribe(
                 (data: any) => {
                     console.log(data);
+                    if(this.savedCompanyId.indexOf(company.congtyId) !== -1){
+                        alert("Bạn đã bỏ lưu công ty " + company.tenCongTy + " thành công");
+                    }else{
+                        alert("Bạn đã lưu công ty " + company.tenCongTy + " thành công");
+                    }
                     window.location.reload();
                 },
                 error => {

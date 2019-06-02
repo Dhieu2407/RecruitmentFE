@@ -109,7 +109,11 @@ export class AppliedJobComponent implements OnInit {
             .subscribe(
                 (data: any) => {
                     console.log(data);
-                    alert("Lưu tin tuyển dụng thành công");
+                    if(this.savedJobsId.indexOf(jobs.jobId) !== -1){
+                        alert("Bạn đã bỏ lưu job " + jobs.tenJob + " thành công");
+                    }else{
+                        alert("Bạn đã lưu job " + jobs.tenJob + " thành công");
+                    }
                     window.location.reload();
                 },
                 error => {
@@ -132,6 +136,7 @@ export class AppliedJobComponent implements OnInit {
             .subscribe(
                 (data: any) => {
                     console.log(data);
+                    alert("Bạn đã bỏ ứng tuyển job " + jobs.tenJob + " thành công");
                     window.location.reload();
                 },
                 error => {

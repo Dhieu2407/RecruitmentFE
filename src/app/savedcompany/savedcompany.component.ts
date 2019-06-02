@@ -88,6 +88,7 @@ export class SavedcompanyComponent implements OnInit {
         .subscribe(
             (data: any) => {
                 console.log(data);
+                alert("Bạn đã bỏ lưu công ty " + company.tenCongTy + " thành công");
                 window.location.reload();
             },
             error => {
