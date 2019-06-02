@@ -58,6 +58,12 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Start Pagination -->
+                <br />
+                <ngb-pagination class="col-md-8 col-sm-8 col-xs-12" [(page)]="page" [pageSize]="pageSize" [collectionSize]="companyList.length" *ngIf="companyList" style="float:right"></ngb-pagination>
+                <!-- End Pagination -->
+
             </div>
         </div>
     </div>

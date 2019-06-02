@@ -30,7 +30,7 @@ export class SavedcompanyComponent implements OnInit {
     ngOnInit() {
         this.notificationCount = 0;
         this.page = 1;
-        this.pageSize = 10;
+        this.pageSize = 5;
         this.showJob = false;
         this.showCandidate = true;
         if(!!localStorage.getItem('currentUser') === false) this.account = JSON.parse(sessionStorage.getItem('currentUser'));
