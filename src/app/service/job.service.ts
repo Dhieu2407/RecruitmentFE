@@ -41,4 +41,7 @@ export class JobService {
   updateViewCount(body: string) {
     return this.http.post( this.baseUrl + '/updateJobViewCount', body);
   }
+  getNumberOfJobApproval(body: string) {
+      return this.http.post( this.baseUrl + '/getNumberOfJobApproval', body);
+  }
 }

@@ -24,6 +24,7 @@ export class ManageRecruitmentComponent implements OnInit {
     job = new Job();
     jobUpdate = new Job();
     count = 0;
+    numberNotifyOfJobRecruiment: number;
     ngOnInit() {
         if(!!localStorage.getItem('currentUser') === false) this.account = JSON.parse(sessionStorage.getItem('currentUser'));
         else this.account = JSON.parse(localStorage.getItem('currentUser'));
@@ -102,6 +103,7 @@ export class ManageRecruitmentComponent implements OnInit {
             .subscribe(
                 (data: Job[]) => {
                     this.listJob = data;
+                    this.numberNotifyOfJobRecruiment = data.length;
                     console.log(this.listJob);
                     this.count = this.listJob.length;
                 },

@@ -6,6 +6,8 @@ import { Account } from '../model/account.model';
 import {Company} from "../model/company.model";
 import { CompanyService } from '../service/company.service';
 import {Router} from '@angular/router';
+import {JobService} from "../service/job.service";
+import {Job} from "../model/job.model";
 
 @Component({
     selector: 'app-view-employer-account',
@@ -19,6 +21,7 @@ export class ViewEmployerAccountComponent implements OnInit {
         private accountService: AccountService,
         private authGuardService: AuthGuardService,
         private companyService: CompanyService,
+        private jobService: JobService,
     ) { }
 
     page: number;
@@ -27,6 +30,8 @@ export class ViewEmployerAccountComponent implements OnInit {
     account: Account[];
     listCompany = [];
     count = 0;
+    numberOfJobApprova: number;
+    job = new Job();
     deleteCompany = new Company();
 
     ngOnInit() {
@@ -35,6 +40,7 @@ export class ViewEmployerAccountComponent implements OnInit {
         if(this.acc.authorities[0] !== "ROLE_MANAGER") this.router.navigate(['/']);
         this.page = 1;
         this.pageSize = 5;
+        this.job.trangThai = '0';
         this.accountService.getAllUsers()
             .pipe(first())
             .subscribe(
@@ -50,6 +56,16 @@ export class ViewEmployerAccountComponent implements OnInit {
                 error => {
                     console.log(error);
                 });
+        this.jobService.getNumberOfJobApproval(JSON.stringify(this.job))
+            .pipe(first())
+            .subscribe(
+                (data: number) => {
+                    this.numberOfJobApprova = data;
+                },
+                error1 => {
+                    console.log('Error');
+                }
+            );
     }
 
     getCompany(id: number, i: number){
