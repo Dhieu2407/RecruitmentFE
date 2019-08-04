@@ -80,8 +80,8 @@
               <h4><b>Yêu Cầu Hồ Sơ</b></h4>
               <p style="white-space: pre-wrap">{{job.yeuCauHoSo}}</p>
               <h4>Apply Job</h4>
-
-              <a href="#" class="btn btn-common">Apply for this Job Now</a>
+                <div class="btn btn-common btn-rm" (click)="onApply(job)" *ngIf="appliedJobsId.indexOf(job.jobId) !== -1">Cancel Apply Job</div>
+                <div class="btn btn-common btn-rm" (click)="onApply(job)" *ngIf="appliedJobsId.indexOf(job.jobId) == -1">Apply Job</div>
             </div>
           </div>
         </div>
@@ -108,10 +108,12 @@
                         </div>
                       </div>
                       <div class="pull-right">
-                        <div class="icon">
-                          <i class="ti-heart"></i>
-                        </div>
-                        <div class="btn btn-common btn-rm">Apply Job</div>
+                          <div class="icon">
+                              <i class="ti-heart-broken" (click)="onBookmark(jobs)" *ngIf="savedJobsId.indexOf(jobs.jobId) == -1"></i>
+                              <i class="ti-heart" (click)="onBookmark(jobs)" *ngIf="savedJobsId.indexOf(jobs.jobId) !== -1"></i>
+                          </div>
+                          <div class="btn btn-common btn-rm" (click)="onApply(jobs)" *ngIf="appliedJobsId.indexOf(jobs.jobId) !== -1">Cancel Apply Job</div>
+                          <div class="btn btn-common btn-rm" (click)="onApply(jobs)" *ngIf="appliedJobsId.indexOf(jobs.jobId) == -1">Apply Job</div>
                       </div>
                     </div>
                   </div>

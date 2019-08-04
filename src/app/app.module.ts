@@ -49,6 +49,7 @@ import { PasswordResetComponent } from './password-reset/password-reset.componen
 import {CandidateFilterPipe} from "./savedcandidate/candidate-filter.pipe";
 import {JobFilterPipe} from "./managejob/job-filter.pipe";
 import {ApplyFillterPipe} from "./manageapplications/apply-fillter.pipe";
+import {CompanyFilterPipe} from "./savedcompany/company-filter.pipe";
 
 
 @NgModule({
@@ -89,7 +90,8 @@ import {ApplyFillterPipe} from "./manageapplications/apply-fillter.pipe";
     PasswordResetComponent,
       CandidateFilterPipe,
       JobFilterPipe,
-      ApplyFillterPipe
+      ApplyFillterPipe,
+      CompanyFilterPipe
   ],
   imports: [
     BrowserModule,

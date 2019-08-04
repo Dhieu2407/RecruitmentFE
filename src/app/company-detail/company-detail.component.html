@@ -3,15 +3,14 @@
     <div id="content">
       <div class="container">
         <div class="row">
-          <div class="col-md-8 col-sm-8 col-xs-12">
+          <div class="col-xs-12">
             <div class="inner-box my-resume">
               <div class="author-resume">
                 <div class="thumb">
-                  <img src="{{company.imgUrl}}" style="width:100px;height:100px;"  alt="">
+                  <img src="{{company.imgUrl}}" style="width:120px;height:120px;"  alt="">
                 </div>
                 <div class="author-info">
                   <h3><label>{{company.tenCongTy}}</label></h3>
-                  <!-- <p class="sub-title"><label>Java Deverloper</label></p> -->
                   <p><span class="address"><i class="ti-location-pin"></i><label>{{company.diaChi}}</label></span><br><span><i class="ti-phone"></i><label class="ti-mobile">{{company.sdt}}</label></span></p>
 
                   <form class="subscribe-box" *ngIf="account.authorities[0] === 'ROLE_EMPLOYER'">
@@ -33,8 +32,11 @@
                 <p style="white-space: pre-wrap">{{company.quyMo}} nhân viên</p>
               </div>
               </div>
+              <div class="btn btn-common btn-rm" (click)="onSave(company)" *ngIf="savedCompanyId.indexOf(company.congtyId) !== -1">Bỏ Quan Tâm</div>
+              <div class="btn btn-common btn-rm" (click)="onSave(company)" *ngIf="savedCompanyId.indexOf(company.congtyId) == -1">Quan Tâm</div>
 
-            </div>
+          </div>
+
           </div>
         </div>
       <!-- </div> -->

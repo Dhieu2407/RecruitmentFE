@@ -25,8 +25,8 @@ export class SavedcompanyComponent implements OnInit {
     showJob: boolean;
     companyList: Company[];
     companySaveCandidateDto = new CompanySaveCandidateDTO();
-    notificationCount : number;
-
+    notificationCount: number;
+    searchName: string;
     ngOnInit() {
         this.notificationCount = 0;
         this.page = 1;

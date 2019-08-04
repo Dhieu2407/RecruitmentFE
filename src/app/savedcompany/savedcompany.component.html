@@ -27,9 +27,14 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-md-8 col-sm-8 col-xs-12" style="float:right;">
+                    <h3 class="alerts-title">Quản lý công việc đã lưu</h3>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Tìm theo tiêu đề" [(ngModel)]="searchName" />
+                        <hr>
+                    </div>
+                     <div *ngFor="let company of companyList | filterCompany: searchName | slice: (page - 1) * pageSize:(page - 1) * pageSize + pageSize">
 
-                <div *ngFor="let company of companyList | slice: (page - 1) * pageSize:(page - 1) * pageSize + pageSize">
-                    <div class="col-md-8 col-sm-8 col-xs-12" style="float:right;">
                         <div class="job-list" style="height:285px;width:100%;">
                             <div class="thumb">
                                 <a href="/companydetail/{{ company.congtyId }}"><img style="width:100px;height:100px;" src="{{ company.imgUrl }}" alt=""/></a>
