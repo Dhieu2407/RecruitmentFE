@@ -29,6 +29,7 @@ export class AppliedJobComponent implements OnInit {
     notificationCount: number;
     savedJobs: Job[];
     savedJobsId = [];
+    searchName: string;
 
     ngOnInit() {
         if(!!localStorage.getItem('currentUser') === false) this.account = JSON.parse(sessionStorage.getItem('currentUser'));

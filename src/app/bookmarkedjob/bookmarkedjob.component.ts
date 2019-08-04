@@ -24,6 +24,7 @@ export class BookmarkedjobComponent implements OnInit {
     jobList: Job[];
     page: number;
     pageSize: number;
+    searchName: string;
     showCandidate: boolean;
     showJob: boolean;
     candidateSaveJobDTO: CandidateSaveJobsDTO;

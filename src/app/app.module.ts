@@ -47,6 +47,8 @@ import {AuthGuardService} from "./service/auth-guard.service";
 import { ActivateComponent } from './activate/activate.component';
 import { PasswordResetComponent } from './password-reset/password-reset.component';
 import {CandidateFilterPipe} from "./savedcandidate/candidate-filter.pipe";
+import {JobFilterPipe} from "./managejob/job-filter.pipe";
+import {ApplyFillterPipe} from "./manageapplications/apply-fillter.pipe";
 
 
 @NgModule({
@@ -85,7 +87,9 @@ import {CandidateFilterPipe} from "./savedcandidate/candidate-filter.pipe";
     ApproveresumeapplyComponent,
     ActivateComponent,
     PasswordResetComponent,
-      CandidateFilterPipe
+      CandidateFilterPipe,
+      JobFilterPipe,
+      ApplyFillterPipe
   ],
   imports: [
     BrowserModule,

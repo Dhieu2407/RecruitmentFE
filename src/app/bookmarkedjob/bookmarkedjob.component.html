@@ -27,43 +27,92 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-md-8 col-sm-8 col-xs-12">
+                    <div class="job-alerts-item">
+                        <h3 class="alerts-title">Quản lý công việc đã lưu</h3>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Tìm theo tiêu đề" [(ngModel)]="searchName" />
+                            <hr>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div *ngFor="let jobs of jobList | jobFilter: searchName | slice: (page-1) * pageSize: (page-1) * pageSize + pageSize">
+                                <div class="job-list" style="width:100%; height: 240px;">
 
-                <div *ngFor="let jobs of jobList | slice: (page - 1) * pageSize:(page - 1) * pageSize + pageSize">
-                    <div class="col-md-8 col-sm-8 col-xs-12" style="float:right;" *ngIf="jobList">
-                        <div class="job-list" style="width:100%;">
-                            <div class="thumb">
-                                <a href="job-details.html"><img src="assets/img/jobs/img-1.jpg" alt=""/></a>
-                            </div>
-                            <div class="job-list-content">
-                                <h4>
-                                    <a href="/jobdetail/{{ jobs.jobId }}/{{ jobs.nganh.nganhId }}">{{ jobs.tenJob }}</a>
-                                </h4>
-                                <p>{{ jobs.congTy.tenCongTy }}</p>
-                                <p>
-                                    Thời Gian Làm Việc: <span class="full-time">{{ jobs.tgLamViec == 1 ? "Full-Time" : jobs.tgLamViec == 0 ? "Part-Time" : "" }}</span>
-                                </p>
-                                <div class="job-tag">
-                                    <div class="pull-left">
-                                        <div class="meta-tag">
-                                            <span>Số Lượng:{{ jobs.soLuong }}</span>
-                                            <br />
-                                            <span><i class="ti-location-pin"></i>{{ jobs.diaChi }}</span>
-                                            <br />
-                                            <span><i class="ti-time"></i>60/Hour</span>
-                                        </div>
+                                    <div class="thumb">
+                                        <a href="/jobdetail/{{ jobs.jobId }}"><img style="width:100px;height:100px;" src="{{ jobs.congTy.imgUrl }}" alt=""/></a>
                                     </div>
-                                    <div class="pull-right">
-                                        <div class="icon">
-                                            <i class="ti-heart" (click)="onBookmark(jobs)"></i>
+                                    <div class="job-list-content">
+                                        <h4>
+                                            <a href="/jobdetail/{{ jobs.jobId }}">{{ jobs.tenJob }}</a>
+                                        </h4>
+                                        <p>{{ jobs.congTy.tenCongTy }}</p>
+                                        <p>
+                                            Thời Gian Làm Việc: <span class="full-time">{{ jobs.tgLamViec == 1 ? "Full-Time" : jobs.tgLamViec == 0 ? "Part-Time" : "" }}</span>
+                                        </p>
+                                        <div class="job-tag">
+                                            <div class="pull-left">
+                                                <div class="meta-tag">
+                                                    <span>Số Lượng:{{ jobs.soLuong }}</span>
+                                                    <br />
+                                                    <span><i class="ti-location-pin"></i>{{ jobs.diaChi }}</span>
+                                                </div>
+                                            </div>
+                                            <div class="pull-right">
+                                                <div class="icon">
+                                                    <i class="ti-heart" (click)="onBookmark(jobs)"></i>
+                                                </div>
+                                                <div class="btn btn-common btn-rm" (click)="onApply(jobs)" *ngIf="appliedJobsId.indexOf(jobs.jobId) !== -1">Cancel Apply Job</div>
+                                                <div class="btn btn-common btn-rm" (click)="onApply(jobs)" *ngIf="appliedJobsId.indexOf(jobs.jobId) == -1">Apply Job</div>
+
+                                            </div>
                                         </div>
-                                        <div class="btn btn-common btn-rm" (click)="onApply(jobs)" *ngIf="appliedJobsId.indexOf(jobs.jobId) !== -1">Cancel Apply Job</div>
-                                        <div class="btn btn-common btn-rm" (click)="onApply(jobs)" *ngIf="appliedJobsId.indexOf(jobs.jobId) == -1">Apply Job</div>
                                     </div>
                                 </div>
+                                <hr>
                             </div>
                         </div>
+                        <ngb-pagination [(page)]="page" [pageSize]="pageSize" [collectionSize]="jobList.length" *ngIf="jobList"></ngb-pagination>
+                        <!-- Start Pagination -->
+                        <br>
                     </div>
                 </div>
+                <!--<div *ngFor="let jobs of jobList | slice: (page - 1) * pageSize:(page - 1) * pageSize + pageSize">-->
+                    <!--<div class="col-md-8 col-sm-8 col-xs-12" style="float:right;" *ngIf="jobList">-->
+                        <!--<div class="job-list" style="width:100%;">-->
+                            <!--<div class="thumb">-->
+                                <!--<a href="job-details.html"><img src="assets/img/jobs/img-1.jpg" alt=""/></a>-->
+                            <!--</div>-->
+                            <!--<div class="job-list-content">-->
+                                <!--<h4>-->
+                                    <!--<a href="/jobdetail/{{ jobs.jobId }}/{{ jobs.nganh.nganhId }}">{{ jobs.tenJob }}</a>-->
+                                <!--</h4>-->
+                                <!--<p>{{ jobs.congTy.tenCongTy }}</p>-->
+                                <!--<p>-->
+                                    <!--Thời Gian Làm Việc: <span class="full-time">{{ jobs.tgLamViec == 1 ? "Full-Time" : jobs.tgLamViec == 0 ? "Part-Time" : "" }}</span>-->
+                                <!--</p>-->
+                                <!--<div class="job-tag">-->
+                                    <!--<div class="pull-left">-->
+                                        <!--<div class="meta-tag">-->
+                                            <!--<span>Số Lượng:{{ jobs.soLuong }}</span>-->
+                                            <!--<br />-->
+                                            <!--<span><i class="ti-location-pin"></i>{{ jobs.diaChi }}</span>-->
+                                            <!--<br />-->
+                                            <!--<span><i class="ti-time"></i>60/Hour</span>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                    <!--<div class="pull-right">-->
+                                        <!--<div class="icon">-->
+                                            <!--<i class="ti-heart" (click)="onBookmark(jobs)"></i>-->
+                                        <!--</div>-->
+                                        <!--<div class="btn btn-common btn-rm" (click)="onApply(jobs)" *ngIf="appliedJobsId.indexOf(jobs.jobId) !== -1">Cancel Apply Job</div>-->
+                                        <!--<div class="btn btn-common btn-rm" (click)="onApply(jobs)" *ngIf="appliedJobsId.indexOf(jobs.jobId) == -1">Apply Job</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
             </div>
         </div>
     </div>

@@ -29,6 +29,8 @@ export class ManagejobComponent implements OnInit  {
     company = new Company();
     numberOfNotify: number;
     numberOfNotifyTinder: number;
+    //update Search
+    searchName: string;
     ngOnInit() {
         if(!!localStorage.getItem('currentUser') === false) this.account = JSON.parse(sessionStorage.getItem('currentUser'));
         else this.account = JSON.parse(localStorage.getItem('currentUser'));

@@ -1,4 +1,5 @@
 import {Candidate} from './candidate.model';
+import {Job} from "./job.model";
 
 export class Apply {
     applyId: number;
@@ -7,5 +8,6 @@ export class Apply {
     status: number;
     trangThai: number;
     ungVien: Candidate;
+    job: Job;
 
 }

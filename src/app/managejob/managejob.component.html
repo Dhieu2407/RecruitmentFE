@@ -26,8 +26,11 @@
             <div class="col-md-8 col-sm-8 col-xs-12">
                 <div class="job-alerts-item">
                     <h3 class="alerts-title">Quản lý tin đăng tuyển</h3>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Tìm theo tiêu đề" [(ngModel)]="searchName" />
+                    </div>
                     <hr>
-                    <div *ngFor="let jobs of listJobOfCompany | slice: (page-1) * pageSize: (page-1) * pageSize + pageSize">
+                    <div *ngFor="let jobs of listJobOfCompany | jobFilter: searchName | slice: (page-1) * pageSize: (page-1) * pageSize + pageSize">
                         <div class="applications-content">
                             <div class="row">
                                 <div class="col-md-5">

@@ -32,11 +32,12 @@ export class ManageapplicationsComponent implements OnInit {
     pageSize: number;
     apply = new Apply();
     applyResult = new Apply();
-  listCandidateApplyOfCompany: Apply[];
-  account = new Account();
-  company = new Company();
-  numberOfNotify: number;
+    listCandidateApplyOfCompany: Apply[];
+    account = new Account();
+    company = new Company();
+    numberOfNotify: number;
     numberOfNotifyTinder: number;
+    searchName: string
   ngOnInit() {
       if(!!localStorage.getItem('currentUser') === false) this.account = JSON.parse(sessionStorage.getItem('currentUser'));
       else this.account = JSON.parse(localStorage.getItem('currentUser'));
