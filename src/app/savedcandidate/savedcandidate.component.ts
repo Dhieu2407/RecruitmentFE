@@ -32,6 +32,8 @@ export class SavedcandidateComponent implements OnInit {
     numberOfNotify: number;
     numberOfNotifyTinder: number;
     account = new Account();
+    //update
+    searchName: string;
     companySaveCandidate = new CompanySaveCandidateDTO();
     ngOnInit() {
         if(!!localStorage.getItem('currentUser') === false) this.account = JSON.parse(sessionStorage.getItem('currentUser'));

@@ -26,8 +26,13 @@
                 <div class="col-md-8 col-sm-8 col-xs-12">
                     <div class="job-alerts-item">
                         <h3 class="alerts-title">Ứng Viên Đã Lưu</h3>
+
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Tìm theo tên ứng viên" [(ngModel)]="searchName" />
+                        </div>
+
                         <hr>
-                        <div *ngFor="let candidate of listCandidate | slice: (page-1) * pageSize: (page-1) * pageSize + pageSize">
+                        <div *ngFor="let candidate of listCandidate | candateFilter:searchName | slice: (page-1) * pageSize: (page-1) * pageSize + pageSize ">
                             <div class="row">
                                 <!--<div class="col-md-6 col-sm-6 col-xs-12">-->
                                 <div class="manager-resumes-item">
