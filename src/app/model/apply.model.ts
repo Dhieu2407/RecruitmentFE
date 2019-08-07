@@ -9,5 +9,6 @@ export class Apply {
     trangThai: number;
     ungVien: Candidate;
     job: Job;
+    reason: string;
 
 }

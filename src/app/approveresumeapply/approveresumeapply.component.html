@@ -136,12 +136,19 @@
                             <h3>Đã Apply Job</h3>
                             <div>{{applyResult.job.tenJob}}</div>
                         </div>
+                        <form  *ngIf="!hidden" class="form-ad" [formGroup]="formApproval" ngNativeValidate >
+                        <div class="about-me item">
+                            <div class="form-group">
+                                <label class="control-label">Nhập thông báo cho ứng viên</label>
+                                <textarea class="form-control" id="reason" formControlName="reason" name="reason" rows="4" placeholder="Thông báo cho ứng viên" required></textarea>
+                            </div>
+                        </div>
 
-                        <div class="about-me item" *ngIf="!hidden">
+                        <div class="about-me item">
                             <button  class="btn btn-common" (click)="onApproveApply(1)">Đồng ý</button>
                             <button  class="btn btn-common" (click)="onRejectApply(2)">Từ chối</button>
                         </div>
-
+                        </form>
                         <div class="about-me item" *ngIf="hidden">
                             <p>{{message}}</p>
                         </div>

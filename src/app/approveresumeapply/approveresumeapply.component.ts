@@ -12,6 +12,7 @@ import {Job} from "../model/job.model";
 import {JobService} from "../service/job.service";
 import {SearchJob} from "../model/searchJob.model";
 import {Apply} from "../model/apply.model";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-approveresumeapply',
@@ -26,6 +27,7 @@ export class ApproveresumeapplyComponent implements OnInit {
               private applyService: ApplyService,
               private companyService: CompanyService,
               private jobService: JobService,
+              private formBuilder: FormBuilder,
               ) { }
 
     candidate = new Candidate();
@@ -46,12 +48,15 @@ export class ApproveresumeapplyComponent implements OnInit {
     message: string;
     applyApprove = new Apply();
     applyAfterApprove = new Apply();
-
+    formApproval: FormGroup;
 
     ngOnInit() {
         if(!!localStorage.getItem('currentUser') === false) this.account = JSON.parse(sessionStorage.getItem('currentUser'));
         else this.account = JSON.parse(localStorage.getItem('currentUser'));
         if(this.account.authorities[0] !== "ROLE_EMPLOYER") this.router.navigate(['/']);
+        this.formApproval = this.formBuilder.group({
+            reason: ['', Validators.required]
+        });
         this.id = +this.route.snapshot.paramMap.get('id');
         this.idJob = +this.route.snapshot.paramMap.get('idJob');
         this.applySearch.candidateId = this.id;
@@ -118,6 +123,11 @@ export class ApproveresumeapplyComponent implements OnInit {
             );
     }
     onApproveApply(status: number) {
+        if (this.formApproval.invalid) {
+            return;
+        }
+        this.applyApprove.reason = this.formApproval.get('reason').value;
+        console.log(this.applyResult.reason);
         this.applyApprove.trangThai = status;
         this.applyApprove.jobId = this.idJob;
         this.applyApprove.candidateId = this.id;
@@ -137,6 +147,10 @@ export class ApproveresumeapplyComponent implements OnInit {
     }
 
     onRejectApply(status: number) {
+        if (this.formApproval.invalid) {
+            return;
+        }
+        this.applyApprove.reason = this.formApproval.get('reason').value;
         this.applyApprove.trangThai = status;
         this.applyApprove.jobId = this.idJob;
         this.applyApprove.candidateId = this.id;
