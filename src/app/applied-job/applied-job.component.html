@@ -37,39 +37,45 @@
                         </div>
                         <hr>
                         <div class="row">
-                        <div *ngFor="let jobs of jobList | jobFilter: searchName | slice: (page-1) * pageSize: (page-1) * pageSize + pageSize">
-                            <div class="job-list" style="width:100%; height: 240px;">
+                        <div *ngFor="let jobs of jobList | jobApplyFilter: searchName | slice: (page-1) * pageSize: (page-1) * pageSize + pageSize">
+                            <div class="job-list" style="width:100%; height: 300px;">
 
                                 <div class="thumb">
-                                    <a href="/jobdetail/{{ jobs.jobId }}"><img style="width:100px;height:100px;" src="{{ jobs.congTy.imgUrl }}" alt=""/></a>
+                                    <a href="/jobdetail/{{ jobs.job.jobId }}"><img style="width:100px;height:100px;" src="{{ jobs.job.congTy.imgUrl }}" alt=""/></a>
                                 </div>
                                 <div class="job-list-content">
                                     <h4>
-                                        <a href="/jobdetail/{{ jobs.jobId }}">{{ jobs.tenJob }}</a>
+                                        <a href="/jobdetail/{{ jobs.job.jobId }}">{{ jobs.job.tenJob }}</a>
                                     </h4>
-                                    <p>{{ jobs.congTy.tenCongTy }}</p>
+                                    <p>{{ jobs.job.congTy.tenCongTy }}</p>
                                     <p>
-                                        Thời Gian Làm Việc: <span class="full-time">{{ jobs.tgLamViec == 1 ? "Full-Time" : jobs.tgLamViec == 0 ? "Part-Time" : "" }}</span>
+                                        Thời Gian Làm Việc: <span class="full-time">{{ jobs.job.tgLamViec == 1 ? "Full-Time" : jobs.job.tgLamViec == 0 ? "Part-Time" : "" }}</span>
                                     </p>
                                     <div class="job-tag">
                                         <div class="pull-left">
                                             <div class="meta-tag">
-                                                <span>Số Lượng:{{ jobs.soLuong }}</span>
+                                                <span>Số Lượng:{{ jobs.job.soLuong }}</span>
                                                 <br />
-                                                <span><i class="ti-location-pin"></i>{{ jobs.diaChi }}</span>
+                                                <span><i class="ti-location-pin"></i>{{ jobs.job.diaChi }}</span>
                                             </div>
                                         </div>
                                         <div class="pull-right">
                                             <div class="icon">
-                                                <i class="ti-heart-broken" (click)="onBookmark(jobs)" *ngIf="savedJobsId.indexOf(jobs.jobId) == -1"></i>
-                                                <i class="ti-heart" (click)="onBookmark(jobs)" *ngIf="savedJobsId.indexOf(jobs.jobId) !== -1"></i>
+                                                <i class="ti-heart-broken" (click)="onBookmark(jobs.job)" *ngIf="savedJobsId.indexOf(jobs.job.jobId) == -1"></i>
+                                                <i class="ti-heart" (click)="onBookmark(jobs.job)" *ngIf="savedJobsId.indexOf(jobs.job.jobId) !== -1"></i>
                                             </div>
-                                            <div class="btn btn-common btn-rm" (click)="onApply(jobs)">Cancel Apply Job</div>
+                                            <div class="btn btn-common btn-rm" (click)="onApply(jobs.job)">Cancel Apply Job</div>
                                         </div>
                                     </div>
                                 </div>
+                                <br><br><br><br>
+                                <div class="job-list-content">
+                                    <div class="job-tag">
+                                        <span>Trạng thái phê duyệt: {{jobs.lyDo}}</span>
+                                    </div>
                                 </div>
-                            <hr>
+                                </div>
+                            <hr><hr>
                             </div>
                         </div>
                         <ngb-pagination [(page)]="page" [pageSize]="pageSize" [collectionSize]="jobList.length" *ngIf="jobList"></ngb-pagination>

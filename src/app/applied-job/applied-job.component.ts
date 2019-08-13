@@ -7,6 +7,7 @@ import { CandidateSaveJobsDTO } from "../model/candidateSaveJobsDTO.model";
 import { first } from "rxjs/operators";
 import { Company } from "../model/company.model";
 import { Account } from '../model/account.model';
+import {Apply} from "../model/apply.model";
 @Component({
     selector: "app-applied-job",
     templateUrl: "./applied-job.component.html",
@@ -19,7 +20,7 @@ export class AppliedJobComponent implements OnInit {
    account: Account;
     id: number;
     candidate: Candidate;
-    jobList: Job[];
+    jobList: Apply[];
     page: number;
     pageSize: number;
     showCandidate: boolean;
@@ -43,13 +44,11 @@ export class AppliedJobComponent implements OnInit {
 
         this.id = this.account.id;
         this.candidateService
-            .getAppliedJobs(this.id)
+            .getAppliiedJobs1(this.id)
             .pipe(first())
             .subscribe(
                 (data: any) => {
-                    // console.log(data);
                     this.jobList = data;
-                    console.log(this.jobList);
                 },
                 error => {
                     console.log("Failed");
@@ -64,7 +63,6 @@ export class AppliedJobComponent implements OnInit {
                     for (var i = 0; i < this.savedJobs.length; ++i) {
                         this.savedJobsId.push(this.savedJobs[i].jobId);
                     }
-                    console.log(this.savedJobsId);
                 },
                 error => {
                     console.log("Failed");
@@ -75,10 +73,7 @@ export class AppliedJobComponent implements OnInit {
             .pipe(first())
             .subscribe(
                 (data: Company[]) => {
-                    // console.log(data);
                     this.companyList = data;
-                    // console.log();
-                    console.log(this.companyList);
 
                     for (var i = 0; i < this.companyList.length; ++i) {
                         var savedCandidatesByCurrentCompany = this.companyList[i].ungVienSaved;
@@ -109,7 +104,6 @@ export class AppliedJobComponent implements OnInit {
             .pipe(first())
             .subscribe(
                 (data: any) => {
-                    console.log(data);
                     if(this.savedJobsId.indexOf(jobs.jobId) !== -1){
                         alert("Bạn đã bỏ lưu job " + jobs.tenJob + " thành công");
                     }else{
@@ -136,7 +130,6 @@ export class AppliedJobComponent implements OnInit {
             .pipe(first())
             .subscribe(
                 (data: any) => {
-                    console.log(data);
                     alert("Bạn đã bỏ ứng tuyển job " + jobs.tenJob + " thành công");
                     window.location.reload();
                 },

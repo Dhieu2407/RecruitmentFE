@@ -54,6 +54,10 @@ export class CandidateService {
     getAppliedJobs(id: number) {
         return this.http.get(this.baseUrl + "/getAppliedJobs/" + id);
     }
+    /*update phuc.nh*/
+    getAppliiedJobs1(id: number) {
+        return this.http.get( this.baseUrl + "/getAppliedJobs1/" + id);
+    }
     getListCandidateOfApply(body: string) {
         return this.http.post(this.baseUrl + "/getListUngTuyen", body);
     }

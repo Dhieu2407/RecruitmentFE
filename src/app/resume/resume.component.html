@@ -23,7 +23,16 @@
                                 </p>
 
                                 <form class="subscribe-box">
-                                    <input type="submit" class="btn-system" value="Sửa Hồ Sơ" (click)="toModifyResume()" />
+                                    <div class="row">
+                                        <div>
+                                            <input type="submit" class="btn-system" value="Sửa Hồ Sơ" (click)="toModifyResume()" *ngIf = "account.authorities[0] !== 'ROLE_EMPLOYER'" />
+                                        </div>
+                                        <div *ngIf = "account.authorities[0] === 'ROLE_EMPLOYER'">
+                                            <input type="submit" class="btn-system" value="Lưu hồ sơ" (click)="onSave(candidate,-1)" *ngIf="candidateSaveId.indexOf(candidate.ungVienId) ==-1"/>
+                                            <input type="submit" class="btn-system" value="Xóa hồ sơ" (click)="onSave(candidate,1)" *ngIf="candidateSaveId.indexOf(candidate.ungVienId) !==-1"/>
+                                        </div>
+                                    </div>
+
                                 </form>
                             </div>
                         </div>
