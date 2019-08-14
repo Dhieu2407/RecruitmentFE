@@ -46,7 +46,7 @@ export class ResumeComponent implements OnInit {
           this.nganh = this.candidate.nganh.tenNganh;
           this.hocVan = JSON.parse(this.candidate.trinhDoDaiHoc);
           this.viecLam = JSON.parse(this.candidate.lichSuLamViec);
-          console.log(this.candidate);
+         // console.log(this.candidate);
 
         },
         error => {
@@ -57,11 +57,11 @@ export class ResumeComponent implements OnInit {
           .subscribe(
               (data: Candidate[]) => {
                   this.candidateSave = data;
-                  console.log(this.candidateSave);
+                 // console.log(this.candidateSave);
                   for(var i = 0 ; i < this.candidateSave.length ; ++i) {
                       this.candidateSaveId.push(this.candidateSave[i].ungVienId);
                   }
-                  console.log(this.candidateSaveId);
+                 // console.log(this.candidateSaveId);
               }
           );
 
@@ -77,7 +77,7 @@ export class ResumeComponent implements OnInit {
             .pipe(first())
             .subscribe(
                 (data: any) => {
-                    console.log(data);
+                   // console.log(data);
                     if (stt === 1) {
                         alert('Bạn đã bỏ lưu ứng viên: ' + resume.tenUngVien);
                     } else {

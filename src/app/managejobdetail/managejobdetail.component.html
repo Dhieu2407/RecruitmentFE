@@ -54,7 +54,7 @@
                                     </div>
 
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <p><b>Hình Thức Làm Việc: <span class="full-time">{{job.tgLamViec == 1 ? 'Full-Time' : (job.tgLamViec == 0 ? 'Part-Time' : '')}}</span></b></p>
+                                        <p><b>Hình Thức Làm Việc: <span class="full-time">{{job.tgLamViec == 0 ? 'Full-Time' : (job.tgLamViec == 1 ? 'Part-Time' : '')}}</span></b></p>
                                     </div>
                                 </div>
                                 <hr>
@@ -128,15 +128,16 @@
                                         <!--<div class="col-md-6 col-sm-6 col-xs-12">-->
                                         <div class="manager-resumes-item">
                                             <div class="manager-content">
-                                                <a href="/detailresume/{{apply.ungVien.ungVienId}}"><img class="resume-thumb" src="{{apply.ungVien.imgUrl}}" alt=""></a>
+                                                <a (click)="viewDetailResume(apply.job.jobId,apply.ungVien.ungVienId)"><img class="resume-thumb" src="{{apply.ungVien.imgUrl}}" alt=""></a>
                                                 <div class="manager-info">
                                                     <div class="manager-name">
-                                                        <h4><a href="/detailresume/{{apply.ungVien.ungVienId}}">{{apply.ungVien.tenUngVien}}</a></h4>
-                                                        <h5 *ngIf="apply.ungVien.nganh">{{apply.ungVien.nganh.tenNganh}}</h5>
+                                                        <h4 (click)="viewDetailResume(apply.job.jobId,apply.ungVien.ungVienId)">{{apply.ungVien.tenUngVien}}</h4>
+                                                        <h5 *ngIf="apply.ungVien.nganh">Ngành: {{apply.ungVien.nganh.tenNganh}}</h5>
                                                     </div>
                                                     <div class="manager-meta">
-                                                        <span class="location"><i class="ti-location-pin"></i>{{apply.ungVien.diaDiem}} </span>
-                                                        <span class="rate"><i class="ti-money"></i>{{apply.ungVien.luongMongMuon}}</span>
+                                                        <span class="location"><i class="ti-location-pin"></i>{{apply.ungVien.diaChi}} </span>
+                                                        <span class="rate"><i></i>Năm kinh nghiệm: {{apply.ungVien.kiNang[0] !=null ? apply.ungVien.kiNang[0].soNamKinhNghiem : '0'}} year</span>
+                                                        <span class="rate"><i></i>Kỹ năng: {{apply.ungVien.kiNang[0] !=null ? apply.ungVien.kiNang[0].kiNang.tenKiNang : 'Không có thông tin'}}</span>
                                                     </div>
                                                 </div>
                                             </div>

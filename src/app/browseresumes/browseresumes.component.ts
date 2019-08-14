@@ -51,7 +51,7 @@ export class BrowseresumesComponent implements OnInit {
             .subscribe(
                 (data: Candidate[]) => {
                     this.listCandidate = data;
-                    console.log(this.listCandidate);
+                 //   console.log(this.listCandidate);
                 },
                 error => {
                     console.log("Failed");
@@ -113,22 +113,22 @@ export class BrowseresumesComponent implements OnInit {
             .subscribe(
                 (data: Candidate[]) => {
                     this.candidateSave = data;
-                    console.log(this.candidateSave);
-                    for(var i = 0 ; i < this.candidateSave.length ; ++i) {
+                   // console.log(this.candidateSave);
+                    for (var i = 0 ; i < this.candidateSave.length ; ++i) {
                         this.candidateSaveId.push(this.candidateSave[i].ungVienId);
                     }
-                    console.log(this.candidateSaveId);
+                  //  console.log(this.candidateSaveId);
                 }
             );
     }
-  onSave(resume : Candidate, stt: number){
+  onSave(resume: Candidate, stt: number) {
     this.companySaveCandidate.candidateId = resume.ungVienId;
     this.companySaveCandidate.companyId = this.account.id;
     this.companyService.companySaveUngVien(this.companySaveCandidate)
         .pipe(first())
         .subscribe(
             (data: any) => {
-                console.log(data);
+                //console.log(data);
                 if (stt === 1) {
                     alert('Bạn đã bỏ lưu ứng viên: ' + resume.tenUngVien);
                 } else {

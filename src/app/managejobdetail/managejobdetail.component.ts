@@ -52,7 +52,7 @@ export class ManagejobdetailComponent implements OnInit {
           .subscribe(
               (data: Job) => {
                   this.job = data;
-                  console.log(this.job);
+                 // console.log(this.job);
               },
               error => {
                   console.log('Failed');
@@ -63,7 +63,7 @@ export class ManagejobdetailComponent implements OnInit {
           .subscribe(
               (data: Apply[]) => {
                   this.listApply = data;
-                  console.log(this.listApply);
+                //  console.log(this.listApply);
               },
               error => {
                   console.log('Fail');
@@ -74,7 +74,7 @@ export class ManagejobdetailComponent implements OnInit {
           .subscribe(
               (data: number) => {
                   this.numberOfNotify = data;
-                  console.log(this.numberOfNotify);
+                 // console.log(this.numberOfNotify);
               },
               error => {
                   console.log('Faild');
@@ -97,7 +97,7 @@ export class ManagejobdetailComponent implements OnInit {
             .subscribe(
                 (data: number) => {
                     this.jobDetailId = data;
-                    console.log(this.jobDetailId);
+                   // console.log(this.jobDetailId);
                     alert('Đã xóa tin tuyển dụng!');
                     this.router.navigateByUrl('/managejob');
                 },
@@ -108,6 +108,9 @@ export class ManagejobdetailComponent implements OnInit {
     }
     onEditJob() {
       location.href = '/manageeditjobdetail/' + this.jobId;
+    }
+    viewDetailResume(jobId: number, candidateId: number) {
+        location.href = '/approveresumeapply/' + candidateId + '/' + jobId;
     }
 
 }

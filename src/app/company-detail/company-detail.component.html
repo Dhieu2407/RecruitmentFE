@@ -4,9 +4,9 @@
       <div class="container">
         <div class="row">
           <div class="col-xs-12">
-            <div class="inner-box my-resume">
+            <div class="inner-box my-resume" *ngIf="company">
               <div class="author-resume">
-                <div class="thumb">
+                <div class="thumb" *ngIf="company">
                   <img src="{{company.imgUrl}}" style="width:120px;height:120px;"  alt="">
                 </div>
                 <div class="author-info">
@@ -32,8 +32,10 @@
                 <p style="white-space: pre-wrap">{{company.quyMo}} nhân viên</p>
               </div>
               </div>
-              <div class="btn btn-common btn-rm" (click)="onSave(company)" *ngIf="savedCompanyId.indexOf(company.congtyId) !== -1">Bỏ Quan Tâm</div>
-              <div class="btn btn-common btn-rm" (click)="onSave(company)" *ngIf="savedCompanyId.indexOf(company.congtyId) == -1">Quan Tâm</div>
+              <div *ngIf="account.authorities[0] === 'ROLE_CANDIDATE'">
+                  <div class="btn btn-common btn-rm" (click)="onSave(company)" *ngIf="savedCompanyId.indexOf(company.congtyId) !== -1">Bỏ Quan Tâm</div>
+                  <div class="btn btn-common btn-rm" (click)="onSave(company)" *ngIf="savedCompanyId.indexOf(company.congtyId) == -1">Quan Tâm</div>
+              </div>
 
           </div>
 

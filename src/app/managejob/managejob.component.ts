@@ -43,7 +43,7 @@ export class ManagejobComponent implements OnInit  {
             .subscribe(
                 (data: Job[]) => {
                     this.listJobOfCompany = data;
-                    console.log(this.listJobOfCompany);
+                   // console.log(this.listJobOfCompany);
                 },
                 error => {
                     console.log('Failed');
@@ -54,7 +54,7 @@ export class ManagejobComponent implements OnInit  {
             .subscribe(
                 (data: number) => {
                     this.numberOfNotify = data;
-                    console.log(this.numberOfNotify);
+                   // console.log(this.numberOfNotify);
                 },
                 error => {
                     console.log('Faild');
