@@ -50,13 +50,11 @@
 <!-- Find Job Section Start -->
 <section class="find-job section">
     <div class="container">
-        <h2 class="section-title">Tìm kiếm công ty</h2>
+        <h2 class="section-title">Danh sách công ty</h2>
         <hr>
         <div class="row">
             <div *ngFor="let company of listSearchCompany | slice: (page-1) * pageSize: (page-1) * pageSize + pageSize">
                 <div class="col-md-6 col-sm-6 col-xs-12">
-
-
                     <div class="job-list" style="height:285px;width:100%;">
                         <div class="thumb">
                             <a href="/companydetail/{{ company.congtyId }}"><img style="width:100px;height:100px;" src="{{ company.imgUrl }}" alt=""/></a>

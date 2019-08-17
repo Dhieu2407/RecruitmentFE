@@ -57,8 +57,7 @@ export class ModifyresumeComponent implements OnInit {
             .subscribe(
                 (data: Major[]) => {
                     this.allMajors = data;
-                    console.log(this.allMajors);
-                    // this.filterSkillsBasedOnMajor();
+                   // console.log(this.allMajors);
                 },
                 error => {
                     console.log("Failed");
@@ -70,9 +69,9 @@ export class ModifyresumeComponent implements OnInit {
             .pipe(first())
             .subscribe(
                 (data: skill[]) => {
-                    console.log("skill success");
+                   // console.log("skill success");
                     this.allSkills = data;
-                    console.log(this.allSkills);
+                   // console.log(this.allSkills);
                     // this.filterSkillsBasedOnMajor();
                 },
                 error => {
@@ -85,9 +84,7 @@ export class ModifyresumeComponent implements OnInit {
             .pipe(first())
             .subscribe(
                 (data: Certificate[]) => {
-                    console.log("skill success");
                     this.allCertificates = data;
-                    console.log(this.allCertificates);
                 },
                 error => {
                     console.log("Failed");
@@ -137,7 +134,7 @@ export class ModifyresumeComponent implements OnInit {
                     this.nganh = this.candidate.nganh.tenNganh;
 
                     var skill = JSON.parse(JSON.stringify(this.candidate.kiNang) + "");
-                    console.log(skill.length);
+                   // console.log(skill.length);
                     var controlArray = <FormArray>this.modifyResumeForm.get("skill");
                     if (skill.length == 0) {
                         controlArray.push(this.createSkill());
@@ -150,8 +147,8 @@ export class ModifyresumeComponent implements OnInit {
                     }
 
                     // certificate
-                    console.log("cer");
-                    console.log(this.candidate);
+                   // console.log("cer");
+                   //  console.log(this.candidate);
                     var certificate = JSON.parse(JSON.stringify(this.candidate.chungChi) + "");
                     console.log("certificate  : " + certificate.length);
                     var controlCertificateArray = <FormArray>this.modifyResumeForm.get("certificate");
@@ -201,9 +198,9 @@ export class ModifyresumeComponent implements OnInit {
                     this.hocVan = JSON.parse(this.candidate.trinhDoDaiHoc);
                     this.viecLam = JSON.parse(this.candidate.lichSuLamViec);
 
-                    console.log(this.viecLam);
-                    console.log(this.hocVan);
-                    console.log(this.candidate);
+               //     console.log(this.viecLam);
+               //     console.log(this.hocVan);
+               //     console.log(this.candidate);
                 },
                 error => {
                     console.log("Failed");

@@ -52,6 +52,7 @@ export class BrowsercompanyComponent implements OnInit {
             .subscribe(
                 (data: Major[]) => {
                     this.listMajor = data;
+                    console.log(this.listMajor);
                 },
                 error => {
                     console.log("Fail");
@@ -63,7 +64,7 @@ export class BrowsercompanyComponent implements OnInit {
             .subscribe(
                 (data: Company[]) => {
                     this.listSearchCompany = data;
-                    console.log(this.listSearchCompany);
+                    // console.log(this.listSearchCompany);
                 },
                 error => {
                     console.log("Fail");
@@ -77,7 +78,7 @@ export class BrowsercompanyComponent implements OnInit {
                 for(var i = 0 ; i < this.savedCompany.length ; ++i){
                     this.savedCompanyId.push(this.savedCompany[i].congtyId);
                 }
-                console.log("saved  : " + this.savedCompanyId);
+             //   console.log("saved  : " + this.savedCompanyId);
             },
             error => {
                 console.log("Fail");
@@ -116,7 +117,7 @@ export class BrowsercompanyComponent implements OnInit {
                 .subscribe(
                     (data: Company[]) => {
                         this.listSearchCompany = data;
-                        console.log(this.listSearchCompany);
+                      //  console.log(this.listSearchCompany);
                     },
                     error => {
                         console.log("Faild");

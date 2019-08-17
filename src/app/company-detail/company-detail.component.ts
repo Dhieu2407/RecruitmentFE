@@ -41,7 +41,7 @@ export class CompanyDetailComponent implements OnInit {
                   for(var i = 0 ; i < this.savedCompany.length ; ++i) {
                       this.savedCompanyId.push(this.savedCompany[i].congtyId);
                   }
-                  console.log("saved  : " + this.savedCompanyId);
+              //    console.log("saved  : " + this.savedCompanyId);
               },
               error => {
                   console.log("Fail");
@@ -51,9 +51,7 @@ export class CompanyDetailComponent implements OnInit {
         .pipe(first())
         .subscribe(
             (data: Company) => {
-                console.log(data);
                 this.company = data;
-                console.log(this.company);
             },
             error => {
                 console.log("Failed");
@@ -68,7 +66,6 @@ export class CompanyDetailComponent implements OnInit {
             .pipe(first())
             .subscribe(
                 (data: any) => {
-                    console.log(data);
                     if (this.savedCompanyId.indexOf(company.congtyId) !== -1) {
                         alert("Bạn đã bỏ lưu công ty " + company.tenCongTy + " thành công");
                     } else {
