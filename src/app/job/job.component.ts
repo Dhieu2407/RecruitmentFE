@@ -117,7 +117,6 @@ export class JobComponent implements OnInit {
             .subscribe(
                 (data: Job[]) => {
                     this.listJobs = data;
-                    console.log(this.listJobs);
                 },
                 error => {
                     console.log("Failed");
@@ -131,7 +130,6 @@ export class JobComponent implements OnInit {
                     for(var i = 0 ; i < this.savedJobs.length ; ++i) {
                         this.savedJobsId.push(this.savedJobs[i].jobId);
                     }
-                    console.log(this.savedJobsId);
                 },
                 error => {
                     console.log("Failed");
@@ -145,7 +143,6 @@ export class JobComponent implements OnInit {
                     for(var i = 0 ; i < this.appliedJobs.length ; ++i) {
                         this.appliedJobsId.push(this.appliedJobs[i].jobId);
                     }
-                    console.log(this.appliedJobsId);
                 },
                 error => {
                     console.log("Failed");
@@ -156,14 +153,12 @@ export class JobComponent implements OnInit {
   onBookmark(jobs: Job) {
     this.candidateSaveJobDTO = new CandidateSaveJobsDTO();
     this.candidateSaveJobDTO.candidateId =  this.account.id;
-    console.log(jobs);
     this.candidateSaveJobDTO.jobId =  jobs.jobId;
     console.log(this.candidateSaveJobDTO);
     this.candidateService.candidateSaveJob(this.candidateSaveJobDTO)
             .pipe(first())
             .subscribe(
                 (data: any) => {
-                    console.log(data);
                     if(this.savedJobsId.indexOf(jobs.jobId) !== -1){
                         alert("Bạn đã bỏ lưu job " + jobs.tenJob + " thành công");
                     }else{
@@ -181,7 +176,6 @@ export class JobComponent implements OnInit {
     onApply(jobs: Job) {
         this.candidateSaveJobDTO = new CandidateSaveJobsDTO();
         this.candidateSaveJobDTO.candidateId =  this.account.id;
-        console.log(jobs);
         this.candidateSaveJobDTO.jobId = jobs.jobId;
         console.log(this.candidateSaveJobDTO);
         this.candidateService
@@ -189,7 +183,6 @@ export class JobComponent implements OnInit {
             .pipe(first())
             .subscribe(
                 (data: any) => {
-                    console.log(data);
                     if(this.appliedJobsId.indexOf(jobs.jobId) !== -1){
                         alert("Bạn đã bỏ ứng tuyển job " + jobs.tenJob + " thành công");
                     }else{

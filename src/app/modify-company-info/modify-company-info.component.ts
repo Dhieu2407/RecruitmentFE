@@ -53,7 +53,6 @@ export class ModifyCompanyInfoComponent implements OnInit {
             .subscribe(
                 (data: Major[]) => {
                     this.listMajor = data;
-                    console.log(this.listMajor);
                 },
                 error => {
                     console.log('Fail');
@@ -65,7 +64,6 @@ export class ModifyCompanyInfoComponent implements OnInit {
             .pipe(first())
             .subscribe(
                 (data: any) => {
-                    console.log(data);
                     this.company = data;
                     this.modifyCompanyForm.get("tenCongTy").setValue(this.company.tenCongTy);
                     this.modifyCompanyForm.get("phone").setValue(this.company.sdt);
@@ -73,7 +71,6 @@ export class ModifyCompanyInfoComponent implements OnInit {
                     this.modifyCompanyForm.get("moTa").setValue(this.company.moTa);
                     this.modifyCompanyForm.get("phucLoi").setValue(this.company.phucLoi);
                     this.modifyCompanyForm.get("quyMo").setValue(this.company.quyMo);
-                    console.log(data.nganh.nganhId);
                     this.modifyCompanyForm.get("tenNganh").setValue(data.nganh.nganhId);
                     console.log(this.modifyCompanyForm.get("tenNganh").value);
                 },
@@ -85,9 +82,6 @@ export class ModifyCompanyInfoComponent implements OnInit {
 
     onSubmit(buttonType): void {
         if (buttonType === "Submit") {
-            // if(this.modifyCompanyForm.invalid){
-            //     return;
-            // }
             if (this.modifyCompanyForm.invalid) {
                 return;
             }
@@ -103,7 +97,6 @@ export class ModifyCompanyInfoComponent implements OnInit {
             this.company.phucLoi = this.modifyCompanyForm.get("phucLoi").value;
             this.company.quyMo = this.modifyCompanyForm.get("quyMo").value;
             this.company.idNganh = this.modifyCompanyForm.get("tenNganh").value;
-            console.log(this.company);
             const uploadData = new FormData();
             if(this.imageFile !== undefined) {
                 uploadData.append('file', this.imageFile, this.imageFile.name);
@@ -154,7 +147,6 @@ export class ModifyCompanyInfoComponent implements OnInit {
             .pipe(first())
             .subscribe(
                 (data: Company[]) => {
-                    console.log(data);
                     location.href =  '/companydetail/' + this.id;
                 },
                 error => {

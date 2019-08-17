@@ -67,7 +67,7 @@ export class ApproveresumeapplyComponent implements OnInit {
             .subscribe(
                 (data: Apply) => {
                     this.applyResult = data;
-                    console.log(this.applyResult);
+                   // console.log(this.applyResult);
                     this.nganh = this.applyResult.ungVien.nganh.tenNganh;
                     this.hocVan = JSON.parse(this.applyResult.ungVien.trinhDoDaiHoc);
                     this.viecLam = JSON.parse(this.applyResult.ungVien.lichSuLamViec);
@@ -91,7 +91,7 @@ export class ApproveresumeapplyComponent implements OnInit {
             .subscribe(
                 (data: number) => {
                     this.numberOfNotify = data;
-                    console.log(this.numberOfNotify);
+                 //   console.log(this.numberOfNotify);
                 },
                 error => {
                     console.log('Faild');

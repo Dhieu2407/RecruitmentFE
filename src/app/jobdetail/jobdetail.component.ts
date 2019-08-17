@@ -46,7 +46,7 @@ export class JobdetailComponent implements OnInit {
         .pipe(first())
         .subscribe(
         (data: any) => {
-            console.log(data);
+         //   console.log(data);
         },
         error => {
             console.log('Fail');
@@ -56,7 +56,7 @@ export class JobdetailComponent implements OnInit {
       .subscribe(
         (data: Job) => {
           this.job = data;
-          console.log(this.job);
+         // console.log(this.job);
             this.major.nganhId = this.job.nganh.nganhId;
             // get list job Related
             this.jobService.getListJobRelate(JSON.stringify(this.major))
@@ -64,7 +64,7 @@ export class JobdetailComponent implements OnInit {
                 .subscribe(
                     (data: Job[]) => {
                         this.listJobRelate = data;
-                        console.log(this.listJobRelate);
+                    //    console.log(this.listJobRelate);
                     },
                     error => {
                         console.log(error);
@@ -83,7 +83,7 @@ export class JobdetailComponent implements OnInit {
                   for(var i = 0 ; i < this.appliedJobs.length ; ++i) {
                       this.appliedJobsId.push(this.appliedJobs[i].jobId);
                   }
-                  console.log(this.appliedJobsId);
+                //  console.log(this.appliedJobsId);
               },
               error => {
                   console.log("Failed");
@@ -97,7 +97,7 @@ export class JobdetailComponent implements OnInit {
                   for(var i = 0 ; i < this.savedJobs.length ; ++i) {
                       this.savedJobsId.push(this.savedJobs[i].jobId);
                   }
-                  console.log(this.savedJobsId);
+                 // console.log(this.savedJobsId);
               },
               error => {
                   console.log("Failed");
@@ -114,7 +114,7 @@ export class JobdetailComponent implements OnInit {
             .pipe(first())
             .subscribe(
                 (data: any) => {
-                    console.log(data);
+                   // console.log(data);
                     if(this.savedJobsId.indexOf(jobs.jobId) !== -1){
                         alert("Bạn đã bỏ lưu job " + jobs.tenJob + " thành công");
                     }else{
@@ -131,7 +131,6 @@ export class JobdetailComponent implements OnInit {
     onApply(jobs: Job) {
         this.candidateSaveJobDTO = new CandidateSaveJobsDTO();
         this.candidateSaveJobDTO.candidateId =  this.account.id;
-        console.log(jobs);
         this.candidateSaveJobDTO.jobId = jobs.jobId;
         console.log(this.candidateSaveJobDTO);
         this.candidateService
@@ -139,7 +138,6 @@ export class JobdetailComponent implements OnInit {
             .pipe(first())
             .subscribe(
                 (data: any) => {
-                    console.log(data);
                     if(this.appliedJobsId.indexOf(jobs.jobId) !== -1){
                         alert("Bạn đã bỏ ứng tuyển job " + jobs.tenJob + " thành công");
                     }else{

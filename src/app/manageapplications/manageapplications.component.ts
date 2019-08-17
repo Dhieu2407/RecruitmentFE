@@ -50,7 +50,7 @@ export class ManageapplicationsComponent implements OnInit {
           .subscribe(
               (data: Apply[]) => {
                   this.listCandidateApplyOfCompany = data;
-                  console.log(this.listCandidateApplyOfCompany);
+                //  console.log(this.listCandidateApplyOfCompany);
               },
               error => {
                   console.log('Failed');
@@ -61,7 +61,7 @@ export class ManageapplicationsComponent implements OnInit {
           .subscribe(
               (data: number) => {
                   this.numberOfNotify = data;
-                  console.log(this.numberOfNotify);
+               //   console.log(this.numberOfNotify);
               },
               error => {
                   console.log('Faild');
