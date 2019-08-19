@@ -52,6 +52,7 @@ export class ResumeComponent implements OnInit {
         error => {
           console.log('Failed');
         });
+      if(this.account.authorities[0] === 'ROLE_EMPLOYER')
       this.companyService.getCandidateSaved(this.account.id)
           .pipe(first())
           .subscribe(
