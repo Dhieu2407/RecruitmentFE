@@ -72,7 +72,7 @@
                                     <a href="/companydetail/{{ jobs.congTy.congtyId }}">{{ jobs.congTy.tenCongTy }}</a>
                                 </p>
                                 <p>
-                                    Thời Gian Làm Việc: <span class="full-time">{{ jobs.tgLamViec == 1 ? "Full-Time" : jobs.tgLamViec == 0 ? "Part-Time" : "" }}</span>
+                                    Thời Gian Làm Việc: <span class="full-time">{{ jobs.tgLamViec == 0 ? "Full-Time" : jobs.tgLamViec == 1 ? "Part-Time" : "" }}</span>
                                 </p>
                                 <div class="job-tag" >
                                     <div class="pull-left">

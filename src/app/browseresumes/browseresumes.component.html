@@ -68,6 +68,8 @@
                                     </div>
                                     <div class="manager-meta">
                                         <span class="location"><i class="ti-location-pin"></i>{{ resume.diaChi }} </span>
+                                        <span class="rate"><i></i>Năm kinh nghiệm: {{resume.kiNang[0] !=null ? resume.kiNang[0].soNamKinhNghiem : '0'}} year</span>
+                                        <span class="rate"><i></i>Kỹ năng: {{resume.kiNang[0] !=null ? resume.kiNang[0].kiNang.tenKiNang : 'Không có thông tin'}}</span>
                                         <span class="rate"><i class="ti-money"></i>{{ resume.luongMongMuon }}</span>
                                     </div>
                                 </div>

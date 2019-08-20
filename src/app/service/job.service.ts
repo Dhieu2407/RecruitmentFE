@@ -32,6 +32,9 @@ export class JobService {
   getListJobOfCompany(body: string) {
       return this.http.post(this.baseUrl + '/getListJobOfCompany', body);
   }
+  getlistJobOfCompanyManage(body: string) {
+      return this.http.post( this.baseUrl + '/getListJobOfCompanyManage', body);
+  }
   updateJob(body: string) {
       return this.http.post( this.baseUrl + '/updateJob', body);
   }

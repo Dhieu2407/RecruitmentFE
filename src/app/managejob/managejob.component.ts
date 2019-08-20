@@ -38,12 +38,12 @@ export class ManagejobComponent implements OnInit  {
         this.page = 0;
         this.pageSize = 5;
         this.company.id = this.account.id;
-        this.jobService.getListJobOfCompany(JSON.stringify(this.company))
+        this.jobService.getlistJobOfCompanyManage(JSON.stringify(this.company))
             .pipe(first())
             .subscribe(
                 (data: Job[]) => {
                     this.listJobOfCompany = data;
-                   // console.log(this.listJobOfCompany);
+                    console.log(this.listJobOfCompany);
                 },
                 error => {
                     console.log('Failed');

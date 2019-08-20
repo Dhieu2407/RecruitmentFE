@@ -61,6 +61,7 @@
     <div class="container">
         <div class="row">
             <h2 class="section-title">Danh sách tuyển dụng của công ty</h2>
+            <div *ngIf="listJobOfCompany==null"><h3>Hiện tại công ty không tuyển dụng</h3></div>
             <hr>
 
             <div *ngFor="let jobs of listJobOfCompany | slice: (page - 1) * pageSize:(page - 1) * pageSize + pageSize">
