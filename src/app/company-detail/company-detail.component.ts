@@ -48,6 +48,7 @@ export class CompanyDetailComponent implements OnInit {
     this.id = +this.route.snapshot.paramMap.get("id");
     this.idCandidate = this.account.id;
     this.companyJob.id = this.id;
+      if(this.account.authorities[0] === 'ROLE_CANDIDATE' )
       this.candidateService.getAllSavedCompanies(this.idCandidate)
           .pipe(first())
           .subscribe(
@@ -83,6 +84,7 @@ export class CompanyDetailComponent implements OnInit {
                 console.log('Failed');
             }
         );
+      if(this.account.authorities[0] === 'ROLE_CANDIDATE' )
       this.candidateService.getBookmarkedJob(this.idCandidate)
           .pipe(first())
           .subscribe(
@@ -97,6 +99,7 @@ export class CompanyDetailComponent implements OnInit {
                   console.log("Failed");
               }
           );
+      if(this.account.authorities[0] === 'ROLE_CANDIDATE' )
       this.candidateService.getAppliedJobs(this.idCandidate)
           .pipe(first())
           .subscribe(

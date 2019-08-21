@@ -64,7 +64,7 @@
                 </div>
 
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                  <p><b>Hình Thức Làm Việc: <span class="full-time">{{job.tgLamViec == 1 ? 'Full-Time' : (job.tgLamViec == 0 ? 'Part-Time' : '')}}</span></b></p>
+                  <p><b>Hình Thức Làm Việc: <span class="full-time">{{job.tgLamViec == 0 ? 'Full-Time' : (job.tgLamViec == 1 ? 'Part-Time' : '')}}</span></b></p>
                 </div>
               </div>
               <div class="col-md-12">
@@ -86,13 +86,11 @@
                 </div>
               </div>
               <h4><b>Mô Tả Công Việc.</b></h4>
-
-              <!--<p>{{job.chiTiet}}</p>-->
               <p style="white-space: pre-wrap">{{job.chiTiet}}</p>
+                <h4><b>Yêu Cầu Ứng Viên</b></h4>
+                <p style="white-space: pre-wrap">{{job.yeuCauCongViec}}</p>
               <h4><b>Quyền Lợi Được Hưởng</b></h4>
               <p style="white-space: pre-wrap">{{job.quyenLoi}}</p>
-              <h4><b>Yêu Cầu Công Việc</b></h4>
-              <p style="white-space: pre-wrap">{{job.yeuCauCongViec}}</p>
               <h4><b>Yêu Cầu Hồ Sơ</b></h4>
               <p style="white-space: pre-wrap">{{job.yeuCauHoSo}}</p>
               <h4>Apply Job</h4>

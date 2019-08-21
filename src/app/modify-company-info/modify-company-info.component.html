@@ -28,7 +28,7 @@
                         <label class="control-label">Chuyên ngành</label>
                         <div class="search-category-container">
                             <label class="styled-select">
-                                <select class="dropdown-product selectpicker" id="tenNganh" formControlName="tenNganh" name="tenNganh" required >
+                                <select class="form-control" id="tenNganh" formControlName="tenNganh" name="tenNganh" required >
                                     <option>Lựa Chọn</option>
                                     <option *ngFor="let major of listMajor"
                                             [value]="major.nganhId">
